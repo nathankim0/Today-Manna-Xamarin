@@ -3,8 +3,8 @@
 > 홈페이지에 로그인 후 묵상 범위를 가져옵니다. </br>
 
 ## 📌 사용
-* HttpWebResponse (System.net) -> Login to the homepage
-* htmlagilitypack (https://html-agility-pack.net/) -> parsing html
+* HttpWebResponse (System.net) -> Login to the homepage and parse HTML.
+* htmlagilitypack (https://html-agility-pack.net/) -> Select HTML node from HtmlDocument.
 
 ## 📌 데모
 <p>
