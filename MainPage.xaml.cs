@@ -16,6 +16,8 @@ namespace htmlparsing
         public MainPage(string id, string passwd)
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+
             _id = id;
             _passwd = passwd;
             dosomething();
@@ -32,9 +34,17 @@ namespace htmlparsing
         }
          public void dosomething()
         {
-            image.Source = getMannaImage(mainLogin());
-            image.Aspect = Aspect.AspectFit;
-            image.HeightRequest = 500;
+            string checkUrl = getMannaImage(mainLogin());
+            if (checkUrl == "quit")
+            {
+                BackToLogin();
+            }
+            else
+            {
+                image.Source = checkUrl;
+                image.Aspect = Aspect.AspectFit;
+                image.HeightRequest = 500;
+            }
         }
 
         public HttpWebResponse mainLogin()
@@ -42,10 +52,10 @@ namespace htmlparsing
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://community.jbch.org/confirm.php");
 
             req.Method = "Post";
-           // string s = "user_id=jinyeob07&saveid=1&passwd=wlsduq1004&mode=&go=yes&url=http://
+            // string s = "user_id=jinyeob07&saveid=1&passwd=wlsduq1004&mode=&go=yes&url=http://
 
 
-            string s = "user_id="+_id+"&saveid=1&passwd="+_passwd+"&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton";
+            string s = "user_id=" + _id + "&saveid=1&passwd=" + _passwd + "&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton";
             req.CookieContainer = new CookieContainer();
             req.ContentLength = s.Length;
             req.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
@@ -58,8 +68,6 @@ namespace htmlparsing
             HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
 
             TextReader r = (TextReader)new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
-
-           //Console.WriteLine(r.ReadToEnd());
 
             return resp;
         }
@@ -144,17 +152,44 @@ namespace htmlparsing
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlBuffer);
 
+            if (htmlDoc == null)
+            {
+                BackToLogin();
+            }
+
             var getAttr = htmlDoc.DocumentNode.SelectSingleNode("//div[@class='conbox active']//img[@src]");
 
+            Console.WriteLine("@@@@@@@getAttr="+getAttr);
 
-            var getURL = getAttr.GetAttributeValue("src", string.Empty);
+            if (getAttr == null)
+            {
+                return "quit";
+            }
+            else
+            {
+                var getURL = getAttr.GetAttributeValue("src", string.Empty);
 
-            return getURL;
+                return getURL;
+            }
         }
 
         async void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new infoPage());
+        }
+
+        public void OnLogoutClicked(object sender, EventArgs e)
+        {
+            BackToLogin();
+        }
+
+
+        async public void BackToLogin()
+        {
+            Application.Current.Properties["ID"] = "";
+            Application.Current.Properties["PASSWD"] = "";
+            Application.Current.SavePropertiesAsync();
+            await Navigation.PopToRootAsync();
         }
     }
 }

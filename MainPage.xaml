@@ -5,11 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="오늘의 만나 beta1.0">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="i" />
+        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="info" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-
         <StackLayout Padding="50">
             <Image x:Name="image" />
             <Button
@@ -17,6 +16,10 @@
                 FontSize="25"
                 Text="새로고침"
                 VerticalOptions="EndAndExpand" />
+            <Button
+                Clicked="OnLogoutClicked"
+                FontSize="15"
+                Text="Logout" />
         </StackLayout>
     </ScrollView>
 </ContentPage>
