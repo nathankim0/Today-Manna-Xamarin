@@ -17,6 +17,11 @@
                 WidthRequest="500" />
             <Label x:Name="MannaText" />
             <Button
+                BackgroundColor="AliceBlue"
+                Clicked="CoppyButton"
+                FontSize="30"
+                Text="Coppy to Clipboard" />
+            <Button
                 Clicked="Button_Clicked"
                 FontSize="25"
                 Text="새로고침"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XaPP4N+7UWv5HWpZ71dxUE9xmrNGzVUKmRmw6jreWLmAog8FDzba7kRgeYuKtwdPOjkL76/zGybSQ7Ungry8tw==",
+  "dgSpecHash": "zCiUMLvlITvcqzkb1L8iuosm5wPcYkBphHDv8cu3VVcslJfS8Xs32JjhsmPFW099Mx3tUTWv7/1vhlQxDbRS1g==",
   "success": true,
   "projectFilePath": "/Users/jinyeob/Projects/htmlparsing/htmlparsing/htmlparsing.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,8 @@
     "/Users/jinyeob/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
     "/Users/jinyeob/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/jinyeob/.nuget/packages/xamarin.essentials/1.5.3.2/xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "/Users/jinyeob/.nuget/packages/xamarin.forms/4.6.0.1141/xamarin.forms.4.6.0.1141.nupkg.sha512"
+    "/Users/jinyeob/.nuget/packages/xamarin.forms/4.6.0.1141/xamarin.forms.4.6.0.1141.nupkg.sha512",
+    "/Users/jinyeob/.nuget/packages/xamarin.plugins.clipboard/2.2.1/xamarin.plugins.clipboard.2.2.1.nupkg.sha512"
   ],
   "logs": []
 }
