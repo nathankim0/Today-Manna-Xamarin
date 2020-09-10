@@ -71,7 +71,11 @@ if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.T
 
 ## 📌 데모
 ---
+* 앱
 <p>
 <img src="https://github.com/Jinyeob/Today-Manna-Hybrid/blob/master/video.gif" width="40%"/>
 </p>
+
+* 파싱한 페이지 스크린샷
+<img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="30%"/>
 
