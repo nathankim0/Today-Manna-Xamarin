@@ -4,7 +4,7 @@
 
 ## 📌 핵심코드
 ---
-* 웹페이지 로그인
+* HttpWebRequest
 ``` csharp
 HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://community.jbch.org/confirm.php");
 req.Method = "Post";
@@ -21,13 +21,13 @@ HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
 TextReader r = (TextReader)new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
 ```
 
-* Html select
+* HTML select
 ``` csharp
 var tmp = htmlDoc2.DocumentNode.SelectSingleNode("//div[@class='contentbox fr-view']/p").InnerHtml;
 ```
 
 
-* post_uid 얻기
+* Extract 'post_uid'
 ``` csharp
 string thumUrlString = getURL
                   .Replace("getUrl('", "")
@@ -40,12 +40,12 @@ String result;
 result = thumUrlString.Substring(target_num + 5, target2_num - target_num - 5);
 ```
 
-* ```<br>```태그 줄 바꿈 변환
+* Change ```<br>```tag to newline
 ``` csharp
 tmp = Regex.Replace(tmp, @"<br>", "\n\n");
 ```
 
-* login
+* Login (Save ID and Password)
 ``` csharp
 if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.Text))
             {
