@@ -77,5 +77,5 @@ if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.T
 </p>
 
 * 파싱한 페이지 스크린샷
-<img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="30%"/>
+<img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="50%"/>
 
