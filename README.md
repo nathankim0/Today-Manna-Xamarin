@@ -1,4 +1,3 @@
-# Today-Manna-Hybrid
 <h1 align="center">📖 오늘의 만나 📖 </h1>
 > 홈페이지에 로그인 후 묵상 범위를 가져옵니다. 
 
