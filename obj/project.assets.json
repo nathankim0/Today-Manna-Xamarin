@@ -72,6 +72,17 @@
           "buildTransitive/Xamarin.Forms.props": {},
           "buildTransitive/Xamarin.Forms.targets": {}
         }
+      },
+      "Xamarin.Plugins.Clipboard/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/Plugin.Clipboard.Abstractions.dll": {},
+          "lib/netstandard1.0/Plugin.Clipboard.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Plugin.Clipboard.Abstractions.dll": {},
+          "lib/netstandard1.0/Plugin.Clipboard.dll": {}
+        }
       }
     }
   },
@@ -675,6 +686,43 @@
         "xamarin.forms.4.6.0.1141.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
+    },
+    "Xamarin.Plugins.Clipboard/2.2.1": {
+      "sha512": "+CxPFOQqy/UA/XuXUhz5Ktr4C2rLh4QpYouDX8VM4CDvtr9cN9SLsCIJ5IZvn5ufcQPla8ABPCe+nE/qUF423A==",
+      "type": "package",
+      "path": "xamarin.plugins.clipboard/2.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Plugin.Clipboard.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Clipboard.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Clipboard.XML",
+        "lib/MonoAndroid10/Plugin.Clipboard.dll",
+        "lib/MonoAndroid10/Plugin.Clipboard.pdb",
+        "lib/UAP10/Plugin.Clipboard.Abstractions.dll",
+        "lib/UAP10/Plugin.Clipboard.Abstractions.pdb",
+        "lib/UAP10/Plugin.Clipboard.XML",
+        "lib/UAP10/Plugin.Clipboard.dll",
+        "lib/UAP10/Plugin.Clipboard.pdb",
+        "lib/UAP10/Plugin.Clipboard.pri",
+        "lib/Xamarin.Mac20/Plugin.Clipboard.Abstractions.dll",
+        "lib/Xamarin.Mac20/Plugin.Clipboard.Abstractions.pdb",
+        "lib/Xamarin.Mac20/Plugin.Clipboard.dll",
+        "lib/Xamarin.iOS10/Plugin.Clipboard.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Clipboard.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Clipboard.XML",
+        "lib/Xamarin.iOS10/Plugin.Clipboard.dll",
+        "lib/net461/Plugin.Clipboard.Abstractions.dll",
+        "lib/net461/Plugin.Clipboard.Abstractions.pdb",
+        "lib/net461/Plugin.Clipboard.dll",
+        "lib/netstandard1.0/Plugin.Clipboard.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Clipboard.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Clipboard.deps.json",
+        "lib/netstandard1.0/Plugin.Clipboard.dll",
+        "lib/netstandard1.0/Plugin.Clipboard.pdb",
+        "xamarin.plugins.clipboard.2.2.1.nupkg.sha512",
+        "xamarin.plugins.clipboard.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -682,7 +730,8 @@
       "HtmlAgilityPack >= 1.11.24",
       "NETStandard.Library >= 2.0.3",
       "Xamarin.Essentials >= 1.5.3.2",
-      "Xamarin.Forms >= 4.6.0.1141"
+      "Xamarin.Forms >= 4.6.0.1141",
+      "Xamarin.Plugins.Clipboard >= 2.2.1"
     ]
   },
   "packageFolders": {
@@ -737,6 +786,10 @@
           "Xamarin.Forms": {
             "target": "Package",
             "version": "[4.6.0.1141, )"
+          },
+          "Xamarin.Plugins.Clipboard": {
+            "target": "Package",
+            "version": "[2.2.1, )"
           }
         },
         "imports": [

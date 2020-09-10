@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Plugin.Clipboard;
 
 namespace htmlparsing
 {
@@ -155,14 +156,17 @@ namespace htmlparsing
 
                 var tmp = htmlDoc2.DocumentNode.SelectSingleNode("//div[@class='contentbox fr-view']/p").InnerHtml;
 
-                tmp = Regex.Replace(tmp, @"<br>", "\n\n");
+                var mannarange= htmlDoc2.DocumentNode.SelectSingleNode("//div[@class='titlebox']/div[@class='title']").InnerText;
 
+                tmp = Regex.Replace(tmp, @"<br>", "\n\n");
+                
+                string allString = mannarange + "\n\n" + tmp;
                 // Console.WriteLine(htmlBuffer2);
 
 
 
 
-                return tmp;
+                return allString;
             }
         }
 
@@ -221,6 +225,12 @@ namespace htmlparsing
             Application.Current.Properties["PASSWD"] = "";
             Application.Current.SavePropertiesAsync();
             await Navigation.PopToRootAsync();
+        }
+
+        async private void CoppyButton(object sender, EventArgs e)
+        {
+            CrossClipboard.Current.SetText(MannaText.Text);
+            await DisplayAlert("Coppy to Clipboard", "Complete!", "OK");
         }
     }
 }
