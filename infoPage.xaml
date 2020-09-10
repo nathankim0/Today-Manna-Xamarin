@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
         <StackLayout>
-            <Label FontSize="40" Text="오늘의 만나 ios버전 Beta1.0 입니다." />
+            <Label FontSize="40" Text="오늘의 만나 ios버전 Beta2.0 입니다." />
             <Label FontSize="40" Text="-김진엽-" />
         </StackLayout>
     </ContentPage.Content>
