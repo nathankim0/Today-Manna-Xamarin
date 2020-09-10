@@ -7,8 +7,8 @@ namespace htmlparsing
 {
     public partial class LoginPage : ContentPage
     {
-        private string _Id,_Passwd;
-        
+        private string _Id, _Passwd;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -39,12 +39,12 @@ namespace htmlparsing
         void entry2_Completed(System.Object sender, System.EventArgs e)
         {
             LoginFunc();
-           
+
         }
 
         async public void LoginFunc()
         {
-            if (string.IsNullOrWhiteSpace(entry1.Text)|| string.IsNullOrWhiteSpace(entry2.Text))
+            if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.Text))
             {
                 await DisplayAlert("Login Failed", "Please check your ID and Password.", "OK");
             }
@@ -64,30 +64,19 @@ namespace htmlparsing
 
         async public void nav()
         {
-            if (Application.Current.Properties["ID"] == null || Application.Current.Properties["PASSWD"] == null)
-            {
-                //await Navigation.PushAsync(new LoginPage());
 
-            }
-            else
-            {
-                if (
-                    (
-                    Application.Current.Properties.ContainsKey("ID") && Application.Current.Properties.ContainsKey("PASSWD")
-                    )
-                    && (
-                    Application.Current.Properties["ID"].ToString() != "" && Application.Current.Properties["PASSWD"].ToString() != ""
-                    )
-                    )
+            if (Application.Current.Properties.ContainsKey("ID") && Application.Current.Properties.ContainsKey("PASSWD")){
+                if (Application.Current.Properties["ID"].ToString() != "" && Application.Current.Properties["PASSWD"].ToString() != "")
                 {
                     await Navigation.PushAsync(new MainPage(Application.Current.Properties["ID"].ToString(), Application.Current.Properties["PASSWD"].ToString()));
                 }
-                else
-                {
-                    //await Navigation.PushAsync(new LoginPage());
-                }
+            }
+            else
+            {
+                //await Navigation.PushAsync(new LoginPage());
             }
         }
+
 
     }
 }
