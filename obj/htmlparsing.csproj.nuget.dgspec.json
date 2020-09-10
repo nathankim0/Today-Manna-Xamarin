@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/jinyeob/Projects/htmlparsing/htmlparsing/htmlparsing.csproj": {}
+  },
+  "projects": {
+    "/Users/jinyeob/Projects/htmlparsing/htmlparsing/htmlparsing.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jinyeob/Projects/htmlparsing/htmlparsing/htmlparsing.csproj",
+        "projectName": "htmlparsing",
+        "projectPath": "/Users/jinyeob/Projects/htmlparsing/htmlparsing/htmlparsing.csproj",
+        "packagesPath": "/Users/jinyeob/.nuget/packages/",
+        "outputPath": "/Users/jinyeob/Projects/htmlparsing/htmlparsing/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jinyeob/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.24, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.5.3.2, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[4.6.0.1141, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
