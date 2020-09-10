@@ -40,7 +40,7 @@ String result;
 result = thumUrlString.Substring(target_num + 5, target2_num - target_num - 5);
 ```
 
-* <br>태그 줄 바꿈 변환
+* ```<br>```태그 줄 바꿈 변환
 ``` csharp
 tmp = Regex.Replace(tmp, @"<br>", "\n\n");
 ```
@@ -63,6 +63,7 @@ if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.T
                 await Navigation.PushAsync(new MainPage(_Id, _Passwd));
             }
 ```
+
 ## 📌 사용기술
 ---
 * HttpWebResponse (System.net) -> Login to the homepage and parse HTML.
