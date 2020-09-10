@@ -68,6 +68,7 @@ if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.T
 ---
 * HttpWebResponse (System.net) -> Login to the homepage and parse HTML.
 * htmlagilitypack (https://html-agility-pack.net/) -> Select HTML node from HtmlDocument.
+* Xamarin.Plugins.Clipboard (https://www.nuget.org/packages/Xamarin.Plugins.Clipboard/) -> Coppy Text to Clipboard
 
 ## 📌 데모
 ---
