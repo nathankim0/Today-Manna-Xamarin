@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="htmlparsing.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="깨사모 로그인">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="i" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="entry1" Placeholder="아이디" />
+            <Entry
+                x:Name="entry2"
+                IsPassword="True"
+                Placeholder="비밀번호" />
+            <Button Clicked="Button_Clicked" Text="Login" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
