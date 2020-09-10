@@ -3,14 +3,19 @@
     x:Class="htmlparsing.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="오늘의 만나 beta1.0">
+    Title="오늘의 만나 Beta">
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="ToolbarItem_Clicked" Text="info" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout Padding="50">
-            <Image x:Name="image" />
+        <StackLayout Padding="40">
+            <Image
+                x:Name="image"
+                HeightRequest="200"
+                HorizontalOptions="StartAndExpand"
+                WidthRequest="500" />
+            <Label x:Name="MannaText" />
             <Button
                 Clicked="Button_Clicked"
                 FontSize="25"
