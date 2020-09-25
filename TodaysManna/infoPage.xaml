@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TodaysManna.infoPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <Label>
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="안녕하세요, '오늘의 만나 iOS' 입니다. &#10;문의는 " FontSize="18" />
+
+            <Span Text="여기" FontSize="18"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                <Span.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="jinyeob07@gmail.com" />
+                </Span.GestureRecognizers>
+            </Span>
+            <Span Text="로 메일 보내주시면 감사하겠습니다." FontSize="18"/>
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
+            <Button
+                Clicked="BackToLogin"
+                FontSize="25"
+                Text="로그아웃"
+                VerticalOptions="EndAndExpand"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

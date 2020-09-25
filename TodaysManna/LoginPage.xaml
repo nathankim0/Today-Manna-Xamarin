@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TodaysManna.LoginPage" Title="Login">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Margin="50,80,50,10">
+                <Image
+                    HorizontalOptions="Center"
+                    Source="Logo"
+                    WidthRequest="{OnPlatform iOS=200,
+                                              Android=250}" />
+                <Label
+                    Margin="0,30,0,0"
+                    HorizontalTextAlignment="Center"
+                    Text="아이디와 비밀번호를 입력해주세요"
+                    TextColor="Gray" />
+                <Entry
+                    x:Name="entry1"
+                    ClearButtonVisibility="WhileEditing"
+                    Completed="entry1_Completed"
+                    FontSize="20"
+                    IsSpellCheckEnabled="False"
+                    Placeholder="아이디" />
+                <Entry
+                    x:Name="entry2"
+                    ClearButtonVisibility="WhileEditing"
+                    Completed="entry2_Completed"
+                    FontSize="20"
+                    IsPassword="True"
+                    IsSpellCheckEnabled="False"
+                    Placeholder="비밀번호"
+                    ReturnType="Go" />
+                <Button
+                    Margin="0,10,0,0"
+                    BackgroundColor="AliceBlue"
+                    Clicked="Button_Clicked"
+                    Text="로그인" />
+                <Button BackgroundColor="AliceBlue" Text="회원가입" />
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
