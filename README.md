@@ -1,4 +1,4 @@
-<h1 align="center">📖 오늘의 만나 📖 </h1>
+<h1 align="center">오늘의 만나</h1>
 
 > 홈페이지에 로그인 후 묵상 범위를 가져옵니다. </br>
 
@@ -81,11 +81,11 @@ async public void LoginFunc()
 
 | 로그인 | 메인 화면 |
 |:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="70%"/> | <img src="https://user-images.githubusercontent.com/37360089/94250889-c9723280-ff5c-11ea-9515-32306eb3685f.png" width="70%"/> |
+| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="50%"/> | <img src="https://user-images.githubusercontent.com/37360089/94250889-c9723280-ff5c-11ea-9515-32306eb3685f.png" width="50%"/> |
 
 | info | 클립보드 |
 |:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250916-d4c55e00-ff5c-11ea-948f-0266c74347ec.png" width="70%"/> | <img src="https://user-images.githubusercontent.com/37360089/94250986-e9095b00-ff5c-11ea-9a4f-eda1ad28359f.png" width="70%"/> |
+| <img src="https://user-images.githubusercontent.com/37360089/94250916-d4c55e00-ff5c-11ea-948f-0266c74347ec.png" width="50%"/> | <img src="https://user-images.githubusercontent.com/37360089/94250986-e9095b00-ff5c-11ea-9a4f-eda1ad28359f.png" width="50%"/> |
 * 파싱한 페이지 스크린샷
 
 <p>
