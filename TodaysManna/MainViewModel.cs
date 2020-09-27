@@ -8,6 +8,7 @@ using Plugin.Clipboard;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace TodaysManna
 {
@@ -180,7 +181,7 @@ namespace TodaysManna
                 {
                     texts += node.InnerHtml + "\n\n";
                 }
-                //tmp = Regex.Replace(tmp, @"<br>", "\n\n");
+                texts = Regex.Replace(texts, @"<br>", "\n\n");
 
                 allString = mannarange + "\n\n" + texts;
                 //Console.WriteLine(htmlBuffer2);
