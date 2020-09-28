@@ -6,18 +6,21 @@
         <ToolbarItem Command="{Binding ReloadCommand}" IconImageSource="Refresh" />
         <ToolbarItem Command="{Binding ToolbarItem_Clicked_Command}" Text="info" IconImageSource="Info" />
     </ContentPage.ToolbarItems>
-   
+    
     <ScrollView>
-        <StackLayout Padding="40">
-            <ActivityIndicator Color="Black" VerticalOptions="Center" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
+        <StackLayout Padding="30, 20, 30, 0">
+   <ActivityIndicator Color="Orange" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" IsVisible="{Binding IsBusy, Mode=TwoWay}" IsRunning="{Binding IsBusy, Mode=TwoWay}"/>
+
+            <Label Text="{Binding TodayString}" FontAttributes="Italic" TextDecorations="Underline"/>
+
+            <Label Text="{Binding TitleString}" FontAttributes="Bold" FontSize="22"/>
 
             <Label Text="{Binding AllString}"/>
 
             <Button
                 Command="{Binding CoppyCommand}"
-                FontSize="25"
-                Text="클립보드에 복사"
-                VerticalOptions="EndAndExpand"/>
+                FontSize="26"
+                Text="클립보드에 복사"/>
 
             
         </StackLayout>
