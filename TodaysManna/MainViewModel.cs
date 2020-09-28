@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Xamarin.Essentials;
 
 namespace TodaysManna
 {
@@ -98,14 +99,15 @@ namespace TodaysManna
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            DateTime dt=new DateTime();
+            DateTime dt = new DateTime();
 
-            TodayString= DateTime.Now.ToString("yyyy-MM-dd")+"\n";
+            TodayString = DateTime.Now.ToString("yyyy-MM-dd") + "\n";
 
-            this.ReloadCommand = new Command(async() => await GetMannaText());
-            this.CoppyCommand = new Command(() => CoppyFunc());
+            this.ReloadCommand = new Command(async () => await GetMannaText());
+            this.ShareCommand = new Command(() => ShareFunc());
+            //this.CoppyCommand = new Command(() => CoppyFunc());
             this.ToolbarItem_Clicked_Command = new Command(async () => await ToolbarItem_Clicked_Func());
-                
+
             _id = Application.Current.Properties["ID"] as string;
             _passwd = Application.Current.Properties["PASSWD"] as string;
 
@@ -117,7 +119,7 @@ namespace TodaysManna
             else
             {
                 GetMannaText();
-            } 
+            }
         }
 
         async Task GetMannaText()
@@ -237,7 +239,7 @@ namespace TodaysManna
                 }
                 texts = Regex.Replace(texts, @"<br>", "\n\n");
 
-                TitleString ="("+ mannarange +")"+ "\n";
+                TitleString = "(" + mannarange + ")" + "\n";
                 AllString = texts;
                 //Console.WriteLine(htmlBuffer2);
                 IsBusy = false;
@@ -258,19 +260,31 @@ namespace TodaysManna
             await Navigation.PushAsync(new infoPage());
         }
 
-        async private void CoppyFunc()
+
+        public async Task ShareFunc()
         {
-            CrossClipboard.Current.SetText(todayString+ titleString + allString);
-            await Application.Current.MainPage.DisplayAlert(null, "복사되었습니다.", "확인");
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = TodayString + TitleString + AllString,
+                Title = "Share Manna"
+            });
         }
 
         public ICommand ToolbarItem_Clicked_Command { protected set; get; }
         public ICommand ReloadCommand { protected set; get; }
-        public ICommand CoppyCommand { protected set; get; }
+        public ICommand ShareCommand { protected set; get; }
+        //public ICommand CoppyCommand { protected set; get; }
         public INavigation Navigation { get; set; }
-                            
+
 
         /*
+
+        async private void CoppyFunc()
+        {
+            CrossClipboard.Current.SetText(todayString + titleString + allString);
+            await Application.Current.MainPage.DisplayAlert(null, "복사되었습니다.", "확인");
+        }
+
         public void getMannaImage()
         {
             string checkUrl = getMannaImage(mainLogin());
