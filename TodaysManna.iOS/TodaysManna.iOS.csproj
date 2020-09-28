@@ -100,6 +100,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-15.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-16.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-17.png" />
+    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
