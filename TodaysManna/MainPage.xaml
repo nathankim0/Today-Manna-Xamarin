@@ -9,9 +9,10 @@
     
     <ScrollView>
         <StackLayout Padding="30, 20, 30, 0">
-   <ActivityIndicator Color="Orange" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" IsVisible="{Binding IsBusy, Mode=TwoWay}" IsRunning="{Binding IsBusy, Mode=TwoWay}"/>
 
             <Label Text="{Binding TodayString}" FontAttributes="Italic" TextDecorations="Underline"/>
+
+            <ActivityIndicator IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
 
             <Label Text="{Binding TitleString}" FontAttributes="Bold" FontSize="22"/>
 
