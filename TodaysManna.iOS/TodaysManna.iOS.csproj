@@ -74,51 +74,32 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Logo.imageset\Logo.png" />
     <ImageAsset Include="Assets.xcassets\Refresh.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Refresh.imageset\refresh-1.png" />
     <ImageAsset Include="Assets.xcassets\Info.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Info.imageset\info.png" />
+    <ImageAsset Include="Assets.xcassets\Share.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Share.imageset\share.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-3.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-4.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-5.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-6.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-7.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-8.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-9.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-10.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-11.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-12.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-13.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-14.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-15.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-17.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -143,5 +124,6 @@
     <Folder Include="Assets.xcassets\Logo.imageset\" />
     <Folder Include="Assets.xcassets\Refresh.imageset\" />
     <Folder Include="Assets.xcassets\Info.imageset\" />
+    <Folder Include="Assets.xcassets\Share.imageset\" />
   </ItemGroup>
 </Project>
