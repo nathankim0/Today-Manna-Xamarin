@@ -79,15 +79,15 @@ namespace TodaysManna
             }
         }
 
-        private bool _isBusy;
+        bool isBusy;
         public bool IsBusy
         {
-            get { return _isBusy; }
+            get { return isBusy; }
             set
             {
-                if (_isBusy != value)
+                if (isBusy != value)
                 {
-                    _isBusy = value;
+                    isBusy = value;
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("IsBusy"));
@@ -102,7 +102,7 @@ namespace TodaysManna
 
             TodayString= DateTime.Now.ToString("yyyy-MM-dd")+"\n";
 
-            this.ReloadCommand = new Command(() => MainFunc());
+            this.ReloadCommand = new Command(async() => await GetMannaText());
             this.CoppyCommand = new Command(() => CoppyFunc());
             this.ToolbarItem_Clicked_Command = new Command(async () => await ToolbarItem_Clicked_Func());
                 
@@ -116,19 +116,15 @@ namespace TodaysManna
             }
             else
             {
-                MainFunc();
-            }
-        }
-        public void MainFunc()
-        {
-            Device.BeginInvokeOnMainThread(() => IsBusy = true);
-            GetMannaText();
-            Device.BeginInvokeOnMainThread(() => IsBusy = false);
-
+                GetMannaText();
+            } 
         }
 
-        public void GetMannaText()
+        async Task GetMannaText()
         {
+            IsBusy = true;
+            AllString = "Loading...";
+            TitleString = "";
             /*********************************
              * 
              * 초기 로그인 쿠기 얻는 작업.
@@ -148,7 +144,7 @@ namespace TodaysManna
             w.Write(s);
             w.Close();
 
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            HttpWebResponse resp = (HttpWebResponse)(await req.GetResponseAsync());
 
             TextReader r = (TextReader)new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
 
@@ -167,7 +163,7 @@ namespace TodaysManna
 
             req.CookieContainer = new CookieContainer();
             req.CookieContainer.Add(respBuffer.Cookies);
-            respBuffer = (HttpWebResponse)req.GetResponse();
+            respBuffer = (HttpWebResponse)(await req.GetResponseAsync());
 
             r = (TextReader)new StreamReader(respBuffer.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
             htmlBuffer = r.ReadToEnd();
@@ -221,7 +217,7 @@ namespace TodaysManna
                 w2.Write(str);
                 w2.Close();
 
-                respBuffer2 = (HttpWebResponse)req2.GetResponse();
+                respBuffer2 = (HttpWebResponse)(await req2.GetResponseAsync());
                 TextReader r2 = (TextReader)new StreamReader(respBuffer2.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
                 htmlBuffer2 = r2.ReadToEnd();
 
@@ -244,6 +240,7 @@ namespace TodaysManna
                 TitleString ="("+ mannarange +")"+ "\n";
                 AllString = texts;
                 //Console.WriteLine(htmlBuffer2);
+                IsBusy = false;
             }
         }
 
