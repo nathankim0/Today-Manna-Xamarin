@@ -19,6 +19,46 @@ namespace TodaysManna
         public string _id, _passwd;
         public static CookieContainer cookie = new CookieContainer();
 
+        string todayString;
+        public string TodayString
+        {
+            get
+            {
+                return todayString;
+            }
+            set
+            {
+                if (todayString != value)
+                {
+                    todayString = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("TodayString"));
+                    }
+                }
+            }
+        }
+
+        string titleString;
+        public string TitleString
+        {
+            get
+            {
+                return titleString;
+            }
+            set
+            {
+                if (titleString != value)
+                {
+                    titleString = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("TitleString"));
+                    }
+                }
+            }
+        }
+
         string allString;
         public string AllString
         {
@@ -58,19 +98,37 @@ namespace TodaysManna
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
+            DateTime dt=new DateTime();
 
-            this.ReloadCommand = new Command(() => GetMannaText());
+            TodayString= DateTime.Now.ToString("yyyy-MM-dd")+"\n";
+
+            this.ReloadCommand = new Command(() => MainFunc());
             this.CoppyCommand = new Command(() => CoppyFunc());
             this.ToolbarItem_Clicked_Command = new Command(async () => await ToolbarItem_Clicked_Func());
                 
             _id = Application.Current.Properties["ID"] as string;
             _passwd = Application.Current.Properties["PASSWD"] as string;
+
+            if (dt.DayOfWeek == DayOfWeek.Sunday)
+            {
+                TitleString = "일요일은 지원하지 않습니다.";
+                AllString = "";
+            }
+            else
+            {
+                MainFunc();
+            }
+        }
+        public void MainFunc()
+        {
+            Device.BeginInvokeOnMainThread(() => IsBusy = true);
             GetMannaText();
+            Device.BeginInvokeOnMainThread(() => IsBusy = false);
+
         }
 
         public void GetMannaText()
         {
-            IsBusy = true;
             /*********************************
              * 
              * 초기 로그인 쿠기 얻는 작업.
@@ -183,9 +241,9 @@ namespace TodaysManna
                 }
                 texts = Regex.Replace(texts, @"<br>", "\n\n");
 
-                allString = mannarange + "\n\n" + texts;
+                TitleString ="("+ mannarange +")"+ "\n";
+                AllString = texts;
                 //Console.WriteLine(htmlBuffer2);
-                IsBusy = false;
             }
         }
 
@@ -205,7 +263,7 @@ namespace TodaysManna
 
         async private void CoppyFunc()
         {
-            CrossClipboard.Current.SetText(allString);
+            CrossClipboard.Current.SetText(todayString+ titleString + allString);
             await Application.Current.MainPage.DisplayAlert(null, "복사되었습니다.", "확인");
         }
 
