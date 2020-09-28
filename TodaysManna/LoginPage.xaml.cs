@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
-
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 namespace TodaysManna
 {
     public partial class LoginPage : ContentPage
@@ -60,6 +61,13 @@ namespace TodaysManna
         void entry2_Completed(System.Object sender, System.EventArgs e)
         {
             LoginFunc();
+        }
+
+        public async void SignIn_Button_Clicked(System.Object sender, System.EventArgs e)
+        {
+            Uri uri = new Uri("http://community.jbch.org/join/kor/step1.php");
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+
         }
     }
 }
