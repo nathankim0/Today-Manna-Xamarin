@@ -96,6 +96,22 @@ namespace TodaysManna
                 }
             }
         }
+        bool isReloading;
+        public bool IsReloading
+        {
+            get { return isReloading; }
+            set
+            {
+                if (isReloading != value)
+                {
+                    isReloading = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("IsReloading"));
+                    }
+                }
+            }
+        }
         public MainViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
@@ -103,8 +119,11 @@ namespace TodaysManna
 
             TodayString = DateTime.Now.ToString("yyyy-MM-dd") + "\n";
 
-            this.ReloadCommand = new Command(async () => await GetMannaText());
-            this.ShareCommand = new Command(() => ShareFunc());
+            this.ReloadCommand = new Command(async () =>
+            {
+                await GetMannaText(); IsReloading = false;
+            });
+            this.ShareCommand = new Command(async() => await ShareFunc());
             //this.CoppyCommand = new Command(() => CoppyFunc());
             this.ToolbarItem_Clicked_Command = new Command(async () => await ToolbarItem_Clicked_Func());
 
@@ -118,7 +137,7 @@ namespace TodaysManna
             }
             else
             {
-                GetMannaText();
+               var task = GetMannaText();
             }
         }
 
@@ -177,7 +196,7 @@ namespace TodaysManna
 
             if (getAttr == null)
             {
-                BackToLogin();
+                await BackToLogin();
             }
             else
             {
@@ -273,8 +292,8 @@ namespace TodaysManna
         public ICommand ToolbarItem_Clicked_Command { protected set; get; }
         public ICommand ReloadCommand { protected set; get; }
         public ICommand ShareCommand { protected set; get; }
-        //public ICommand CoppyCommand { protected set; get; }
         public INavigation Navigation { get; set; }
+        //public ICommand CoppyCommand { protected set; get; }
 
 
         /*
