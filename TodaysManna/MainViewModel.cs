@@ -4,7 +4,7 @@ using HtmlAgilityPack;
 using System.Net;
 using System.IO;
 using System.Text;
-using Plugin.Clipboard;
+//using Plugin.Clipboard;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
@@ -79,7 +79,7 @@ namespace TodaysManna
                 }
             }
         }
-
+        /*
         bool isBusy;
         public bool IsBusy
         {
@@ -96,6 +96,7 @@ namespace TodaysManna
                 }
             }
         }
+        */
         bool isReloading;
         public bool IsReloading
         {
@@ -121,11 +122,12 @@ namespace TodaysManna
 
             this.ReloadCommand = new Command(async () =>
             {
-                await GetMannaText(); IsReloading = false;
+                await GetMannaText();
+                IsReloading = false;
             });
-            this.ShareCommand = new Command(async() => await ShareFunc());
+            this.ShareCommand = new Command(async () => await ShareFunc());
             //this.CoppyCommand = new Command(() => CoppyFunc());
-            this.ToolbarItem_Clicked_Command = new Command(async () => await ToolbarItem_Clicked_Func());
+            this.InfoCommand = new Command(async () => await InfoFunc());
 
             _id = Application.Current.Properties["ID"] as string;
             _passwd = Application.Current.Properties["PASSWD"] as string;
@@ -137,13 +139,13 @@ namespace TodaysManna
             }
             else
             {
-               var task = GetMannaText();
+                var task = GetMannaText();
             }
         }
 
         async Task GetMannaText()
         {
-            IsBusy = true;
+            //IsBusy = true;
             AllString = "Loading...";
             TitleString = "";
             /*********************************
@@ -261,7 +263,7 @@ namespace TodaysManna
                 TitleString = "(" + mannarange + ")" + "\n";
                 AllString = texts;
                 //Console.WriteLine(htmlBuffer2);
-                IsBusy = false;
+                //IsBusy = false;
             }
         }
 
@@ -274,7 +276,7 @@ namespace TodaysManna
             await Navigation.PushAsync(new LoginPage());
         }
 
-        private async Task ToolbarItem_Clicked_Func()
+        private async Task InfoFunc()
         {
             await Navigation.PushAsync(new infoPage());
         }
@@ -289,7 +291,7 @@ namespace TodaysManna
             });
         }
 
-        public ICommand ToolbarItem_Clicked_Command { protected set; get; }
+        public ICommand InfoCommand { protected set; get; }
         public ICommand ReloadCommand { protected set; get; }
         public ICommand ShareCommand { protected set; get; }
         public INavigation Navigation { get; set; }

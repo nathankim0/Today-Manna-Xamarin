@@ -9,27 +9,35 @@
     <ContentPage.ToolbarItems>
         <!-- <ToolbarItem Command="{Binding ReloadCommand}" IconImageSource="Refresh" />-->
         <ToolbarItem Command="{Binding ShareCommand}" IconImageSource="Share" />
-        <ToolbarItem Command="{Binding ToolbarItem_Clicked_Command}" IconImageSource="Info" />
+        <ToolbarItem Command="{Binding InfoCommand}" IconImageSource="Info" />
     </ContentPage.ToolbarItems>
+    <StackLayout BackgroundColor="AliceBlue">
 
-    <RefreshView Command="{Binding ReloadCommand}" IsRefreshing="{Binding IsReloading}">
-        <ScrollView>
-            <StackLayout Padding="30,20,30,0">
+        <RefreshView
+            Padding="10"
+            Command="{Binding ReloadCommand}"
+            IsRefreshing="{Binding IsReloading}">
+            <ScrollView>
+                <Frame
+                    BorderColor="CadetBlue"
+                    CornerRadius="80"
+                    HasShadow="False">
 
+                    <StackLayout Padding="15,20,15,0">
 
-                <Label
-                    FontAttributes="Italic"
-                    Text="{Binding TodayString}"
-                    TextDecorations="Underline" />
+                        <Label
+                            FontAttributes="Italic"
+                            Text="{Binding TodayString}"
+                            TextDecorations="Underline" />
 
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="22"
-                    Text="{Binding TitleString}" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            Text="{Binding TitleString}" />
 
-                <Label Text="{Binding AllString}" />
+                        <Label Text="{Binding AllString}" />
 
-                <!--
+                        <!--
                 <ActivityIndicator
                     IsEnabled="{Binding IsBusy}"
                     IsRunning="{Binding IsBusy}"
@@ -43,8 +51,12 @@
                 FontSize="26"
                 VerticalOptions="Start"
                 Text="클립보드에 복사"/>
-                -->
-            </StackLayout>
-        </ScrollView>
-    </RefreshView>
+                        -->
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+
+        </RefreshView>
+
+    </StackLayout>
 </ContentPage>
