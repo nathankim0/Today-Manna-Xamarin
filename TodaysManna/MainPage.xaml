@@ -11,17 +11,14 @@
         <ToolbarItem Command="{Binding ShareCommand}" IconImageSource="Share" />
         <ToolbarItem Command="{Binding InfoCommand}" IconImageSource="Info" />
     </ContentPage.ToolbarItems>
-    <StackLayout BackgroundColor="AliceBlue">
+    <StackLayout>
 
         <RefreshView
             Padding="10"
             Command="{Binding ReloadCommand}"
             IsRefreshing="{Binding IsReloading}">
             <ScrollView>
-                <Frame
-                    BorderColor="CadetBlue"
-                    CornerRadius="80"
-                    HasShadow="False">
+                
 
                     <StackLayout Padding="15,20,15,0">
 
@@ -51,9 +48,15 @@
                 FontSize="26"
                 VerticalOptions="Start"
                 Text="클립보드에 복사"/>
+
+                        <Frame
+                    BorderColor="CadetBlue"
+                    CornerRadius="80"
+                    HasShadow="False">
+                                        </Frame>
+
                         -->
                     </StackLayout>
-                </Frame>
             </ScrollView>
 
         </RefreshView>
