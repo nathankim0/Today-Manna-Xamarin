@@ -118,21 +118,14 @@ namespace TodaysManna
             this.Navigation = navigation;
             DateTime dt = new DateTime();
 
-            TodayString = DateTime.Now.ToString("yyyy-MM-dd") + "\n";
+            TodayString = DateTime.Now.ToString("yyyy-MM-dd dddd") + "\n";
 
-            this.ReloadCommand = new Command(async () =>
-            {
-                await GetMannaText();
-                IsReloading = false;
-            });
-            this.ShareCommand = new Command(async () => await ShareFunc());
-            //this.CoppyCommand = new Command(() => CoppyFunc());
             this.InfoCommand = new Command(async () => await InfoFunc());
 
             _id = Application.Current.Properties["ID"] as string;
             _passwd = Application.Current.Properties["PASSWD"] as string;
 
-            if (dt.DayOfWeek == DayOfWeek.Sunday)
+            if (DateTime.Now.ToString("dddd").Equals("일요일"))
             {
                 TitleString = "일요일은 지원하지 않습니다.";
                 AllString = "";
@@ -140,6 +133,14 @@ namespace TodaysManna
             else
             {
                 var task = GetMannaText();
+
+                this.ReloadCommand = new Command(async () =>
+                {
+                    await GetMannaText();
+                    IsReloading = false;
+                });
+                this.ShareCommand = new Command(async () => await ShareFunc());
+
             }
         }
 
@@ -159,17 +160,17 @@ namespace TodaysManna
             req.Method = "Post"; // Post 방식
             string s = "user_id=" + _id + "&saveid=1&passwd=" + _passwd + "&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton"; // 'input'에 들어갈 내용
             req.CookieContainer = new CookieContainer(); // 쿠키 컨테이너 생성
-            //req.ContentLength = s.Length; // 필요없는듯?
+            //req.ContentLength = s.Length;
             req.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
 
-            TextWriter w = (TextWriter)new System.IO.StreamWriter(req.GetRequestStream());
+            TextWriter w = new StreamWriter(await req.GetRequestStreamAsync());
 
             w.Write(s);
             w.Close();
 
             HttpWebResponse resp = (HttpWebResponse)(await req.GetResponseAsync());
 
-            TextReader r = (TextReader)new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+           // TextReader r = (TextReader)new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
 
 
             /*********************************
@@ -188,7 +189,7 @@ namespace TodaysManna
             req.CookieContainer.Add(respBuffer.Cookies);
             respBuffer = (HttpWebResponse)(await req.GetResponseAsync());
 
-            r = (TextReader)new StreamReader(respBuffer.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+            TextReader r = new StreamReader(respBuffer.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
             htmlBuffer = r.ReadToEnd();
 
             var htmlDoc = new HtmlDocument();
@@ -196,7 +197,7 @@ namespace TodaysManna
 
             var getAttr = htmlDoc.DocumentNode.SelectSingleNode("//div[@class='conbox active']/div[@onclick]");
 
-            if (getAttr == null)
+            if (getAttr==null)
             {
                 await BackToLogin();
             }
@@ -232,16 +233,16 @@ namespace TodaysManna
                 req2.CookieContainer = new CookieContainer();
                 req2.CookieContainer.Add(respBuffer2.Cookies);
 
-                req2.ContentLength = str.Length;
+                //req2.ContentLength = str.Length;
                 req2.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
 
-                TextWriter w2 = (TextWriter)new StreamWriter(req2.GetRequestStream());
+                TextWriter w2 = new StreamWriter(await req2.GetRequestStreamAsync());
 
                 w2.Write(str);
                 w2.Close();
 
                 respBuffer2 = (HttpWebResponse)(await req2.GetResponseAsync());
-                TextReader r2 = (TextReader)new StreamReader(respBuffer2.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+                TextReader r2 = new StreamReader(respBuffer2.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
                 htmlBuffer2 = r2.ReadToEnd();
 
                 var htmlDoc2 = new HtmlDocument();
