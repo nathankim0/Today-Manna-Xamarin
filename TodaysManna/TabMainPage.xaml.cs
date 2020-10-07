@@ -9,6 +9,8 @@ namespace TodaysManna
     {
         public TabMainPage()
         {
+            NavigationPage.SetHasBackButton(this, false);
+
             var navigationPage = new NavigationPage(new MainPage());
             navigationPage.IconImageSource = "Tab_Manna";
             navigationPage.Title = "만나";

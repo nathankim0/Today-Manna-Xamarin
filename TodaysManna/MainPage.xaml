@@ -22,7 +22,6 @@
                     <StackLayout Padding="15,20,15,0">
 
                         <Label
-                            FontAttributes="Italic"
                             Text="{Binding TodayString}"
                             TextDecorations="Underline" />
 
