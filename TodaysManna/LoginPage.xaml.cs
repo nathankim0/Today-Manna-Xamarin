@@ -41,7 +41,7 @@ namespace TodaysManna
 
                 await Application.Current.SavePropertiesAsync();
 
-                await Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new TabMainPage());
             }
         }
 

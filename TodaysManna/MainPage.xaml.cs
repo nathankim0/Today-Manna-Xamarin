@@ -15,6 +15,8 @@ namespace TodaysManna
             InitializeComponent();
 
             NavigationPage.SetHasBackButton(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);  // Hide nav bar
+
             BindingContext = new MainViewModel(Navigation);
 
         }
