@@ -79,9 +79,7 @@
     <ImageAsset Include="Assets.xcassets\Refresh.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Refresh.imageset\refresh-1.png" />
     <ImageAsset Include="Assets.xcassets\Info.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Info.imageset\info.png" />
     <ImageAsset Include="Assets.xcassets\Share.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Share.imageset\share.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-2.png" />
@@ -101,6 +99,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-16.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-17.png" />
     <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tab_Manna.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tab_Mc.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tab_Mc.imageset\Tab_Mc2-1.png" />
+    <ImageAsset Include="Assets.xcassets\Tab_Manna.imageset\Tab_Manna2-1.png" />
+    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-3-50.png" />
+    <ImageAsset Include="Assets.xcassets\Info.imageset\icons8-info-50 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -126,5 +130,8 @@
     <Folder Include="Assets.xcassets\Refresh.imageset\" />
     <Folder Include="Assets.xcassets\Info.imageset\" />
     <Folder Include="Assets.xcassets\Share.imageset\" />
+    <Folder Include="Assets.xcassets\Tab_Manna.imageset\" />
+    <Folder Include="Assets.xcassets\.imageset\" />
+    <Folder Include="Assets.xcassets\Tab_Mc.imageset\" />
   </ItemGroup>
 </Project>

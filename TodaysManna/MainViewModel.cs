@@ -120,7 +120,7 @@ namespace TodaysManna
 
             TodayString = DateTime.Now.ToString("yyyy-MM-dd dddd") + "\n";
 
-            this.InfoCommand = new Command(async () => await InfoFunc());
+            //this.InfoCommand = new Command(async () => await InfoFunc());
 
             _id = Application.Current.Properties["ID"] as string;
             _passwd = Application.Current.Properties["PASSWD"] as string;
@@ -260,6 +260,7 @@ namespace TodaysManna
                     texts += node.InnerHtml + "\n\n";
                 }
                 texts = Regex.Replace(texts, @"<br>", "\n\n");
+                texts = Regex.Replace(texts, @"&nbsp;", "");
 
                 TitleString = "(" + mannarange + ")" + "\n";
                 AllString = texts;
@@ -277,12 +278,6 @@ namespace TodaysManna
             await Navigation.PushAsync(new LoginPage());
         }
 
-        private async Task InfoFunc()
-        {
-            await Navigation.PushAsync(new infoPage());
-        }
-
-
         public async Task ShareFunc()
         {
             await Share.RequestAsync(new ShareTextRequest
@@ -292,15 +287,18 @@ namespace TodaysManna
             });
         }
 
-        public ICommand InfoCommand { protected set; get; }
         public ICommand ReloadCommand { protected set; get; }
         public ICommand ShareCommand { protected set; get; }
         public INavigation Navigation { get; set; }
-        //public ICommand CoppyCommand { protected set; get; }
-
 
         /*
-
+         *  
+        //public ICommand CoppyCommand { protected set; get; }
+        //public ICommand InfoCommand { protected set; get; }
+        private async Task InfoFunc()
+        {
+            await Navigation.PushAsync(new infoPage());
+        }
         async private void CoppyFunc()
         {
             CrossClipboard.Current.SetText(todayString + titleString + allString);

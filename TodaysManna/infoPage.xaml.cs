@@ -18,6 +18,9 @@ namespace TodaysManna
         public infoPage()
         {
             InitializeComponent();
+            Title = "Info";
+            IconImageSource = "Info";
+
             BindingContext = this;
         }
         async public void BackToLogin(object sender, EventArgs e)

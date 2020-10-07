@@ -8,7 +8,7 @@
             <Span Text="안녕하세요, '오늘의 만나iOS' 입니다. &#10; &#10;문의는 " FontSize="18" />
 
             <Span Text="여기" FontSize="18"
-                  TextColor="CadetBlue"
+                  TextColor="Blue"
                   TextDecorations="Underline">
                 <Span.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding TapCommand}"
