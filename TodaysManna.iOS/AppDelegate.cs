@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
 using UIKit;
 
@@ -24,6 +23,7 @@ namespace TodaysManna.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            Xam.Plugin.WebView.iOS.FormsWebViewRenderer.Initialize();
 
             return base.FinishedLaunching(app, options);
         }
