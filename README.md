@@ -13,7 +13,7 @@
 
 
 
-## 📌 핵심코드
+## 📌 Codes
 * HttpWebRequest
 ``` csharp
 HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://community.jbch.org/confirm.php");
@@ -79,12 +79,12 @@ async public void LoginFunc()
         }
 ```
 
-## 📌 사용기술
+## 📌 Using
 * HttpWebResponse (System.net) -> Login to the homepage and parse HTML.
 * htmlagilitypack (https://html-agility-pack.net/) -> Select HTML node from HtmlDocument.
 * Xamarin.Plugins.Clipboard (https://www.nuget.org/packages/Xamarin.Plugins.Clipboard/) -> Coppy Text to Clipboard
 
-## 📌 데모
+## 📌 Screenshots
 * 앱
 
 | 로그인 | 메인 화면 |
