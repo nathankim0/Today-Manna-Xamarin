@@ -88,11 +88,11 @@ async public void LoginFunc()
 ### Application
 | Main | M'Cheine | Info |
 |:--------:|:--------:|:--------:|
-| <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/manna.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/mchein.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/info.png" width="60%"/> |
+| <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/manna.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/mchein.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/info.png"/> |
 
 | Login | Pull to Refresh | Share |
 |:--------:|:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png" width="60%"/> |
+| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png"/> |
 
 
 ### 파싱한 웹페이지
