@@ -88,16 +88,16 @@ async public void LoginFunc()
 ### Application
 | Main | M'Cheine | Info |
 |:--------:|:--------:|:--------:|
-| <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/manna.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/mchein.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/info.png" width="40%"/> |
+| <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/manna.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/mchein.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/info.png" width="60%"/> |
 
 | Login | Pull to Refresh | Share |
 |:--------:|:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png" width="40%"/> |
+| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png" width="60%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png" width="60%"/> |
 
 
 ### 파싱한 웹페이지
 <p>
-| | | |
+| 홈 페이지 | 범위 | 세부 페이지 |
 |:--------:|:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/92693284-5f646580-f380-11ea-899a-d29efc2d276a.png" width="40%"/> | <img src="https://user-images.githubusercontent.com/37360089/92693166-3348e480-f380-11ea-9dd2-b0eade042aeb.png" width="40%"/> | <img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="40%"/> |
+| <img src="https://user-images.githubusercontent.com/37360089/92693284-5f646580-f380-11ea-899a-d29efc2d276a.png" width="60%"/> | <img src="https://user-images.githubusercontent.com/37360089/92693166-3348e480-f380-11ea-9dd2-b0eade042aeb.png" width="60%"/> | <img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="60%"/> |
 </p>
