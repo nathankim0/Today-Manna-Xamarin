@@ -1,7 +1,7 @@
 <h1 align="center">오늘의 만나 iOS</h1>
 
 ![last commit badge](https://img.shields.io/github/last-commit/Jinyeob/Today-Manna-iOS)
-<a href='https://developer.android.com'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
+<a href='https://developer.apple.com/kr/'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
 
 <p>
    Provides today's Bible scope, verses and M'Cheine scope.<br/>
