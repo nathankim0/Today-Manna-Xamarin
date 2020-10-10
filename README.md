@@ -4,7 +4,7 @@
 <a href='https://developer.android.com'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
 
 <p>
-   Provides today's Bible scope, verses and Mc'cheine scope.<br/>
+   Provides today's Bible scope, verses and M'Cheine scope.<br/>
    You can see also <a href="https://github.com/Jinyeob/Today-Manna-Android" target="_blank">Android</a> version.
 </p>
 
@@ -85,17 +85,19 @@ async public void LoginFunc()
 * Xamarin.Plugins.Clipboard (https://www.nuget.org/packages/Xamarin.Plugins.Clipboard/) -> Coppy Text to Clipboard
 
 ## 📌 Screenshots
-* 앱
+### Application
+| Main | M'Cheine | Info |
+|:--------:|:--------:|:--------:|
+| <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/manna.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/mchein.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/info.png" width="40%"/> |
 
-| 로그인 | 메인 화면 |
-|:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="50%"/> | <img src="https://user-images.githubusercontent.com/37360089/94250889-c9723280-ff5c-11ea-9515-32306eb3685f.png" width="50%"/> |
+| Login | Pull to Refresh | Share |
+|:--------:|:--------:|:--------:|
+| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png" width="40%"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png" width="40%"/> |
 
-| info | 클립보드 |
-|:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250916-d4c55e00-ff5c-11ea-948f-0266c74347ec.png" width="50%"/> | <img src="https://user-images.githubusercontent.com/37360089/94250986-e9095b00-ff5c-11ea-9a4f-eda1ad28359f.png" width="50%"/> |
-* 파싱한 페이지 스크린샷
 
+### 파싱한 웹페이지
 <p>
-<img src="https://user-images.githubusercontent.com/37360089/92693284-5f646580-f380-11ea-899a-d29efc2d276a.png" width="50%"/><img src="https://user-images.githubusercontent.com/37360089/92693166-3348e480-f380-11ea-9dd2-b0eade042aeb.png" width="50%"/><img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="50%"/>
+| | | |
+|:--------:|:--------:|:--------:|
+| <img src="https://user-images.githubusercontent.com/37360089/92693284-5f646580-f380-11ea-899a-d29efc2d276a.png" width="40%"/> | <img src="https://user-images.githubusercontent.com/37360089/92693166-3348e480-f380-11ea-9dd2-b0eade042aeb.png" width="40%"/> | <img src="https://user-images.githubusercontent.com/37360089/92692980-ebc25880-f37f-11ea-8013-6cc41019d715.png" width="40%"/> |
 </p>
