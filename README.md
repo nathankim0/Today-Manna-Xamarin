@@ -1,6 +1,17 @@
 <h1 align="center">오늘의 만나 iOS</h1>
 
-> 오늘의 묵상 범위를 community.jbch.org에 로그인 후 파싱하여 보여주는 앱입니다.
+![last commit badge](https://img.shields.io/github/last-commit/Jinyeob/Today-Manna-iOS)
+<a href='https://developer.android.com'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
+
+<p>
+   Provides today's Bible scope, verses and Mc'cheine scope.<br/>
+   You can see also <a href="https://github.com/Jinyeob/Today-Manna-Android" target="_blank">Android</a> version.
+</p>
+
+## Download (not yet)
+<a href="https://play.google.com/store/apps/details?id=com.manna.parsing2"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"/></a>
+
+
 
 ## 📌 핵심코드
 ---
