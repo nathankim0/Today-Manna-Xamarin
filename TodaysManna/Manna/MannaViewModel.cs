@@ -17,11 +17,11 @@ namespace TodaysManna
         private const string ConfirmUrl = "https://community.jbch.org/confirm.php";
         private const string MainUrl = "https://community.jbch.org/";
 
-        private string _id;
-        private string _passwd;
+        private const string Id;
+        private const string Password;
 
         public ICommand ReloadCommand { set; get; }
-        public ICommand ShareCommand { set; get; }
+        //public ICommand ShareCommand { set; get; }
 
         private string _todayString;
         private string _titleString;
@@ -46,7 +46,7 @@ namespace TodaysManna
                     await GetMannaText();
                     IsReloading = false;
                 });
-                ShareCommand = new Command(async () => await ShareFunc());
+                //ShareCommand = new Command(async () => await ShareFunc());
             }
         }
 
@@ -62,12 +62,16 @@ namespace TodaysManna
             if (getAttr == null)
             {
                 AllString = "불러오기 실패, 재시도 해보세요.";
+                MessagingCenter.Send(this, "unloaded");
+
                 return;
             }
 
             var detailPageUrl = SubstringUrl(getAttr);
 
             await GetDetailTexts(resp, detailPageUrl);
+
+            MessagingCenter.Send(this, "loaded");
         }
 
         /*********************************
@@ -86,7 +90,7 @@ namespace TodaysManna
 
             var w = new StreamWriter(await req.GetRequestStreamAsync());
 
-            w.Write("user_id=" + _id + "&saveid=1&passwd=" + _passwd +
+            w.Write("user_id=" + Id + "&saveid=1&passwd=" + Password +
                     "&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton");
             w.Close();
 
@@ -187,7 +191,7 @@ namespace TodaysManna
 
 
 
-        private async Task ShareFunc()
+        public async Task ShareFunc()
         {
             await Share.RequestAsync(new ShareTextRequest
             {
