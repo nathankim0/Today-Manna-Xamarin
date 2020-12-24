@@ -9,15 +9,23 @@ namespace TodaysManna
     {
         public TabMainPage()
         {
-            NavigationPage.SetHasBackButton(this, false);
+            //NavigationPage.SetHasBackButton(this, false);
 
-            var navigationPage = new NavigationPage(new MainPage());
-            navigationPage.IconImageSource = "Tab_Manna";
-            navigationPage.Title = "만나";
+            var mannaPage = new NavigationPage(new MannaPage())
+            {
+                IconImageSource = "Tab_Manna",
+                Title = "만나"
+            };
 
-            Children.Add(navigationPage);
-            Children.Add(new McchainPage());
-            Children.Add(new infoPage());
+            var mccheynePage = new NavigationPage(new McchainPage())
+            {
+                IconImageSource = "Tab_Mc",
+                Title = "맥체인"
+            };
+
+
+            Children.Add(mannaPage);
+            Children.Add(mccheynePage);
 
         }
     }
