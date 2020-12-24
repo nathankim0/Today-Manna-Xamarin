@@ -2,33 +2,100 @@
 <ContentPage
     x:Class="TodaysManna.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="오늘의 만나">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0,40,0,0"
+    BackgroundColor="#34502B"
+        NavigationPage.HasNavigationBar="False">
     
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding ShareCommand}" IconImageSource="Share" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
+
+     <StackLayout>
+            <Grid Margin="0,0,0,0">
+                <StackLayout Margin="20,20,20,0" Spacing="10">
+                    <!--<Image
+                        HeightRequest="30"
+                        HorizontalOptions="Start"
+                        Source="hamburgerMenu"
+                        VerticalOptions="Start"
+                        WidthRequest="30" />-->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="28"
+                        HorizontalOptions="StartAndExpand"
+                        Text="만나와 함께 힘차게 하루를 시작하세요!"
+                        TextColor="White"
+                        VerticalOptions="StartAndExpand"
+                        WidthRequest="200" />
+                   <yummy:PancakeView
+                       x:Name="ShareButton"
+                       IsVisible="false"
+                       BackgroundGradientStartPoint="0.75,0.75" BackgroundGradientEndPoint="0,1"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="100"
+                      
+                       >
+                        <yummy:PancakeView.BackgroundGradientStops>
+                    <yummy:GradientStopCollection>
+                        <yummy:GradientStop Color="#D4331B" Offset="0.3" />                                                  
+                        <yummy:GradientStop Color="#FFA500" Offset="0.8" /> 
+                    </yummy:GradientStopCollection>
+                </yummy:PancakeView.BackgroundGradientStops>
+                            <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="공유"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand"
+                                >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShareClicked"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                    </yummy:PancakeView>
+                </StackLayout>
+                <Image
+                    HorizontalOptions="EndAndExpand"
+                    Source="bgImage"
+                    WidthRequest="200" />
+            </Grid>
+
+    <yummy:PancakeView
+                Margin="0,10,0,0"
+                Padding="15,0,15,15"
+                CornerRadius="40,40,0,0"
+            BackgroundColor="FloralWhite"
+                VerticalOptions="FillAndExpand">
     
-    <StackLayout>
         <RefreshView
             Padding="10"
             Command="{Binding ReloadCommand}"
             IsRefreshing="{Binding IsReloading}">
             <ScrollView>
-                    <StackLayout Padding="15,20,15,0">
-                        <Label
+                    <StackLayout>
+                          <Label
+                            Margin="0,20,0,0"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
                             Text="{Binding TodayString}"
-                            TextDecorations="Underline" FontSize="Large"/>
+                            TextColor="Black" />
 
                         <Label
                             FontAttributes="Bold"
-                            Text="{Binding TitleString}" FontSize="Title" />
+                            TextColor="Black"
+                            Text="{Binding TitleString}" FontSize="Header" />
 
-                        <Label Text="{Binding AllString}" FontSize="Body" />
+                        <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black"/>
                     </StackLayout>
             </ScrollView>
 
         </RefreshView>
 
-    </StackLayout>
+
+  </yummy:PancakeView>
+     </StackLayout>
 </ContentPage>
