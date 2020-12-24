@@ -18,14 +18,13 @@
                     <StackLayout Padding="15,20,15,0">
                         <Label
                             Text="{Binding TodayString}"
-                            TextDecorations="Underline" />
+                            TextDecorations="Underline" FontSize="Large"/>
 
                         <Label
                             FontAttributes="Bold"
-                            FontSize="22"
-                            Text="{Binding TitleString}" />
+                            Text="{Binding TitleString}" FontSize="Title" />
 
-                        <Label Text="{Binding AllString}" />
+                        <Label Text="{Binding AllString}" FontSize="Body" />
                     </StackLayout>
             </ScrollView>
 
