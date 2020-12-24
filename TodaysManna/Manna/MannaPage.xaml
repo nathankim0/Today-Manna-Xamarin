@@ -28,35 +28,7 @@
                         TextColor="White"
                         VerticalOptions="StartAndExpand"
                         WidthRequest="200" />
-                   <yummy:PancakeView
-                       x:Name="ShareButton"
-                       IsVisible="false"
-                       BackgroundGradientStartPoint="0.75,0.75" BackgroundGradientEndPoint="0,1"
-                        CornerRadius="25"
-                        HeightRequest="50"
-                        HorizontalOptions="StartAndExpand"
-                        WidthRequest="100"
-                      
-                       >
-                        <yummy:PancakeView.BackgroundGradientStops>
-                    <yummy:GradientStopCollection>
-                        <yummy:GradientStop Color="#D4331B" Offset="0.3" />                                                  
-                        <yummy:GradientStop Color="#FFA500" Offset="0.8" /> 
-                    </yummy:GradientStopCollection>
-                </yummy:PancakeView.BackgroundGradientStops>
-                            <Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            HorizontalOptions="CenterAndExpand"
-                            Text="공유"
-                            TextColor="White"
-                            VerticalOptions="CenterAndExpand"
-                                >
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="ShareClicked"></TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                    </yummy:PancakeView>
+                 
                 </StackLayout>
                 <Image
                     HorizontalOptions="EndAndExpand"
@@ -90,7 +62,37 @@
                             Text="{Binding TitleString}" FontSize="Header" />
 
                         <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black"/>
+                          <yummy:PancakeView
+                       x:Name="ShareButton"
+                       IsVisible="false"
+                       BackgroundGradientStartPoint="0.75,0.75" BackgroundGradientEndPoint="0,1"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        HorizontalOptions="CenterAndExpand"
+                        WidthRequest="100"
+                      
+                       >
+                        <yummy:PancakeView.BackgroundGradientStops>
+                    <yummy:GradientStopCollection>
+                        <yummy:GradientStop Color="#D4331B" Offset="0.3" />                                                  
+                        <yummy:GradientStop Color="#FFA500" Offset="0.8" /> 
+                    </yummy:GradientStopCollection>
+                </yummy:PancakeView.BackgroundGradientStops>
+                            <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="공유"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand"
+                                >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShareClicked"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                    </yummy:PancakeView>
                     </StackLayout>
+
             </ScrollView>
 
         </RefreshView>

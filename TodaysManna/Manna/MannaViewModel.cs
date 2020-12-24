@@ -17,8 +17,8 @@ namespace TodaysManna
         private const string ConfirmUrl = "https://community.jbch.org/confirm.php";
         private const string MainUrl = "https://community.jbch.org/";
 
-        private const string Id;
-        private const string Password;
+        private const string Id = "jinyeob07";
+        private const string Password = "wlsduq1004";
 
         public ICommand ReloadCommand { set; get; }
         //public ICommand ShareCommand { set; get; }
