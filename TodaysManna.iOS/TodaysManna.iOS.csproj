@@ -103,8 +103,10 @@
     <ImageAsset Include="Assets.xcassets\Tab_Mc.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Tab_Mc.imageset\Tab_Mc2-1.png" />
     <ImageAsset Include="Assets.xcassets\Tab_Manna.imageset\Tab_Manna2-1.png" />
-    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-3-50.png" />
     <ImageAsset Include="Assets.xcassets\Info.imageset\icons8-info-50 %281%29.png" />
+    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-rounded-30.png" />
+    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-rounded-60.png" />
+    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-rounded-90.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

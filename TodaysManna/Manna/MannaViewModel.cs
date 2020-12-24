@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 using Xamarin.Forms;
+using System;
 using HtmlAgilityPack;
 using System.Net;
 using System.IO;
@@ -10,7 +12,7 @@ using Xamarin.Essentials;
 
 namespace TodaysManna
 {
-    public partial class MannaPage : ContentPage
+    class MannaViewModel : INotifyPropertyChanged
     {
         private const string ConfirmUrl = "https://community.jbch.org/confirm.php";
         private const string MainUrl = "https://community.jbch.org/";
@@ -18,37 +20,40 @@ namespace TodaysManna
         private string _id;
         private string _passwd;
 
+        public ICommand ReloadCommand { set; get; }
+        public ICommand ShareCommand { set; get; }
 
-        public MannaPage()
+        private string _todayString;
+        private string _titleString;
+        private string _allString;
+        private bool _isReloading;
+
+        public MannaViewModel()
         {
-            InitializeComponent();
-
-            BindingContext = new MannaViewModel();
-
-            (BindingContext as MannaViewModel).TodayString = DateTime.Now.ToString("yyyy-MM-dd dddd") + "\n";
+            TodayString = DateTime.Now.ToString("yyyy-MM-dd dddd") + "\n";
 
             if (DateTime.Now.ToString("dddd").Equals("일요일"))
             {
-                (BindingContext as MannaViewModel).TitleString = "일요일은 지원하지 않습니다.";
-                (BindingContext as MannaViewModel).AllString = "";
+                TitleString = "일요일은 지원하지 않습니다.";
+                AllString = "";
             }
             else
             {
                 var task = GetMannaText();
 
-                (BindingContext as MannaViewModel).ReloadCommand = new Command(async () =>
+                ReloadCommand = new Command(async () =>
                 {
                     await GetMannaText();
-                    (BindingContext as MannaViewModel).IsReloading = false;
+                    IsReloading = false;
                 });
-                (BindingContext as MannaViewModel).ShareCommand = new Command(async () => await ShareFunc());
+                ShareCommand = new Command(async () => await ShareFunc());
             }
         }
 
         private async Task GetMannaText()
         {
-            (BindingContext as MannaViewModel).AllString = "Loading...";
-            (BindingContext as MannaViewModel).TitleString = "";
+            AllString = "Loading...";
+            TitleString = "";
 
             var resp = await HttpWebResponse();
 
@@ -56,7 +61,7 @@ namespace TodaysManna
 
             if (getAttr == null)
             {
-                (BindingContext as MannaViewModel).AllString = "불러오기 실패, 재시도 해보세요.";
+                AllString = "불러오기 실패, 재시도 해보세요.";
                 return;
             }
 
@@ -73,8 +78,6 @@ namespace TodaysManna
 
         private async Task<HttpWebResponse> HttpWebResponse()
         {
-
-
             var req = (HttpWebRequest)WebRequest.Create(ConfirmUrl);
 
             req.Method = "Post";
@@ -96,7 +99,8 @@ namespace TodaysManna
            * 로그인 쿠키 가지고 만나 세부페이지 url 가져오기.
            * 
           *********************************/
-        private static async Task<HtmlNode> GetDetailPageUrl(HttpWebResponse resp)
+
+        private async Task<HtmlNode> GetDetailPageUrl(HttpWebResponse resp)
         {
             var respBuffer = resp;
 
@@ -116,7 +120,7 @@ namespace TodaysManna
             return getAttr;
         }
 
-        private static string SubstringUrl(HtmlNode getAttr)
+        private string SubstringUrl(HtmlNode getAttr)
         {
             var attrUrl = getAttr.GetAttributeValue("onclick", string.Empty);
 
@@ -132,12 +136,12 @@ namespace TodaysManna
         }
 
 
-
         /*********************************
            * 
            * 만나 페이지 들어가서 범위, 구절 가져오기.
            * 
            *********************************/
+
         private async Task GetDetailTexts(HttpWebResponse resp, string result)
         {
 
@@ -177,8 +181,8 @@ namespace TodaysManna
             texts = Regex.Replace(texts, @"<br>", "\n\n");
             texts = Regex.Replace(texts, @"&nbsp;", "");
 
-            (BindingContext as MannaViewModel).TitleString = mannarange + "\n";
-            (BindingContext as MannaViewModel).AllString = texts;
+            TitleString = mannarange + "\n";
+            AllString = texts;
         }
 
 
@@ -187,9 +191,56 @@ namespace TodaysManna
         {
             await Share.RequestAsync(new ShareTextRequest
             {
-                Text = (BindingContext as MannaViewModel).TodayString + (BindingContext as MannaViewModel).TitleString + (BindingContext as MannaViewModel).AllString,
+                Text = TodayString + TitleString + AllString,
                 Title = "Share Manna"
             });
         }
+
+
+        public string TodayString
+        {
+            get => _todayString;
+            set
+            {
+                if (_todayString == value) return;
+                _todayString = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TodayString"));
+            }
+        }
+
+        public string TitleString
+        {
+            get => _titleString;
+            set
+            {
+                if (_titleString == value) return;
+                _titleString = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TitleString"));
+            }
+        }
+
+        public string AllString
+        {
+            get => _allString;
+            set
+            {
+                if (_allString == value) return;
+                _allString = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AllString"));
+            }
+        }
+
+        public bool IsReloading
+        {
+            get => _isReloading;
+            set
+            {
+                if (_isReloading == value) return;
+                _isReloading = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsReloading"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

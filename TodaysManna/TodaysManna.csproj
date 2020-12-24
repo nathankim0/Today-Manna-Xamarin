@@ -22,6 +22,7 @@
     <Folder Include="Login\" />
     <Folder Include="Info\" />
     <Folder Include="Mccheyne\" />
+    <Folder Include="Manna\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
