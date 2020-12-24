@@ -18,4 +18,12 @@
     <PackageReference Include="Xamarin.Plugins.Clipboard" Version="2.2.1" />
     <PackageReference Include="Xam.Plugin.WebView" Version="2.1.3" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Login\" />
+    <Folder Include="Info\" />
+    <Folder Include="Mccheyne\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Manna\MainPage.xaml.cs" />
+  </ItemGroup>
 </Project>

@@ -8,6 +8,12 @@ namespace TodaysManna
         public App()
         {
             InitializeComponent();
+            MainPage = new NavigationPage(new MannaPage());
+            //CheckAuth();
+        }
+
+        private void CheckAuth()
+        {
             if (Current.Properties.ContainsKey("ISLOGINED"))
             {
                 if (!(bool)Current.Properties["ISLOGINED"])
@@ -16,7 +22,7 @@ namespace TodaysManna
                 }
                 else
                 {
-                    MainPage=new NavigationPage(new TabMainPage());
+                    MainPage = new NavigationPage(new TabMainPage());
 
                 }
             }
@@ -32,7 +38,6 @@ namespace TodaysManna
                     MainPage = new NavigationPage(new TabMainPage());
                 }
             }
-
         }
 
         protected override void OnStart()

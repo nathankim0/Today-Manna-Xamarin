@@ -1,26 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="TodaysManna.MainPage"
+    x:Class="TodaysManna.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TodaysManna;assembly=TodaysManna">
-
+    Title="오늘의 만나">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding ShareCommand}" IconImageSource="Share" />
     </ContentPage.ToolbarItems>
     
     <StackLayout>
-
         <RefreshView
             Padding="10"
             Command="{Binding ReloadCommand}"
             IsRefreshing="{Binding IsReloading}">
             <ScrollView>
-                
-
                     <StackLayout Padding="15,20,15,0">
-
                         <Label
                             Text="{Binding TodayString}"
                             TextDecorations="Underline" />
@@ -31,29 +26,6 @@
                             Text="{Binding TitleString}" />
 
                         <Label Text="{Binding AllString}" />
-
-                        <!--
-                <ActivityIndicator
-                    IsEnabled="{Binding IsBusy}"
-                    IsRunning="{Binding IsBusy}"
-                    Scale="2.5"
-                    Color="CadetBlue" />
-
-
-            <Button
-                Command="{Binding CoppyCommand}"
-                IsEnabled="{Binding !IsBusy}"
-                FontSize="26"
-                VerticalOptions="Start"
-                Text="클립보드에 복사"/>
-
-                        <Frame
-                    BorderColor="CadetBlue"
-                    CornerRadius="80"
-                    HasShadow="False">
-                                        </Frame>
-
-                        -->
                     </StackLayout>
             </ScrollView>
 

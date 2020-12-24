@@ -19,11 +19,11 @@
         </FormattedString>
     </Label.FormattedText>
 </Label>
-            <Button
+            <!--<Button
                 Clicked="BackToLogin"
                 FontSize="25"
                 Text="로그아웃"
-                VerticalOptions="EndAndExpand"/>
+                VerticalOptions="EndAndExpand"/>-->
 
         </StackLayout>
     </ContentPage.Content>
