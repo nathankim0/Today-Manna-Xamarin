@@ -17,11 +17,10 @@ namespace TodaysManna
         private const string ConfirmUrl = "https://community.jbch.org/confirm.php";
         private const string MainUrl = "https://community.jbch.org/";
 
-        private const string Id = "jinyeob07";
-        private const string Password = "wlsduq1004";
+        private const string Id = "";
+        private const string Password = "";
 
         public ICommand ReloadCommand { set; get; }
-        //public ICommand ShareCommand { set; get; }
 
         private string _todayString;
         private string _titleString;
@@ -30,12 +29,19 @@ namespace TodaysManna
 
         public MannaViewModel()
         {
-            TodayString = DateTime.Now.ToString("yyyy-MM-dd dddd") + "\n";
+            TodayString = DateTime.Now.ToString("yyyy/MM/dd dddd") + "\n";
 
-            if (DateTime.Now.ToString("dddd").Equals("일요일"))
+            
+
+            if (DateTime.Now.DayOfWeek==DayOfWeek.Sunday)
             {
-                TitleString = "일요일은 지원하지 않습니다.";
-                AllString = "";
+                TitleString = "히10:30-39";
+                AllString = "30 원수 갚는 것이 내게 있으니 내가 갚으리라 하시고 또 다시 주께서 그의 백성을 심판하리라 말씀하신 것을 우리가 아노니\n\n31 살아계신 하나님의 손에 빠져 들어가는 것이 무서울진저\n\n32 전날에 너희가 빛을 받은 후에 고난의 큰 싸움에 참은 것을 생각하라\n\n33 혹 비방과 환난으로써 사람에게 구경거리가 되고 혹 이런 형편에 있는 자들로 사귀는 자 되었으니\n\n34 너희가 갇힌 자를 동정하고 너희 산업을 빼앗기는 것도 기쁘게 당한 것은 더 낫고 영구한 산업이 있는줄 앎이라\n\n35 그러므로 너희 담대함을 버리지 말라 이것이 큰 상을 얻느니라\n\n36 너희에게 인내가 필요함은 너희가 하나님의 뜻을 행한 후에 약속을 받기 위함이라\n\n37 잠시 잠깐 후면 오실 이가 오시리니 지체하지 아니하시리라\n\n38 오직 나의 의인은 믿음으로 말미암아 살리라 또한 뒤로 물러가면 내 마음이 저를 기뻐하지 아니하리라 하셨느니라\n\n39 우리는 뒤로 물러가 침륜에 빠질 자가 아니요 오직 영혼을 구원함에 이르는 믿음을 가진 자니라\n\n";
+
+                ReloadCommand = new Command( () =>
+                {
+                    IsReloading = false;
+                });
             }
             else
             {
@@ -44,16 +50,16 @@ namespace TodaysManna
                 ReloadCommand = new Command(async () =>
                 {
                     await GetMannaText();
+
                     IsReloading = false;
                 });
-                //ShareCommand = new Command(async () => await ShareFunc());
             }
         }
 
         private async Task GetMannaText()
         {
-            AllString = "Loading...";
-            TitleString = "";
+            //AllString = "Loading...";
+            //TitleString = "Loading...";
 
             var resp = await HttpWebResponse();
 
@@ -82,7 +88,7 @@ namespace TodaysManna
 
         private async Task<HttpWebResponse> HttpWebResponse()
         {
-            var req = (HttpWebRequest)WebRequest.Create(ConfirmUrl);
+            var req = (HttpWebRequest) WebRequest.Create(ConfirmUrl);
 
             req.Method = "Post";
             req.CookieContainer = new CookieContainer();
@@ -90,11 +96,11 @@ namespace TodaysManna
 
             var w = new StreamWriter(await req.GetRequestStreamAsync());
 
-            w.Write("user_id=" + Id + "&saveid=1&passwd=" + Password +
-                    "&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton");
+            await w.WriteAsync("user_id=" + Id + "&saveid=1&passwd=" + Password +
+                               "&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton");
             w.Close();
 
-            var resp = (HttpWebResponse)(await req.GetResponseAsync());
+            var resp = (HttpWebResponse) (await req.GetResponseAsync());
             return resp;
         }
 
@@ -108,13 +114,13 @@ namespace TodaysManna
         {
             var respBuffer = resp;
 
-            var req = (HttpWebRequest)WebRequest.Create(MainUrl);
+            var req = (HttpWebRequest) WebRequest.Create(MainUrl);
 
             req.CookieContainer = new CookieContainer();
             req.CookieContainer.Add(respBuffer.Cookies);
-            respBuffer = (HttpWebResponse)(await req.GetResponseAsync());
+            respBuffer = (HttpWebResponse) (await req.GetResponseAsync());
 
-            var r = new StreamReader(respBuffer.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+            var r = new StreamReader(respBuffer.GetResponseStream() ?? throw new InvalidOperationException(), Encoding.GetEncoding("UTF-8"));
 
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(await r.ReadToEndAsync());
@@ -148,10 +154,9 @@ namespace TodaysManna
 
         private async Task GetDetailTexts(HttpWebResponse resp, string result)
         {
-
             var respBuffer = resp;
 
-            var req = (HttpWebRequest)WebRequest.Create("http://community.jbch.org/meditation/board/process.php/");
+            var req = (HttpWebRequest) WebRequest.Create("http://community.jbch.org/meditation/board/process.php/");
             req.Method = "Post";
 
             req.CookieContainer = new CookieContainer();
@@ -163,11 +168,11 @@ namespace TodaysManna
             w2.Write("mode=load_post&post_uid=" + result);
             w2.Close();
 
-            respBuffer = (HttpWebResponse)(await req.GetResponseAsync());
-            var r2 = new StreamReader(respBuffer.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+            respBuffer = (HttpWebResponse) (await req.GetResponseAsync());
+            var r2 = new StreamReader(respBuffer.GetResponseStream() ?? throw new InvalidOperationException(), Encoding.GetEncoding("UTF-8"));
 
             var htmlDoc2 = new HtmlDocument();
-            htmlDoc2.LoadHtml(r2.ReadToEnd());
+            htmlDoc2.LoadHtml(await r2.ReadToEndAsync());
 
             var mannarange = htmlDoc2.DocumentNode.SelectSingleNode("//div[@class='titlebox']/div[@class='title']")
                 .InnerText;
@@ -188,7 +193,6 @@ namespace TodaysManna
             TitleString = mannarange + "\n";
             AllString = texts;
         }
-
 
 
         public async Task ShareFunc()

@@ -1,56 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="TodaysManna.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Padding="0,40,0,0"
-    BackgroundColor="#34502B"
-        NavigationPage.HasNavigationBar="False">
-    
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding ShareCommand}" IconImageSource="Share" />
-    </ContentPage.ToolbarItems>-->
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0,50,0,0"
+    BackgroundColor="BurlyWood"
+    NavigationPage.HasNavigationBar="False">
 
-     <StackLayout>
-            <Grid Margin="0,0,0,0">
-                <StackLayout Margin="20,20,20,0" Spacing="10">
-                    <!--<Image
-                        HeightRequest="30"
-                        HorizontalOptions="Start"
-                        Source="hamburgerMenu"
-                        VerticalOptions="Start"
-                        WidthRequest="30" />-->
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="28"
-                        HorizontalOptions="StartAndExpand"
-                        Text="만나와 함께 힘차게 하루를 시작하세요!"
-                        TextColor="White"
-                        VerticalOptions="StartAndExpand"
-                        WidthRequest="200" />
-                 
-                </StackLayout>
-                <Image
-                    HorizontalOptions="EndAndExpand"
-                    Source="bgImage"
-                    WidthRequest="200" />
-            </Grid>
+   
+    <StackLayout>
+          <Image
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Source="title"
+              Margin="0,0,30,0"
+              WidthRequest="200"
+              />
 
-    <yummy:PancakeView
-                Margin="0,10,0,0"
-                Padding="15,0,15,15"
-                CornerRadius="40,40,0,0"
+        <yummy:PancakeView
+            Margin="0,10,0,0"
+            CornerRadius="40,40,0,0"
             BackgroundColor="FloralWhite"
-                VerticalOptions="FillAndExpand">
-    
-        <RefreshView
-            Padding="10"
-            Command="{Binding ReloadCommand}"
-            IsRefreshing="{Binding IsReloading}">
-            <ScrollView>
+            VerticalOptions="FillAndExpand">
+
+            <RefreshView
+                x:Name="refreshView"
+                Padding="20"
+                Command="{Binding ReloadCommand}"
+                IsRefreshing="{Binding IsReloading}">
+
+                <ScrollView VerticalScrollBarVisibility="Never">
                     <StackLayout>
-                          <Label
-                            Margin="0,20,0,0"
+                        <Label
                             FontAttributes="Bold"
                             FontSize="Subtitle"
                             Text="{Binding TodayString}"
@@ -61,43 +44,92 @@
                             TextColor="Black"
                             Text="{Binding TitleString}" FontSize="Header" />
 
-                        <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black"/>
-                          <yummy:PancakeView
-                       x:Name="ShareButton"
-                       IsVisible="false"
-                       BackgroundGradientStartPoint="0.75,0.75" BackgroundGradientEndPoint="0,1"
-                        CornerRadius="25"
-                        HeightRequest="50"
-                        HorizontalOptions="CenterAndExpand"
-                        WidthRequest="100"
-                      
-                       >
-                        <yummy:PancakeView.BackgroundGradientStops>
-                    <yummy:GradientStopCollection>
-                        <yummy:GradientStop Color="#D4331B" Offset="0.3" />                                                  
-                        <yummy:GradientStop Color="#FFA500" Offset="0.8" /> 
-                    </yummy:GradientStopCollection>
-                </yummy:PancakeView.BackgroundGradientStops>
-                            <Label
-                            FontAttributes="Bold"
-                            FontSize="20"
+                        <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black" />
+
+                        <yummy:PancakeView
+                            x:Name="ShareButton"
+                            IsVisible="false"
+                            BackgroundGradientStartPoint="0.75,0.75" BackgroundGradientEndPoint="0,1"
+                            CornerRadius="25"
+                            HeightRequest="50"
                             HorizontalOptions="CenterAndExpand"
-                            Text="공유"
-                            TextColor="White"
-                            VerticalOptions="CenterAndExpand"
-                                >
+                            WidthRequest="100">
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#D4331B" Offset="0.3" />
+                                    <yummy:GradientStop Color="#FFA500" Offset="0.8" />
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="공유"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="ShareClicked"></TapGestureRecognizer>
+                                    <TapGestureRecognizer Tapped="ShareClicked" />
                                 </Label.GestureRecognizers>
                             </Label>
-                    </yummy:PancakeView>
+                        </yummy:PancakeView>
                     </StackLayout>
 
-            </ScrollView>
+                </ScrollView>
+                </RefreshView>
 
-        </RefreshView>
 
-
-  </yummy:PancakeView>
-     </StackLayout>
+        </yummy:PancakeView>
+    </StackLayout>
 </ContentPage>
+
+  <!--<
+                  -->
+
+ <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ShareCommand}" IconImageSource="Share" />
+    </ContentPage.ToolbarItems>-->
+    <!-- -->
+    <!-- <StackLayout -->
+    <!--     Margin="20,20,20,0" -->
+    <!--     Spacing="10" -->
+    <!--     Orientation="Horizontal"> -->
+    <!--<Image
+                        HeightRequest="30"
+                        HorizontalOptions="Start"
+                        Source="hamburgerMenu"
+                        VerticalOptions="Start"
+                        WidthRequest="30" />-->
+
+   <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Image
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Source="bgImage"
+                WidthRequest="80" />
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="24"
+                Text="오늘의 만나"
+                TextColor="White"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand" />
+            <ImageButton
+                Grid.Column="2"
+                HeightRequest="30"
+                HorizontalOptions="CenterAndExpand"
+                Source="Share"
+                VerticalOptions="CenterAndExpand"
+                Clicked="ShareClicked"
+                WidthRequest="30" />
+        </Grid>-->
