@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Plugin.Clipboard;
+//using Plugin.Clipboard;
 
 namespace TodaysManna
 {
@@ -11,7 +11,7 @@ namespace TodaysManna
     {
         public ICommand TapCommand => new Command<string>(async (url) =>
         {
-            CrossClipboard.Current.SetText(url);
+           // CrossClipboard.Current.SetText(url);
             await DisplayAlert(url, "메일 주소가 클립보드에 복사되었습니다.", "확인");
         });
 
