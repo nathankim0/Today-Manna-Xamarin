@@ -12,7 +12,7 @@
 <a href="https://play.google.com/store/apps/details?id=com.manna.parsing2"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"/></a>
 
 
-
+<!--
 ## 📌 Codes
 * HttpWebRequest
 ``` csharp
@@ -83,7 +83,7 @@ async public void LoginFunc()
 * HttpWebResponse (System.net) -> Login to the homepage and parse HTML.
 * htmlagilitypack (https://html-agility-pack.net/) -> Select HTML node from HtmlDocument.
 * Xamarin.Plugins.Clipboard (https://www.nuget.org/packages/Xamarin.Plugins.Clipboard/) -> Coppy Text to Clipboard
-
+-->
 ## 📌 Screenshots
 ### Application
 | Main | M'Cheine | Info |
