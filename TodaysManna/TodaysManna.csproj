@@ -13,13 +13,10 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.29" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Login\" />
-    <Folder Include="Info\" />
-    <Folder Include="Mccheyne\" />
     <Folder Include="Manna\" />
   </ItemGroup>
   <ItemGroup>

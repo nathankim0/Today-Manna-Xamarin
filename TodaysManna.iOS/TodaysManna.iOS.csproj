@@ -36,6 +36,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
+    <CodesignProvision>Appstore TodayManna</CodesignProvision>
+    <CodesignKey>Apple Distribution: JinYeob Kim (75TT7T2Y4B)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,8 +61,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Distribution: JinYeob Kim (75TT7T2Y4B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Appstore TodayManna</CodesignProvision>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -71,52 +75,48 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Logo.imageset\Logo.png" />
-    <ImageAsset Include="Assets.xcassets\Refresh.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Refresh.imageset\refresh-1.png" />
-    <ImageAsset Include="Assets.xcassets\Info.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Share.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-3.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-4.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-5.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-6.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-7.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-8.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-9.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-10.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-11.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-12.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-13.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-14.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-15.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-16.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-17.png" />
-    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Tab_Manna.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Tab_Mc.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Tab_Mc.imageset\Tab_Mc2-1.png" />
-    <ImageAsset Include="Assets.xcassets\Tab_Manna.imageset\Tab_Manna2-1.png" />
-    <ImageAsset Include="Assets.xcassets\Info.imageset\icons8-info-50 %281%29.png" />
-    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-rounded-30.png" />
-    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-rounded-60.png" />
-    <ImageAsset Include="Assets.xcassets\Share.imageset\icons8-share-rounded-90.png" />
-    <ImageAsset Include="Assets.xcassets\back.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\back.imageset\KakaoTalk_Photo_2020-12-24-23-53-26.png" />
-    <ImageAsset Include="Assets.xcassets\bgImage.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\hamburgerMenu.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\hamburgerMenu.imageset\hamburgerMenu.png" />
-    <ImageAsset Include="Assets.xcassets\hamburgerMenu.imageset\hamburgerMenu%402x.png" />
-    <ImageAsset Include="Assets.xcassets\hamburgerMenu.imageset\hamburgerMenu%403x.png" />
-    <ImageAsset Include="Assets.xcassets\bgImage.imageset\KakaoTalk_Photo_2020-12-25-00-45-43.png" />
-    <ImageAsset Include="Assets.xcassets\title.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appstore.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\48.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\55.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\88.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\100.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\172.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\196.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\216.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\32-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\256-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -147,7 +147,8 @@
     <Folder Include="Assets.xcassets\Tab_Mc.imageset\" />
     <Folder Include="Assets.xcassets\back.imageset\" />
     <Folder Include="Assets.xcassets\bgImage.imageset\" />
-    <Folder Include="Assets.xcassets\hamburgerMenu.imageset\" />
     <Folder Include="Assets.xcassets\title.imageset\" />
+    <Folder Include="Assets.xcassets\AppIcon.appiconset\" />
+    <Folder Include="Assets.xcassets\.imageset\" />
   </ItemGroup>
 </Project>
