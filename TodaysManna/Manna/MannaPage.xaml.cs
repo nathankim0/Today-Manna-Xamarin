@@ -1,22 +1,41 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TodaysManna
 {
-    public partial class MannaPage : ContentPage
+    public partial class MainPage : ContentPage
     {
-        public MannaPage()
+        RestService _restService;
+        private MannaData mannaData;
+
+        public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MannaViewModel();
+            _restService = new RestService();
 
-            MessagingCenter.Subscribe<MannaViewModel>(this, "loaded", s => { ShareButton.IsVisible = true; });
-            MessagingCenter.Subscribe<MannaViewModel>(this, "unloaded", s => { ShareButton.IsVisible = false; });
-
+            mannaData.TodayString = DateTime.Now.ToString("yyyy/MM/dd dddd") + "\n";
+            GetManna();
         }
-        private async void ShareClicked(object sender, EventArgs e)
+
+        private async void GetManna()
         {
-            await (BindingContext as MannaViewModel).ShareFunc();
+            mannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
+            BindingContext = mannaData;
         }
+        public async Task ShareFunc()
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = mannaData.TodayString + "\n\n" + mannaData.Verse + "\n\n" + mannaData.AllString,
+                Title = "Share Manna"
+            }); ;
+        }
+        //string GenerateRequestUri(string endpoint)
+        //{
+        //    string requestUri = endpoint;
+        //    return requestUri;
+        //}
     }
 }
