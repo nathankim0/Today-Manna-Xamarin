@@ -5,26 +5,38 @@ using Xamarin.Forms;
 
 namespace TodaysManna
 {
-    public partial class MainPage : ContentPage
+    public partial class MannaPage : ContentPage
     {
         RestService _restService;
         private MannaData mannaData;
 
-        public MainPage()
+        public MannaPage()
         {
             InitializeComponent();
             _restService = new RestService();
 
-            mannaData.TodayString = DateTime.Now.ToString("yyyy/MM/dd dddd") + "\n";
             GetManna();
         }
 
         private async void GetManna()
         {
+            mannaData = new MannaData();
+
             mannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
+
+            var contents = "";
+            foreach(var node in mannaData.Contents)
+            {
+                contents += node+"\n\n";
+            }
+
+            mannaData.TodayString = DateTime.Now.ToString("yyyy/MM/dd dddd") + "\n";
+            mannaData.AllString = contents;
+
             BindingContext = mannaData;
         }
-        public async Task ShareFunc()
+
+        async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -32,10 +44,5 @@ namespace TodaysManna
                 Title = "Share Manna"
             }); ;
         }
-        //string GenerateRequestUri(string endpoint)
-        //{
-        //    string requestUri = endpoint;
-        //    return requestUri;
-        //}
     }
 }
