@@ -10,6 +10,7 @@
 
 ## Download
 <a href="https://apps.apple.com/app/id1547824358"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"/></a>
+![png](https://user-images.githubusercontent.com/37360089/104084022-ce968b80-5286-11eb-8059-47f6dab0e32b.png)
 
 
 <!--
