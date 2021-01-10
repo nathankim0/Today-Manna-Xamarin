@@ -65,6 +65,7 @@
     <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
+    <CodesignProvision>iOS Team Provisioning Profile: com.jinyeob.manna</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -117,6 +118,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
+    <ImageAsset Include="Assets.xcassets\title.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle.png" />
+    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle-1.png" />
+    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -127,8 +132,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -150,5 +155,6 @@
     <Folder Include="Assets.xcassets\title.imageset\" />
     <Folder Include="Assets.xcassets\AppIcon.appiconset\" />
     <Folder Include="Assets.xcassets\.imageset\" />
+    <Folder Include="Assets.xcassets\title.imageset\" />
   </ItemGroup>
 </Project>

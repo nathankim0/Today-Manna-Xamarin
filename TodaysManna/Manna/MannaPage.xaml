@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage
+﻿<ContentPage
     x:Class="TodaysManna.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,20 +8,19 @@
     NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
-        <Label
+        <!--<Label
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Text="Today's Manna"
               Margin="0,0,30,0"
               FontSize="30"
-              />
-        <!--<Image
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Source="title"
-              Margin="0,0,30,0"
-              WidthRequest="200"
               />-->
+        <Image
+            
+            Source="title"
+            Margin="0,0,20,0"
+            WidthRequest="200"/>
+
         <yummy:PancakeView
             Margin="0,10,0,0"
             CornerRadius="40,40,0,0"
@@ -42,11 +40,13 @@
                         <Label
                             FontAttributes="Bold"
                             TextColor="Black"
-                            Text="{Binding Verse}" FontSize="Header" />
+                            Text="{Binding Verse}" FontSize="Header"
+                            
+                            />
 
                         <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black" />
 
-                       <Button Text="공유" Clicked="Button_Clicked"/>
+                       <Button Text="공유" Clicked="Button_Clicked" FontSize="20" BackgroundColor="Beige"/>
                     </StackLayout>
 
                 </ScrollView>
