@@ -8,7 +8,7 @@ namespace TodaysManna
 {
     public class RestService
     {
-        HttpClient _client;
+        private readonly HttpClient _client;
 
         public RestService()
         {
@@ -30,7 +30,7 @@ namespace TodaysManna
                 }
             }
             catch (Exception ex)
-            {
+            {                
                 Debug.WriteLine("\tERROR {0}", ex.Message);
             }
 

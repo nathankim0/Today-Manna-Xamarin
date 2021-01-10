@@ -7,7 +7,7 @@ namespace TodaysManna
 {
     public partial class MannaPage : ContentPage
     {
-        RestService _restService;
+        private readonly RestService _restService;
         private MannaData mannaData;
 
         public MannaPage()
@@ -36,7 +36,7 @@ namespace TodaysManna
             BindingContext = mannaData;
         }
 
-        async void Button_Clicked(System.Object sender, System.EventArgs e)
+        private async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             await Share.RequestAsync(new ShareTextRequest
             {
