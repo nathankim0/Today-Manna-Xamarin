@@ -17,7 +17,7 @@ namespace TodaysManna
 
         public async Task<MannaData> GetMannaDataAsync(string uri)
         {
-            MannaData mannaData = null;
+            MannaData mannaData = new MannaData();
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri);

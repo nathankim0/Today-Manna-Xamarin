@@ -119,9 +119,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
     <ImageAsset Include="Assets.xcassets\title.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle.png" />
-    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle-1.png" />
-    <ImageAsset Include="Assets.xcassets\title.imageset\ic_nav_maintitle-2.png" />
+    <ImageAsset Include="Assets.xcassets\title.imageset\오늘의 만나 상단 로고 ios.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
