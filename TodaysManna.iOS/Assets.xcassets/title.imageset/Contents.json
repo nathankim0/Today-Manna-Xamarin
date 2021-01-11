@@ -1,20 +1,18 @@
 {
   "images": [
     {
+      "filename": "오늘의 만나 상단 로고 ios.pdf",
       "idiom": "universal"
     },
     {
-      "filename": "ic_nav_maintitle.png",
       "scale": "1x",
       "idiom": "universal"
     },
     {
-      "filename": "ic_nav_maintitle-1.png",
       "scale": "2x",
       "idiom": "universal"
     },
     {
-      "filename": "ic_nav_maintitle-2.png",
       "scale": "3x",
       "idiom": "universal"
     },
