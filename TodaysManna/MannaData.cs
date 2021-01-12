@@ -12,10 +12,7 @@ namespace TodaysManna
         [JsonProperty("contents")]
         public string[] Contents { get; set; }
 
-        public List<(int, string)> Content = new List<(int, string)>();
+        //public List<(int, string)> Content = new List<(int, string)>();
 
-        public string TodayString { get; set; }
-
-        public string AllString { get; set; }
     }
 }

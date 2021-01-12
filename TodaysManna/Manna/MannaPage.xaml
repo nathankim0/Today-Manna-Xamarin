@@ -8,13 +8,6 @@
     NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
-        <!--<Label
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Text="Today's Manna"
-              Margin="0,0,30,0"
-              FontSize="30"
-              />-->
         <Image
             
             Source="title"
@@ -27,11 +20,49 @@
             BackgroundColor="FloralWhite"
             VerticalOptions="FillAndExpand"> 
 
-            <ScrollView VerticalScrollBarVisibility="Never" Padding="20"
->
-
+            <ScrollView VerticalScrollBarVisibility="Never" Padding="15">
+                
                     <StackLayout>
                         <Label
+                            x:Name="today"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            TextColor="Black" />
+
+                            <ListView
+                                x:Name="listView"
+                                HasUnevenRows="True"
+                                SeparatorVisibility="None"
+                                BackgroundColor="FloralWhite"
+                                Margin="0"
+                                Footer=" "
+                                >
+                                
+                                 <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                                                       Text="{Binding Number}"
+                                                    />
+                         <Label Grid.Row="0"
+                             Grid.Column="1"
+                                                       Text="{Binding MannaString}"/>
+                </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        <!--<Label
                             FontAttributes="Bold"
                             FontSize="Subtitle"
                             Text="{Binding TodayString}"
@@ -42,7 +73,7 @@
                             TextColor="Black"
                             Text="{Binding Verse}" FontSize="Header"/>
 
-                        <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black" />
+                        <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black" />-->
 
                        <Button Text="공유" Clicked="Button_Clicked" FontSize="20" BackgroundColor="Beige"/>
                     </StackLayout>
