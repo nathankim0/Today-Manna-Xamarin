@@ -19,7 +19,7 @@
             CornerRadius="40,40,0,0"
             BackgroundColor="FloralWhite"
             VerticalOptions="FillAndExpand"> 
-
+            <StackLayout>
             <ScrollView VerticalScrollBarVisibility="Never" Padding="15">
                 
                     <StackLayout>
@@ -62,23 +62,12 @@
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="Subtitle"
-                            Text="{Binding TodayString}"
-                            TextColor="Black" />
-
-                        <Label
-                            FontAttributes="Bold"
-                            TextColor="Black"
-                            Text="{Binding Verse}" FontSize="Header"/>
-
-                        <Label Text="{Binding AllString}" FontSize="Body" TextColor="Black" />-->
 
                        <Button Text="공유" Clicked="Button_Clicked" FontSize="20" BackgroundColor="Beige"/>
                     </StackLayout>
 
                 </ScrollView>
+                </StackLayout>
         </yummy:PancakeView>
     </StackLayout>
 

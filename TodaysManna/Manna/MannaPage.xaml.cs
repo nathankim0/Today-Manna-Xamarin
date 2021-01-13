@@ -64,6 +64,7 @@ namespace TodaysManna
                 contents += node + "\n\n";
             }
             listView.ItemsSource = mannaContents;
+            listView.HeightRequest = mannaContents.Count * 70;
             _allString = contents;
         }
 
