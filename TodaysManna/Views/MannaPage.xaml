@@ -1,0 +1,85 @@
+﻿<ContentPage
+    x:Class="TodaysManna.MannaPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0,50,0,0"
+    BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                      Light=#91D9EB}"
+    NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        <Image
+            HorizontalOptions="CenterAndExpand"
+            Source="title"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="180" />
+
+        <yummy:PancakeView
+            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                              Light=White}"
+            CornerRadius="40,40,0,0"
+            VerticalOptions="FillAndExpand">
+            <StackLayout Padding="20" Spacing="0">
+                <Label
+                    x:Name="today"
+                    Padding="10,0,0,10"
+                    Text="{Binding Today}"
+                    TextColor="Gray" />
+                <Label
+                    x:Name="verse"
+                    Padding="10,0,0,0"
+                    FontAttributes="Bold"
+                    Text="{Binding JsonMannaData.Verse}" />
+
+                <ListView
+                    x:Name="listView"
+                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                      Light=White}"
+                    Footer=" "
+                    HasUnevenRows="True"
+                    ItemSelected="ListView_ItemSelected"
+                    ItemsSource="{Binding MannaContents}"
+                    SeparatorVisibility="Default"
+                    VerticalOptions="StartAndExpand">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Number}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding MannaString}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                                      Light=#91D9EB}"
+                    Clicked="Button_Clicked"
+                    FontSize="20"
+                    Text="전체공유"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </yummy:PancakeView>
+    </StackLayout>
+
+</ContentPage>

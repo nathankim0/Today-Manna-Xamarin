@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace TodaysManna
 {
@@ -11,8 +9,5 @@ namespace TodaysManna
 
         [JsonProperty("contents")]
         public string[] Contents { get; set; }
-
-        //public List<(int, string)> Content = new List<(int, string)>();
-
     }
 }
