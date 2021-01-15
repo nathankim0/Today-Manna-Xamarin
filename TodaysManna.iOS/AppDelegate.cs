@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Foundation;
+﻿using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace TodaysManna.iOS
 {
@@ -22,6 +20,20 @@ namespace TodaysManna.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            //Notification framework.
+            //----------------------
+            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (approved, err) => {
+                // Handle approval
+            });
+
+            //Get current notification settings.
+            UNUserNotificationCenter.Current.GetNotificationSettings((settings) => {
+                var alertsAllowed = (settings.AlertSetting == UNNotificationSetting.Enabled);
+            });
+            UNUserNotificationCenter.Current.Delegate = new AppDelegates.UserNotificationCenterDelegate();
+            //----------------------
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
