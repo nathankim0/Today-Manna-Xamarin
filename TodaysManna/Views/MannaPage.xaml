@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:renderer="clr-namespace:TodaysManna.Renderer"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Padding="0,50,0,0"
+    Padding="0,40,0,0"
     BackgroundColor="{AppThemeBinding Dark=#23535e,
                                       Light=#91D9EB}"
     NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
         <Image
-            HorizontalOptions="CenterAndExpand"
+            Margin="0,0,15,0"
+            HorizontalOptions="Center"
             Source="title"
             VerticalOptions="CenterAndExpand"
             WidthRequest="180" />
@@ -21,67 +22,69 @@
                                               Light=White}"
             CornerRadius="40,40,0,0"
             VerticalOptions="FillAndExpand">
+
             <StackLayout Padding="20" Spacing="0">
+
                 <Label
                     x:Name="today"
                     Padding="10,0,0,10"
                     Text="{Binding Today}"
-                    TextColor="Gray"
-                    VerticalOptions="Start" />
+                    TextColor="Gray" />
+
                 <Label
                     x:Name="verse"
                     Padding="10,0,0,0"
                     FontAttributes="Bold"
                     Text="{Binding JsonMannaData.Verse}" />
 
-                <ListView
-                    x:Name="listView"
+
+
+                <CollectionView
+                    x:Name="mannaCollectionView"
+                    Margin="0,10,0,10"
                     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                                       Light=White}"
                     Footer=" "
-                    HasUnevenRows="True"
-                    ItemSelected="ListView_ItemSelected"
                     ItemsSource="{Binding MannaContents}"
-                    SeparatorVisibility="Default"
-                    VerticalOptions="StartAndExpand">
-
-                    <ListView.ItemTemplate>
+                    SelectionChanged="OnItemSelected"
+                    SelectionMode="Single"
+                    VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Text="{Binding Number}" />
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Text="{Binding MannaString}" />
-                                </Grid>
-                            </ViewCell>
+                            <Grid Padding="5,5,5,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Number}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding MannaString}" />
+
+                            </Grid>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
 
                 <Button
                     BackgroundColor="{AppThemeBinding Dark=#23535e,
                                                       Light=#91D9EB}"
-                    Clicked="Button_Clicked"
+                    Clicked="OnShareButtonClicked"
                     FontSize="20"
                     Text="전체공유"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
                     VerticalOptions="EndAndExpand" />
 
-                <!--<Label Text="알람 시간 설정" />
+                <Label Text="알람 시간 설정" />
                 <renderer:WheelTimePicker
                     x:Name="_timePicker"
                     Format="T"
@@ -93,9 +96,27 @@
                         HorizontalOptions="EndAndExpand"
                         Toggled="OnSwitchToggled" />
                     <Button Clicked="OnAlarmButtonClicked" Text="1분 뒤 알림" />
-                </StackLayout>-->
+                </StackLayout>
             </StackLayout>
         </yummy:PancakeView>
     </StackLayout>
 
 </ContentPage>
+
+<!--<VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#e6f1f5" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>-->
+
+
+<!--<RefreshView
+                    Padding="0,10,0,10"
+                    Command="{Binding RefreshCommand}"
+                    IsRefreshing="{Binding IsRefreshing}">
+                </RefreshView>-->

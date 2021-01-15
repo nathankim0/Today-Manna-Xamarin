@@ -23,12 +23,14 @@ namespace TodaysManna.iOS
 
             //Notification framework.
             //----------------------
-            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (approved, err) => {
+            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (approved, err) =>
+            {
                 // Handle approval
             });
 
             //Get current notification settings.
-            UNUserNotificationCenter.Current.GetNotificationSettings((settings) => {
+            UNUserNotificationCenter.Current.GetNotificationSettings((settings) =>
+            {
                 var alertsAllowed = (settings.AlertSetting == UNNotificationSetting.Enabled);
             });
             UNUserNotificationCenter.Current.Delegate = new AppDelegates.UserNotificationCenterDelegate();
