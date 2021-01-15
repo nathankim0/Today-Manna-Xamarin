@@ -2,6 +2,7 @@
     x:Class="TodaysManna.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:renderer="clr-namespace:TodaysManna.Renderer"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Padding="0,50,0,0"
     BackgroundColor="{AppThemeBinding Dark=#23535e,
@@ -25,7 +26,8 @@
                     x:Name="today"
                     Padding="10,0,0,10"
                     Text="{Binding Today}"
-                    TextColor="Gray" />
+                    TextColor="Gray"
+                    VerticalOptions="Start" />
                 <Label
                     x:Name="verse"
                     Padding="10,0,0,0"
@@ -78,6 +80,20 @@
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
                     VerticalOptions="EndAndExpand" />
+
+                <!--<Label Text="알람 시간 설정" />
+                <renderer:WheelTimePicker
+                    x:Name="_timePicker"
+                    Format="T"
+                    PropertyChanged="OnTimePickerPropertyChanged" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="알람 시작" />
+                    <Switch
+                        x:Name="_switch"
+                        HorizontalOptions="EndAndExpand"
+                        Toggled="OnSwitchToggled" />
+                    <Button Clicked="OnAlarmButtonClicked" Text="1분 뒤 알림" />
+                </StackLayout>-->
             </StackLayout>
         </yummy:PancakeView>
     </StackLayout>

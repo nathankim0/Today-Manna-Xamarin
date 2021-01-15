@@ -21,6 +21,7 @@
     <Folder Include="ViewModel\" />
     <Folder Include="Views\" />
     <Folder Include="Rest\" />
+    <Folder Include="Renderer\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
