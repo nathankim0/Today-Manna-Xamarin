@@ -27,8 +27,8 @@ namespace TodaysManna.iOS.AppDependencies
 
 
             //Set parameters.
-            notificationContent.Title = strNotificationTitle;
-            notificationContent.Subtitle = strNotificationSubtitle;
+            //notificationContent.Title = strNotificationTitle;
+            //notificationContent.Subtitle = strNotificationSubtitle;
             notificationContent.Body = strNotificationDescription;
             //notificationContent.Badge = 1;
             notificationContent.Badge = Int32.Parse(strNotificationIdItem);
