@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.SettingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:renderer="clr-namespace:TodaysManna.Renderer">
+    <ContentPage.Content />
+
+    <StackLayout Padding="20">
+        <Label Text="알람 설정" />
+
+        <StackLayout Orientation="Horizontal">
+            <renderer:WheelTimePicker
+                x:Name="_timePicker"
+                Format="t"
+                PropertyChanged="OnTimePickerPropertyChanged">
+
+                <TimePicker.Format>hh:mm tt</TimePicker.Format>
+
+            </renderer:WheelTimePicker>
+            <Switch
+                x:Name="_switch"
+                HorizontalOptions="EndAndExpand"
+                Toggled="OnSwitchToggled" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

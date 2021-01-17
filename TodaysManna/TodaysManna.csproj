@@ -15,6 +15,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -25,5 +26,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\14.8.0.3\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
