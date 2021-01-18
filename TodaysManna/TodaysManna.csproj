@@ -32,4 +32,10 @@
       <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\14.8.0.3\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="BibleAt.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BibleAt.json" />
+  </ItemGroup>
 </Project>

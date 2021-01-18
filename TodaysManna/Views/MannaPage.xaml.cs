@@ -29,13 +29,11 @@ namespace TodaysManna
             });
         }
 
-        private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var view = sender as CollectionView;
-            if (view.SelectedItem == null) return;
-            if (e.CurrentSelection.FirstOrDefault() == null) return;
+            if (e.SelectedItem == null) return;
 
-            var manna = e.CurrentSelection.FirstOrDefault() as MannaContent;
+            var manna = e.SelectedItem as MannaContent;
 
             var verseText = verse.Text;
             var tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
@@ -48,17 +46,16 @@ namespace TodaysManna
                 Title = "공유"
             });
 
-
-            if (view.SelectedItem != null)
-            {
-                view.SelectedItem = null;
-            }
         }
 
        
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SettingPage());
+        }
+
+        void mannaCollectionView_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
         }
     }
 }

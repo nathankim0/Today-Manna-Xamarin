@@ -7,7 +7,6 @@
     BackgroundColor="{AppThemeBinding Dark=#23535e,
                                       Light=#91D9EB}"
     NavigationPage.HasNavigationBar="False">
-
     <StackLayout>
         <StackLayout Orientation="Horizontal">
             <Button Clicked="Button_Clicked" Text="Settings" />
@@ -26,8 +25,7 @@
             CornerRadius="40,40,0,0"
             VerticalOptions="FillAndExpand">
 
-            <StackLayout Padding="20" Spacing="0">
-
+            <StackLayout Padding="20">
                 <Label
                     x:Name="today"
                     Padding="10,0,0,10"
@@ -40,42 +38,46 @@
                     FontAttributes="Bold"
                     Text="{Binding JsonMannaData.Verse}" />
 
+                <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
 
+                    <ListView
+                        x:Name="mannaCollectionView"
+                        Margin="0,10,0,10"
+                        BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                          Light=White}"
+                        Footer=" "
+                        HasUnevenRows="True"
+                        ItemSelected="OnItemSelected"
+                        ItemsSource="{Binding MannaContents}"
+                        SeparatorVisibility="None"
+                        VerticalScrollBarVisibility="Never">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5,5,5,5" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
-                <CollectionView
-                    x:Name="mannaCollectionView"
-                    Margin="0,10,0,10"
-                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                      Light=White}"
-                    Footer=" "
-                    ItemsSource="{Binding MannaContents}"
-                    SelectionChanged="OnItemSelected"
-                    SelectionMode="Single"
-                    VerticalScrollBarVisibility="Never">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="5,5,5,5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Text="{Binding Number}" />
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Text="{Binding MannaString}" />
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Text="{Binding Number}" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding MannaString}" />
 
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </RefreshView>
 
                 <Button
                     BackgroundColor="{AppThemeBinding Dark=#23535e,
@@ -87,8 +89,8 @@
                                                 Light=Black}"
                     VerticalOptions="EndAndExpand" />
 
-
             </StackLayout>
+
         </yummy:PancakeView>
     </StackLayout>
 
@@ -106,8 +108,11 @@
                                 </VisualStateManager.VisualStateGroups>-->
 
 
-<!--<RefreshView
-                    Padding="0,10,0,10"
-                    Command="{Binding RefreshCommand}"
-                    IsRefreshing="{Binding IsRefreshing}">
-                </RefreshView>-->
+
+
+<!--
+    SelectionChanged="OnItemSelected"
+    SelectionMode="Single"
+    
+    VerticalScrollBarVisibility="Never"
+-->
