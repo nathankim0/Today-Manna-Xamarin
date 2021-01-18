@@ -159,4 +159,7 @@
     <Folder Include="Assets.xcassets\title.imageset\" />
     <Folder Include="Renderer\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BibleAt.json" />
+  </ItemGroup>
 </Project>

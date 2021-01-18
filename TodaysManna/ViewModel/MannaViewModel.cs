@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using TodaysManna.Models;
 using Xamarin.Forms;
+using static TodaysManna.Models.BibleAtData;
 
 namespace TodaysManna.ViewModel
 {
@@ -58,44 +65,85 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        //private bool _isRefreshing;
-        //private bool IsRefreshing
-        //{
-        //    get => _isRefreshing;
-        //    set
-        //    {
-        //        if (_isRefreshing != value)
-        //        {
-        //            _isRefreshing = value;
-        //            OnPropertyChanged(nameof(IsRefreshing));
-        //        }
-        //    }
-        //}
+        private bool _isRefreshing;
+        private bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    OnPropertyChanged(nameof(IsRefreshing));
+                }
+            }
+        }
 
-        //public ICommand RefreshCommand => new Command(async() =>
-        //{
-        //    MannaContents.Clear();
-        //    await GetManna();
-        //});
+        private int _jang;
+        private string _bib;
+
+        public ICommand RefreshCommand => new Command(() =>
+        {
+            IsRefreshing = true;
+
+            MannaContents.Clear();
+            GetManna();
+
+            IsRefreshing = false;
+        });
 
         public MannaViewModel()
         {
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
 
             _restService = new RestService();
-            _ = GetManna();
+            GetManna();
         }
+        private string bibleUrl = "https://www.bible.com/ko/bible/";
+        private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
 
-        private async Task GetManna()
+
+        private async void GetManna()
         {
-           // IsRefreshing = true;
 
             JsonMannaData = new MannaData();
             JsonMannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
 
-            SetMannaContents();
+            var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
 
-           // IsRefreshing = false;
+            _bib = Regex.Replace(tmpBibleAt, @"\d", "");
+            _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
+
+            var _bibles = new List<Bible>();
+            _bibles = GetJsonBible();
+
+            var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
+
+            var _completeUrl = $"{bibleUrl}{engBib.Eng}.{_jang}.NKJV";
+
+            System.Diagnostics.Debug.WriteLine($"**** url : {_completeUrl}");
+
+            SetMannaContents();
+        }
+
+
+        private List<Bible> GetJsonBible()
+        {
+            string jsonFileName = "BibleAt.json";
+            BibleList ObjContactList = new BibleList();
+
+
+            var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+            using (var reader = new StreamReader(stream))
+            {
+                var jsonString = reader.ReadToEnd();
+
+                //Converting JSON Array Objects into generic list    
+                ObjContactList = JsonConvert.DeserializeObject<BibleList>(jsonString);
+            }
+
+            return ObjContactList.Bibles;
         }
 
         private void SetMannaContents()
