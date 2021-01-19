@@ -39,6 +39,10 @@
 	</dict>
 	<key>CFBundleShortVersionString</key>
 	<string>1.3</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fa-solid-900.ttf</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>오늘의 만나</string>
 </dict>
