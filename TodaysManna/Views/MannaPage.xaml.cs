@@ -45,17 +45,13 @@ namespace TodaysManna
                 Text = shareRangeString,
                 Title = "공유"
             });
-
+            ((ListView)sender).SelectedItem = null;
         }
 
        
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SettingPage());
-        }
-
-        void mannaCollectionView_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
         }
     }
 }

@@ -161,5 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />
+    <EmbeddedResource Include="Resources\fa-solid-900.ttf" />
   </ItemGroup>
 </Project>

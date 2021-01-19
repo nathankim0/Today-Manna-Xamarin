@@ -16,7 +16,15 @@
                 Source="title"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="180" />
-
+            <Image Grid.Column="2" VerticalOptions="Start">
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Glyph="&#xf0f3;"
+                        Size="25"
+                        Color="{StaticResource icons}" />
+                </Image.Source>
+            </Image>
         </StackLayout>
 
         <yummy:PancakeView
@@ -38,46 +46,49 @@
                     FontAttributes="Bold"
                     Text="{Binding JsonMannaData.Verse}" />
 
-                <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
 
-                    <ListView
-                        x:Name="mannaCollectionView"
-                        Margin="0,10,0,10"
-                        BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                          Light=White}"
-                        Footer=" "
-                        HasUnevenRows="True"
-                        ItemSelected="OnItemSelected"
-                        ItemsSource="{Binding MannaContents}"
-                        SeparatorVisibility="None"
-                        VerticalScrollBarVisibility="Never">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Padding="5,5,5,5" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                <ListView
+                    x:Name="mannaView"
+                    Margin="0,10,0,10"
+                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                      Light=White}"
+                    Footer=" "
+                    HasUnevenRows="True"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsRefreshing}"
+                    ItemSelected="OnItemSelected"
+                    ItemsSource="{Binding MannaContents}"
+                    RefreshCommand="{Binding RefreshCommand}"
+                    SeparatorVisibility="None"
+                    VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5,7,5,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Text="{Binding Number}" />
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Text="{Binding MannaString}" />
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Number}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding MannaString}" />
 
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </RefreshView>
+                                </Grid>
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
 
                 <Button
                     BackgroundColor="{AppThemeBinding Dark=#23535e,
@@ -113,6 +124,8 @@
 <!--
     SelectionChanged="OnItemSelected"
     SelectionMode="Single"
-    
+
     VerticalScrollBarVisibility="Never"
--->
+
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            </RefreshView>-->
