@@ -6,7 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using TodaysManna.AppInterfaces;
 
-namespace TodaysManna
+namespace TodaysManna.Views
 {
     public partial class SettingPage : ContentPage
     {

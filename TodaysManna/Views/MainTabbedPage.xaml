@@ -1,0 +1,14 @@
+﻿<TabbedPage
+    x:Class="TodaysManna.Views.MainTabbedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna">
+    <local:MannaPage Title="만나" IconImageSource="tab_manna" />
+    <local:MccheynePage Title="맥체인" IconImageSource="tab_mc" />
+</TabbedPage>
+
+<!--<NavigationPage Title="Schedule" IconImageSource="schedule.png">
+        <x:Arguments>
+            <local:SchedulePage />
+        </x:Arguments>
+    </NavigationPage>-->
