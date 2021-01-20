@@ -1,31 +1,47 @@
 ﻿<ContentPage
-    x:Class="TodaysManna.MannaPage"
+    x:Class="TodaysManna.Views.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Padding="0,40,0,0"
     BackgroundColor="{AppThemeBinding Dark=#23535e,
                                       Light=#91D9EB}"
     NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Button Clicked="Button_Clicked" Text="Settings" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0">
+                <ImageButton
+                    Clicked="Button_Clicked"
+                    HeightRequest="30"
+                    Source="alarm"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
             <Image
-                Margin="0,0,15,0"
-                HorizontalOptions="Center"
+                Grid.Column="1"
                 Source="title"
-                VerticalOptions="CenterAndExpand"
                 WidthRequest="180" />
-            <Image Grid.Column="2" VerticalOptions="Start">
-                <Image.Source>
-                    <FontImageSource
-                        FontFamily="{DynamicResource MaterialFontFamily}"
-                        Glyph="&#xf0f3;"
-                        Size="25"
-                        Color="{StaticResource icons}" />
-                </Image.Source>
-            </Image>
-        </StackLayout>
+            <StackLayout Grid.Column="2">
+
+                <ImageButton
+                    Clicked="OnShareButtonClicked"
+                    HeightRequest="30"
+                    Source="share"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+
+        </Grid>
+
 
         <yummy:PancakeView
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
@@ -33,23 +49,27 @@
             CornerRadius="40,40,0,0"
             VerticalOptions="FillAndExpand">
 
-            <StackLayout Padding="20">
+            <StackLayout Padding="30,15,30,15">
                 <Label
                     x:Name="today"
-                    Padding="10,0,0,10"
                     Text="{Binding Today}"
                     TextColor="Gray" />
-
-                <Label
-                    x:Name="verse"
-                    Padding="10,0,0,0"
-                    FontAttributes="Bold"
-                    Text="{Binding JsonMannaData.Verse}" />
-
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        x:Name="verse"
+                        FontAttributes="Bold"
+                        Text="{Binding JsonMannaData.Verse}"
+                        VerticalOptions="Center" />
+                    <Button
+                        Clicked="OnEnglishButtonClicked"
+                        FontSize="16"
+                        HorizontalOptions="EndAndExpand"
+                        Text="👉 영어로 보기"
+                        VerticalOptions="Start" />
+                </StackLayout>
 
                 <ListView
                     x:Name="mannaView"
-                    Margin="0,10,0,10"
                     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                                       Light=White}"
                     Footer=" "
@@ -64,7 +84,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Padding="5,7,5,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                                <Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -90,15 +110,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Button
-                    BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                                      Light=#91D9EB}"
-                    Clicked="OnShareButtonClicked"
-                    FontSize="20"
-                    Text="전체공유"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="EndAndExpand" />
 
             </StackLayout>
 
@@ -122,6 +133,18 @@
 
 
 <!--
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                                      Light=#91D9EB}"
+                    Clicked="OnShareButtonClicked"
+                    FontSize="20"
+                    Text="전체공유"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="EndAndExpand" />
+
+
     SelectionChanged="OnItemSelected"
     SelectionMode="Single"
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using TodaysManna.Views;
 using Xamarin.Forms;
 
 namespace TodaysManna
@@ -8,7 +9,7 @@ namespace TodaysManna
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MannaPage());
+            MainPage = new MainTabbedPage();
         }
 
         protected override void OnStart()

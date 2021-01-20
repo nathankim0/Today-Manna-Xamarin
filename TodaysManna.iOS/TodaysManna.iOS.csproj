@@ -123,6 +123,15 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
     <ImageAsset Include="Assets.xcassets\title.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\title.imageset\오늘의 만나 상단 로고 ios.pdf" />
+    <ImageAsset Include="Assets.xcassets\tab_manna.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\tab_mc.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\tab_mc.imageset\icons8-briefcase.pdf" />
+    <ImageAsset Include="Assets.xcassets\tab_manna.imageset\icons8-news.pdf" />
+    <ImageAsset Include="Assets.xcassets\share.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Color.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\alarm.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\share.imageset\QuickActions_Share_2x.png" />
+    <ImageAsset Include="Assets.xcassets\alarm.imageset\QuickActions_Alarm_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -158,6 +167,10 @@
     <Folder Include="Assets.xcassets\.imageset\" />
     <Folder Include="Assets.xcassets\title.imageset\" />
     <Folder Include="Renderer\" />
+    <Folder Include="Assets.xcassets\tab_manna.imageset\" />
+    <Folder Include="Assets.xcassets\tab_mc.imageset\" />
+    <Folder Include="Assets.xcassets\share.imageset\" />
+    <Folder Include="Assets.xcassets\alarm.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TodaysManna.Models;
+using TodaysManna.Views;
 using Xamarin.Forms;
 using static TodaysManna.Models.BibleAtData;
 
@@ -99,9 +100,11 @@ namespace TodaysManna.ViewModel
             _restService = new RestService();
             GetManna();
         }
-        private string bibleUrl = "https://www.bible.com/ko/bible/";
+
+        private string bibleUrl = "https://www.bible.com/ko/bible/1/";
         private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
 
+        public string _completeUrl { get; set; } = "";
 
         private async void GetManna()
         {
@@ -119,7 +122,7 @@ namespace TodaysManna.ViewModel
 
             var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
 
-            var _completeUrl = $"{bibleUrl}{engBib.Eng}.{_jang}.NKJV";
+            _completeUrl = $"{bibleUrl}{engBib.Eng}.{_jang}.NKJV";
 
             System.Diagnostics.Debug.WriteLine($"**** url : {_completeUrl}");
 

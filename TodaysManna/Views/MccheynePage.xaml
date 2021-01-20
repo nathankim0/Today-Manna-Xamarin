@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.Views.MccheynePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0,40,0,0"
+    BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                      Light=#91D9EB}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content />
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image
+                Grid.Column="1"
+                Source="title"
+                WidthRequest="180" />
+
+        </Grid>
+
+
+        <yummy:PancakeView
+            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                              Light=White}"
+            CornerRadius="40,40,0,0"
+            VerticalOptions="FillAndExpand">
+
+            <StackLayout Padding="30,15,30,15" />
+
+        </yummy:PancakeView>
+    </StackLayout>
+</ContentPage>

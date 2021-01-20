@@ -6,7 +6,7 @@ using TodaysManna.AppInterfaces;
 using System.Linq;
 using UIKit;
 
-namespace TodaysManna
+namespace TodaysManna.Views
 {
     public partial class MannaPage : ContentPage
     {
@@ -52,6 +52,11 @@ namespace TodaysManna
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SettingPage());
+        }
+        private async void OnEnglishButtonClicked(object sender, EventArgs e)
+        {
+            Uri uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
     }
 }

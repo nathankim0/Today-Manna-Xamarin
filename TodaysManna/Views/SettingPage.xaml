@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="TodaysManna.SettingPage"
+    x:Class="TodaysManna.Views.SettingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     xmlns:renderer="clr-namespace:TodaysManna.Renderer">
+
     <ContentPage.Content />
 
     <StackLayout Padding="20">
