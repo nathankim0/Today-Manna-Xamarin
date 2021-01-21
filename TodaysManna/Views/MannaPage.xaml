@@ -20,13 +20,13 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Column="0">
+            <!--<StackLayout Grid.Column="0">
                 <ImageButton
                     Clicked="Button_Clicked"
                     HeightRequest="30"
                     Source="alarm"
                     VerticalOptions="CenterAndExpand" />
-            </StackLayout>
+            </StackLayout>-->
             <Image
                 Grid.Column="1"
                 Source="title"

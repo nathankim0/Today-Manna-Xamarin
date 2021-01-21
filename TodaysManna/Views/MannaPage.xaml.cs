@@ -55,8 +55,17 @@ namespace TodaysManna.Views
         }
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {
-            Uri uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
-            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            try
+            {
+                var uri = new Uri(((MannaViewModel)BindingContext)._completeAppUrl);
+                await Browser.OpenAsync(uri, BrowserLaunchMode.External);
+            }
+            catch
+            {
+                var uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
+                await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            }   
         }
+        
     }
 }

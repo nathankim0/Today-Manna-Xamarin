@@ -8,7 +8,7 @@
 
     <ContentPage.Content />
 
-    <StackLayout Padding="20">
+    <!--<StackLayout Padding="20">
         <Label Text="알람 설정" />
 
         <StackLayout Orientation="Horizontal">
@@ -25,5 +25,5 @@
                 HorizontalOptions="EndAndExpand"
                 Toggled="OnSwitchToggled" />
         </StackLayout>
-    </StackLayout>
+    </StackLayout>-->
 </ContentPage>
