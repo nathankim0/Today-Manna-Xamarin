@@ -103,8 +103,10 @@ namespace TodaysManna.ViewModel
 
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
         private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
+        private string appBibleUrl = "youversion://bible?reference=";
 
         public string _completeUrl { get; set; } = "";
+        public string _completeAppUrl { get; set; } = "";
 
         private async void GetManna()
         {
@@ -113,6 +115,7 @@ namespace TodaysManna.ViewModel
             JsonMannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
 
             var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
+            var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":")+1), "~", "-");
 
             _bib = Regex.Replace(tmpBibleAt, @"\d", "");
             _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
@@ -122,9 +125,13 @@ namespace TodaysManna.ViewModel
 
             var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
 
-            _completeUrl = $"{bibleUrl}{engBib.Eng}.{_jang}.NKJV";
+            var redirectUrl= $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
 
-            System.Diagnostics.Debug.WriteLine($"**** url : {_completeUrl}");
+            _completeUrl = $"{bibleUrl}{redirectUrl}";
+            _completeAppUrl= $"{appBibleUrl}{redirectUrl}";
+
+            System.Diagnostics.Debug.WriteLine($"**** web url : {_completeUrl}");
+            System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
 
             SetMannaContents();
         }
