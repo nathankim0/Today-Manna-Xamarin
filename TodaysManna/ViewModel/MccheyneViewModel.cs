@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TodaysManna.Models;
 using TodaysManna.Views;
@@ -65,23 +66,42 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        string today;
+        private string _verseRange;
+        public string VerseRange
+        {
+            get => _verseRange;
+            set
+            {
+                if (_verseRange != value)
+                {
+                    _verseRange = value;
+                    OnPropertyChanged(nameof(VerseRange));
+                }
+            }
+        }
+
+        public string today;
 
         public MccheyneViewModel()
         {
             today = DateTime.Now.ToString("M_d");
 
-            GetManna();
+            GetMccheyne();
         }
 
-        private void GetManna()
+        public void GetMccheyne()
         {
-            var daysOfMccheynes = new List<Days>();
-            daysOfMccheynes = GetJsonBible();
+            MccheyneContents1.Clear();
+            MccheyneContents2.Clear();
+            MccheyneContents3.Clear();
+            MccheyneContents4.Clear();
+
+            // var daysOfMccheynes = new List<Days>();
+            var daysOfMccheynes = GetJsonBible();
 
             var todayProperty = "Mccheynes" + today;
 
-            foreach(var node in daysOfMccheynes)
+            foreach (var node in daysOfMccheynes)
             {
                 var t= node.GetType().GetProperty(todayProperty).GetValue(node, null) as List<Mccheyne>;
 
@@ -127,10 +147,10 @@ namespace TodaysManna.ViewModel
                             break;
                     }
 
-                    System.Diagnostics.Debug.WriteLine(node2.Id);
-                    System.Diagnostics.Debug.WriteLine(node2.Book);
-                    System.Diagnostics.Debug.WriteLine(node2.Verse);
-                    System.Diagnostics.Debug.WriteLine(node2.Content);
+                    //System.Diagnostics.Debug.WriteLine(node2.Id);
+                    //System.Diagnostics.Debug.WriteLine(node2.Book);
+                    //System.Diagnostics.Debug.WriteLine(node2.Verse);
+                    //System.Diagnostics.Debug.WriteLine(node2.Content);
                 }
             }
         }

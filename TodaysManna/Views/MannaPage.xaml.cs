@@ -17,7 +17,7 @@ namespace TodaysManna.Views
 
             BindingContext = mannaViewModel;
 
-            UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
+           // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
         }
 
         private async void OnShareButtonClicked(object sender, EventArgs e)

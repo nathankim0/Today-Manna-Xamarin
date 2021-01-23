@@ -35,7 +35,7 @@
 
                 <ImageButton
                     Clicked="OnShareButtonClicked"
-                    HeightRequest="30"
+                    HeightRequest="27"
                     Source="share"
                     VerticalOptions="CenterAndExpand" />
             </StackLayout>
