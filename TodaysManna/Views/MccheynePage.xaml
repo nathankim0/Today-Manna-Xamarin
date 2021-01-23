@@ -36,7 +36,55 @@
             CornerRadius="40,40,0,0"
             VerticalOptions="FillAndExpand">
 
-            <StackLayout Padding="30,15,30,15" />
+            <StackLayout Padding="30,15,30,15">
+                <ListView
+                    x:Name="mccheyneView"
+                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                      Light=White}"
+                    Footer=" "
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding MccheyneContents}"
+                    SeparatorVisibility="None"
+                    VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Id}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding Book}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Text="{Binding Verse}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        Text="{Binding Content}" />
+                                </Grid>
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
 
         </yummy:PancakeView>
     </StackLayout>

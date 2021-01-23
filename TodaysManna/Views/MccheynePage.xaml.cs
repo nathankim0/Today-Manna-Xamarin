@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using TodaysManna.ViewModel;
 using Xamarin.Forms;
 
 namespace TodaysManna.Views
@@ -10,6 +10,7 @@ namespace TodaysManna.Views
         public MccheynePage()
         {
             InitializeComponent();
+            BindingContext = new MccheyneViewModel();
         }
     }
 }
