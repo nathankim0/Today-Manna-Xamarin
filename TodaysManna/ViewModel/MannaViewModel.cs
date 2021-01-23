@@ -102,7 +102,7 @@ namespace TodaysManna.ViewModel
         }
 
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
-        private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
+      //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
         private string appBibleUrl = "youversion://bible?reference=";
 
         public string _completeUrl { get; set; } = "";
@@ -130,8 +130,8 @@ namespace TodaysManna.ViewModel
             _completeUrl = $"{bibleUrl}{redirectUrl}";
             _completeAppUrl= $"{appBibleUrl}{redirectUrl}";
 
-            System.Diagnostics.Debug.WriteLine($"**** web url : {_completeUrl}");
-            System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
+            //System.Diagnostics.Debug.WriteLine($"**** web url : {_completeUrl}");
+            //System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
 
             SetMannaContents();
         }
