@@ -16,6 +16,7 @@
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
+    <PackageReference Include="CardsView" Version="2.7.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -34,8 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="BibleAt.json" />
+    <None Remove="mcc.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />
+    <EmbeddedResource Include="mcc.json" />
   </ItemGroup>
 </Project>
