@@ -38,7 +38,7 @@
 
 
             <StackLayout Padding="30,15,30,15">
-                <Grid BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                <Grid x:Name="topGrid" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />

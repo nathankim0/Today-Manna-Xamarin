@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
+using System.Linq;
+using Xamarin.Forms.Internals;
 
 namespace TodaysManna.Views
 {
@@ -11,6 +13,22 @@ namespace TodaysManna.Views
         {
             InitializeComponent();
             BindingContext = new MccheyneViewModel();
+
+            mccheyneView.ItemAppearing += Handle_ItemAppearing;
+        }
+
+        private int _lastItemAppearedIdx;
+
+        private void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
+        {
+            var currentIdx = (BindingContext as MccheyneViewModel).MccheyneContents1.IndexOf(e.Item);
+
+            if (currentIdx > _lastItemAppearedIdx)
+                topGrid.IsVisible = false;
+            else
+                topGrid.IsVisible = true;
+
+            _lastItemAppearedIdx = (BindingContext as MccheyneViewModel).MccheyneContents1.IndexOf(e.Item);
         }
 
         void Button_Clicked_1(System.Object sender, System.EventArgs e)
