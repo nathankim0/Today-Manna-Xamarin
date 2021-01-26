@@ -3,152 +3,79 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Padding="0,40,0,0"
-    BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                      Light=#91D9EB}"
     NavigationPage.HasNavigationBar="False">
-    <StackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="180" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <!--<StackLayout Grid.Column="0">
-                <ImageButton
-                    Clicked="Button_Clicked"
-                    HeightRequest="30"
-                    Source="alarm"
-                    VerticalOptions="CenterAndExpand" />
-            </StackLayout>-->
-            <Image
-                Grid.Column="1"
-                Source="title"
-                WidthRequest="180" />
-            <StackLayout Grid.Column="2">
-
-                <ImageButton
-                    Clicked="OnShareButtonClicked"
-                    HeightRequest="27"
-                    Source="share"
-                    VerticalOptions="CenterAndExpand" />
-            </StackLayout>
-
-        </Grid>
+    <StackLayout Padding="30,15,30,15">
 
 
-        <yummy:PancakeView
+        <Label
+            x:Name="today"
+            Text="{Binding Today}"
+            TextColor="Gray" />
+
+        <Label
+            x:Name="copyButton"
+            FontSize="16"
+            Text="{Binding ShareRange}" />
+
+        <StackLayout Orientation="Horizontal">
+            <Label
+                x:Name="verse"
+                FontAttributes="Bold"
+                Text="{Binding JsonMannaData.Verse}" />
+
+            <Button
+                Clicked="OnEnglishButtonClicked"
+                FontSize="16"
+                Text="영어" />
+            <ImageButton Clicked="OnShareButtonClicked" Source="share" />
+
+
+        </StackLayout>
+
+        <ListView
+            x:Name="mannaView"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
-            CornerRadius="40,40,0,0"
-            VerticalOptions="FillAndExpand">
+            Footer=" "
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            ItemSelected="OnItemSelected"
+            ItemsSource="{Binding MannaContents}"
+            RefreshCommand="{Binding RefreshCommand}"
+            SeparatorVisibility="None"
+            VerticalScrollBarVisibility="Never">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
-            <StackLayout Padding="30,15,30,15">
-                <Label
-                    x:Name="today"
-                    Text="{Binding Today}"
-                    TextColor="Gray" />
-                <StackLayout Orientation="Horizontal">
-                    <Label
-                        x:Name="verse"
-                        FontAttributes="Bold"
-                        Text="{Binding JsonMannaData.Verse}"
-                        VerticalOptions="Center" />
-                    <Button
-                        Clicked="OnEnglishButtonClicked"
-                        FontSize="16"
-                        HorizontalOptions="EndAndExpand"
-                        Text="👉 영어로 보기"
-                        VerticalOptions="Start" />
-                </StackLayout>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Number}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding MannaString}" />
 
-                <ListView
-                    x:Name="mannaView"
-                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                      Light=White}"
-                    Footer=" "
-                    HasUnevenRows="True"
-                    IsPullToRefreshEnabled="True"
-                    IsRefreshing="{Binding IsRefreshing}"
-                    ItemSelected="OnItemSelected"
-                    ItemsSource="{Binding MannaContents}"
-                    RefreshCommand="{Binding RefreshCommand}"
-                    SeparatorVisibility="None"
-                    VerticalScrollBarVisibility="Never">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                        </Grid>
+                    </ViewCell>
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Text="{Binding Number}" />
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Text="{Binding MannaString}" />
+                </DataTemplate>
 
-                                </Grid>
-                            </ViewCell>
-
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-                </ListView>
+            </ListView.ItemTemplate>
+        </ListView>
 
 
-            </StackLayout>
-
-        </yummy:PancakeView>
     </StackLayout>
 
 </ContentPage>
-
-<!--<VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Normal" />
-                                        <VisualState Name="Selected">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="#e6f1f5" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>-->
-
-
-
-
-<!--
-
-                <Button
-                    BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                                      Light=#91D9EB}"
-                    Clicked="OnShareButtonClicked"
-                    FontSize="20"
-                    Text="전체공유"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="EndAndExpand" />
-
-
-    SelectionChanged="OnItemSelected"
-    SelectionMode="Single"
-
-    VerticalScrollBarVisibility="Never"
-
-            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-            </RefreshView>-->

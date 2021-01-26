@@ -36,9 +36,11 @@
   <ItemGroup>
     <None Remove="BibleAt.json" />
     <None Remove="mcc.json" />
+    <None Remove="MccheyneRange.json"/>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />
     <EmbeddedResource Include="mcc.json" />
+    <EmbeddedResource Include="MccheyneRange.json" />
   </ItemGroup>
 </Project>
