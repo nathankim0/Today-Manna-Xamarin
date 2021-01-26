@@ -2,9 +2,6 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using TodaysManna.ViewModel;
-using TodaysManna.AppInterfaces;
-using System.Linq;
-using UIKit;
 
 namespace TodaysManna.Views
 {
@@ -17,7 +14,18 @@ namespace TodaysManna.Views
 
             BindingContext = mannaViewModel;
 
-           // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += OnShareLabelTapped;
+            copyButton.GestureRecognizers.Add(tapGesture);
+            // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
+        }
+        private async void OnShareLabelTapped(object sender, EventArgs args)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = copyButton.Text,
+                Title = "공유"
+            });
         }
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
@@ -66,6 +74,5 @@ namespace TodaysManna.Views
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }   
         }
-        
     }
 }

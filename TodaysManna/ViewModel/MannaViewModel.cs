@@ -14,6 +14,7 @@ using TodaysManna.Models;
 using TodaysManna.Views;
 using Xamarin.Forms;
 using static TodaysManna.Models.BibleAtData;
+using static TodaysManna.Models.MccheyneRangeData;
 
 namespace TodaysManna.ViewModel
 {
@@ -67,7 +68,7 @@ namespace TodaysManna.ViewModel
         }
 
         private bool _isRefreshing;
-        private bool IsRefreshing
+        public bool IsRefreshing
         {
             get => _isRefreshing;
             set
@@ -76,6 +77,20 @@ namespace TodaysManna.ViewModel
                 {
                     _isRefreshing = value;
                     OnPropertyChanged(nameof(IsRefreshing));
+                }
+            }
+        }
+
+        private string _shareRange;
+        public string ShareRange
+        {
+            get => _shareRange;
+            set
+            {
+                if (_shareRange != value)
+                {
+                    _shareRange = value;
+                    OnPropertyChanged(nameof(ShareRange));
                 }
             }
         }
@@ -93,12 +108,18 @@ namespace TodaysManna.ViewModel
             IsRefreshing = false;
         });
 
+        private string todayMccheyneRange;
+
         public MannaViewModel()
         {
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
 
             _restService = new RestService();
             GetManna();
+
+            var ranges = GetJsonMccheyneRange();
+            var today = DateTime.Now.ToString("M/d");
+            todayMccheyneRange = ranges.Find(x => x.Date.Equals(today)).Range;
         }
 
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
@@ -134,6 +155,8 @@ namespace TodaysManna.ViewModel
             //System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
 
             SetMannaContents();
+
+            ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
         }
 
 
@@ -176,7 +199,24 @@ namespace TodaysManna.ViewModel
             AllString = allContents;
         }
 
-      
+        private List<MccheyneRange> GetJsonMccheyneRange()
+        {
+            string jsonFileName = "MccheyneRange.json";
+            MccheyneRangeList ObjContactList = new MccheyneRangeList();
+
+
+            var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+            using (var reader = new StreamReader(stream))
+            {
+                var jsonString = reader.ReadToEnd();
+
+                //Converting JSON Array Objects into generic list    
+                ObjContactList = JsonConvert.DeserializeObject<MccheyneRangeList>(jsonString);
+            }
+
+            return ObjContactList.Ranges;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
