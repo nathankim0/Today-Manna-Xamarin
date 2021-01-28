@@ -2,6 +2,9 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using TodaysManna.ViewModel;
+using UIKit;
+using System.Linq;
+using System.Diagnostics;
 
 namespace TodaysManna.Views
 {
@@ -17,8 +20,15 @@ namespace TodaysManna.Views
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += OnShareLabelTapped;
             copyButton.GestureRecognizers.Add(tapGesture);
+
             // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
         }
+
+        private void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            
+        }
+
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
             await Share.RequestAsync(new ShareTextRequest
@@ -36,12 +46,13 @@ namespace TodaysManna.Views
                 Title = "공유"
             });
         }
-
-        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
         {
-            if (e.SelectedItem == null) return;
+            var view = sender as CollectionView;
+            if (view.SelectedItem == null) return;
+            if (e.CurrentSelection.FirstOrDefault() == null) return;
 
-            var manna = e.SelectedItem as MannaContent;
+            var manna = e.CurrentSelection.FirstOrDefault() as MannaContent;
 
             var verseText = verse.Text;
             var tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
@@ -53,10 +64,34 @@ namespace TodaysManna.Views
                 Text = shareRangeString,
                 Title = "공유"
             });
-            ((ListView)sender).SelectedItem = null;
+
+
+            if (view.SelectedItem != null)
+            {
+                view.SelectedItem = null;
+            }
         }
 
-       
+        //private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    if (e.SelectedItem == null) return;
+
+        //    var manna = e.SelectedItem as MannaContent;
+
+        //    var verseText = verse.Text;
+        //    var tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
+
+        //    var shareRangeString = $"({tmpRangeString}:{manna.Number}){manna.MannaString}";
+
+        //    await Share.RequestAsync(new ShareTextRequest
+        //    {
+        //        Text = shareRangeString,
+        //        Title = "공유"
+        //    });
+        //    ((ListView)sender).SelectedItem = null;
+        //}
+
+
         async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SettingPage());

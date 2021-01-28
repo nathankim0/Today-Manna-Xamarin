@@ -3,12 +3,23 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna">
-    <local:MannaPage Title="만나" IconImageSource="tab_manna" />
-    <local:MccheynePage Title="맥체인" IconImageSource="tab_mc" />
+    <NavigationPage Title="만나" IconImageSource="tab_manna">
+        <x:Arguments>
+            <local:MannaPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="맥체인" IconImageSource="tab_mc">
+        <x:Arguments>
+            <local:MccheynePage />
+        </x:Arguments>
+    </NavigationPage>
 </TabbedPage>
 
 <!--<NavigationPage Title="Schedule" IconImageSource="schedule.png">
         <x:Arguments>
             <local:SchedulePage />
         </x:Arguments>
-    </NavigationPage>-->
+    </NavigationPage>
+
+    <local:MannaPage Title="만나" IconImageSource="tab_manna" />
+    <local:MccheynePage Title="맥체인" IconImageSource="tab_mc" />-->
