@@ -70,7 +70,6 @@
                                                   Light=White}"
                 Footer=" "
                 ItemsSource="{Binding MannaContents}"
-                Scrolled="OnCollectionViewScrolled"
                 SelectionChanged="OnItemSelected"
                 SelectionMode="Single"
                 VerticalScrollBarVisibility="Never">

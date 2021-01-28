@@ -24,11 +24,6 @@ namespace TodaysManna.Views
             // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
         }
 
-        private void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-            
-        }
-
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
             await Share.RequestAsync(new ShareTextRequest
@@ -70,31 +65,6 @@ namespace TodaysManna.Views
             {
                 view.SelectedItem = null;
             }
-        }
-
-        //private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        //{
-        //    if (e.SelectedItem == null) return;
-
-        //    var manna = e.SelectedItem as MannaContent;
-
-        //    var verseText = verse.Text;
-        //    var tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
-
-        //    var shareRangeString = $"({tmpRangeString}:{manna.Number}){manna.MannaString}";
-
-        //    await Share.RequestAsync(new ShareTextRequest
-        //    {
-        //        Text = shareRangeString,
-        //        Title = "공유"
-        //    });
-        //    ((ListView)sender).SelectedItem = null;
-        //}
-
-
-        async void Button_Clicked(System.Object sender, System.EventArgs e)
-        {
-            await Navigation.PushModalAsync(new SettingPage());
         }
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {

@@ -10,11 +10,11 @@ namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
-        private double rightY;
-        private double rightX;
+        private readonly double rightY;
+        private readonly double rightX;
 
-        private double leftY;
-        private double leftX;
+        private readonly double leftY;
+        private readonly double leftX;
 
         public MccheynePage()
         {
@@ -39,45 +39,45 @@ namespace TodaysManna.Views
             mccheyneView.GestureRecognizers.Add(rightSwipeGesture);
 
         }
+
         int flag = 1;
         private void PageToLeft()
         {
-            
-
-            //scrollView.ScrollToAsync(0, 0, false);
+            mccheyneView.ScrollTo(0, 0, false);
             if (flag == 1)
             {
-
             }
-            else if (flag == 2)
+            else if (flag == 2) // 2->1
             {
+                centerLocationLabel.Text = "1/4";
                 mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
                 flag = 1;
                 leftImageButton.IsVisible = false;
                 rightImageButton.IsVisible = true;
             }
-            else if (flag == 3)
+            else if (flag == 3) // 3->2
             {
+                centerLocationLabel.Text = "2/4";
                 mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
                 flag = 2;
                 leftImageButton.IsVisible = true;
                 rightImageButton.IsVisible = true;
             }
-            else if (flag == 4)
+            else if (flag == 4) // 4->3
             {
+                centerLocationLabel.Text = "3/4";
                 mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
                 flag = 3;
                 leftImageButton.IsVisible = true;
                 rightImageButton.IsVisible = true;
             }
-            mccheyneView.ScrollTo(0, 0, false);
         }
         private void PageToRight()
         {
-            //mccheyneView.ScrollTo(0, 0, false);
-                //ScrollToAsync(0, 0, false);
+            mccheyneView.ScrollTo(0, 0, false);
             if (flag == 1)
             {
+                centerLocationLabel.Text = "2/4";
                 mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
                 flag = 2;
                 leftImageButton.IsVisible = true;
@@ -85,6 +85,7 @@ namespace TodaysManna.Views
             }
             else if (flag == 2)
             {
+                centerLocationLabel.Text = "3/4";
                 mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
                 leftImageButton.IsVisible = true;
                 rightImageButton.IsVisible = true;
@@ -92,6 +93,7 @@ namespace TodaysManna.Views
             }
             else if (flag == 3)
             {
+                centerLocationLabel.Text = "4/4";
                 mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents4");
                 flag = 4;
                 leftImageButton.IsVisible = true;
@@ -99,9 +101,7 @@ namespace TodaysManna.Views
             }
             else if (flag == 4)
             {
-
             }
-            mccheyneView.ScrollTo(0, 0, false);
         }
         private void OnRightButtonClicked(object sender, EventArgs e)
         {
@@ -154,30 +154,31 @@ namespace TodaysManna.Views
             todayLabel.Text = e.NewDate.ToString("M/dd");
         }
 
-        void Button_Clicked(object sender, EventArgs e)
+        void OnTodayButtonClicked(object sender, EventArgs e)
         {
             datepicker.Date = DateTime.Now;
             (BindingContext as MccheyneViewModel).GetMccheyne();
         }
 
-        void ToolbarItem_Clicked(object sender, System.EventArgs e)
+        void OnDateButtonClicked(object sender, System.EventArgs e)
         {
             datepicker.Focus();
         }
 
         private double previousScrollPosition = 0;
-        void mccheyneView_Scrolled(object sender, ScrolledEventArgs e)
+        void OnListViewScrolled(object sender, ScrolledEventArgs e)
         {
             if (previousScrollPosition < e.ScrollY)
             {
                 //scrolled down
                 Debug.WriteLine("down");
 
-                leftImageButton.TranslateTo(leftX, 50, 250, Easing.CubicOut);
-                rightImageButton.TranslateTo(rightX, 50, 250, Easing.CubicOut);
+                leftImageButton.TranslateTo(leftX, 70, 250, Easing.CubicOut);
+                centerFrame.TranslateTo(leftX, 70, 250, Easing.CubicOut);
+                rightImageButton.TranslateTo(rightX, 70, 250, Easing.CubicOut);
 
-                //leftImageButton.FadeTo(0, 200);
-                //rightImageButton.FadeTo(0, 200);
+                leftImageButton.FadeTo(0, 200);
+                rightImageButton.FadeTo(0, 200);
 
                 previousScrollPosition = e.ScrollY;
             }
@@ -185,24 +186,20 @@ namespace TodaysManna.Views
             {
                 Debug.WriteLine("up");
 
+                leftImageButton.Opacity = 1;
+                centerFrame.Opacity = 1;
+                rightImageButton.Opacity = 1;
+
                 leftImageButton.TranslateTo(leftX, leftY, 200, Easing.CubicOut);
+                centerFrame.TranslateTo(leftX, leftY, 200, Easing.CubicOut);
                 rightImageButton.TranslateTo(rightX, rightY, 200, Easing.CubicOut);
                 //scrolled up
-                //leftImageButton.FadeTo(1, 200);
-                //rightImageButton.FadeTo(1, 200);
-
                 if (Convert.ToInt16(e.ScrollY) == 0)
                     previousScrollPosition = 0;
 
             }
 
             Debug.WriteLine("e.ScrollY: " + e.ScrollY);
-            //Debug.WriteLine("VerticalDelta: " + e.VerticalDelta);
-            //Debug.WriteLine("HorizontalOffset: " + e.HorizontalOffset);
-            //Debug.WriteLine("VerticalOffset: " + e.VerticalOffset);
-            //Debug.WriteLine("FirstVisibleItemIndex: " + e.FirstVisibleItemIndex);
-            //Debug.WriteLine("CenterItemIndex: " + e.CenterItemIndex);
-            //Debug.WriteLine("LastVisibleItemIndex: " + e.LastVisibleItemIndex);
         }
     }
 }
