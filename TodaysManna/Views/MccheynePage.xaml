@@ -28,17 +28,16 @@
                 Text="맥체인"
                 VerticalOptions="Center" />
             <Button
-                x:Name="toolbar_datepicker"
                 Grid.Column="3"
                 Margin="0"
                 Padding="0"
                 BorderWidth="0"
-                Clicked="ToolbarItem_Clicked"
+                Clicked="OnDateButtonClicked"
                 Text="다른날"
                 VerticalOptions="Start" />
             <Button
                 Grid.Column="4"
-                Clicked="Button_Clicked"
+                Clicked="OnTodayButtonClicked"
                 Text="오늘"
                 VerticalOptions="Start" />
 
@@ -70,7 +69,7 @@
                     Footer=" "
                     HasUnevenRows="True"
                     ItemsSource="{Binding MccheyneContents1}"
-                    Scrolled="mccheyneView_Scrolled"
+                    Scrolled="OnListViewScrolled"
                     SeparatorVisibility="None"
                     VerticalScrollBarVisibility="Never">
                     <ListView.ItemTemplate>
@@ -101,6 +100,23 @@
                 BackgroundColor="Transparent"
                 Clicked="OnLeftButtonClicked"
                 Source="ic_left" />
+            <Frame
+                x:Name="centerFrame"
+                Margin="0"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds=".5,.95,30,30"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                CornerRadius="15"
+                HasShadow="False">
+                <Label
+                    x:Name="centerLocationLabel"
+                    BackgroundColor="Transparent"
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="1/4"
+                    TextColor="Gray"
+                    VerticalOptions="CenterAndExpand" />
+            </Frame>
             <ImageButton
                 x:Name="rightImageButton"
                 AbsoluteLayout.LayoutBounds=".95,.95,25,25"
