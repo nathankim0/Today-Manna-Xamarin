@@ -3,79 +3,100 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
+    xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0,40,0,0"
+    BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                      Light=#91D9EB}"
     NavigationPage.HasNavigationBar="False">
 
-    <StackLayout Padding="30,15,30,15">
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
 
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Label
-            x:Name="today"
-            Text="{Binding Today}"
-            TextColor="Gray" />
+            <Image
+                Grid.Column="1"
+                Source="title"
+                WidthRequest="150" />
 
-        <Label
-            x:Name="copyButton"
-            FontSize="16"
-            Text="{Binding ShareRange}" />
+        </Grid>
 
-        <StackLayout Orientation="Horizontal">
-            <Label
-                x:Name="verse"
-                FontAttributes="Bold"
-                Text="{Binding JsonMannaData.Verse}" />
-
-            <Button
-                Clicked="OnEnglishButtonClicked"
-                FontSize="16"
-                Text="영어" />
-            <ImageButton Clicked="OnShareButtonClicked" Source="share" />
-
-
-        </StackLayout>
-
-        <ListView
-            x:Name="mannaView"
+        <yummy:PancakeView
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
-            Footer=" "
-            HasUnevenRows="True"
-            IsPullToRefreshEnabled="True"
-            IsRefreshing="{Binding IsRefreshing}"
-            ItemSelected="OnItemSelected"
-            ItemsSource="{Binding MannaContents}"
-            RefreshCommand="{Binding RefreshCommand}"
-            SeparatorVisibility="None"
-            VerticalScrollBarVisibility="Never">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+            CornerRadius="40,40,0,0"
+            VerticalOptions="FillAndExpand">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Number}" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding MannaString}" />
+            <ScrollView HorizontalOptions="FillAndExpand">
 
-                        </Grid>
-                    </ViewCell>
-
-                </DataTemplate>
-
-            </ListView.ItemTemplate>
-        </ListView>
+                <StackLayout Padding="30,15,30,15">
 
 
+                    <Label
+                        x:Name="today"
+                        Text="{Binding Today}"
+                        TextColor="Gray" />
+
+                    <Label
+                        x:Name="copyButton"
+                        FontSize="16"
+                        Text="{Binding ShareRange}" />
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            x:Name="verse"
+                            FontAttributes="Bold"
+                            Text="{Binding JsonMannaData.Verse}" />
+
+                        <Button
+                            Clicked="OnEnglishButtonClicked"
+                            FontSize="16"
+                            Text="영어" />
+                        <ImageButton Clicked="OnShareButtonClicked" Source="share" />
+
+
+                    </StackLayout>
+                    <w:RepeatableWrapLayout
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                          Light=White}"
+                        ItemsSource="{Binding MannaContents}"
+                        Spacing="0">
+                        <w:RepeatableWrapLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Editor
+                                        Grid.Column="0"
+                                        IsReadOnly="True"
+                                        Text="{Binding Number}" />
+                                    <Editor
+                                        Grid.Column="1"
+                                        IsReadOnly="True"
+                                        Text="{Binding MannaString}" />
+                                </Grid>
+
+                            </DataTemplate>
+                        </w:RepeatableWrapLayout.ItemTemplate>
+                    </w:RepeatableWrapLayout>
+                </StackLayout>
+            </ScrollView>
+        </yummy:PancakeView>
     </StackLayout>
-
 </ContentPage>

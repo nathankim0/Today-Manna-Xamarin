@@ -10,6 +10,7 @@ namespace TodaysManna
         {
             InitializeComponent();
             MainPage = new MainTabbedPage();
+            //MainPage = new MainPage();
         }
 
         protected override void OnStart()

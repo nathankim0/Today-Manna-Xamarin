@@ -15,6 +15,8 @@ namespace TodaysManna.ViewModel
 {
     public class MccheyneViewModel : INotifyPropertyChanged
     {
+        public string today;
+
 
         public ObservableCollection<MccheyneContent> _mccheyneContents1 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents1
@@ -79,13 +81,9 @@ namespace TodaysManna.ViewModel
                 }
             }
         }
-
-        public string today;
-
         public MccheyneViewModel()
         {
             today = DateTime.Now.ToString("M_d");
-
             GetMccheyne();
         }
 

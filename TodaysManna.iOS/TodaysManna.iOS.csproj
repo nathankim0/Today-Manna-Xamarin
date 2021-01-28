@@ -132,6 +132,10 @@
     <ImageAsset Include="Assets.xcassets\alarm.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\share.imageset\QuickActions_Share_2x.png" />
     <ImageAsset Include="Assets.xcassets\alarm.imageset\QuickActions_Alarm_2x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_right.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_left.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_right.imageset\right_arrow.png" />
+    <ImageAsset Include="Assets.xcassets\ic_left.imageset\left_arrow-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -171,6 +175,8 @@
     <Folder Include="Assets.xcassets\tab_mc.imageset\" />
     <Folder Include="Assets.xcassets\share.imageset\" />
     <Folder Include="Assets.xcassets\alarm.imageset\" />
+    <Folder Include="Assets.xcassets\ic_right.imageset\" />
+    <Folder Include="Assets.xcassets\ic_left.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\fa-solid-900.ttf" />

@@ -14,88 +14,120 @@ namespace TodaysManna.Views
             InitializeComponent();
             BindingContext = new MccheyneViewModel();
 
-            mccheyneView.ItemAppearing += Handle_ItemAppearing;
+            var leftSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Left };
+            var rightSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right };
+
+            leftSwipeGesture.Swiped += OnLeftSwiped;
+            rightSwipeGesture.Swiped += OnRightSwiped;
+
+            mccheyneView.GestureRecognizers.Add(leftSwipeGesture);
+            mccheyneView.GestureRecognizers.Add(rightSwipeGesture);
+
         }
-
-        private int _lastItemAppearedIdx;
-        private int currentFlag = 1;
-
-        private void Handle_ItemAppearing(object sender, Xamarin.Forms.ItemVisibilityEventArgs e)
+        int flag = 1;
+        private void PageToLeft()
         {
-            int currentIdx=-10;
-            switch (currentFlag)
+            scrollView.ScrollToAsync(0, 0, false);
+            if (flag == 1)
             {
-                case 1:
-                    currentIdx = (BindingContext as MccheyneViewModel).MccheyneContents1.IndexOf(e.Item);
-                    break;
-                case 2:
-                    currentIdx = (BindingContext as MccheyneViewModel).MccheyneContents2.IndexOf(e.Item);
-                    break;
-                case 3:
-                    currentIdx = (BindingContext as MccheyneViewModel).MccheyneContents3.IndexOf(e.Item);
-                    break;
-                case 4:
-                    currentIdx = (BindingContext as MccheyneViewModel).MccheyneContents4.IndexOf(e.Item);
-                    break;
+
             }
-
-            if (currentIdx > _lastItemAppearedIdx)
-                topGrid.IsVisible = false;
-            else
-                topGrid.IsVisible = true;
-
-            switch (currentFlag)
+            else if (flag == 2)
             {
-                case 1:
-                    _lastItemAppearedIdx = (BindingContext as MccheyneViewModel).MccheyneContents1.IndexOf(e.Item);
-                    break;
-                case 2:
-                    _lastItemAppearedIdx = (BindingContext as MccheyneViewModel).MccheyneContents2.IndexOf(e.Item);
-                    break;
-                case 3:
-                    _lastItemAppearedIdx = (BindingContext as MccheyneViewModel).MccheyneContents3.IndexOf(e.Item);
-                    break;
-                case 4:
-                    _lastItemAppearedIdx = (BindingContext as MccheyneViewModel).MccheyneContents4.IndexOf(e.Item);
-                    break;
+                mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents1");
+                flag = 1;
+               // leftImageButton.IsVisible = false;
             }
-
+            else if (flag == 3)
+            {
+                mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents2");
+                flag = 2;
+            }
+            else if (flag == 4)
+            {
+                mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents3");
+                flag = 3;
+              //  rightImageButton.IsVisible = true;
+            }
         }
-
-        void Button_Clicked_1(System.Object sender, System.EventArgs e)
+        private void PageToRight()
         {
-           mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
-            currentFlag = 1;
-        }
+            scrollView.ScrollToAsync(0, 0, false);
+            if (flag == 1)
+            {
+                mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents2");
+                flag = 2;
+               // leftImageButton.IsVisible = true;
+            }
+            else if (flag == 2)
+            {
+                mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents3");
+                flag = 3;
+            }
+            else if (flag == 3)
+            {
+                mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents4");
+                flag = 4;
+             //   rightImageButton.IsVisible = false;
+            }
+            else if (flag == 4)
+            {
 
-        void Button_Clicked_2(System.Object sender, System.EventArgs e)
+            }
+        }
+        private void OnRightButtonClicked(object sender, EventArgs e)
         {
-            mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
-            currentFlag = 2;
+            PageToRight();
         }
 
-        void Button_Clicked_3(System.Object sender, System.EventArgs e)
+        private void OnLeftButtonClicked(object sender, EventArgs e)
         {
-            mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
-            currentFlag = 3;
+            PageToLeft();
         }
 
-        void Button_Clicked_4(System.Object sender, System.EventArgs e)
+        private void OnRightSwiped(object sender, SwipedEventArgs e)
         {
-            mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents4");
-            currentFlag = 4;
+            PageToLeft();
         }
 
-        void DatePicker_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        private void OnLeftSwiped(object sender, SwipedEventArgs e)
+        {
+            PageToRight();
+        }
+
+        void Button_Clicked_1(object sender, EventArgs e)
+        {
+           mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents1");
+            flag = 1;
+        }
+
+        void Button_Clicked_2(object sender, EventArgs e)
+        {
+            mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents2");
+            flag = 2;
+        }
+
+        void Button_Clicked_3(object sender, EventArgs e)
+        {
+            mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents3");
+            flag = 3;
+        }
+
+        void Button_Clicked_4(object sender, EventArgs e)
+        {
+            mccheyneView.SetBinding(BindableLayout.ItemsSourceProperty, "MccheyneContents4");
+            flag = 4;
+        }
+
+        void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             (BindingContext as MccheyneViewModel).today = e.NewDate.ToString("M_d");
             (BindingContext as MccheyneViewModel).GetMccheyne();
         }
 
-        void Button_Clicked(System.Object sender, System.EventArgs e)
+        void Button_Clicked(object sender, EventArgs e)
         {
             datepicker.Date = DateTime.Now;
-           // (BindingContext as MccheyneViewModel).today = DateTime.Now.ToString("M_d");
             (BindingContext as MccheyneViewModel).GetMccheyne();
         }
     }

@@ -4,12 +4,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
+    xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Padding="0,40,0,0"
     BackgroundColor="{AppThemeBinding Dark=#23535e,
                                       Light=#91D9EB}"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content />
+
     <StackLayout>
         <Grid>
             <Grid.RowDefinitions>
@@ -29,121 +31,117 @@
 
         </Grid>
 
-
         <yummy:PancakeView
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
-            CornerRadius="40,40,0,0"
+            CornerRadius="20,20,0,0"
             VerticalOptions="FillAndExpand">
 
-
-            <StackLayout Padding="30,15,30,15">
-                <Grid x:Name="topGrid" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <DatePicker
-                        x:Name="datepicker"
-                        Grid.Row="0"
-                        Grid.ColumnSpan="3"
-                        DateSelected="DatePicker_DateSelected"
-                        Format="D" />
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="3"
-                        Clicked="Button_Clicked"
-                        Text="오늘로" />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                                          Light=#91D9EB}"
-                        Clicked="Button_Clicked_1"
-                        Text="1" />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                                          Light=#91D9EB}"
-                        Clicked="Button_Clicked_2"
-                        Text="2" />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                                          Light=#91D9EB}"
-                        Clicked="Button_Clicked_3"
-                        Text="3" />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="3"
-                        BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                                          Light=#91D9EB}"
-                        Clicked="Button_Clicked_4"
-                        Text="4" />
-                </Grid>
-                <ListView
-                    x:Name="mccheyneView"
-                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                      Light=White}"
-                    Footer=" "
-                    HasUnevenRows="True"
-                    ItemsSource="{Binding MccheyneContents1}"
-                    SeparatorVisibility="None"
-                    VerticalScrollBarVisibility="Never">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout
-                                    Padding="0,30,0,0"
-                                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                                      Light=White}"
-                                    Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Book}" />
-                                        <Label Text="{Binding Verse}" />
-                                    </StackLayout>
-                                    <Label Text="{Binding Content}" />
-                                </StackLayout>
-                                <!--<Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Text="{Binding Book}" />
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Text="{Binding Verse}" />
-                                    <Label
-                                        Grid.Row="1"
-                                        Grid.ColumnSpan="3"
-                                        Text="{Binding Content}" />
-                                </Grid>-->
-                            </ViewCell>
-
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-                </ListView>
-
-            </StackLayout>
-
+            <AbsoluteLayout>
+                <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <Frame Margin="0" Padding="0">
+                        <Grid x:Name="topGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <DatePicker
+                                x:Name="datepicker"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="3"
+                                BackgroundColor="Transparent"
+                                DateSelected="DatePicker_DateSelected"
+                                Format="D" />
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                Clicked="Button_Clicked"
+                                Text="오늘로" />
+                        </Grid>
+                    </Frame>
+                    <ScrollView x:Name="scrollView">
+                        <StackLayout Padding="30,0,30,30">
+                            <FlexLayout
+                                x:Name="mccheyneView"
+                                AlignContent="Start"
+                                AlignItems="Center"
+                                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                                  Light=White}"
+                                BindableLayout.ItemsSource="{Binding MccheyneContents1}"
+                                Direction="Row"
+                                JustifyContent="Center"
+                                Wrap="Wrap">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout
+                                            Padding="0,20,0,0"
+                                            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                                              Light=White}"
+                                            Orientation="Vertical">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Book}" />
+                                                <Label Text="{Binding Verse}" />
+                                            </StackLayout>
+                                            <Label Text="{Binding Content}" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                <ImageButton
+                    x:Name="leftImageButton"
+                    AbsoluteLayout.LayoutBounds=".1,.95,25,25"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    BackgroundColor="Transparent"
+                    Clicked="OnLeftButtonClicked"
+                    Source="ic_left" />
+                <ImageButton
+                    x:Name="rightImageButton"
+                    AbsoluteLayout.LayoutBounds=".95,.95,25,25"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    BackgroundColor="Transparent"
+                    Clicked="OnRightButtonClicked"
+                    Source="ic_right" />
+            </AbsoluteLayout>
         </yummy:PancakeView>
+
     </StackLayout>
 </ContentPage>
+
+
+<!--<Button
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                                                  Light=#91D9EB}"
+                                Clicked="Button_Clicked_1"
+                                Text="1" />
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                                                  Light=#91D9EB}"
+                                Clicked="Button_Clicked_2"
+                                Text="2" />
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                                                  Light=#91D9EB}"
+                                Clicked="Button_Clicked_3"
+                                Text="3" />
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                BackgroundColor="{AppThemeBinding Dark=#23535e,
+                                                                  Light=#91D9EB}"
+                                Clicked="Button_Clicked_4"
+                                Text="4" />-->

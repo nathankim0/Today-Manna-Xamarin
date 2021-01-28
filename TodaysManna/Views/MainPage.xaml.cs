@@ -1,129 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using TodaysManna.Models;
-using TodaysManna.Views;
 using Xamarin.Forms;
 using static TodaysManna.Models.BibleAtData;
 using static TodaysManna.Models.MccheyneRangeData;
 
-namespace TodaysManna.ViewModel
+namespace TodaysManna.Views
 {
-    public class MannaViewModel : INotifyPropertyChanged
+    public partial class MainPage : ContentPage
     {
         private readonly RestService _restService;
-
-
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
-        //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
         private string appBibleUrl = "youversion://bible?reference=";
-
         public string _completeUrl { get; set; } = "";
         public string _completeAppUrl { get; set; } = "";
-
         private static string todayMccheyneRange;
-
-
         private int _jang;
         private string _bib;
-
-
         public ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
-        public ObservableCollection<MannaContent> MannaContents { get { return _mannaContents; } }
-
         private MannaData _mannaData = new MannaData();
-        public MannaData JsonMannaData
-        {
-            get => _mannaData;
-            set
-            {
-                if (_mannaData != value)
-                {
-                    _mannaData = value;
-                    OnPropertyChanged(nameof(JsonMannaData));
-                }
-            }
-        }
-
         private string _today = "";
-        public string Today
-        {
-            get=> _today;
-            set
-            {
-                if (_today != value)
-                {
-                    _today = value;
-                    OnPropertyChanged(nameof(Today));
-                }
-            }
-        }
-
         private string _allString = "";
-        public string AllString
-        {
-            get => _allString;
-            set
-            {
-                if (_allString != value)
-                {
-                    _allString = value;
-                    OnPropertyChanged(nameof(AllString));
-                }
-            }
-        }
-
         private bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set
-            {
-                if (_isRefreshing != value)
-                {
-                    _isRefreshing = value;
-                    OnPropertyChanged(nameof(IsRefreshing));
-                }
-            }
-        }
-
         private string _shareRange;
-        public string ShareRange
+
+        public MainPage()
         {
-            get => _shareRange;
-            set
-            {
-                if (_shareRange != value)
-                {
-                    _shareRange = value;
-                    OnPropertyChanged(nameof(ShareRange));
-                }
-            }
-        }
+            InitializeComponent();
 
-        public ICommand RefreshCommand => new Command(() =>
-        {
-            IsRefreshing = true;
-
-            MannaContents.Clear();
-            GetManna();
-
-            IsRefreshing = false;
-        });
-
-
-        public MannaViewModel()
-        {
-            Today = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
+            _today = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
 
             _restService = new RestService();
             GetManna();
@@ -136,12 +45,11 @@ namespace TodaysManna.ViewModel
 
         private async void GetManna()
         {
+            _mannaData = new MannaData();
+            _mannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
 
-            JsonMannaData = new MannaData();
-            JsonMannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
-
-            var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
-            var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":")+1), "~", "-");
+            var tmpBibleAt = _mannaData.Verse.Substring(0, _mannaData.Verse.IndexOf(":"));
+            var tmpVerseNumRange = Regex.Replace(_mannaData.Verse.Substring(_mannaData.Verse.IndexOf(":") + 1), "~", "-");
 
             _bib = Regex.Replace(tmpBibleAt, @"\d", "");
             _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
@@ -151,16 +59,13 @@ namespace TodaysManna.ViewModel
 
             var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
 
-            var redirectUrl= $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
+            var redirectUrl = $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
 
             _completeUrl = $"{bibleUrl}{redirectUrl}";
-            _completeAppUrl= $"{appBibleUrl}{redirectUrl}";
-
-            //System.Diagnostics.Debug.WriteLine($"**** web url : {_completeUrl}");
-            //System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
+            _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
 
             SetMannaContents();
-            ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
+            _shareRange = $"만나: {_mannaData.Verse}\n맥체인: {todayMccheyneRange}";
         }
 
 
@@ -179,7 +84,7 @@ namespace TodaysManna.ViewModel
                 //Converting JSON Array Objects into generic list    
                 ObjContactList = JsonConvert.DeserializeObject<BibleList>(jsonString);
             }
-            
+
             return ObjContactList.Bibles;
         }
 
@@ -187,20 +92,57 @@ namespace TodaysManna.ViewModel
         {
             var allContents = "";
 
-            foreach (var node in JsonMannaData.Contents)
+            foreach (var node in _mannaData.Contents)
             {
                 var onlyNum = int.Parse(Regex.Replace(node, @"\D", ""));
                 var onlyString = Regex.Replace(node, @"\d", "").Substring(1);
 
-                MannaContents.Add(new MannaContent
+                _mannaContents.Add(new MannaContent
                 {
                     Number = onlyNum,
                     MannaString = onlyString,
                 });
+                //flexLayout.Children.Add(new Label { BackgroundColor = Color.Red, Text = onlyNum.ToString() });
+                //flexLayout.Children.Add(new Label { BackgroundColor = Color.Blue, Text = onlyString });
+                System.Diagnostics.Debug.Write(onlyNum);
+                System.Diagnostics.Debug.Write(onlyString);
+
+
+                //var grid = new Grid()
+                //{
+                //    RowDefinitions =
+                //    {
+                //        new RowDefinition{Height=new GridLength(1,GridUnitType.Star)}
+                //    },
+                //    ColumnDefinitions =
+                //    {
+                //        new ColumnDefinition{Width=new GridLength(1,GridUnitType.Auto) },
+                //        new ColumnDefinition{Width=new GridLength(1,GridUnitType.Auto) }
+                //    }
+                //};
+                //var numLabel = new Label {VerticalOptions=LayoutOptions.StartAndExpand, CharacterSpacing = 0, Text = onlyNum.ToString() };
+                //grid.Children.Add(numLabel, 0, 0);
+                //var mannaLabel = new Label { VerticalOptions = LayoutOptions.StartAndExpand, CharacterSpacing = 0, Text = onlyString };
+                //grid.Children.Add(mannaLabel, 1, 0);
+                //flexLayout.Children.Add(grid);
+
+
+                flexLayout.Children.Add( new StackLayout
+                    {
+                        Spacing = 0,
+                        BackgroundColor = Color.Accent,
+                        Orientation = StackOrientation.Horizontal,
+                        Children =
+                        {
+                            new Label {CharacterSpacing=0, Text = onlyNum.ToString() },
+                            new Label {CharacterSpacing=0, Text = onlyString }
+                        }
+                    
+                });
 
                 allContents += node + "\n\n";
             }
-            AllString = allContents;
+            _allString = allContents;
         }
 
         private List<MccheyneRange> GetJsonMccheyneRange()
@@ -220,13 +162,6 @@ namespace TodaysManna.ViewModel
             }
 
             return ObjContactList.Ranges;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName="")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
