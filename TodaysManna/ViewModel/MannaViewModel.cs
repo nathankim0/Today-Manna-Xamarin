@@ -22,6 +22,21 @@ namespace TodaysManna.ViewModel
     {
         private readonly RestService _restService;
 
+
+        private string bibleUrl = "https://www.bible.com/ko/bible/1/";
+        //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
+        private string appBibleUrl = "youversion://bible?reference=";
+
+        public string _completeUrl { get; set; } = "";
+        public string _completeAppUrl { get; set; } = "";
+
+        private static string todayMccheyneRange;
+
+
+        private int _jang;
+        private string _bib;
+
+
         public ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
         public ObservableCollection<MannaContent> MannaContents { get { return _mannaContents; } }
 
@@ -95,9 +110,6 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        private int _jang;
-        private string _bib;
-
         public ICommand RefreshCommand => new Command(() =>
         {
             IsRefreshing = true;
@@ -108,7 +120,6 @@ namespace TodaysManna.ViewModel
             IsRefreshing = false;
         });
 
-        private string todayMccheyneRange;
 
         public MannaViewModel()
         {
@@ -118,16 +129,10 @@ namespace TodaysManna.ViewModel
             GetManna();
 
             var ranges = GetJsonMccheyneRange();
-            var today = DateTime.Now.ToString("M/d");
+            var today = DateTime.Now.ToString("M-d");
             todayMccheyneRange = ranges.Find(x => x.Date.Equals(today)).Range;
         }
 
-        private string bibleUrl = "https://www.bible.com/ko/bible/1/";
-      //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
-        private string appBibleUrl = "youversion://bible?reference=";
-
-        public string _completeUrl { get; set; } = "";
-        public string _completeAppUrl { get; set; } = "";
 
         private async void GetManna()
         {
@@ -155,7 +160,6 @@ namespace TodaysManna.ViewModel
             //System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
 
             SetMannaContents();
-
             ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
         }
 
@@ -175,7 +179,7 @@ namespace TodaysManna.ViewModel
                 //Converting JSON Array Objects into generic list    
                 ObjContactList = JsonConvert.DeserializeObject<BibleList>(jsonString);
             }
-
+            
             return ObjContactList.Bibles;
         }
 

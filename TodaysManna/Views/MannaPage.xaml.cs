@@ -32,7 +32,7 @@ namespace TodaysManna.Views
         {
             await Share.RequestAsync(new ShareTextRequest
             {
-                Text = today.Text + "\n\n" + verse.Text + "\n\n" + mannaViewModel.AllString,
+                Text = today.Text + "\n\n" + verse.Text + "\n\n" + (BindingContext as MannaViewModel).AllString,
                 Title = "공유"
             });
         }
