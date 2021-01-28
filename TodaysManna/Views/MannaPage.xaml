@@ -5,98 +5,188 @@
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Padding="0,40,0,0"
-    BackgroundColor="{AppThemeBinding Dark=#23535e,
-                                      Light=#91D9EB}"
+    Title="만나"
+    Padding="0,30,0,0"
     NavigationPage.HasNavigationBar="False">
 
-    <StackLayout>
-        <Grid>
+    <StackLayout Spacing="0">
+        <Grid Margin="0" Padding="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="25" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
 
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <Image
-                Grid.Column="1"
-                Source="title"
-                WidthRequest="150" />
+            <Label
+                Grid.Column="0"
+                FontSize="20"
+                Text="만나"
+                VerticalOptions="Center" />
+            <Button
+                x:Name="toolbar_datepicker"
+                Grid.Column="3"
+                Margin="0"
+                Padding="0"
+                BorderWidth="0"
+                Clicked="OnEnglishButtonClicked"
+                Text="English"
+                VerticalOptions="Start" />
+            <ImageButton
+                Grid.Column="4"
+                Clicked="OnShareButtonClicked"
+                Source="share"
+                VerticalOptions="Start" />
 
         </Grid>
 
-        <yummy:PancakeView
+        <BoxView
+            Margin="0"
+            HeightRequest="1"
+            Color="LightGray" />
+
+
+        <ScrollView HorizontalOptions="FillAndExpand">
+
+            <StackLayout Padding="30,15,30,15">
+
+
+                <Label
+                    x:Name="today"
+                    Text="{Binding Today}"
+                    TextColor="Gray" />
+
+                <Label
+                    x:Name="copyButton"
+                    FontSize="16"
+                    Text="{Binding ShareRange}" />
+                <Label
+                    x:Name="verse"
+                    FontAttributes="Bold"
+                    Text="{Binding JsonMannaData.Verse}" />
+                <!--<ListView
+            x:Name="mannaView"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
-            CornerRadius="40,40,0,0"
-            VerticalOptions="FillAndExpand">
+            Footer=" "
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            ItemSelected="OnItemSelected"
+            ItemsSource="{Binding MannaContents}"
+            RefreshCommand="{Binding RefreshCommand}"
+            SeparatorVisibility="None"
+            VerticalScrollBarVisibility="Never">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0,7,0,7" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
-            <ScrollView HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Number}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding MannaString}" />
 
-                <StackLayout Padding="30,15,30,15">
+                        </Grid>
+                    </ViewCell>
 
+                </DataTemplate>
 
-                    <Label
-                        x:Name="today"
-                        Text="{Binding Today}"
-                        TextColor="Gray" />
+            </ListView.ItemTemplate>
+        </ListView>-->
+                <CollectionView
+                    x:Name="mannaCollectionView"
+                    Margin="0,10,0,10"
+                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                      Light=White}"
+                    Footer=" "
+                    ItemsSource="{Binding MannaContents}"
+                    Scrolled="OnCollectionViewScrolled"
+                    SelectionChanged="OnItemSelected"
+                    SelectionMode="Single"
+                    VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5,5,5,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Number}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding MannaString}" />
 
-                    <Label
-                        x:Name="copyButton"
-                        FontSize="16"
-                        Text="{Binding ShareRange}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <!--<w:RepeatableWrapLayout
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                      Light=White}"
+                    ItemsSource="{Binding MannaContents}"
+                    Spacing="0">
+                    <w:RepeatableWrapLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
 
-                    <StackLayout Orientation="Horizontal">
-                        <Label
-                            x:Name="verse"
-                            FontAttributes="Bold"
-                            Text="{Binding JsonMannaData.Verse}" />
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Editor
+                                    Grid.Column="0"
+                                    IsReadOnly="True"
+                                    Text="{Binding Number}" />
+                                <Editor
+                                    Grid.Column="1"
+                                    IsReadOnly="True"
+                                    Text="{Binding MannaString}" />
+                            </Grid>
 
-                        <Button
-                            Clicked="OnEnglishButtonClicked"
-                            FontSize="16"
-                            Text="영어" />
-                        <ImageButton Clicked="OnShareButtonClicked" Source="share" />
-
-
-                    </StackLayout>
-                    <w:RepeatableWrapLayout
-                        Margin="0"
-                        Padding="0"
-                        BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                          Light=White}"
-                        ItemsSource="{Binding MannaContents}"
-                        Spacing="0">
-                        <w:RepeatableWrapLayout.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Editor
-                                        Grid.Column="0"
-                                        IsReadOnly="True"
-                                        Text="{Binding Number}" />
-                                    <Editor
-                                        Grid.Column="1"
-                                        IsReadOnly="True"
-                                        Text="{Binding MannaString}" />
-                                </Grid>
-
-                            </DataTemplate>
-                        </w:RepeatableWrapLayout.ItemTemplate>
-                    </w:RepeatableWrapLayout>
-                </StackLayout>
-            </ScrollView>
-        </yummy:PancakeView>
+                        </DataTemplate>
+                    </w:RepeatableWrapLayout.ItemTemplate>
+                </w:RepeatableWrapLayout>-->
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 </ContentPage>
+
+
+<!--
+    BackgroundColor="{AppThemeBinding Dark=#23535e,
+    Light=#91D9EB}"
+ <ContentPage.ToolbarItems>
+
+        <ToolbarItem Clicked="OnEnglishButtonClicked" Text="English" />
+
+        <ToolbarItem Clicked="OnShareButtonClicked" IconImageSource="share" />
+
+    </ContentPage.ToolbarItems>-->
