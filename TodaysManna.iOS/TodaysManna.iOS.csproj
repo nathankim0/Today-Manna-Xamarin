@@ -135,8 +135,6 @@
     <ImageAsset Include="Assets.xcassets\ic_right.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_left.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_english.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50.png" />
-    <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50-1.png" />
     <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50-2.png" />
     <ImageAsset Include="Assets.xcassets\ic_right.imageset\icons8-next-page-50.png" />
     <ImageAsset Include="Assets.xcassets\ic_left.imageset\icons8-back-to-50.png" />

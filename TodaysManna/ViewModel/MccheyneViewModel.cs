@@ -84,7 +84,15 @@ namespace TodaysManna.ViewModel
         public MccheyneViewModel()
         {
             today = DateTime.Now.ToString("M_d");
-            GetMccheyne();
+
+            try
+            {
+                GetMccheyne();
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("GetMccheyne() Error");
+            }
         }
 
         public void GetMccheyne()
@@ -94,7 +102,6 @@ namespace TodaysManna.ViewModel
             MccheyneContents3.Clear();
             MccheyneContents4.Clear();
 
-            // var daysOfMccheynes = new List<Days>();
             var daysOfMccheynes = GetJsonBible();
 
             var todayProperty = "Mccheynes" + today;

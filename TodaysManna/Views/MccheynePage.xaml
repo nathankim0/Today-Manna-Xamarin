@@ -23,59 +23,19 @@
             <Button
                 x:Name="todayLabel"
                 Margin="0"
-                Padding="0,0,10,0"
+                Padding="0,0,15,0"
                 BorderWidth="0"
                 Clicked="OnDateButtonClicked"
                 HorizontalOptions="EndAndExpand"
                 Text="다른날"
                 VerticalOptions="Center" />
             <Button
+                Margin="0,0,5,0"
                 Clicked="OnTodayButtonClicked"
                 HorizontalOptions="End"
                 Text="오늘"
                 VerticalOptions="Center" />
         </StackLayout>
-        <!--<Grid Margin="15,0,15,0" Padding="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label
-                Grid.Column="0"
-                FontSize="20"
-                Text="맥체인"
-                VerticalOptions="Center" />
-            <StackLayout
-                Grid.Column="6"
-                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                  Light=White}"
-                Orientation="Horizontal"
-                Spacing="12">
-                <Button
-                    x:Name="todayLabel"
-                    Margin="0"
-                    Padding="0"
-                    BorderWidth="0"
-                    Clicked="OnDateButtonClicked"
-                    Text="다른날"
-                    VerticalOptions="Start" />
-                <Button
-                    Clicked="OnTodayButtonClicked"
-                    Text="오늘"
-                    VerticalOptions="Start" />
-            </StackLayout>
-
-        </Grid>-->
 
         <BoxView
             Margin="0"
@@ -99,6 +59,8 @@
                     IsVisible="false" />
                 <ListView
                     x:Name="mccheyneView"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
                     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                                       Light=White}"
                     Footer="&#10;&#10;&#10;"
@@ -106,7 +68,7 @@
                     ItemSelected="OnItemSelected"
                     ItemsSource="{Binding MccheyneContents1}"
                     Scrolled="OnListViewScrolled"
-                    SeparatorVisibility="Default"
+                    SeparatorVisibility="None"
                     VerticalScrollBarVisibility="Always">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -134,7 +96,7 @@
                 x:Name="leftImageButton"
                 AbsoluteLayout.LayoutBounds=".1,.95,40,40"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                BackgroundColor="{AppThemeBinding Dark=Gray,
                                                   Light=White}"
                 Clicked="OnLeftButtonClicked"
                 CornerRadius="20"
@@ -146,6 +108,8 @@
                 Padding="0"
                 AbsoluteLayout.LayoutBounds=".5,.95,35,35"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                  Light=White}"
                 CornerRadius="15"
                 HasShadow="False">
                 <Label
@@ -154,14 +118,15 @@
                     FontSize="15"
                     HorizontalOptions="CenterAndExpand"
                     Text="1/4"
-                    TextColor="Gray"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
                     VerticalOptions="CenterAndExpand" />
             </Frame>
             <ImageButton
                 x:Name="rightImageButton"
                 AbsoluteLayout.LayoutBounds=".95,.95,40,40"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                BackgroundColor="{AppThemeBinding Dark=Gray,
                                                   Light=White}"
                 Clicked="OnRightButtonClicked"
                 CornerRadius="20"

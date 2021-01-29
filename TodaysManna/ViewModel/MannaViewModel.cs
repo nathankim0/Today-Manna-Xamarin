@@ -126,9 +126,24 @@ namespace TodaysManna.ViewModel
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
 
             _restService = new RestService();
-            GetManna();
 
-            var ranges = GetJsonMccheyneRange();
+            try
+            {
+                GetManna();
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("GetManna() Error");
+            }
+            var ranges = new List<MccheyneRange>();
+            try
+            {
+                ranges = GetJsonMccheyneRange();
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("GetJsonMccheyneRange() Error");
+            }
             var today = DateTime.Now.ToString("M-d");
             todayMccheyneRange = ranges.Find(x => x.Date.Equals(today)).Range;
         }

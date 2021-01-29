@@ -18,6 +18,9 @@ namespace TodaysManna.Views
         private readonly double leftY;
         private readonly double leftX;
 
+        private int flag = 1;
+        private double previousScrollPosition = 0;
+
         public MccheynePage()
         {
             InitializeComponent();
@@ -42,10 +45,8 @@ namespace TodaysManna.Views
 
         }
 
-        int flag = 1;
         private void PageToLeft()
         {
-            mccheyneView.ScrollTo(0, 0, false);
             if (flag == 1)
             {
             }
@@ -73,10 +74,11 @@ namespace TodaysManna.Views
                 leftImageButton.IsVisible = true;
                 rightImageButton.IsVisible = true;
             }
+            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.Start, false);
         }
+
         private void PageToRight()
         {
-            mccheyneView.ScrollTo(0, 0, false);
             if (flag == 1)
             {
                 centerLocationLabel.Text = "2/4";
@@ -104,6 +106,7 @@ namespace TodaysManna.Views
             else if (flag == 4)
             {
             }
+            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(),ScrollToPosition.Start, false);
         }
         private void OnRightButtonClicked(object sender, EventArgs e)
         {
@@ -125,55 +128,54 @@ namespace TodaysManna.Views
             PageToRight();
         }
 
-        void Button_Clicked_1(object sender, EventArgs e)
+        private void Button_Clicked_1(object sender, EventArgs e)
         {
            mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
             flag = 1;
         }
 
-        void Button_Clicked_2(object sender, EventArgs e)
+        private void Button_Clicked_2(object sender, EventArgs e)
         {
             mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
             flag = 2;
         }
 
-        void Button_Clicked_3(object sender, EventArgs e)
+        private void Button_Clicked_3(object sender, EventArgs e)
         {
             mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
             flag = 3;
         }
 
-        void Button_Clicked_4(object sender, EventArgs e)
+        private void Button_Clicked_4(object sender, EventArgs e)
         {
             mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents4");
             flag = 4;
         }
 
-        void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
+        private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             (BindingContext as MccheyneViewModel).today = e.NewDate.ToString("M_d");
             (BindingContext as MccheyneViewModel).GetMccheyne();
-            todayLabel.Text = e.NewDate.ToString("M/dd");
+            todayLabel.Text = e.NewDate.ToString("M/d");
         }
 
-        void OnTodayButtonClicked(object sender, EventArgs e)
+        private void OnTodayButtonClicked(object sender, EventArgs e)
         {
             datepicker.Date = DateTime.Now;
             (BindingContext as MccheyneViewModel).GetMccheyne();
         }
 
-        void OnDateButtonClicked(object sender, System.EventArgs e)
+        private void OnDateButtonClicked(object sender, EventArgs e)
         {
             datepicker.Focus();
         }
 
-        private double previousScrollPosition = 0;
-        void OnListViewScrolled(object sender, ScrolledEventArgs e)
+        private void OnListViewScrolled(object sender, ScrolledEventArgs e)
         {
+            //Debug.WriteLine("e.ScrollY: " + e.ScrollY);
+            //scrolled down
             if (previousScrollPosition < e.ScrollY)
             {
-                //scrolled down
-                Debug.WriteLine("down");
 
                 leftImageButton.TranslateTo(leftX, 70, 250, Easing.CubicOut);
                 centerFrame.TranslateTo(leftX, 70, 250, Easing.CubicOut);
@@ -184,10 +186,9 @@ namespace TodaysManna.Views
 
                 previousScrollPosition = e.ScrollY;
             }
+            //scrolled up
             else
             {
-                Debug.WriteLine("up");
-
                 leftImageButton.Opacity = 1;
                 centerFrame.Opacity = 1;
                 rightImageButton.Opacity = 1;
@@ -195,26 +196,26 @@ namespace TodaysManna.Views
                 leftImageButton.TranslateTo(leftX, leftY, 200, Easing.CubicOut);
                 centerFrame.TranslateTo(leftX, leftY, 200, Easing.CubicOut);
                 rightImageButton.TranslateTo(rightX, rightY, 200, Easing.CubicOut);
-                //scrolled up
                 if (Convert.ToInt16(e.ScrollY) == 0)
                     previousScrollPosition = 0;
 
             }
-
-            Debug.WriteLine("e.ScrollY: " + e.ScrollY);
         }
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
 
-            var manna = e.SelectedItem as MccheyneContent;
-            var shareRangeString = $"({manna.Book}) {manna.Content}";
+            var mccheyne = e.SelectedItem as MccheyneContent;
+            var shareRangeString = $"({mccheyne.Book}{mccheyne.Verse}) {mccheyne.Content}";
 
-            await Share.RequestAsync(new ShareTextRequest
-            {
-                Text = shareRangeString,
-                Title = "공유"
-            });
+            await Clipboard.SetTextAsync(shareRangeString);
+            await DisplayAlert("클립보드에 복사됨", null, "확인");
+
+            //await Share.RequestAsync(new ShareTextRequest
+            //{
+            //    Text = shareRangeString,
+            //    Title = "공유"
+            //});
             ((ListView)sender).SelectedItem = null;
         }
     }
