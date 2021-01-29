@@ -27,13 +27,13 @@
                 BorderWidth="0"
                 Clicked="OnDateButtonClicked"
                 HorizontalOptions="EndAndExpand"
-                Text="다른날"
+                Text="다른날짜"
                 VerticalOptions="Center" />
             <Button
                 Margin="0,0,5,0"
                 Clicked="OnTodayButtonClicked"
                 HorizontalOptions="End"
-                Text="오늘"
+                Text="오늘로"
                 VerticalOptions="Center" />
         </StackLayout>
 

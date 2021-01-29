@@ -17,7 +17,6 @@ namespace TodaysManna.ViewModel
     {
         public string today;
 
-
         public ObservableCollection<MccheyneContent> _mccheyneContents1 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents1
         {
@@ -81,13 +80,23 @@ namespace TodaysManna.ViewModel
                 }
             }
         }
+
         public MccheyneViewModel()
         {
-            today = DateTime.Now.ToString("M_d");
-
+            var dateNow = DateTime.Now;
+            DateTime thisDate = dateNow;
+            if (DateTime.IsLeapYear(dateNow.Year)&&((dateNow.Month==2&&dateNow.Day>28)||(dateNow.Month>2)))
+            {
+                thisDate = thisDate.AddDays(1);
+                if (dateNow.Month == 12 && dateNow.Day == 31)
+                {
+                    thisDate = dateNow;
+                }
+            }
+            
             try
             {
-                GetMccheyne();
+                GetMccheyne(thisDate);
             }
             catch
             {
@@ -95,16 +104,18 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        public void GetMccheyne()
+        public void GetMccheyne(DateTime dateTime)
         {
             MccheyneContents1.Clear();
             MccheyneContents2.Clear();
             MccheyneContents3.Clear();
             MccheyneContents4.Clear();
 
+            var dateTimeString=dateTime.ToString("M_d");
+
             var daysOfMccheynes = GetJsonBible();
 
-            var todayProperty = "Mccheynes" + today;
+            var todayProperty = "Mccheynes" + dateTimeString;
 
             foreach (var node in daysOfMccheynes)
             {

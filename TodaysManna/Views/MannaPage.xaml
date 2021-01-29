@@ -120,42 +120,6 @@
                         </DataTemplate>
                     </w:RepeatableWrapLayout.ItemTemplate>
                 </w:RepeatableWrapLayout>
-
-                <!--<CollectionView
-                x:Name="mannaCollectionView"
-                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                  Light=White}"
-                Footer=" "
-                ItemsSource="{Binding MannaContents}"
-                SelectionChanged="OnItemSelected"
-                SelectionMode="Single"
-                VerticalScrollBarVisibility="Never">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="0,5,0,5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Number}" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                LineBreakMode="CharacterWrap"
-                                Text="{Binding MannaString}" />
-
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
-
-
             </StackLayout>
         </ScrollView>
     </StackLayout>
