@@ -2,70 +2,124 @@
     x:Class="TodaysManna.Views.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="만나"
-    Padding="0,30,0,0"
+    ios:Page.PrefersHomeIndicatorAutoHidden="true"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                      Light=White}"
     NavigationPage.HasNavigationBar="False">
 
-    <StackLayout Spacing="0">
-        <Grid Margin="0" Padding="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-
-            </Grid.ColumnDefinitions>
+    <StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}" Spacing="0">
+        <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
             <Label
-                Grid.Column="0"
+                FontAttributes="Bold"
                 FontSize="20"
+                HorizontalOptions="Start"
                 Text="만나"
                 VerticalOptions="Center" />
-            <Button
+            <ImageButton
                 x:Name="toolbar_datepicker"
-                Grid.Column="3"
                 Margin="0"
-                Padding="0"
+                Padding="0,0,10,0"
                 BorderWidth="0"
                 Clicked="OnEnglishButtonClicked"
-                Text="English"
-                VerticalOptions="Start" />
+                HorizontalOptions="EndAndExpand"
+                Source="ic_english"
+                VerticalOptions="Center" />
             <ImageButton
-                Grid.Column="4"
+                Padding="8"
                 Clicked="OnShareButtonClicked"
+                HorizontalOptions="End"
                 Source="share"
-                VerticalOptions="Start" />
+                VerticalOptions="Center" />
+        </StackLayout>
 
-        </Grid>
 
         <BoxView
             Margin="0"
             HeightRequest="1"
             Color="LightGray" />
 
-        <StackLayout Padding="0" Spacing="0">
-            <Label
-                x:Name="today"
-                Text="{Binding Today}"
-                TextColor="Gray" />
+        <ScrollView VerticalScrollBarVisibility="Default">
+            <StackLayout Padding="15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                <Label
+                    x:Name="today"
+                    Text="{Binding Today}"
+                    TextColor="Gray" />
+                <yummy:PancakeView
+                    Margin="0,10,0,20"
+                    BackgroundGradientEndPoint="0.5,0.0"
+                    BackgroundGradientStartPoint="0.0,0.5"
+                    CornerRadius="20"
+                    HeightRequest="80"
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="200">
+                    <yummy:PancakeView.Shadow>
+                        <yummy:DropShadow Offset="2,2" Color="#000000" />
+                    </yummy:PancakeView.Shadow>
+                    <yummy:PancakeView.BackgroundGradientStops>
+                        <yummy:GradientStopCollection>
+                            <yummy:GradientStop Offset="0" Color="LightPink" />
+                            <yummy:GradientStop Offset="1" Color="LightSkyBlue" />
+                        </yummy:GradientStopCollection>
+                    </yummy:PancakeView.BackgroundGradientStops>
+                    <Label
+                        x:Name="copyButton"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding ShareRange}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </yummy:PancakeView>
 
-            <Label
-                x:Name="copyButton"
-                FontSize="16"
-                Text="{Binding ShareRange}" />
-            <Label
-                x:Name="verse"
-                FontAttributes="Bold"
-                Text="{Binding JsonMannaData.Verse}" />
-            <CollectionView
+
+                <Label
+                    x:Name="verse"
+                    FontAttributes="Bold"
+                    Text="{Binding JsonMannaData.Verse}" />
+
+                <w:RepeatableWrapLayout
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                      Light=White}"
+                    ItemsSource="{Binding MannaContents}"
+                    Spacing="20">
+                    <w:RepeatableWrapLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Number}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    LineBreakMode="CharacterWrap"
+                                    Text="{Binding MannaString}" />
+                            </Grid>
+
+                        </DataTemplate>
+                    </w:RepeatableWrapLayout.ItemTemplate>
+                </w:RepeatableWrapLayout>
+
+                <!--<CollectionView
                 x:Name="mannaCollectionView"
-                Margin="0,10,0,10"
                 BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                                   Light=White}"
                 Footer=" "
@@ -80,7 +134,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="20" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label
@@ -90,13 +144,17 @@
                             <Label
                                 Grid.Row="0"
                                 Grid.Column="1"
+                                LineBreakMode="CharacterWrap"
                                 Text="{Binding MannaString}" />
 
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+            </CollectionView>-->
+
+
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 </ContentPage>
 

@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
@@ -38,6 +39,9 @@
     <None Remove="BibleAt.json" />
     <None Remove="mcc.json" />
     <None Remove="MccheyneRange.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />

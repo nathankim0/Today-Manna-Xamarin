@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using System.Linq;
 using Xamarin.Forms.Internals;
 using System.Diagnostics;
+using TodaysManna.Models;
+using Xamarin.Essentials;
 
 namespace TodaysManna.Views
 {
@@ -177,8 +179,8 @@ namespace TodaysManna.Views
                 centerFrame.TranslateTo(leftX, 70, 250, Easing.CubicOut);
                 rightImageButton.TranslateTo(rightX, 70, 250, Easing.CubicOut);
 
-                leftImageButton.FadeTo(0, 200);
-                rightImageButton.FadeTo(0, 200);
+                leftImageButton.FadeTo(0, 150);
+                rightImageButton.FadeTo(0, 150);
 
                 previousScrollPosition = e.ScrollY;
             }
@@ -200,6 +202,20 @@ namespace TodaysManna.Views
             }
 
             Debug.WriteLine("e.ScrollY: " + e.ScrollY);
+        }
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null) return;
+
+            var manna = e.SelectedItem as MccheyneContent;
+            var shareRangeString = $"({manna.Book}) {manna.Content}";
+
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = shareRangeString,
+                Title = "공유"
+            });
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

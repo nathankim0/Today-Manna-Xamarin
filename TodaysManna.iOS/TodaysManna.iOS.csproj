@@ -134,8 +134,12 @@
     <ImageAsset Include="Assets.xcassets\alarm.imageset\QuickActions_Alarm_2x.png" />
     <ImageAsset Include="Assets.xcassets\ic_right.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_left.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_right.imageset\right_arrow.png" />
-    <ImageAsset Include="Assets.xcassets\ic_left.imageset\left_arrow-1.png" />
+    <ImageAsset Include="Assets.xcassets\ic_english.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50.png" />
+    <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50-1.png" />
+    <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50-2.png" />
+    <ImageAsset Include="Assets.xcassets\ic_right.imageset\icons8-next-page-50.png" />
+    <ImageAsset Include="Assets.xcassets\ic_left.imageset\icons8-back-to-50.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -146,8 +150,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -177,6 +181,7 @@
     <Folder Include="Assets.xcassets\alarm.imageset\" />
     <Folder Include="Assets.xcassets\ic_right.imageset\" />
     <Folder Include="Assets.xcassets\ic_left.imageset\" />
+    <Folder Include="Assets.xcassets\ic_english.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\fa-solid-900.ttf" />

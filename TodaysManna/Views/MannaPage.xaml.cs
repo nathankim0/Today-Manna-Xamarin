@@ -5,6 +5,7 @@ using TodaysManna.ViewModel;
 using UIKit;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace TodaysManna.Views
 {
@@ -78,6 +79,26 @@ namespace TodaysManna.Views
                 var uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }   
+        }
+
+        private async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        {
+            var t = sender as Grid;
+            ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
+            ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.Underline;
+
+            var verseText = verse.Text;
+            var tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
+            var num = ((Label)t.Children.ElementAt(0)).Text;
+            var manna = ((Label)t.Children.ElementAt(1)).Text;
+            var shareRangeString = $"({tmpRangeString}:{num}){manna}";
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = shareRangeString,
+                Title = "공유"
+            });
+            ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
+            ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
         }
     }
 }

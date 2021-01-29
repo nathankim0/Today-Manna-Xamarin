@@ -3,16 +3,41 @@
     x:Class="TodaysManna.Views.MccheynePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
-    xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="맥체인"
-    Padding="0,30,0,0"
+    ios:Page.PrefersHomeIndicatorAutoHidden="true"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                      Light=White}"
     NavigationPage.HasNavigationBar="False">
-    <StackLayout Spacing="0">
-        <Grid Margin="0" Padding="0">
+    <StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}" Spacing="0">
+        <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Start"
+                Text="맥체인"
+                VerticalOptions="Center" />
+            <Button
+                x:Name="todayLabel"
+                Margin="0"
+                Padding="0,0,10,0"
+                BorderWidth="0"
+                Clicked="OnDateButtonClicked"
+                HorizontalOptions="EndAndExpand"
+                Text="다른날"
+                VerticalOptions="Center" />
+            <Button
+                Clicked="OnTodayButtonClicked"
+                HorizontalOptions="End"
+                Text="오늘"
+                VerticalOptions="Center" />
+        </StackLayout>
+        <!--<Grid Margin="15,0,15,0" Padding="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -20,36 +45,50 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label
                 Grid.Column="0"
                 FontSize="20"
                 Text="맥체인"
                 VerticalOptions="Center" />
-            <Button
-                Grid.Column="3"
-                Margin="0"
-                Padding="0"
-                BorderWidth="0"
-                Clicked="OnDateButtonClicked"
-                Text="다른날"
-                VerticalOptions="Start" />
-            <Button
-                Grid.Column="4"
-                Clicked="OnTodayButtonClicked"
-                Text="오늘"
-                VerticalOptions="Start" />
+            <StackLayout
+                Grid.Column="6"
+                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                  Light=White}"
+                Orientation="Horizontal"
+                Spacing="12">
+                <Button
+                    x:Name="todayLabel"
+                    Margin="0"
+                    Padding="0"
+                    BorderWidth="0"
+                    Clicked="OnDateButtonClicked"
+                    Text="다른날"
+                    VerticalOptions="Start" />
+                <Button
+                    Clicked="OnTodayButtonClicked"
+                    Text="오늘"
+                    VerticalOptions="Start" />
+            </StackLayout>
 
-        </Grid>
+        </Grid>-->
+
         <BoxView
             Margin="0"
             HeightRequest="1"
             Color="LightGray" />
 
-
-        <AbsoluteLayout>
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+        <AbsoluteLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+            <StackLayout
+                Padding="15,0,15,0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                  Light=White}">
                 <DatePicker
                     x:Name="datepicker"
                     Grid.Row="0"
@@ -58,20 +97,17 @@
                     DateSelected="DatePicker_DateSelected"
                     Format="D"
                     IsVisible="false" />
-                <Label
-                    x:Name="todayLabel"
-                    Text=""
-                    TextColor="Gray" />
                 <ListView
                     x:Name="mccheyneView"
                     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                                       Light=White}"
-                    Footer=" "
+                    Footer="&#10;&#10;&#10;"
                     HasUnevenRows="True"
+                    ItemSelected="OnItemSelected"
                     ItemsSource="{Binding MccheyneContents1}"
                     Scrolled="OnListViewScrolled"
-                    SeparatorVisibility="None"
-                    VerticalScrollBarVisibility="Never">
+                    SeparatorVisibility="Default"
+                    VerticalScrollBarVisibility="Always">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -82,7 +118,7 @@
                                     Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Book}" />
-                                        <Label Text="{Binding Verse}" />
+                                        <Label LineBreakMode="CharacterWrap" Text="{Binding Verse}" />
                                     </StackLayout>
                                     <Label Text="{Binding Content}" />
                                 </StackLayout>
@@ -93,18 +129,22 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+
             <ImageButton
                 x:Name="leftImageButton"
-                AbsoluteLayout.LayoutBounds=".1,.95,25,25"
+                AbsoluteLayout.LayoutBounds=".1,.95,40,40"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                BackgroundColor="Transparent"
+                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                  Light=White}"
                 Clicked="OnLeftButtonClicked"
+                CornerRadius="20"
+                IsVisible="false"
                 Source="ic_left" />
             <Frame
                 x:Name="centerFrame"
                 Margin="0"
                 Padding="0"
-                AbsoluteLayout.LayoutBounds=".5,.95,30,30"
+                AbsoluteLayout.LayoutBounds=".5,.95,35,35"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 CornerRadius="15"
                 HasShadow="False">
@@ -119,10 +159,12 @@
             </Frame>
             <ImageButton
                 x:Name="rightImageButton"
-                AbsoluteLayout.LayoutBounds=".95,.95,25,25"
+                AbsoluteLayout.LayoutBounds=".95,.95,40,40"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                BackgroundColor="Transparent"
+                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                  Light=White}"
                 Clicked="OnRightButtonClicked"
+                CornerRadius="20"
                 Source="ic_right" />
         </AbsoluteLayout>
     </StackLayout>
