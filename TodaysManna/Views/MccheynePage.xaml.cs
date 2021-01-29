@@ -32,7 +32,7 @@ namespace TodaysManna.Views
             leftY = leftImageButton.TranslationY;
             leftX = leftImageButton.TranslationX;
 
-            todayLabel.Text = DateTime.Now.ToString("M/dd");
+            todayLabel.Text = DateTime.Now.ToString("M월d일");
 
             var leftSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Left };
             var rightSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right };
@@ -152,17 +152,36 @@ namespace TodaysManna.Views
             flag = 4;
         }
 
+        private static DateTime GetCorrectDateLeapYear(DateTime newDate)
+        {
+            var dateNow = newDate;
+            DateTime thisDate = dateNow;
+           // DateTime lastDay = newDate.AddMonths(1).AddDays(0 - newDate.Day);
+            if (DateTime.IsLeapYear(dateNow.Year) && ((dateNow.Month == 2 && dateNow.Day > 28) || (dateNow.Month > 2)))
+            {
+                thisDate = thisDate.AddDays(1);
+                if (dateNow.Month == 12 && dateNow.Day == 31)
+                {
+                    thisDate = dateNow;
+                }
+            }
+
+            return thisDate;
+        }
+
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             (BindingContext as MccheyneViewModel).today = e.NewDate.ToString("M_d");
-            (BindingContext as MccheyneViewModel).GetMccheyne();
-            todayLabel.Text = e.NewDate.ToString("M/d");
+            DateTime thisDate = GetCorrectDateLeapYear(e.NewDate);
+
+            (BindingContext as MccheyneViewModel).GetMccheyne(thisDate);
+            todayLabel.Text = e.NewDate.ToString("M월d일");
         }
 
         private void OnTodayButtonClicked(object sender, EventArgs e)
         {
             datepicker.Date = DateTime.Now;
-            (BindingContext as MccheyneViewModel).GetMccheyne();
+        //    (BindingContext as MccheyneViewModel).GetMccheyne();
         }
 
         private void OnDateButtonClicked(object sender, EventArgs e)
@@ -182,6 +201,7 @@ namespace TodaysManna.Views
                 rightImageButton.TranslateTo(rightX, 70, 250, Easing.CubicOut);
 
                 leftImageButton.FadeTo(0, 150);
+                centerFrame.FadeTo(0, 150);
                 rightImageButton.FadeTo(0, 150);
 
                 previousScrollPosition = e.ScrollY;
