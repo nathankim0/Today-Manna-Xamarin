@@ -29,6 +29,14 @@
                 HorizontalOptions="EndAndExpand"
                 Text="다른날짜"
                 VerticalOptions="Center" />
+            <DatePicker
+                x:Name="datepicker"
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                BackgroundColor="Transparent"
+                DateSelected="DatePicker_DateSelected"
+                Format="D"
+                IsVisible="false" />
             <Button
                 Margin="0,0,5,0"
                 Clicked="OnTodayButtonClicked"
@@ -43,54 +51,40 @@
             Color="LightGray" />
 
         <AbsoluteLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-            <StackLayout
-                Padding="15,0,15,0"
+
+            <ListView
+                x:Name="mccheyneView"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                  Light=White}">
-                <DatePicker
-                    x:Name="datepicker"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="3"
-                    BackgroundColor="Transparent"
-                    DateSelected="DatePicker_DateSelected"
-                    Format="D"
-                    IsVisible="false" />
-                <ListView
-                    x:Name="mccheyneView"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                      Light=White}"
-                    Footer="&#10;&#10;&#10;"
-                    HasUnevenRows="True"
-                    ItemSelected="OnItemSelected"
-                    ItemsSource="{Binding MccheyneContents1}"
-                    Scrolled="OnListViewScrolled"
-                    SeparatorVisibility="None"
-                    VerticalScrollBarVisibility="Always">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout
-                                    Padding="0,10,0,10"
-                                    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                                      Light=White}"
-                                    Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Book}" />
-                                        <Label LineBreakMode="CharacterWrap" Text="{Binding Verse}" />
-                                    </StackLayout>
-                                    <Label Text="{Binding Content}" />
+                                                  Light=White}"
+                Footer="&#10;&#10;&#10;"
+                HasUnevenRows="True"
+                ItemSelected="OnItemSelected"
+                ItemsSource="{Binding MccheyneContents1}"
+                Scrolled="OnListViewScrolled"
+                SeparatorVisibility="None"
+                VerticalScrollBarVisibility="Always">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Padding="0,10,0,10"
+                                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                                  Light=White}"
+                                Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Book}" />
+                                    <Label LineBreakMode="CharacterWrap" Text="{Binding Verse}" />
                                 </StackLayout>
-                            </ViewCell>
+                                <Label Text="{Binding Content}" />
+                            </StackLayout>
+                        </ViewCell>
 
-                        </DataTemplate>
+                    </DataTemplate>
 
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <ImageButton
                 x:Name="leftImageButton"
@@ -135,3 +129,10 @@
     </StackLayout>
 </ContentPage>
 
+
+<!--<StackLayout
+                Padding="15,0,15,0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                                  Light=White}">-->
