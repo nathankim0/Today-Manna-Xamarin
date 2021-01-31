@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using TodaysManna.Models;
 using TodaysManna.Views;
 using static TodaysManna.Models.MccheyneData;
+using static TodaysManna.Models.MccheyneRangeData;
 
 namespace TodaysManna.ViewModel
 {
@@ -83,17 +84,10 @@ namespace TodaysManna.ViewModel
 
         public MccheyneViewModel()
         {
-            var dateNow = DateTime.Now;
-            DateTime thisDate = dateNow;
-            if (DateTime.IsLeapYear(dateNow.Year)&&((dateNow.Month==2&&dateNow.Day>28)||(dateNow.Month>2)))
-            {
-                thisDate = thisDate.AddDays(1);
-                if (dateNow.Month == 12 && dateNow.Day == 31)
-                {
-                    thisDate = dateNow;
-                }
-            }
-            
+            DateTime thisDate = GetCorrectDateLeapYear(DateTime.Now);
+
+            GetMccheyneRange(thisDate);
+
             try
             {
                 GetMccheyne(thisDate);
@@ -104,12 +98,30 @@ namespace TodaysManna.ViewModel
             }
         }
 
+        public static DateTime GetCorrectDateLeapYear(DateTime newDate)
+        {
+            var dateNow = newDate;
+            DateTime thisDate = dateNow;
+            if (DateTime.IsLeapYear(dateNow.Year) && ((dateNow.Month == 2 && dateNow.Day > 28) || (dateNow.Month > 2)))
+            {
+                thisDate = thisDate.AddDays(1);
+                if (dateNow.Month == 12 && dateNow.Day == 31)
+                {
+                    thisDate = dateNow;
+                }
+            }
+
+            return thisDate;
+        }
+
         public void GetMccheyne(DateTime dateTime)
         {
             MccheyneContents1.Clear();
             MccheyneContents2.Clear();
             MccheyneContents3.Clear();
             MccheyneContents4.Clear();
+
+          //  var _verseRange = GetMccheyneRange(dateTime);
 
             var dateTimeString=dateTime.ToString("M_d");
 
@@ -128,16 +140,28 @@ namespace TodaysManna.ViewModel
 
                 foreach (var node2 in t)
                 {
+                    var _firstNum = node2.Verse.Substring(0, node2.Verse.IndexOf(":"));
+                    var _secondNum = node2.Verse.Substring(node2.Verse.IndexOf(":")+1);
+                    var _fullVerse = $"{node2.Book} {node2.Verse}";
+                    var _halfVerse = $"{node2.Book} {_firstNum}";
                     switch (node2.Id)
                     {
                         case "1":
-                            if (a != node2.Book)
+                            
+                           // System.Diagnostics.Debug.WriteLine($"{_firstNum}장{_secondNum}절");
+
+                            if (a != _halfVerse)
                             {
                                 MccheyneContents1.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
+                                    //FullRange= _verseRange,
                                     Book = node2.Book,
+                                    FirstNumber=_firstNum,
+                                    SecondNumber=_secondNum,
                                     Verse = node2.Verse,
+                                    FullVerse=_fullVerse + "\n\n",
+                                    HalfVerse= _halfVerse,
                                     Content = node2.Content
                                 });
                             }
@@ -146,40 +170,120 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents1.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    Book = "",
+                                    //FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
                                     Verse = node2.Verse,
+                                    FullVerse = "",
+                                    HalfVerse = "",
                                     Content = node2.Content
                                 });
                             }
-                            a = node2.Book;
+                            a = _halfVerse;
                            
                             break;
                         case "2":
-                            MccheyneContents2.Add(new MccheyneContent
+                            if (b != _halfVerse)
                             {
-                                Id = node2.Id,
-                                Book = node2.Book,
-                                Verse = node2.Verse,
-                                Content = node2.Content
-                            });
+                                MccheyneContents2.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    //FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
+                                    Verse = node2.Verse,
+                                    FullVerse = _fullVerse + "\n\n",
+                                    HalfVerse = _halfVerse,
+                                    Content = node2.Content
+                                });
+                            }
+                            else
+                            {
+                                MccheyneContents2.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    //FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
+                                    Verse = node2.Verse,
+                                    FullVerse = "",
+                                    HalfVerse = "",
+                                    Content = node2.Content
+                                });
+                            }
+                            b = _halfVerse;
+
                             break;
                         case "3":
-                            MccheyneContents3.Add(new MccheyneContent
+                            if (c != _halfVerse)
                             {
-                                Id = node2.Id,
-                                Book = node2.Book,
-                                Verse = node2.Verse,
-                                Content = node2.Content
-                            });
+                                MccheyneContents3.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    //FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
+                                    Verse = node2.Verse,
+                                    FullVerse = _fullVerse + "\n\n",
+                                    HalfVerse = _halfVerse,
+                                    Content = node2.Content
+                                });
+                            }
+                            else
+                            {
+                                MccheyneContents3.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    //FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
+                                    Verse = node2.Verse,
+                                    FullVerse = "",
+                                    HalfVerse = "",
+                                    Content = node2.Content
+                                });
+                            }
+                            c = _halfVerse;
+
                             break;
                         case "4":
-                            MccheyneContents4.Add(new MccheyneContent
+                            if (d != _halfVerse)
                             {
-                                Id = node2.Id,
-                                Book = node2.Book,
-                                Verse = node2.Verse,
-                                Content = node2.Content
-                            });
+                                MccheyneContents4.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    //FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
+                                    Verse = node2.Verse,
+                                    FullVerse=_fullVerse + "\n\n",
+                                    HalfVerse = _halfVerse,
+                                    Content = node2.Content
+                                });
+                            }
+                            else
+                            {
+                                MccheyneContents4.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    FullRange = _verseRange,
+                                    Book = node2.Book,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
+                                    Verse = node2.Verse,
+                                    FullVerse="",
+                                    HalfVerse = "",
+                                    Content = node2.Content
+                                });
+                            }
+                            d = _halfVerse;
+
                             break;
                     }
 
@@ -208,6 +312,31 @@ namespace TodaysManna.ViewModel
 
             return ObjContactList.DaysOfMccheyne;
         }
+
+        public void GetMccheyneRange(DateTime thisDate)
+        {
+            var _thisDate = thisDate.ToString("M-d");
+            VerseRange = MannaViewModel.mccheyneRanges.Find(x => x.Date.Equals(_thisDate)).Range;
+        }
+
+        //private List<MccheyneRange> GetJsonMccheyneRange()
+        //{
+        //    string jsonFileName = "MccheyneRange.json";
+        //    MccheyneRangeList ObjContactList = new MccheyneRangeList();
+
+
+        //    var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
+        //    var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+        //    using (var reader = new StreamReader(stream))
+        //    {
+        //        var jsonString = reader.ReadToEnd();
+
+        //        //Converting JSON Array Objects into generic list    
+        //        ObjContactList = JsonConvert.DeserializeObject<MccheyneRangeList>(jsonString);
+        //    }
+
+        //    return ObjContactList.Ranges;
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

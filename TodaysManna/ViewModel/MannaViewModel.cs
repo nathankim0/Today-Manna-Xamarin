@@ -30,7 +30,7 @@ namespace TodaysManna.ViewModel
         public string _completeUrl { get; set; } = "";
         public string _completeAppUrl { get; set; } = "";
 
-        private static string todayMccheyneRange;
+        public static string todayMccheyneRange;
 
 
         private int _jang;
@@ -120,6 +120,7 @@ namespace TodaysManna.ViewModel
             IsRefreshing = false;
         });
 
+        public static List<MccheyneRange> mccheyneRanges;
 
         public MannaViewModel()
         {
@@ -135,17 +136,17 @@ namespace TodaysManna.ViewModel
             {
                 System.Diagnostics.Debug.WriteLine("GetManna() Error");
             }
-            var ranges = new List<MccheyneRange>();
+            mccheyneRanges = new List<MccheyneRange>();
             try
             {
-                ranges = GetJsonMccheyneRange();
+                mccheyneRanges = GetJsonMccheyneRange();
             }
             catch
             {
                 System.Diagnostics.Debug.WriteLine("GetJsonMccheyneRange() Error");
             }
             var today = DateTime.Now.ToString("M-d");
-            todayMccheyneRange = ranges.Find(x => x.Date.Equals(today)).Range;
+            todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
 
 

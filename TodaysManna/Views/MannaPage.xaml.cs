@@ -6,7 +6,6 @@ using UIKit;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Rg.Plugins.Popup.Services;
 
 namespace TodaysManna.Views
 {
@@ -33,9 +32,9 @@ namespace TodaysManna.Views
             //  await PopupNavigation.Instance.PushAsync(popupPage);
 
             await rangeButton.ScaleTo(0.8, 150);
-
-            await Clipboard.SetTextAsync(allRangeLabel.Text);
-            await DisplayAlert("클립보드에 복사됨", null, "확인");
+            var shareText = allRangeLabel.Text;
+            await Clipboard.SetTextAsync(shareText);
+            await DisplayAlert("클립보드에 복사됨", shareText, "확인");
 
             await rangeButton.ScaleTo(1, 150);
 
@@ -93,7 +92,7 @@ namespace TodaysManna.Views
             var shareRangeString = $"({tmpRangeString}:{num}){manna}";
 
             await Clipboard.SetTextAsync(shareRangeString);
-            await DisplayAlert("클립보드에 복사됨", null, "확인");
+            await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
 
             //await Share.RequestAsync(new ShareTextRequest
             //{
