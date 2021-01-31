@@ -121,18 +121,38 @@ namespace TodaysManna.ViewModel
             {
                 var t= node.GetType().GetProperty(todayProperty).GetValue(node, null) as List<Mccheyne>;
 
+                var a = "";
+                var b = "";
+                var c = "";
+                var d = "";
+
                 foreach (var node2 in t)
                 {
                     switch (node2.Id)
                     {
                         case "1":
-                            MccheyneContents1.Add(new MccheyneContent
+                            if (a != node2.Book)
                             {
-                                Id = node2.Id,
-                                Book = node2.Book,
-                                Verse = node2.Verse,
-                                Content = node2.Content
-                            });
+                                MccheyneContents1.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    Book = node2.Book,
+                                    Verse = node2.Verse,
+                                    Content = node2.Content
+                                });
+                            }
+                            else
+                            {
+                                MccheyneContents1.Add(new MccheyneContent
+                                {
+                                    Id = node2.Id,
+                                    Book = "",
+                                    Verse = node2.Verse,
+                                    Content = node2.Content
+                                });
+                            }
+                            a = node2.Book;
+                           
                             break;
                         case "2":
                             MccheyneContents2.Add(new MccheyneContent
