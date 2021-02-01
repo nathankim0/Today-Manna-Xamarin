@@ -16,6 +16,10 @@
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="AiForms.Layouts" Version="1.1.0" />
+    <PackageReference Include="XF.Material" Version="1.7.7" />
+    <PackageReference Include="Syncfusion.Licensing" Version="18.4.0.39" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.39" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.39" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -37,13 +41,16 @@
     <None Remove="BibleAt.json" />
     <None Remove="mcc.json" />
     <None Remove="MccheyneRange.json" />
+    <None Remove="MccheyneRange2.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\SettingPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />
     <EmbeddedResource Include="mcc.json" />
     <EmbeddedResource Include="MccheyneRange.json" />
+    <EmbeddedResource Include="MccheyneRange2.json" />
   </ItemGroup>
 </Project>

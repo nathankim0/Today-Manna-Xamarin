@@ -149,6 +149,7 @@ namespace TodaysManna.ViewModel
             todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
 
+     
 
         private async void GetManna()
         {
@@ -246,3 +247,32 @@ namespace TodaysManna.ViewModel
         }
     }
 }
+
+
+//private void FormattingJsonFile()
+//{
+//    var jsonArray = new JArray();
+
+//    foreach (var node in mccheyneRanges)
+//    {
+//        var json = new JObject();
+//        json.Add($"date", node.Date);
+
+//        char[] delimiterChars = { ',' };
+//        var range = node.Range;
+//        string[] words = range.Split(delimiterChars);
+
+//        int i = 1;
+//        foreach (var word in words)
+//        {
+//            json.Add($"range{i}", word);
+//            i++;
+//        }
+//        jsonArray.Add(json);
+//    }
+//    string str_json = JsonConvert.SerializeObject(jsonArray);
+//    System.Diagnostics.Debug.WriteLine(str_json);
+//    JsonConvert.SerializeObject(jsonArray, Formatting.Indented);
+//    File.WriteAllText(@"/Users/jinyeob/Downloads/path2.json", str_json.ToString());
+
+//}

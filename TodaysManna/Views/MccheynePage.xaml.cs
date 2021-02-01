@@ -7,6 +7,9 @@ using Xamarin.Forms.Internals;
 using System.Diagnostics;
 using TodaysManna.Models;
 using Xamarin.Essentials;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using ListView = Xamarin.Forms.ListView;
 
 namespace TodaysManna.Views
 {
@@ -253,7 +256,7 @@ namespace TodaysManna.Views
             //    Text = shareRangeString,
             //    Title = "공유"
             //});
-            ((ListView)sender).SelectedItem = null;
+            ((CollectionView)sender).SelectedItem = null;
         }
 
         private async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
@@ -263,6 +266,11 @@ namespace TodaysManna.Views
             await DisplayAlert("클립보드에 복사됨", address, "확인");
 
             // await Browser.OpenAsync(new Uri($"mailto:{address}"), BrowserLaunchMode.External);
+        }
+
+        private async void checkButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingPage());
         }
     }
 }
