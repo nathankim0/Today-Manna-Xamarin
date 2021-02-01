@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using UIKit;
 using UserNotifications;
+using Syncfusion.XForms.iOS.EffectsView;
+using Syncfusion.ListView.XForms.iOS;
 
 namespace TodaysManna.iOS
 {
@@ -20,21 +22,10 @@ namespace TodaysManna.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-
-            ////Notification framework.
-            ////----------------------
-            //UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (approved, err) =>
-            //{
-            //    // Handle approval
-            //});
-
-            ////Get current notification settings.
-            //UNUserNotificationCenter.Current.GetNotificationSettings((settings) =>
-            //{
-            //    var alertsAllowed = (settings.AlertSetting == UNNotificationSetting.Enabled);
-            //});
-            //UNUserNotificationCenter.Current.Delegate = new AppDelegates.UserNotificationCenterDelegate();
-            ////----------------------
+            Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();  //Initialize only when effects view is added to Listview.
 
             LoadApplication(new App());
 
