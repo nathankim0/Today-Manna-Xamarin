@@ -20,6 +20,7 @@
     <PackageReference Include="Syncfusion.Licensing" Version="18.4.0.39" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.39" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.39" />
+    <PackageReference Include="Xamarin.Forms.Chips" Version="1.0.12" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -45,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
-    <EmbeddedResource Remove="Views\SettingPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BibleAt.json" />
