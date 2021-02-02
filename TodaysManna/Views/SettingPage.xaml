@@ -4,12 +4,183 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:chips="clr-namespace:Xamarin.Forms.Chips;assembly=Xamarin.Forms.Chips"
     xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     xmlns:renderer="clr-namespace:TodaysManna.Renderer"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms">
 
-    <ContentPage.Content />
+    <ContentPage.Content>
+        <StackLayout>
+
+            <CollectionView ItemsSource="{Binding MccheyneCheckList}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Date}" />
+                            <chips:Chip
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[0]}" />
+                            <chips:Chip
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[1]}" />
+                            <chips:Chip
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[2]}" />
+                            <chips:Chip
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[3]}" />
+                            <chips:Chip
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                IsVisible="{Binding Range5IsNull}"
+                                Text="{Binding Ranges[4]}" />
+                        </Grid>-->
+                        <!--<Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Date}" />
+                            <chips:Chip
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[0]}" />
+                            <Switch Grid.Row="1" Grid.Column="1" />
+                            <chips:Chip
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[1]}" />
+                            <Switch Grid.Row="2" Grid.Column="1" />
+
+                            <chips:Chip
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[2]}" />
+                            <Switch Grid.Row="3" Grid.Column="1" />
+
+                            <chips:Chip
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Text="{Binding Ranges[3]}" />
+                            <Switch Grid.Row="4" Grid.Column="1" />
+
+                            <chips:Chip
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                IsVisible="{Binding Range5IsNull}"
+                                Text="{Binding Ranges[4]}" />
+                            <Switch
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                IsVisible="{Binding Range5IsNull}" />
+
+                        </Grid>-->
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Date}" />
+                            <buttons:SfChip
+                                Grid.Column="1"
+                                BackgroundColor="White"
+                                BorderColor="Black"
+                                BorderWidth="4"
+                                Clicked="SfChip_Clicked"
+                                Text="{Binding Ranges[0]}"
+                                TextColor="Black" />
+                            <buttons:SfChip
+                                Grid.Column="2"
+                                BackgroundColor="White"
+                                BorderColor="Black"
+                                BorderWidth="4"
+                                Text="{Binding Ranges[1]}"
+                                TextColor="Black" />
+                            <buttons:SfChip
+                                Grid.Column="3"
+                                BackgroundColor="White"
+                                BorderColor="Black"
+                                BorderWidth="4"
+                                Text="{Binding Ranges[2]}"
+                                TextColor="Black" />
+                            <buttons:SfChip
+                                Grid.Column="4"
+                                BackgroundColor="White"
+                                BorderColor="Black"
+                                BorderWidth="4"
+                                Text="{Binding Ranges[3]}"
+                                TextColor="Black" />
+                            <buttons:SfChip
+                                Grid.Column="5"
+                                BackgroundColor="White"
+                                BorderColor="Black"
+                                BorderWidth="4"
+                                IsVisible="{Binding Range5IsNull}"
+                                Text="{Binding Ranges[4]}"
+                                TextColor="Black" />
+
+                            <!--<chips:Chip
+                                Grid.Column="1"
+                                Text="{Binding Ranges[0]}" />
+                            <chips:Chip Grid.Column="2" Text="{Binding Ranges[1]}" />
+                            <chips:Chip Grid.Column="3" Text="{Binding Ranges[2]}" />
+                            <chips:Chip Grid.Column="4" Text="{Binding Ranges[3]}" />
+                            <chips:Chip
+                                Grid.Column="5"
+                                IsVisible="{Binding Range5IsNull}"
+                                Text="{Binding Ranges[4]}" />-->
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
 
 
@@ -19,31 +190,3 @@
 
 
 
-
-
-<!--<StackLayout>
-            <syncfusion:SfListView ItemsSource="{Binding MccheyneCheckList}">
-                <syncfusion:SfListView.DataSource>
-      <data:DataSource>
-        <data:DataSource.GroupDescriptors>
-          <data:GroupDescriptor PropertyName="BookName"/>
-        </data:DataSource.GroupDescriptors>
-      </data:DataSource>
-    </syncfusion:SfListView.DataSource>
-                <syncfusion:SfListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Large"
-                            Text="{Binding Date}" />
-                    </DataTemplate>
-                </syncfusion:SfListView.GroupHeaderTemplate>
-                <syncfusion:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Range}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </syncfusion:SfListView.ItemTemplate>
-            </syncfusion:SfListView>
-        </StackLayout>-->
