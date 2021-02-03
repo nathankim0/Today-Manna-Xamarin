@@ -1,0 +1,19 @@
+﻿<Shell
+    x:Class="TodaysManna.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:TodaysManna.Views">
+
+    <TabBar>
+        <Tab Title="만나" Icon="tab_manna.png">
+            <ShellContent>
+                <views:MannaPage />
+            </ShellContent>
+        </Tab>
+        <Tab Title="맥체인" Icon="tab_mc.png">
+            <ShellContent>
+                <views:MccheynePage />
+            </ShellContent>
+        </Tab>
+    </TabBar>
+</Shell>

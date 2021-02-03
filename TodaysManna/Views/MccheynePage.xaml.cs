@@ -256,7 +256,7 @@ namespace TodaysManna.Views
             //    Text = shareRangeString,
             //    Title = "공유"
             //});
-            ((CollectionView)sender).SelectedItem = null;
+            ((ListView)sender).SelectedItem = null;
         }
 
         private async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
