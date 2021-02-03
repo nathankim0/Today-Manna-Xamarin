@@ -11,7 +11,7 @@ namespace TodaysManna
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzkyMTQ5QDMxMzgyZTM0MmUzMEp5TmpEcTZabW5hTFBycEp4S2RpRlo0ckxvOHRZMnR1SW0wOFM2c0lSa009");
 
             InitializeComponent();
-            MainPage = new MainTabbedPage();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

@@ -8,178 +8,106 @@
     xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     xmlns:renderer="clr-namespace:TodaysManna.Renderer"
-    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms">
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+    x:Name="page">
 
     <ContentPage.Content>
-        <StackLayout>
+        <CollectionView ItemsSource="{Binding MccheyneCheckList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="0"
+                            Text="{Binding Date}"
+                            VerticalOptions="CenterAndExpand" />
+                        <buttons:SfChip
+                            x:Name="b1"
+                            Grid.Column="1"
+                            BackgroundColor="{Binding Ranges[0].Color}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                            CommandParameter="{Binding Source={x:Reference b1}, Path=Text}"
+                            FontSize="10"
+                            Text="{Binding Ranges[0].RangeText}"
+                            TextColor="Black">
+                            <!--<Button.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Ranges[0].IsChecked}"
+                                        TargetType="Button"
+                                        Value="False">
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding Ranges[0].IsChecked}"
+                                        TargetType="Button"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="AliceBlue" />
+                                    </DataTrigger>
+                                </Button.Triggers>-->
 
-            <CollectionView ItemsSource="{Binding MccheyneCheckList}">
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <!--<Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Date}" />
-                            <chips:Chip
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[0]}" />
-                            <chips:Chip
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[1]}" />
-                            <chips:Chip
-                                Grid.Row="3"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[2]}" />
-                            <chips:Chip
-                                Grid.Row="4"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[3]}" />
-                            <chips:Chip
-                                Grid.Row="5"
-                                Grid.Column="0"
-                                IsVisible="{Binding Range5IsNull}"
-                                Text="{Binding Ranges[4]}" />
-                        </Grid>-->
-                        <!--<Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Date}" />
-                            <chips:Chip
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[0]}" />
-                            <Switch Grid.Row="1" Grid.Column="1" />
-                            <chips:Chip
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[1]}" />
-                            <Switch Grid.Row="2" Grid.Column="1" />
-
-                            <chips:Chip
-                                Grid.Row="3"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[2]}" />
-                            <Switch Grid.Row="3" Grid.Column="1" />
-
-                            <chips:Chip
-                                Grid.Row="4"
-                                Grid.Column="0"
-                                Text="{Binding Ranges[3]}" />
-                            <Switch Grid.Row="4" Grid.Column="1" />
-
-                            <chips:Chip
-                                Grid.Row="5"
-                                Grid.Column="0"
-                                IsVisible="{Binding Range5IsNull}"
-                                Text="{Binding Ranges[4]}" />
-                            <Switch
-                                Grid.Row="5"
-                                Grid.Column="1"
-                                IsVisible="{Binding Range5IsNull}" />
-
-                        </Grid>-->
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding Date}" />
-                            <buttons:SfChip
-                                Grid.Column="1"
-                                BackgroundColor="White"
-                                BorderColor="Black"
-                                BorderWidth="4"
-                                Clicked="SfChip_Clicked"
-                                Text="{Binding Ranges[0]}"
-                                TextColor="Black" />
-                            <buttons:SfChip
-                                Grid.Column="2"
-                                BackgroundColor="White"
-                                BorderColor="Black"
-                                BorderWidth="4"
-                                Text="{Binding Ranges[1]}"
-                                TextColor="Black" />
-                            <buttons:SfChip
-                                Grid.Column="3"
-                                BackgroundColor="White"
-                                BorderColor="Black"
-                                BorderWidth="4"
-                                Text="{Binding Ranges[2]}"
-                                TextColor="Black" />
-                            <buttons:SfChip
-                                Grid.Column="4"
-                                BackgroundColor="White"
-                                BorderColor="Black"
-                                BorderWidth="4"
-                                Text="{Binding Ranges[3]}"
-                                TextColor="Black" />
-                            <buttons:SfChip
-                                Grid.Column="5"
-                                BackgroundColor="White"
-                                BorderColor="Black"
-                                BorderWidth="4"
-                                IsVisible="{Binding Range5IsNull}"
-                                Text="{Binding Ranges[4]}"
-                                TextColor="Black" />
-
-                            <!--<chips:Chip
-                                Grid.Column="1"
-                                Text="{Binding Ranges[0]}" />
-                            <chips:Chip Grid.Column="2" Text="{Binding Ranges[1]}" />
-                            <chips:Chip Grid.Column="3" Text="{Binding Ranges[2]}" />
-                            <chips:Chip Grid.Column="4" Text="{Binding Ranges[3]}" />
-                            <chips:Chip
-                                Grid.Column="5"
-                                IsVisible="{Binding Range5IsNull}"
-                                Text="{Binding Ranges[4]}" />-->
-
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                        </buttons:SfChip>
+                        <buttons:SfChip
+                            x:Name="b2"
+                            Grid.Column="2"
+                            BackgroundColor="{Binding Ranges[1].Color}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                            CommandParameter="{Binding Source={x:Reference b2}, Path=Text}"
+                            FontSize="10"
+                            Text="{Binding Ranges[1].RangeText}"
+                            TextColor="Black" />
+                        <buttons:SfChip
+                            x:Name="b3"
+                            Grid.Column="3"
+                            BackgroundColor="{Binding Ranges[2].Color}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                            CommandParameter="{Binding Source={x:Reference b3}, Path=Text}"
+                            FontSize="10"
+                            Text="{Binding Ranges[2].RangeText}"
+                            TextColor="Black" />
+                        <buttons:SfChip
+                            x:Name="b4"
+                            Grid.Column="4"
+                            BackgroundColor="{Binding Ranges[3].Color}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                            CommandParameter="{Binding Source={x:Reference b4}, Path=Text}"
+                            FontSize="10"
+                            Text="{Binding Ranges[3].RangeText}"
+                            TextColor="Black" />
+                        <buttons:SfChip
+                            x:Name="b5"
+                            Grid.Column="5"
+                            BackgroundColor="{Binding Ranges[4].Color}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                            CommandParameter="{Binding Source={x:Reference b5}, Path=Text}"
+                            FontSize="10"
+                            IsEnabled="{Binding Range5IsNull}"
+                            Text="{Binding Ranges[4].RangeText}"
+                            TextColor="Black" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentPage.Content>
 </ContentPage>
 

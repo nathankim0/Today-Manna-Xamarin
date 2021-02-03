@@ -11,20 +11,25 @@
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                       Light=White}"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
 
     <StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}" Spacing="0">
         <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
             <Label
+                BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 FontSize="20"
                 HorizontalOptions="Start"
                 Text="만나"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
                 VerticalOptions="Center" />
             <ImageButton
                 x:Name="toolbar_datepicker"
                 Margin="0"
                 Padding="0,0,15,0"
+                BackgroundColor="Transparent"
                 BorderWidth="0"
                 Clicked="OnEnglishButtonClicked"
                 HorizontalOptions="EndAndExpand"
@@ -33,6 +38,7 @@
             <ImageButton
                 Margin="0,0,5,0"
                 Padding="8"
+                BackgroundColor="Transparent"
                 Clicked="OnShareButtonClicked"
                 HorizontalOptions="End"
                 Source="share"
@@ -82,7 +88,9 @@
                 <Label
                     x:Name="verse"
                     FontAttributes="Bold"
-                    Text="{Binding JsonMannaData.Verse}" />
+                    Text="{Binding JsonMannaData.Verse}"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
 
                 <w:RepeatableWrapLayout
                     Margin="0"
@@ -107,12 +115,16 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    Text="{Binding Number}" />
+                                    Text="{Binding Number}"
+                                    TextColor="{AppThemeBinding Dark=White,
+                                                                Light=Black}" />
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     LineBreakMode="CharacterWrap"
-                                    Text="{Binding MannaString}" />
+                                    Text="{Binding MannaString}"
+                                    TextColor="{AppThemeBinding Dark=White,
+                                                                Light=Black}" />
                             </Grid>
 
                         </DataTemplate>
