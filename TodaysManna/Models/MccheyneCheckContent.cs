@@ -20,6 +20,7 @@ namespace TodaysManna.Models
     }
     public class MccheyneOneRange : INotifyPropertyChanged
     {
+        public string Id { get; set; }
         public string RangeText { get; set; }
 
         private bool _ischecked;
