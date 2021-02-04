@@ -16,7 +16,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackLayout
@@ -45,9 +45,8 @@
                     BorderWidth="0"
                     Clicked="checkButton_Clicked"
                     HorizontalOptions="EndAndExpand"
-                    Text="체크"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
+                    Text="체크리스트"
+                    TextColor="Blue"
                     VerticalOptions="Center" />
                 <Button
                     x:Name="todayLabel"
@@ -56,10 +55,9 @@
                     BackgroundColor="Transparent"
                     BorderWidth="0"
                     Clicked="OnDateButtonClicked"
-                    HorizontalOptions="EndAndExpand"
+                    HorizontalOptions="End"
                     Text="다른날짜"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
+                    TextColor="Blue"
                     VerticalOptions="Center" />
                 <DatePicker
                     x:Name="datepicker"
@@ -75,8 +73,7 @@
                     Clicked="OnTodayButtonClicked"
                     HorizontalOptions="End"
                     Text="오늘로"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
+                    TextColor="Blue"
                     VerticalOptions="Center" />
             </StackLayout>
 
@@ -90,7 +87,7 @@
         <ListView
             x:Name="mccheyneView"
             Grid.Row="1"
-            Margin="15,0,15,0"
+            Margin="15,15,15,0"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
             Footer=""

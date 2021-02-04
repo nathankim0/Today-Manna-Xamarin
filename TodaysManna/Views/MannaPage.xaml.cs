@@ -14,7 +14,7 @@ namespace TodaysManna.Views
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
         //private static readonly MyPopupPage popupPage = new MyPopupPage();
 
-        public MannaPage()
+        public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
             InitializeComponent();
 

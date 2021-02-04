@@ -28,10 +28,10 @@ namespace TodaysManna.Views
         private int flag = 1;
         private double previousScrollPosition = 0;
 
-        public MccheynePage()
+        public MccheynePage(/*MccheyneViewModel mccheyneViewModel*/)
         {
             InitializeComponent();
-            BindingContext = new MccheyneViewModel();
+            BindingContext = new MccheyneViewModel();//mccheyneViewModel;
 
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
