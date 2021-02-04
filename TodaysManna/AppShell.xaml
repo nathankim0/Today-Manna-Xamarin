@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:TodaysManna.Views">
 
-    <TabBar>
+    <!--<TabBar>
         <Tab Title="만나" Icon="tab_manna.png">
             <ShellContent>
                 <views:MannaPage />
@@ -15,5 +15,10 @@
                 <views:MccheynePage />
             </ShellContent>
         </Tab>
-    </TabBar>
+        <Tab Title="체크리스트" Icon="tab_mc.png">
+            <ShellContent>
+                <views:SettingPage />
+            </ShellContent>
+        </Tab>
+    </TabBar>-->
 </Shell>

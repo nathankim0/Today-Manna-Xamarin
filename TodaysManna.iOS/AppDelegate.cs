@@ -3,6 +3,7 @@ using UIKit;
 using UserNotifications;
 using Syncfusion.XForms.iOS.EffectsView;
 using Syncfusion.ListView.XForms.iOS;
+using Xamarin.Forms.Platform.iOS;
 
 namespace TodaysManna.iOS
 {
@@ -31,5 +32,7 @@ namespace TodaysManna.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
+        
     }
 }

@@ -39,17 +39,36 @@ namespace TodaysManna.ViewModel
 
         public MccheyneCheckViewModel()
         {
-          
+            command = new Command<string>(SetCheck);
+
             mccheyneCheckRangeList = new List<MccheyneCheckRange>();
             try
             {
                 mccheyneCheckRangeList = GetJsonMccheyneRange();
             }
-            catch
+            catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine("GetJsonMccheyneRange() Error");
+                System.Diagnostics.Debug.Fail("GetJsonMccheyneRange() Error");
+                System.Diagnostics.Debug.Fail(e.Message);
             }
-            foreach(var range in mccheyneCheckRangeList)
+
+            SetCheckRangeList();
+
+            try
+            {
+                SetCheckedItem();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.Fail(e.Message);
+            }
+        }
+
+        private void SetCheckRangeList()
+        {
+            int i = 0;
+
+            foreach (var range in mccheyneCheckRangeList)
             {
                 //var dic = new Dictionary<int, string>();
 
@@ -60,7 +79,7 @@ namespace TodaysManna.ViewModel
                 //dic.Add(5, range.Range5);
 
                 var range5IsNull = true;
-                if(range.Range5 == "")
+                if (range.Range5 == "")
                 {
                     range5IsNull = false;
                 }
@@ -72,110 +91,112 @@ namespace TodaysManna.ViewModel
                     {
                         new MccheyneOneRange
                         {
+                            Id=i.ToString(),
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range1
                         },
                         new MccheyneOneRange
                         {
+                            Id=(++i).ToString(),
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range2
                         },
                         new MccheyneOneRange
                         {
+                            Id=(++i).ToString(),
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range3
                         },
                         new MccheyneOneRange
                         {
+                            Id=(++i).ToString(),
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range4
                         },
                         new MccheyneOneRange
                         {
+                            Id=(++i).ToString(),
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range5
                         }
                     },
-                    Range5IsNull= range5IsNull
-                });              
-            }
-            command = new Command<string>(SetCheck);
-            try
-            {
-                MccheyneCheckList.ForEach(x =>
-                {
-                    x.Ranges[0].IsChecked = Preferences.Get(x.Ranges[0]?.RangeText, false);
-                    x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.SkyBlue : Color.White;
-
-                    //Console.WriteLine("RangeText: " + x.Ranges[0].RangeText);
-                    //Console.WriteLine("IsChecked: " + x.Ranges[0].IsChecked);
-
-                    x.Ranges[1].IsChecked = Preferences.Get(x.Ranges[1]?.RangeText, false);
-                    x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.LightPink : Color.White;
-
-                    //Console.WriteLine("RangeText: " + x.Ranges[1].RangeText);
-                    //Console.WriteLine("IsChecked: " + x.Ranges[1].IsChecked);
-
-                    x.Ranges[2].IsChecked = Preferences.Get(x.Ranges[2]?.RangeText, false);
-                    x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.LightGreen : Color.White;
-
-                    //Console.WriteLine("RangeText: " + x.Ranges[2].RangeText);
-                    //Console.WriteLine("IsChecked: " + x.Ranges[2].IsChecked);
-
-                    x.Ranges[3].IsChecked = Preferences.Get(x.Ranges[3]?.RangeText, false);
-                    x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.Yellow : Color.White;
-
-                    //Console.WriteLine("RangeText: " + x.Ranges[3].RangeText);
-                    //Console.WriteLine("IsChecked: " + x.Ranges[3].IsChecked);
-
-                    x.Ranges[4].IsChecked = Preferences.Get(x.Ranges[4]?.RangeText, false);
-                    
-                    x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;
-
-                    //Console.WriteLine("RangeText: " + x.Ranges[4].RangeText);
-                    //Console.WriteLine("IsChecked: " + x.Ranges[4].IsChecked);
+                    Range5IsNull = range5IsNull
                 });
+                ++i;
             }
-            catch(Exception e)
-            {
-                System.Diagnostics.Debug.Fail(e.Message);
-            }
-           
         }
+
+        private void SetCheckedItem()
+        {
+            MccheyneCheckList.ForEach(x =>
+            {
+                x.Ranges[0].IsChecked = Preferences.Get(x.Ranges[0]?.Id, false);
+                x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.SkyBlue : Color.White;
+
+                //Console.WriteLine("RangeText: " + x.Ranges[0].RangeText);
+                //Console.WriteLine("IsChecked: " + x.Ranges[0].IsChecked);
+
+                x.Ranges[1].IsChecked = Preferences.Get(x.Ranges[1]?.Id, false);
+                x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.LightPink : Color.White;
+
+                //Console.WriteLine("RangeText: " + x.Ranges[1].RangeText);
+                //Console.WriteLine("IsChecked: " + x.Ranges[1].IsChecked);
+
+                x.Ranges[2].IsChecked = Preferences.Get(x.Ranges[2]?.Id, false);
+                x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.LightGreen : Color.White;
+
+                //Console.WriteLine("RangeText: " + x.Ranges[2].RangeText);
+                //Console.WriteLine("IsChecked: " + x.Ranges[2].IsChecked);
+
+                x.Ranges[3].IsChecked = Preferences.Get(x.Ranges[3]?.Id, false);
+                x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.Yellow : Color.White;
+
+                //Console.WriteLine("RangeText: " + x.Ranges[3].RangeText);
+                //Console.WriteLine("IsChecked: " + x.Ranges[3].IsChecked);
+
+                x.Ranges[4].IsChecked = Preferences.Get(x.Ranges[4]?.Id, false);
+
+                x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;
+
+                //Console.WriteLine("RangeText: " + x.Ranges[4].RangeText);
+                //Console.WriteLine("IsChecked: " + x.Ranges[4].IsChecked);
+            });
+        }
+
         void SetCheck(string val)
         {
             MccheyneCheckList.ForEach(x =>
             {
-                if (x.Ranges[0].RangeText == val)
+                if (x.Ranges[0].Id == val)
                 {
                     x.Ranges[0].IsChecked = !x.Ranges[0].IsChecked;
                     x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.SkyBlue : Color.White;
                     Preferences.Set(val, x.Ranges[0].IsChecked);
                 }
-                else if (x.Ranges[1].RangeText == val)
+                else if (x.Ranges[1].Id == val)
                 {
                     x.Ranges[1].IsChecked = !x.Ranges[1].IsChecked;
                     x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.LightPink : Color.White;
                     Preferences.Set(val, x.Ranges[1].IsChecked);
                 }
-                else if (x.Ranges[2].RangeText == val)
+                else if (x.Ranges[2].Id == val)
                 {
                     x.Ranges[2].IsChecked = !x.Ranges[2].IsChecked;
                     x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.LightGreen : Color.White;
                     Preferences.Set(val, x.Ranges[2].IsChecked);
                 }
-                else if (x.Ranges[3].RangeText == val)
+                else if (x.Ranges[3].Id == val)
                 {
                     x.Ranges[3].IsChecked = !x.Ranges[3].IsChecked;
                     x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.Yellow : Color.White;
                     Preferences.Set(val, x.Ranges[3].IsChecked);
                 }
-                else if (x.Ranges[4].RangeText == val)
+                else if (x.Ranges[4].Id == val)
                 {
                     x.Ranges[4].IsChecked = !x.Ranges[4].IsChecked;
                     x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;

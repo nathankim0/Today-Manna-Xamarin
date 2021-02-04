@@ -16,6 +16,11 @@
             <local:MccheynePage />
         </x:Arguments>
     </NavigationPage>
+    <!--<NavigationPage Title="체크리스트" IconImageSource="tab_mc">
+        <x:Arguments>
+            <local:SettingPage />
+        </x:Arguments>
+    </NavigationPage>-->
 </TabbedPage>
 
 <!--<NavigationPage Title="Schedule" IconImageSource="schedule.png">
