@@ -6,161 +6,115 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     x:Name="page"
+    Title="체크리스트"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                       Light=White}"
-    NavigationPage.HasNavigationBar="False"
+    NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
 
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackLayout
-            Grid.Row="0"
-            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                              Light=White}"
-            Orientation="Vertical"
-            Spacing="0"
-            VerticalOptions="StartAndExpand">
-
-            <StackLayout
-                Padding="15,0,15,0"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal">
-                <ImageButton
-                    Margin="0"
-                    BackgroundColor="Transparent"
-                    BorderWidth="0"
-                    Clicked="Button_Clicked"
-                    HorizontalOptions="StartAndExpand"
-                    Source="ic_left"
-                    VerticalOptions="Center" />
-                <Label
-                    BackgroundColor="Transparent"
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    HorizontalOptions="Center"
-                    Text="체크 리스트"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="Center" />
-                <BoxView HorizontalOptions="EndAndExpand" />
-            </StackLayout>
-
-            <BoxView
-                Margin="0"
-                BackgroundColor="Transparent"
-                HeightRequest="1"
-                Color="LightGray" />
-        </StackLayout>
-
-
-        <CollectionView
-            x:Name="collectionView"
-            Grid.Row="1"
-            Margin="0"
-            ItemsSource="{Binding MccheyneCheckList}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10,15,10,20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Column="0"
-                            FontSize="14"
-                            Text="{Binding Date}"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}"
-                            VerticalOptions="CenterAndExpand" />
-                        <buttons:SfChip
-                            x:Name="b1"
-                            Grid.Column="1"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[0].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[0].Id}"
-                            FontAttributes="Bold"
-                            FontSize="10"
-                            Text="{Binding Ranges[0].RangeText}"
-                            TextColor="Black" />
-                        <buttons:SfChip
-                            x:Name="b2"
-                            Grid.Column="2"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[1].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[1].Id}"
-                            FontAttributes="Bold"
-                            FontSize="10"
-                            Text="{Binding Ranges[1].RangeText}"
-                            TextColor="Black" />
-                        <buttons:SfChip
-                            x:Name="b3"
-                            Grid.Column="3"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[2].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[2].Id}"
-                            FontAttributes="Bold"
-                            FontSize="10"
-                            Text="{Binding Ranges[2].RangeText}"
-                            TextColor="Black" />
-                        <buttons:SfChip
-                            x:Name="b4"
-                            Grid.Column="4"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[3].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[3].Id}"
-                            FontAttributes="Bold"
-                            FontSize="10"
-                            Text="{Binding Ranges[3].RangeText}"
-                            TextColor="Black" />
-                        <buttons:SfChip
-                            x:Name="b5"
-                            Grid.Column="5"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[4].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[4].Id}"
-                            FontAttributes="Bold"
-                            FontSize="10"
-                            IsVisible="{Binding Range5IsNull}"
-                            Text="{Binding Ranges[4].RangeText}"
-                            TextColor="Black" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+    <CollectionView
+        x:Name="collectionView"
+        Grid.Row="1"
+        Margin="0"
+        ItemsSource="{Binding MccheyneCheckList}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="10,15,10,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        FontSize="14"
+                        Text="{Binding Date}"
+                        TextColor="{Binding Ranges[0].DateColor}"
+                        VerticalOptions="CenterAndExpand" />
+                    <buttons:SfChip
+                        x:Name="b1"
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{Binding Ranges[0].Color}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                        CommandParameter="{Binding Ranges[0].Id}"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        Text="{Binding Ranges[0].RangeText}"
+                        TextColor="Black" />
+                    <buttons:SfChip
+                        x:Name="b2"
+                        Grid.Column="2"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{Binding Ranges[1].Color}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                        CommandParameter="{Binding Ranges[1].Id}"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        Text="{Binding Ranges[1].RangeText}"
+                        TextColor="Black" />
+                    <buttons:SfChip
+                        x:Name="b3"
+                        Grid.Column="3"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{Binding Ranges[2].Color}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                        CommandParameter="{Binding Ranges[2].Id}"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        Text="{Binding Ranges[2].RangeText}"
+                        TextColor="Black" />
+                    <buttons:SfChip
+                        x:Name="b4"
+                        Grid.Column="4"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{Binding Ranges[3].Color}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                        CommandParameter="{Binding Ranges[3].Id}"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        Text="{Binding Ranges[3].RangeText}"
+                        TextColor="Black" />
+                    <buttons:SfChip
+                        x:Name="b5"
+                        Grid.Column="5"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{Binding Ranges[4].Color}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                        CommandParameter="{Binding Ranges[4].Id}"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        IsVisible="{Binding Range5IsNull}"
+                        Text="{Binding Ranges[4].RangeText}"
+                        TextColor="Black" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
 
 

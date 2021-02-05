@@ -50,6 +50,20 @@ namespace TodaysManna.Models
             }
         }
 
+        private Color _dateColor;
+        public Color DateColor
+        {
+            get => _dateColor;
+            set
+            {
+                if (_dateColor != value)
+                {
+                    _dateColor = value;
+                    OnPropertyChanged(nameof(DateColor));
+                }
+            }
+        }
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

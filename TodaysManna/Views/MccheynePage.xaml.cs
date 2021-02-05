@@ -13,6 +13,8 @@ namespace TodaysManna.Views
         private readonly double gridX;
         private readonly double gridY;
 
+        private readonly double dateGridX;
+        private readonly double dateGridY;
 
         private int flag = 1;
         private double previousScrollPosition = 0;
@@ -25,7 +27,10 @@ namespace TodaysManna.Views
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
 
-            todayLabel.Text = DateTime.Now.ToString("M월d일");
+            //dateGridX = dateGrid.TranslationX;
+            //dateGridY = dateGrid.TranslationY;
+
+            //todayLabel.Text = DateTime.Now.ToString("M월d일");
 
             var leftSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Left };
             var rightSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right };
@@ -152,7 +157,7 @@ namespace TodaysManna.Views
             (BindingContext as MccheyneViewModel).GetMccheyne(thisDate);
             (BindingContext as MccheyneViewModel).GetMccheyneRange(thisDate);
 
-            todayLabel.Text = e.NewDate.ToString("M월d일");
+            //todayLabel.Text = e.NewDate.ToString("M월d일");
 
         }
 
@@ -170,6 +175,10 @@ namespace TodaysManna.Views
         {
             if (previousScrollPosition < e.ScrollY)
             {
+                //dateGrid.TranslateTo(gridX, -50, 250, Easing.CubicOut);
+                //dateGrid.FadeTo(0, 150);
+                //dateGrid.IsVisible = false;
+
                 bottomGrid.TranslateTo(gridX, 70, 250, Easing.CubicOut);
                 bottomGrid.FadeTo(0, 150);
 
@@ -177,6 +186,10 @@ namespace TodaysManna.Views
             }
             else
             {
+                //dateGrid.IsVisible = true;
+                //dateGrid.Opacity = 1;
+                //dateGrid.TranslateTo(gridX, gridY, 200, Easing.CubicOut);
+
                 bottomGrid.Opacity = 1;
                 bottomGrid.TranslateTo(gridX, gridY, 200, Easing.CubicOut);
 

@@ -13,7 +13,8 @@ namespace TodaysManna.Views
         public MainTabbedPage()
         {
             InitializeComponent();
-         
+
+
             //var mannaViewModel = new MannaViewModel();
             //var mccheyneViewModel = new MccheyneViewModel();
             //var mccheyneCheckListViewModel = new MccheyneCheckViewModel();

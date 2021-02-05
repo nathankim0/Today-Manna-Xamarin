@@ -2,5 +2,12 @@
     x:Class="TodaysManna.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <Application.Resources />
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Dark=#2e2e2e, Light=White}" />
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

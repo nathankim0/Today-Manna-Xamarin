@@ -82,6 +82,20 @@ namespace TodaysManna.ViewModel
             }
         }
 
+        private string _displayDateRange;
+        public string DisplayDateRange
+        {
+            get => _displayDateRange;
+            set
+            {
+                if (_displayDateRange != value)
+                {
+                    _displayDateRange = value;
+                    OnPropertyChanged(nameof(DisplayDateRange));
+                }
+            }
+        }
+
         public MccheyneViewModel()
         {
             DateTime thisDate = GetCorrectDateLeapYear(DateTime.Now);
@@ -121,8 +135,8 @@ namespace TodaysManna.ViewModel
             MccheyneContents3.Clear();
             MccheyneContents4.Clear();
 
-          //  var _verseRange = GetMccheyneRange(dateTime);
-
+            //  var _verseRange = GetMccheyneRange(dateTime);
+            DisplayDateRange = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
             var dateTimeString=dateTime.ToString("M_d");
 
             var daysOfMccheynes = GetJsonBible();

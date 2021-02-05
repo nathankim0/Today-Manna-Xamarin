@@ -17,7 +17,6 @@ namespace TodaysManna.Views
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
             InitializeComponent();
-
             BindingContext = mannaViewModel;
 
             var tapGesture = new TapGestureRecognizer();
