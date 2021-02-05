@@ -36,6 +36,7 @@ namespace TodaysManna.ViewModel
         private int _jang;
         private string _bib;
 
+        public static List<MccheyneRange> mccheyneRanges;
 
         public ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
         public ObservableCollection<MannaContent> MannaContents { get { return _mannaContents; } }
@@ -120,11 +121,11 @@ namespace TodaysManna.ViewModel
             IsRefreshing = false;
         });
 
-        public static List<MccheyneRange> mccheyneRanges;
+
 
         public MannaViewModel()
         {
-            Today = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
+            Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
 
             _restService = new RestService();
 
@@ -148,8 +149,6 @@ namespace TodaysManna.ViewModel
             var today = DateTime.Now.ToString("M-d");
             todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
-
-     
 
         private async void GetManna()
         {

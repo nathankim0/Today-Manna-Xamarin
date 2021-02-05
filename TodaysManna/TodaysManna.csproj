@@ -15,9 +15,6 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="AiForms.Layouts" Version="1.1.0" />
-    <PackageReference Include="Syncfusion.Licensing" Version="18.4.0.39" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.39" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
