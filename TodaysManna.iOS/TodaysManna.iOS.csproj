@@ -126,15 +126,13 @@
     <ImageAsset Include="Assets.xcassets\tab_mc.imageset\icons8-briefcase.pdf" />
     <ImageAsset Include="Assets.xcassets\tab_manna.imageset\icons8-news.pdf" />
     <ImageAsset Include="Assets.xcassets\share.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\alarm.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\share.imageset\QuickActions_Share_2x.png" />
-    <ImageAsset Include="Assets.xcassets\alarm.imageset\QuickActions_Alarm_2x.png" />
     <ImageAsset Include="Assets.xcassets\ic_english.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50-2.png" />
-    <ImageAsset Include="Assets.xcassets\ic_left.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_check.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_left.imageset\ic_left.png" />
-    <ImageAsset Include="Assets.xcassets\ic_check.imageset\ic_check-1.png" />
+    <ImageAsset Include="Assets.xcassets\ic_check.imageset\icons8-tick-box.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_dateselect.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_dateselect.imageset\icons8-calendar.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -179,6 +177,7 @@
     <Folder Include="Assets.xcassets\ic_english.imageset\" />
     <Folder Include="Assets.xcassets\ic_left.imageset\" />
     <Folder Include="Assets.xcassets\ic_check.imageset\" />
+    <Folder Include="Assets.xcassets\ic_dateselect.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\fa-solid-900.ttf" />

@@ -77,7 +77,7 @@ namespace TodaysManna.ViewModel
                 //dic.Add(3, range.Range3);
                 //dic.Add(4, range.Range4);
                 //dic.Add(5, range.Range5);
-
+                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : Color.Default;
                 var range5IsNull = true;
                 if (range.Range5 == "")
                 {
@@ -92,6 +92,7 @@ namespace TodaysManna.ViewModel
                         new MccheyneOneRange
                         {
                             Id=i.ToString(),
+                            DateColor=dateColor,
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range1
@@ -99,6 +100,7 @@ namespace TodaysManna.ViewModel
                         new MccheyneOneRange
                         {
                             Id=(++i).ToString(),
+                            DateColor=dateColor,
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range2
@@ -106,6 +108,7 @@ namespace TodaysManna.ViewModel
                         new MccheyneOneRange
                         {
                             Id=(++i).ToString(),
+                            DateColor=dateColor,
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range3
@@ -113,6 +116,7 @@ namespace TodaysManna.ViewModel
                         new MccheyneOneRange
                         {
                             Id=(++i).ToString(),
+                            DateColor=dateColor,
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range4
@@ -120,6 +124,7 @@ namespace TodaysManna.ViewModel
                         new MccheyneOneRange
                         {
                             Id=(++i).ToString(),
+                            DateColor=dateColor,
                             IsChecked=false,
                             Color=Color.White,
                             RangeText=range.Range5

@@ -9,86 +9,51 @@
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                       Light=White}"
-    NavigationPage.HasNavigationBar="False"
+    NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
+
+    <NavigationPage.TitleView>
+        <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
+            <Label
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Start"
+                Text="맥체인"
+                VerticalOptions="Center" />
+            <ImageButton
+                x:Name="checkButton"
+                Margin="0"
+                Padding="0,0,15,0"
+                BackgroundColor="Transparent"
+                BorderWidth="0"
+                Clicked="checkButton_Clicked"
+                HorizontalOptions="EndAndExpand"
+                Source="ic_check"
+                VerticalOptions="Center"
+                WidthRequest="40" />
+            <ImageButton
+                Margin="0,0,5,0"
+                Padding="8"
+                BackgroundColor="Transparent"
+                Clicked="OnDateButtonClicked"
+                HorizontalOptions="End"
+                Source="ic_dateselect"
+                VerticalOptions="Center"
+                WidthRequest="40" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
+
         </Grid.RowDefinitions>
 
 
-        <StackLayout
-            Grid.Row="0"
-            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                              Light=White}"
-            Orientation="Vertical"
-            Spacing="0"
-            VerticalOptions="StartAndExpand">
-
-            <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
-                <Label
-                    BackgroundColor="Transparent"
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    HorizontalOptions="Start"
-                    Text="맥체인"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="Center" />
-
-                <ImageButton
-                    x:Name="checkButton"
-                    Margin="0"
-                    Padding="0,0,15,0"
-                    BackgroundColor="Transparent"
-                    BorderWidth="0"
-                    Clicked="checkButton_Clicked"
-                    HorizontalOptions="EndAndExpand"
-                    Source="ic_check"
-                    VerticalOptions="Center" />
-                <Button
-                    x:Name="todayLabel"
-                    Margin="0"
-                    Padding="0,0,15,0"
-                    BackgroundColor="Transparent"
-                    BorderWidth="0"
-                    Clicked="OnDateButtonClicked"
-                    HorizontalOptions="End"
-                    Text="다른날짜"
-                    TextColor="DeepSkyBlue"
-                    VerticalOptions="Center" />
-
-                <Button
-                    Margin="0,0,5,0"
-                    BackgroundColor="Transparent"
-                    Clicked="OnTodayButtonClicked"
-                    HorizontalOptions="End"
-                    Text="오늘로"
-                    TextColor="DeepSkyBlue"
-                    VerticalOptions="Center" />
-
-                <DatePicker
-                    x:Name="datepicker"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="3"
-                    BackgroundColor="Transparent"
-                    DateSelected="DatePicker_DateSelected"
-                    Format="D"
-                    IsVisible="false" />
-            </StackLayout>
-
-            <BoxView
-                Margin="0"
-                BackgroundColor="Transparent"
-                HeightRequest="1"
-                Color="LightGray" />
-        </StackLayout>
-
         <ListView
             x:Name="mccheyneView"
-            Grid.Row="1"
             Margin="15,0,15,0"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
@@ -104,7 +69,20 @@
             <ListView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Vertical">
-                        <BoxView BackgroundColor="Transparent" HeightRequest="10" />
+                        <!--<BoxView BackgroundColor="Transparent" HeightRequest="10" />-->
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                Text="{Binding DisplayDateRange}"
+                                TextColor="Gray"
+                                VerticalOptions="CenterAndExpand" />
+                            <Button
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                Clicked="OnTodayButtonClicked"
+                                Text="오늘로"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
                         <Label
                             FontAttributes="Bold"
                             Text="{Binding VerseRange}"
@@ -177,10 +155,15 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <DatePicker
+            x:Name="datepicker"
+            BackgroundColor="Transparent"
+            DateSelected="DatePicker_DateSelected"
+            Format="D"
+            IsVisible="false" />
 
         <Grid
             x:Name="bottomGrid"
-            Grid.Row="1"
             Margin="0,0,0,10"
             BackgroundColor="Transparent"
             VerticalOptions="End">
@@ -192,6 +175,10 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+
+
+
             <Button
                 x:Name="leftImageButton"
                 Grid.Column="0"
@@ -237,3 +224,22 @@
                 AbsoluteLayout.LayoutFlags="All"
                 BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                                   Light=White}">-->
+
+
+<!--<StackLayout>
+        <Grid x:Name="dateGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                <Label Text="날짜변경: " VerticalOptions="CenterAndExpand" />
+
+            </StackLayout>
+
+        </Grid>
+            </StackLayout>-->
