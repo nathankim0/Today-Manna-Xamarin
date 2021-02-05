@@ -2,7 +2,6 @@
 using UIKit;
 using UserNotifications;
 using Syncfusion.XForms.iOS.EffectsView;
-using Syncfusion.ListView.XForms.iOS;
 using Xamarin.Forms.Platform.iOS;
 
 namespace TodaysManna.iOS
@@ -25,7 +24,6 @@ namespace TodaysManna.iOS
             global::Xamarin.Forms.Forms.Init();
             Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
             Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
-            SfListViewRenderer.Init();
             SfEffectsViewRenderer.Init();  //Initialize only when effects view is added to Listview.
 
             LoadApplication(new App());

@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="TodaysManna.Views.SettingPage"
+    x:Class="TodaysManna.Views.MccheyneCheckListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:chips="clr-namespace:Xamarin.Forms.Chips;assembly=Xamarin.Forms.Chips"
-    xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
-    xmlns:renderer="clr-namespace:TodaysManna.Renderer"
-    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:w="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
     x:Name="page"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true"
@@ -20,18 +14,11 @@
     Shell.NavBarIsVisible="False">
 
 
-    <Grid
-        Margin="0"
-        Padding="0"
-        ColumnSpacing="0"
-        RowSpacing="0">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="43" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
-
         <StackLayout
             Grid.Row="0"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
@@ -39,37 +26,34 @@
             Orientation="Vertical"
             Spacing="0"
             VerticalOptions="StartAndExpand">
-            <Grid Margin="0" Padding="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button
-                    Grid.Column="0"
-                    Margin="15,0,0,0"
+            <StackLayout
+                Padding="15,0,15,0"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+                <ImageButton
+                    Margin="0"
+                    BackgroundColor="Transparent"
+                    BorderWidth="0"
                     Clicked="Button_Clicked"
-                    HorizontalOptions="Start"
-                    Text="back"
+                    HorizontalOptions="StartAndExpand"
+                    Source="ic_left"
                     VerticalOptions="Center" />
                 <Label
-                    Grid.Column="1"
                     BackgroundColor="Transparent"
                     FontAttributes="Bold"
-                    FontSize="15"
+                    FontSize="20"
                     HorizontalOptions="Center"
-                    Text="맥체인 체크리스트"
+                    Text="체크 리스트"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
-                    VerticalOptions="CenterAndExpand" />
-            </Grid>
+                    VerticalOptions="Center" />
+                <BoxView HorizontalOptions="EndAndExpand" />
+            </StackLayout>
 
             <BoxView
                 Margin="0"
+                BackgroundColor="Transparent"
                 HeightRequest="1"
                 Color="LightGray" />
         </StackLayout>
@@ -79,8 +63,7 @@
             x:Name="collectionView"
             Grid.Row="1"
             Margin="0"
-            ItemsSource="{Binding MccheyneCheckList}"
-            Scrolled="OnCollectionViewScrolled">
+            ItemsSource="{Binding MccheyneCheckList}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10,15,10,20">
@@ -187,3 +170,35 @@
 
 
 
+
+
+<!--<Grid Margin="0" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Button
+                    Grid.Column="0"
+                    Margin="15,0,0,0"
+                    Clicked="Button_Clicked"
+                    HorizontalOptions="Start"
+                    Text="back"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    Text="맥체인 체크리스트"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>-->

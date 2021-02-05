@@ -2,18 +2,14 @@
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms;
 using TodaysManna.ViewModel;
-using Syncfusion.XForms.Buttons;
-using TodaysManna.Models;
 using System.Linq;
 using System;
-using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace TodaysManna.Views
 {
-    public partial class SettingPage : ContentPage
+    public partial class MccheyneCheckListPage : ContentPage
     {
-        public SettingPage(/*MccheyneCheckViewModel mccheyneCheckViewModel*/)
+        public MccheyneCheckListPage(/*MccheyneCheckViewModel mccheyneCheckViewModel*/)
         {
             //On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
          
@@ -32,16 +28,6 @@ namespace TodaysManna.Views
         protected override void OnAppearing()
         {
             ScrollToToday();
-        }
-        void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-            //Debug.WriteLine("HorizontalDelta: " + e.HorizontalDelta);
-            //Debug.WriteLine("VerticalDelta: " + e.VerticalDelta);
-            //Debug.WriteLine("HorizontalOffset: " + e.HorizontalOffset);
-            //Debug.WriteLine("VerticalOffset: " + e.VerticalOffset);
-            //Debug.WriteLine("FirstVisibleItemIndex: " + e.FirstVisibleItemIndex);
-            //Debug.WriteLine("CenterItemIndex: " + e.CenterItemIndex);
-            //Debug.WriteLine("LastVisibleItemIndex: " + e.LastVisibleItemIndex);
         }
         protected override void OnBindingContextChanged()
         {

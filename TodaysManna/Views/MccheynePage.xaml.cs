@@ -1,26 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
 using System.Linq;
-using Xamarin.Forms.Internals;
-using System.Diagnostics;
 using TodaysManna.Models;
 using Xamarin.Essentials;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using ListView = Xamarin.Forms.ListView;
 
 namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
-        //private readonly double rightY;
-        //private readonly double rightX;
-
-        //private readonly double leftY;
-        //private readonly double leftX;
-
         private readonly double gridX;
         private readonly double gridY;
 
@@ -35,12 +24,6 @@ namespace TodaysManna.Views
 
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
-
-            //rightY = rightImageButton.TranslationY;
-            //rightX = rightImageButton.TranslationX;
-
-            //leftY = leftImageButton.TranslationY;
-            //leftX = leftImageButton.TranslationX;
 
             todayLabel.Text = DateTime.Now.ToString("M월d일");
 
@@ -161,23 +144,6 @@ namespace TodaysManna.Views
             flag = 4;
         }
 
-        //private static DateTime GetCorrectDateLeapYear(DateTime newDate)
-        //{
-        //    var dateNow = newDate;
-        //    DateTime thisDate = dateNow;
-        //   // DateTime lastDay = newDate.AddMonths(1).AddDays(0 - newDate.Day);
-        //    if (DateTime.IsLeapYear(dateNow.Year) && ((dateNow.Month == 2 && dateNow.Day > 28) || (dateNow.Month > 2)))
-        //    {
-        //        thisDate = thisDate.AddDays(1);
-        //        if (dateNow.Month == 12 && dateNow.Day == 31)
-        //        {
-        //            thisDate = dateNow;
-        //        }
-        //    }
-
-        //    return thisDate;
-        //}
-
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             (BindingContext as MccheyneViewModel).today = e.NewDate.ToString("M_d");
@@ -193,7 +159,6 @@ namespace TodaysManna.Views
         private void OnTodayButtonClicked(object sender, EventArgs e)
         {
             datepicker.Date = DateTime.Now;
-        //    (BindingContext as MccheyneViewModel).GetMccheyne();
         }
 
         private void OnDateButtonClicked(object sender, EventArgs e)
@@ -203,36 +168,15 @@ namespace TodaysManna.Views
 
         private void OnListViewScrolled(object sender, ScrolledEventArgs e)
         {
-            //Debug.WriteLine("e.ScrollY: " + e.ScrollY);
-            //scrolled down
             if (previousScrollPosition < e.ScrollY)
             {
-
-                //leftImageButton.TranslateTo(leftX, 70, 250, Easing.CubicOut);
-                //centerFrame.TranslateTo(leftX, 70, 250, Easing.CubicOut);
-                //rightImageButton.TranslateTo(rightX, 70, 250, Easing.CubicOut);
-
-
-                //leftImageButton.FadeTo(0, 150);
-                //centerFrame.FadeTo(0, 150);
-                //rightImageButton.FadeTo(0, 150);
-
                 bottomGrid.TranslateTo(gridX, 70, 250, Easing.CubicOut);
                 bottomGrid.FadeTo(0, 150);
 
                 previousScrollPosition = e.ScrollY;
             }
-            //scrolled up
             else
             {
-                //leftImageButton.Opacity = 1;
-                //centerFrame.Opacity = 1;
-                //rightImageButton.Opacity = 1;
-
-                //leftImageButton.TranslateTo(leftX, leftY, 200, Easing.CubicOut);
-                //centerFrame.TranslateTo(leftX, leftY, 200, Easing.CubicOut);
-                //rightImageButton.TranslateTo(rightX, rightY, 200, Easing.CubicOut);
-
                 bottomGrid.Opacity = 1;
                 bottomGrid.TranslateTo(gridX, gridY, 200, Easing.CubicOut);
 
@@ -251,11 +195,6 @@ namespace TodaysManna.Views
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
 
-            //await Share.RequestAsync(new ShareTextRequest
-            //{
-            //    Text = shareRangeString,
-            //    Title = "공유"
-            //});
             ((ListView)sender).SelectedItem = null;
         }
 
@@ -264,13 +203,11 @@ namespace TodaysManna.Views
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
             await DisplayAlert("클립보드에 복사됨", address, "확인");
-
-            // await Browser.OpenAsync(new Uri($"mailto:{address}"), BrowserLaunchMode.External);
         }
 
         private async void checkButton_Clicked(System.Object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new SettingPage());
+            await Navigation.PushAsync(new MccheyneCheckListPage());
         }
     }
 }
