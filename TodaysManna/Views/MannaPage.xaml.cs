@@ -29,20 +29,12 @@ namespace TodaysManna.Views
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
-            //  await PopupNavigation.Instance.PushAsync(popupPage);
-
             await rangeButton.ScaleTo(0.8, 150);
             var shareText = allRangeLabel.Text;
             await Clipboard.SetTextAsync(shareText);
             await DisplayAlert("클립보드에 복사됨", shareText, "확인");
 
             await rangeButton.ScaleTo(1, 150);
-
-            //await Share.RequestAsync(new ShareTextRequest
-            //{
-            //    Text = allRangeLabel.Text,
-            //    Title = "공유"
-            //});
         }
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
@@ -94,50 +86,8 @@ namespace TodaysManna.Views
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
 
-            //await Share.RequestAsync(new ShareTextRequest
-            //{
-            //    Text = shareRangeString,
-            //    Title = "공유"
-            //});
             ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
             ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
         }
-
-        //private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
-        //{
-        //    var view = sender as CollectionView;
-        //    if (view.SelectedItem == null) return;
-        //    if (e.CurrentSelection.FirstOrDefault() == null) return;
-
-        //    var manna = e.CurrentSelection.FirstOrDefault() as MannaContent;
-
-        //    var verseText = verse.Text;
-
-        //    string tmpRangeString = "";
-        //    try
-        //    {
-        //        tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
-        //    }
-        //    catch(NullReferenceException error)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine(error.Message);
-        //    }
-
-
-        //    var shareRangeString = $"({tmpRangeString}:{manna.Number}){manna.MannaString}";
-
-        //    //await Share.RequestAsync(new ShareTextRequest
-        //    //{
-        //    //    Text = shareRangeString,
-        //    //    Title = "공유"
-        //    //});
-        //    await Clipboard.SetTextAsync(shareRangeString);
-        //    await DisplayAlert("클립보드 복사됨", null, "확인");
-
-        //    if (view.SelectedItem != null)
-        //    {
-        //        view.SelectedItem = null;
-        //    }
-        //}
     }
 }

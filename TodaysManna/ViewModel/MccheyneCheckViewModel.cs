@@ -212,7 +212,7 @@ namespace TodaysManna.ViewModel
             MccheyneCheckRangeList ObjContactList = new MccheyneCheckRangeList();
 
 
-            var assembly = typeof(SettingPage).GetTypeInfo().Assembly;
+            var assembly = typeof(MccheyneCheckListPage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {

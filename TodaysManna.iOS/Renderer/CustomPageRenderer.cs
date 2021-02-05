@@ -4,7 +4,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(SettingPage), typeof(CustomPageRenderer))]
+[assembly: ExportRenderer(typeof(MccheyneCheckListPage), typeof(CustomPageRenderer))]
 namespace TodaysManna.iOS.Renderers
 {
 	public class CustomPageRenderer : PageRenderer, IUIGestureRecognizerDelegate
