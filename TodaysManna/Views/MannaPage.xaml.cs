@@ -13,6 +13,7 @@ namespace TodaysManna.Views
     {
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
         //private static readonly MyPopupPage popupPage = new MyPopupPage();
+        // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
 
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
@@ -22,8 +23,6 @@ namespace TodaysManna.Views
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += OnShareLabelTapped;
             rangeButton.GestureRecognizers.Add(tapGesture);
-
-            // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
         }
 
         private async void OnShareLabelTapped(object sender, EventArgs args)

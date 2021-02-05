@@ -81,6 +81,7 @@
                                 BackgroundColor="Transparent"
                                 Clicked="OnTodayButtonClicked"
                                 Text="오늘로"
+                                TextColor="MediumBlue"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <Label
@@ -175,9 +176,6 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-
-
 
             <Button
                 x:Name="leftImageButton"

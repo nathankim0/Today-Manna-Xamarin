@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 using UserNotifications;
-using Syncfusion.XForms.iOS.EffectsView;
+//using Syncfusion.XForms.iOS.EffectsView;
 using Xamarin.Forms.Platform.iOS;
 
 namespace TodaysManna.iOS
@@ -22,9 +22,9 @@ namespace TodaysManna.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
-            Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
-            SfEffectsViewRenderer.Init();  //Initialize only when effects view is added to Listview.
+            //Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
+            //Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
+            //SfEffectsViewRenderer.Init();  //Initialize only when effects view is added to Listview.
 
             LoadApplication(new App());
 

@@ -35,7 +35,8 @@ namespace TodaysManna.ViewModel
             }
             
         }
-            public ICommand command { get; set; }
+
+        public ICommand command { get; set; }
 
         public MccheyneCheckViewModel()
         {
