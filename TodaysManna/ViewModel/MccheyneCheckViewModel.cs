@@ -67,7 +67,7 @@ namespace TodaysManna.ViewModel
 
         private void SetCheckRangeList()
         {
-            int i = 0;
+            var i = 0;
 
             foreach (var range in mccheyneCheckRangeList)
             {
@@ -134,24 +134,19 @@ namespace TodaysManna.ViewModel
         {
             MccheyneCheckList.ForEach(x =>
             {
-                x.Ranges[0].IsChecked = Preferences.Get(x.Ranges[0]?.Id, false);
+                for(int i = 0; i < 5; i++)
+                {
+                    x.Ranges[i].IsChecked = Preferences.Get(x.Ranges[i]?.Id, false);
+                }
                 x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.SkyBlue : Color.White;
-
-                x.Ranges[1].IsChecked = Preferences.Get(x.Ranges[1]?.Id, false);
                 x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.LightPink : Color.White;
-
-                x.Ranges[2].IsChecked = Preferences.Get(x.Ranges[2]?.Id, false);
                 x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.LightGreen : Color.White;
-
-                x.Ranges[3].IsChecked = Preferences.Get(x.Ranges[3]?.Id, false);
                 x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.Yellow : Color.White;
-
-                x.Ranges[4].IsChecked = Preferences.Get(x.Ranges[4]?.Id, false);
                 x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;
             });
         }
 
-        void SetCheck(string val)
+        private void SetCheck(string val)
         {
             MccheyneCheckList.ForEach(x =>
             {
@@ -191,8 +186,8 @@ namespace TodaysManna.ViewModel
 
         private List<MccheyneCheckRange> GetJsonMccheyneRange()
         {
-            string jsonFileName = "MccheyneRange2.json";
-            MccheyneCheckRangeList ObjContactList = new MccheyneCheckRangeList();
+            const string jsonFileName = "MccheyneRange2.json";
+            var ObjContactList = new MccheyneCheckRangeList();
 
             var assembly = typeof(MccheyneCheckListPage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");

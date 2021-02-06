@@ -76,8 +76,10 @@
                                 TextColor="Gray"
                                 VerticalOptions="CenterAndExpand" />
                             <Button
+                                BackgroundColor="Transparent"
                                 Clicked="OnTodayButtonClicked"
                                 Text="오늘로"
+                                TextColor="#0000EE"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <Label
@@ -195,7 +197,8 @@
                 Clicked="OnLeftButtonClicked"
                 FontSize="40"
                 IsVisible="false"
-                Text="◀" />
+                Text="◀"
+                TextColor="#0000EE" />
             <Frame
                 x:Name="centerFrame"
                 Grid.Column="1"
@@ -220,7 +223,8 @@
                 BackgroundColor="Transparent"
                 Clicked="OnRightButtonClicked"
                 FontSize="40"
-                Text="▶" />
+                Text="▶"
+                TextColor="#0000EE" />
         </Grid>
     </Grid>
 </ContentPage>

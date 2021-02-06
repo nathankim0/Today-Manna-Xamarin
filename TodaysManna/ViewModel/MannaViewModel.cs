@@ -152,10 +152,10 @@ namespace TodaysManna.ViewModel
 
         private async void GetManna()
         {
-            var endporint = Constants.MannaEndpoint;
+            const string endPoint = Constants.MannaEndpoint;
 
             JsonMannaData = new MannaData();
-            JsonMannaData = await _restService.GetMannaDataAsync(endporint);
+            JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
 
             var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
             var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":")+1), "~", "-");
@@ -186,13 +186,13 @@ namespace TodaysManna.ViewModel
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
 
             var newDateString = dateTime.ToString("yyyy-MM-dd");
-            var endporint = Constants.MannaEndpoint+ newDateString;
+            var endPoint = Constants.MannaEndpoint+ newDateString;
 
             var findMccheyneDate = dateTime.ToString("M-d");
             todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
 
             JsonMannaData = new MannaData();
-            JsonMannaData = await _restService.GetMannaDataAsync(endporint);
+            JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
 
             var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
             var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
@@ -217,8 +217,8 @@ namespace TodaysManna.ViewModel
 
         private List<Bible> GetJsonBible()
         {
-            string jsonFileName = "BibleAt.json";
-            BibleList ObjContactList = new BibleList();
+            var jsonFileName = "BibleAt.json";
+            var ObjContactList = new BibleList();
 
 
             var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
@@ -257,8 +257,8 @@ namespace TodaysManna.ViewModel
 
         private List<MccheyneRange> GetJsonMccheyneRange()
         {
-            string jsonFileName = "MccheyneRange.json";
-            MccheyneRangeList ObjContactList = new MccheyneRangeList();
+            var jsonFileName = "MccheyneRange.json";
+            var ObjContactList = new MccheyneRangeList();
 
 
             var assembly = typeof(MannaPage).GetTypeInfo().Assembly;

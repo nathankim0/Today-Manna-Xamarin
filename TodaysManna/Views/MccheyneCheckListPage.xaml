@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
     x:Name="page"
     Title="체크리스트"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
@@ -14,16 +15,34 @@
     NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
 
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                FontSize="Subtitle"
+                HorizontalOptions="CenterAndExpand"
+                Text="체크리스트"
+                VerticalOptions="Center" />
+            <Button
+                BackgroundColor="Transparent"
+                Clicked="OnOptionClicked"
+                HorizontalOptions="End"
+                Text="옵션"
+                TextColor="#0000EE"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <CollectionView
             x:Name="collectionView"
             Margin="0"
             ItemsSource="{Binding MccheyneCheckList}">
+            <CollectionView.Header />
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10,10,10,10">
@@ -123,12 +142,12 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button
+        <!--<Button
             Padding="10"
             Clicked="OnScrollToToday"
             FontSize="30"
             HorizontalOptions="End"
             Text="오늘로"
-            VerticalOptions="End" />
+            VerticalOptions="End" />-->
     </Grid>
 </ContentPage>
