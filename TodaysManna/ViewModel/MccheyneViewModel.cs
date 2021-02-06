@@ -16,9 +16,9 @@ namespace TodaysManna.ViewModel
 {
     public class MccheyneViewModel : INotifyPropertyChanged
     {
-        public string today;
+        public string Today;
 
-        public ObservableCollection<MccheyneContent> _mccheyneContents1 = new ObservableCollection<MccheyneContent>();
+        private ObservableCollection<MccheyneContent> _mccheyneContents1 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents1
         {
             get
@@ -27,7 +27,7 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        public ObservableCollection<MccheyneContent> _mccheyneContents2 = new ObservableCollection<MccheyneContent>();
+        private ObservableCollection<MccheyneContent> _mccheyneContents2 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents2
         {
             get
@@ -36,7 +36,7 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        public ObservableCollection<MccheyneContent> _mccheyneContents3 = new ObservableCollection<MccheyneContent>();
+        private ObservableCollection<MccheyneContent> _mccheyneContents3 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents3
         {
             get
@@ -45,7 +45,7 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        public ObservableCollection<MccheyneContent> _mccheyneContents4 = new ObservableCollection<MccheyneContent>();
+        private ObservableCollection<MccheyneContent> _mccheyneContents4 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents4
         {
             get
@@ -115,7 +115,7 @@ namespace TodaysManna.ViewModel
         public static DateTime GetCorrectDateLeapYear(DateTime newDate)
         {
             var dateNow = newDate;
-            DateTime thisDate = dateNow;
+            var thisDate = dateNow;
             if (DateTime.IsLeapYear(dateNow.Year) && ((dateNow.Month == 2 && dateNow.Day > 28) || (dateNow.Month > 2)))
             {
                 thisDate = thisDate.AddDays(1);
@@ -310,10 +310,10 @@ namespace TodaysManna.ViewModel
         }
 
 
-        private List<Days> GetJsonBible()
+        private IEnumerable<Days> GetJsonBible()
         {
-            string jsonFileName = "mcc.json";
-            MccheyneList ObjContactList = new MccheyneList();
+            var jsonFileName = "mcc.json";
+            var ObjContactList = new MccheyneList();
 
             var assembly = typeof(MccheynePage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
@@ -329,29 +329,10 @@ namespace TodaysManna.ViewModel
 
         public void GetMccheyneRange(DateTime thisDate)
         {
-            var _thisDate = thisDate.ToString("M-d");
-            VerseRange = MannaViewModel.mccheyneRanges.Find(x => x.Date.Equals(_thisDate)).Range;
+            var date = thisDate.ToString("M-d");
+            VerseRange = MannaViewModel.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
         }
-
-        //private List<MccheyneRange> GetJsonMccheyneRange()
-        //{
-        //    string jsonFileName = "MccheyneRange.json";
-        //    MccheyneRangeList ObjContactList = new MccheyneRangeList();
-
-
-        //    var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-        //    var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
-        //    using (var reader = new StreamReader(stream))
-        //    {
-        //        var jsonString = reader.ReadToEnd();
-
-        //        //Converting JSON Array Objects into generic list    
-        //        ObjContactList = JsonConvert.DeserializeObject<MccheyneRangeList>(jsonString);
-        //    }
-
-        //    return ObjContactList.Ranges;
-        //}
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

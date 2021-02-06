@@ -49,12 +49,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DatePicker
-            x:Name="mannaDatepicker"
-            BackgroundColor="Transparent"
-            DateSelected="mannaDatepicker_DateSelected"
-            IsVisible="false" />
-
         <CollectionView
             x:Name="mannaCollectionView"
             Margin="15,0,15,0"
@@ -73,8 +67,10 @@
                             TextColor="Gray"
                             VerticalOptions="CenterAndExpand" />
                         <Button
+                            BackgroundColor="Transparent"
                             Clicked="OnMannaTodayButtonClicked"
                             Text="오늘로"
+                            TextColor="#0000EE"
                             VerticalOptions="CenterAndExpand" />
                     </StackLayout>
                     <yummy:PancakeView
@@ -157,6 +153,23 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <BoxView
+            x:Name="backgroundBoxView"
+            Grid.Row="0"
+            BackgroundColor="#30000000"
+            IsVisible="false">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <DatePicker
+            x:Name="mannaDatepicker"
+            BackgroundColor="Transparent"
+            DateSelected="mannaDatepicker_DateSelected"
+            IsVisible="false"
+            Unfocused="datepicker_Unfocused" />
 
     </Grid>
 </ContentPage>

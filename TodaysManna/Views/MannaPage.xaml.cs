@@ -92,6 +92,7 @@ namespace TodaysManna.Views
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
+            backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
         }
 
@@ -102,6 +103,17 @@ namespace TodaysManna.Views
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
             mannaDatepicker.Date = DateTime.Now;
+        }
+
+        private void OnBackgroundTapped(object sender, EventArgs e)
+        {
+            backgroundBoxView.IsVisible = false;
+            mannaDatepicker.Unfocus();
+        }
+
+        void datepicker_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            backgroundBoxView.IsVisible = false;
         }
     }
 }

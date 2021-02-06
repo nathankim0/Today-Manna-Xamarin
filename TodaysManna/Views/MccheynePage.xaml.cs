@@ -15,10 +15,8 @@ namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
-
         private readonly double gridX;
         private readonly double gridY;
-
 
         private int flag = 1;
         private double previousScrollPosition = 0;
@@ -150,7 +148,7 @@ namespace TodaysManna.Views
 
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            (BindingContext as MccheyneViewModel).today = e.NewDate.ToString("M_d");
+            (BindingContext as MccheyneViewModel).Today = e.NewDate.ToString("M_d");
             DateTime thisDate = MccheyneViewModel.GetCorrectDateLeapYear(e.NewDate);
 
             (BindingContext as MccheyneViewModel).GetMccheyne(thisDate);

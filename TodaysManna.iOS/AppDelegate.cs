@@ -21,11 +21,9 @@ namespace TodaysManna.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            //Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
-            //Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
-            //SfEffectsViewRenderer.Init();  //Initialize only when effects view is added to Listview.
+            Rg.Plugins.Popup.Popup.Init();
 
+            global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
