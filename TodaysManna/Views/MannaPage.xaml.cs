@@ -18,6 +18,9 @@ namespace TodaysManna.Views
             InitializeComponent();
             BindingContext = mannaViewModel;
 
+            mannaDatepicker.MinimumDate = new DateTime(DateTime.Now.Year, 1, 1);
+            mannaDatepicker.MaximumDate = DateTime.Now;
+
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += OnShareLabelTapped;
             rangeButton.GestureRecognizers.Add(tapGesture);
@@ -84,6 +87,21 @@ namespace TodaysManna.Views
 
             ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
             ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+        }
+
+
+        private void OnMannaDateButtonClicked(object sender, EventArgs e)
+        {
+            mannaDatepicker.Focus();
+        }
+
+        void mannaDatepicker_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        {
+            mannaViewModel.GetManna(e.NewDate);
+        }
+        private void OnMannaTodayButtonClicked(object sender, EventArgs e)
+        {
+            mannaDatepicker.Date = DateTime.Now;
         }
     }
 }

@@ -152,9 +152,10 @@ namespace TodaysManna.ViewModel
 
         private async void GetManna()
         {
+            var endporint = Constants.MannaEndpoint;
 
             JsonMannaData = new MannaData();
-            JsonMannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
+            JsonMannaData = await _restService.GetMannaDataAsync(endporint);
 
             var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
             var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":")+1), "~", "-");
@@ -172,8 +173,42 @@ namespace TodaysManna.ViewModel
             _completeUrl = $"{bibleUrl}{redirectUrl}";
             _completeAppUrl= $"{appBibleUrl}{redirectUrl}";
 
-            //System.Diagnostics.Debug.WriteLine($"**** web url : {_completeUrl}");
-            //System.Diagnostics.Debug.WriteLine($"**** app url : {_completeAppUrl}");
+            SetMannaContents();
+            ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
+        }
+
+        /// <summary>
+        /// 서버에서 만나 데이터 가져오기
+        /// </summary>
+        /// <param name="dateTime">지정 날짜</param>
+        public async void GetManna(DateTime dateTime)
+        {
+            Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
+
+            var newDateString = dateTime.ToString("yyyy-MM-dd");
+            var endporint = Constants.MannaEndpoint+ newDateString;
+
+            var findMccheyneDate = dateTime.ToString("M-d");
+            todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
+
+            JsonMannaData = new MannaData();
+            JsonMannaData = await _restService.GetMannaDataAsync(endporint);
+
+            var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
+            var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
+
+            _bib = Regex.Replace(tmpBibleAt, @"\d", "");
+            _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
+
+            var _bibles = new List<Bible>();
+            _bibles = GetJsonBible();
+
+            var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
+
+            var redirectUrl = $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
+
+            _completeUrl = $"{bibleUrl}{redirectUrl}";
+            _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
 
             SetMannaContents();
             ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
@@ -201,6 +236,7 @@ namespace TodaysManna.ViewModel
 
         private void SetMannaContents()
         {
+            MannaContents.Clear();
             var allContents = "";
 
             foreach (var node in JsonMannaData.Contents)

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="만나"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
@@ -34,9 +35,9 @@
                 Margin="0,0,5,0"
                 Padding="8"
                 BackgroundColor="Transparent"
-                Clicked="OnShareButtonClicked"
+                Clicked="OnMannaDateButtonClicked"
                 HorizontalOptions="End"
-                Source="share"
+                Source="ic_dateselect"
                 VerticalOptions="Center"
                 WidthRequest="40" />
         </StackLayout>
@@ -47,6 +48,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <DatePicker
+            x:Name="mannaDatepicker"
+            BackgroundColor="Transparent"
+            DateSelected="mannaDatepicker_DateSelected"
+            IsVisible="false" />
 
         <CollectionView
             x:Name="mannaCollectionView"
@@ -59,15 +66,20 @@
             VerticalScrollBarVisibility="Always">
             <CollectionView.Header>
                 <StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <Label
-                        x:Name="today"
-                        Padding="0,14,0,14"
-                        Text="{Binding Today}"
-                        TextColor="Gray" />
-
+                    <StackLayout Padding="0,0,0,10" Orientation="Horizontal">
+                        <Label
+                            x:Name="today"
+                            Text="{Binding Today}"
+                            TextColor="Gray"
+                            VerticalOptions="CenterAndExpand" />
+                        <Button
+                            Clicked="OnMannaTodayButtonClicked"
+                            Text="오늘로"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
                     <yummy:PancakeView
                         x:Name="rangeButton"
-                        Margin="0,0,0,15"
+                        Margin="0,0,0,10"
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
                         CornerRadius="10">
@@ -89,13 +101,27 @@
                             TextColor="White"
                             VerticalOptions="Center" />
                     </yummy:PancakeView>
-                    <Label
-                        x:Name="verse"
-                        FontAttributes="Bold"
-                        FontSize="Subtitle"
-                        Text="{Binding JsonMannaData.Verse}"
-                        TextColor="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            x:Name="verse"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding JsonMannaData.Verse}"
+                            TextColor="{AppThemeBinding Dark=White,
+                                                        Light=Black}"
+                            VerticalOptions="CenterAndExpand" />
+
+                        <ImageButton
+                            Margin="0,0,5,0"
+                            Padding="8"
+                            BackgroundColor="Transparent"
+                            Clicked="OnShareButtonClicked"
+                            HorizontalOptions="End"
+                            Source="share"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="40" />
+                    </StackLayout>
                 </StackLayout>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
