@@ -5,6 +5,8 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
+    android:TabbedPage.IsSwipePagingEnabled="False"
+    android:TabbedPage.OffscreenPageLimit="2"
     android:TabbedPage.ToolbarPlacement="Bottom"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true">

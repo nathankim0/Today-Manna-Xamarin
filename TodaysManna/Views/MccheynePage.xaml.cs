@@ -1,36 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
 using System.Linq;
+using Xamarin.Forms.Internals;
+using System.Diagnostics;
 using TodaysManna.Models;
 using Xamarin.Essentials;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using ListView = Xamarin.Forms.ListView;
 
 namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
+
         private readonly double gridX;
         private readonly double gridY;
 
-        private readonly double dateGridX;
-        private readonly double dateGridY;
 
         private int flag = 1;
         private double previousScrollPosition = 0;
 
-        public MccheynePage(/*MccheyneViewModel mccheyneViewModel*/)
+        public MccheynePage()
         {
             InitializeComponent();
-            BindingContext = new MccheyneViewModel();//mccheyneViewModel;
+            BindingContext = new MccheyneViewModel();
 
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
-
-            //dateGridX = dateGrid.TranslationX;
-            //dateGridY = dateGrid.TranslationY;
-
-            //todayLabel.Text = DateTime.Now.ToString("M월d일");
 
             var leftSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Left };
             var rightSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right };
@@ -156,9 +155,6 @@ namespace TodaysManna.Views
 
             (BindingContext as MccheyneViewModel).GetMccheyne(thisDate);
             (BindingContext as MccheyneViewModel).GetMccheyneRange(thisDate);
-
-            //todayLabel.Text = e.NewDate.ToString("M월d일");
-
         }
 
         private void OnTodayButtonClicked(object sender, EventArgs e)
@@ -168,6 +164,7 @@ namespace TodaysManna.Views
 
         private void OnDateButtonClicked(object sender, EventArgs e)
         {
+            backgroundBoxView.IsVisible = true;
             datepicker.Focus();
         }
 
@@ -175,10 +172,6 @@ namespace TodaysManna.Views
         {
             if (previousScrollPosition < e.ScrollY)
             {
-                //dateGrid.TranslateTo(gridX, -50, 250, Easing.CubicOut);
-                //dateGrid.FadeTo(0, 150);
-                //dateGrid.IsVisible = false;
-
                 bottomGrid.TranslateTo(gridX, 70, 250, Easing.CubicOut);
                 bottomGrid.FadeTo(0, 150);
 
@@ -186,16 +179,11 @@ namespace TodaysManna.Views
             }
             else
             {
-                //dateGrid.IsVisible = true;
-                //dateGrid.Opacity = 1;
-                //dateGrid.TranslateTo(gridX, gridY, 200, Easing.CubicOut);
-
                 bottomGrid.Opacity = 1;
                 bottomGrid.TranslateTo(gridX, gridY, 200, Easing.CubicOut);
 
                 if (Convert.ToInt16(e.ScrollY) == 0)
                     previousScrollPosition = 0;
-
             }
         }
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -211,16 +199,28 @@ namespace TodaysManna.Views
             ((ListView)sender).SelectedItem = null;
         }
 
-        private async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        private async void OnReportTapped(System.Object sender, System.EventArgs e)
         {
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
             await DisplayAlert("클립보드에 복사됨", address, "확인");
         }
 
-        private async void checkButton_Clicked(System.Object sender, System.EventArgs e)
+        private async void OnCheckButtonClicked(System.Object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new MccheyneCheckListPage());
         }
+
+        private void OnBackgroundTapped(object sender, EventArgs e)
+        {
+            backgroundBoxView.IsVisible = false;
+            datepicker.Unfocus();
+        }
+
+        void datepicker_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            backgroundBoxView.IsVisible = false;
+        }
+
     }
 }

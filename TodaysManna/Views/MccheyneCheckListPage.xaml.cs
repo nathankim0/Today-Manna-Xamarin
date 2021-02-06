@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using TodaysManna.ViewModel;
 using System.Linq;
 using System;
+using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace TodaysManna.Views
 {
@@ -12,7 +13,6 @@ namespace TodaysManna.Views
         public MccheyneCheckListPage(/*MccheyneCheckViewModel mccheyneCheckViewModel*/)
         {
             //On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
-         
             InitializeComponent();
             BindingContext = new MccheyneCheckViewModel();// mccheyneCheckViewModel;
         }
@@ -29,12 +29,15 @@ namespace TodaysManna.Views
         {
             ScrollToToday();
         }
-        protected override void OnBindingContextChanged()
+        private void OnScrollToToday(System.Object sender, System.EventArgs e)
         {
-            if(!(BindingContext is MccheyneCheckViewModel)) { return; }
-            base.OnBindingContextChanged();
             ScrollToToday();
-
         }
+        //protected override void OnBindingContextChanged()
+        //{
+        //    if(!(BindingContext is MccheyneCheckViewModel)) { return; }
+        //    base.OnBindingContextChanged();
+        //    ScrollToToday();
+        //}
     }
 }
