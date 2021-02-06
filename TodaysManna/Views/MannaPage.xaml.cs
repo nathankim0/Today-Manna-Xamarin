@@ -12,8 +12,6 @@ namespace TodaysManna.Views
     public partial class MannaPage : ContentPage
     {
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
-        //private static readonly MyPopupPage popupPage = new MyPopupPage();
-        // UIApplication.SharedApplication.ApplicationIconBadgeNumber = -1;
 
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {

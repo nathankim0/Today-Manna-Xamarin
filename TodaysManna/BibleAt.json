@@ -19,11 +19,11 @@
     },
     {
       "kor": "신",
-      "eng": "Deut"
+      "eng": "DEU"
     },
     {
       "kor": "수",
-      "eng": "Josh"
+      "eng": "JOS"
     },
     {
       "kor": "삿",
@@ -31,23 +31,23 @@
     },
     {
       "kor": "룻",
-      "eng": "Ruth"
+      "eng": "RUT"
     },
     {
       "kor": "삼상",
-      "eng": "1Sam"
+      "eng": "1SA"
     },
     {
       "kor": "삼하",
-      "eng": "2Sam"
+      "eng": "2SA"
     },
     {
       "kor": "왕상",
-      "eng": "1ki"
+      "eng": "1KI"
     },
     {
       "kor": "왕하",
-      "eng": "2ki"
+      "eng": "2KI"
     },
     {
       "kor": "대상",
@@ -75,11 +75,11 @@
     },
     {
       "kor": "시",
-      "eng": "Ps"
+      "eng": "PSA"
     },
     {
       "kor": "잠",
-      "eng": "Prov"
+      "eng": "PRO"
     },
     {
       "kor": "전",
@@ -87,7 +87,7 @@
     },
     {
       "kor": "아",
-      "eng": "Song"
+      "eng": "SNG"
     },
     {
       "kor": "사",
@@ -115,11 +115,11 @@
     },
     {
       "kor": "욜",
-      "eng": "Joel"
+      "eng": "JOL"
     },
     {
       "kor": "암",
-      "eng": "Amos"
+      "eng": "AMO"
     },
     {
       "kor": "옵",
@@ -163,19 +163,19 @@
     },
     {
       "kor": "막",
-      "eng": "Mark"
+      "eng": "MRK"
     },
     {
       "kor": "눅",
-      "eng": "Luke"
+      "eng": "LUK"
     },
     {
       "kor": "요",
-      "eng": "John"
+      "eng": "JHN"
     },
     {
       "kor": "행",
-      "eng": "Acts"
+      "eng": "ACT"
     },
     {
       "kor": "롬",
@@ -183,11 +183,11 @@
     },
     {
       "kor": "고전",
-      "eng": "1Cor"
+      "eng": "1CO"
     },
     {
       "kor": "고후",
-      "eng": "2Cor"
+      "eng": "2CO"
     },
     {
       "kor": "갈",
@@ -215,11 +215,11 @@
     },
     {
       "kor": "딤전",
-      "eng": "1Tim"
+      "eng": "1TI"
     },
     {
       "kor": "딤후",
-      "eng": "2Tim"
+      "eng": "2TI"
     },
     {
       "kor": "딛",
@@ -227,7 +227,7 @@
     },
     {
       "kor": "몬",
-      "eng": "Philem"
+      "eng": "PHM"
     },
     {
       "kor": "히",
@@ -239,11 +239,11 @@
     },
     {
       "kor": "벧전",
-      "eng": "1Pet"
+      "eng": "1PE"
     },
     {
       "kor": "벧후",
-      "eng": "2Pet"
+      "eng": "2PE"
     },
     {
       "kor": "요일",
@@ -259,7 +259,7 @@
     },
     {
       "kor": "유",
-      "eng": "Jude"
+      "eng": "JUD"
     },
     {
       "kor": "계",

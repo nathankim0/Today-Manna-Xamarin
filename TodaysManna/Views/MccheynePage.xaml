@@ -9,6 +9,7 @@
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                       Light=White}"
+    NavigationPage.BackButtonTitle=""
     NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
 
@@ -17,7 +18,7 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="20"
+                FontSize="Title"
                 HorizontalOptions="Start"
                 Text="맥체인"
                 VerticalOptions="Center" />
@@ -27,7 +28,7 @@
                 Padding="0,0,15,0"
                 BackgroundColor="Transparent"
                 BorderWidth="0"
-                Clicked="checkButton_Clicked"
+                Clicked="OnCheckButtonClicked"
                 HorizontalOptions="EndAndExpand"
                 Source="ic_check"
                 VerticalOptions="Center"
@@ -48,7 +49,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-
         </Grid.RowDefinitions>
 
 
@@ -76,16 +76,13 @@
                                 TextColor="Gray"
                                 VerticalOptions="CenterAndExpand" />
                             <Button
-                                Margin="0"
-                                Padding="0"
-                                BackgroundColor="Transparent"
                                 Clicked="OnTodayButtonClicked"
                                 Text="오늘로"
-                                TextColor="MediumBlue"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <Label
                             FontAttributes="Bold"
+                            FontSize="Subtitle"
                             Text="{Binding VerseRange}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
@@ -107,7 +104,7 @@
                                         Text="&#10;오류 제보&#10;&#10;&#10;&#10;&#10;"
                                         TextColor="Blue">
                                         <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                            <TapGestureRecognizer Tapped="OnReportTapped" />
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>
@@ -123,6 +120,7 @@
 
                             <Label
                                 FontAttributes="Bold"
+                                FontSize="Subtitle"
                                 Text="{Binding HalfVerse}"
                                 TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
@@ -137,12 +135,14 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
+                                    FontSize="Body"
                                     Text="{Binding SecondNumber}"
                                     TextColor="{AppThemeBinding Dark=White,
                                                                 Light=Black}" />
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    FontSize="Body"
                                     LineBreakMode="CharacterWrap"
                                     Text="{Binding Content}"
                                     TextColor="{AppThemeBinding Dark=White,
@@ -156,12 +156,23 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <BoxView
+            x:Name="backgroundBoxView"
+            Grid.Row="0"
+            BackgroundColor="#30000000"
+            IsVisible="false">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
         <DatePicker
             x:Name="datepicker"
             BackgroundColor="Transparent"
             DateSelected="DatePicker_DateSelected"
             Format="D"
-            IsVisible="false" />
+            IsVisible="false"
+            Unfocused="datepicker_Unfocused" />
 
         <Grid
             x:Name="bottomGrid"
@@ -211,33 +222,5 @@
                 FontSize="40"
                 Text="▶" />
         </Grid>
-
     </Grid>
 </ContentPage>
-
-
-<!--<StackLayout
-                Padding="15,0,15,0"
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                  Light=White}">-->
-
-
-<!--<StackLayout>
-        <Grid x:Name="dateGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <StackLayout Grid.Column="0" Orientation="Horizontal">
-                <Label Text="날짜변경: " VerticalOptions="CenterAndExpand" />
-
-            </StackLayout>
-
-        </Grid>
-            </StackLayout>-->

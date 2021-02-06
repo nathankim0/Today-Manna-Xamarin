@@ -1,32 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
 using System.Linq;
-using Xamarin.Forms.Internals;
-using System.Diagnostics;
 using TodaysManna.Models;
 using Xamarin.Essentials;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using ListView = Xamarin.Forms.ListView;
 
 namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
-
+        private double previousScrollPosition = 0;
         private readonly double gridX;
         private readonly double gridY;
 
-
         private int flag = 1;
-        private double previousScrollPosition = 0;
 
-        public MccheynePage()
+        public MccheynePage(/*MccheyneViewModel mccheyneViewModel*/)
         {
             InitializeComponent();
-            BindingContext = new MccheyneViewModel();
+            BindingContext = new MccheyneViewModel();//mccheyneViewModel;
 
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
@@ -164,8 +157,8 @@ namespace TodaysManna.Views
 
         private void OnDateButtonClicked(object sender, EventArgs e)
         {
-            backgroundBoxView.IsVisible = true;
             datepicker.Focus();
+            backgroundBoxView.IsVisible = true;
         }
 
         private void OnListViewScrolled(object sender, ScrolledEventArgs e)
@@ -184,6 +177,7 @@ namespace TodaysManna.Views
 
                 if (Convert.ToInt16(e.ScrollY) == 0)
                     previousScrollPosition = 0;
+
             }
         }
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -199,28 +193,27 @@ namespace TodaysManna.Views
             ((ListView)sender).SelectedItem = null;
         }
 
-        private async void OnReportTapped(System.Object sender, System.EventArgs e)
+        private async void OnReportTapped(object sender, EventArgs e)
         {
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
             await DisplayAlert("클립보드에 복사됨", address, "확인");
         }
 
-        private async void OnCheckButtonClicked(System.Object sender, System.EventArgs e)
+        private async void OnCheckButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MccheyneCheckListPage());
         }
 
-        private void OnBackgroundTapped(object sender, EventArgs e)
+        void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
-            backgroundBoxView.IsVisible = false;
             datepicker.Unfocus();
+            backgroundBoxView.IsVisible = false;
         }
 
         void datepicker_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
         {
             backgroundBoxView.IsVisible = false;
         }
-
     }
 }

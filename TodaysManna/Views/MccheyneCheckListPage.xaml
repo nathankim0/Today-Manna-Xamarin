@@ -10,151 +10,125 @@
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                       Light=White}"
+    NavigationPage.BackButtonTitle=""
     NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
 
 
-    <CollectionView
-        x:Name="collectionView"
-        Grid.Row="1"
-        Margin="0"
-        ItemsSource="{Binding MccheyneCheckList}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Padding="10,10,10,10">
-                    <Label
-                        Padding="5,0,0,0"
-                        FontAttributes="Bold"
-                        FontSize="25"
-                        Text="{Binding Date}"
-                        TextColor="{Binding Ranges[0].DateColor}"
-                        VerticalOptions="CenterAndExpand" />
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-                        <Button
-                            x:Name="b1"
-                            Grid.Column="0"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[0].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[0].Id}"
+        <CollectionView
+            x:Name="collectionView"
+            Margin="0"
+            ItemsSource="{Binding MccheyneCheckList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10,10,10,10">
+                        <Label
+                            Padding="5,0,0,0"
                             FontAttributes="Bold"
-                            FontSize="14"
-                            Text="{Binding Ranges[0].RangeText}"
-                            TextColor="Black" />
-                        <Button
-                            x:Name="b2"
-                            Grid.Column="1"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[1].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[1].Id}"
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            Text="{Binding Ranges[1].RangeText}"
-                            TextColor="Black" />
-                        <Button
-                            x:Name="b3"
-                            Grid.Column="2"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[2].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[2].Id}"
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            Text="{Binding Ranges[2].RangeText}"
-                            TextColor="Black" />
-                        <Button
-                            x:Name="b4"
-                            Grid.Column="3"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[3].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[3].Id}"
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            Text="{Binding Ranges[3].RangeText}"
-                            TextColor="Black" />
-                        <Button
-                            x:Name="b5"
-                            Grid.Column="4"
-                            Margin="0"
-                            Padding="0"
-                            BackgroundColor="{Binding Ranges[4].Color}"
-                            BorderColor="Black"
-                            BorderWidth="1"
-                            Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
-                            CommandParameter="{Binding Ranges[4].Id}"
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            IsVisible="{Binding Range5IsNull}"
-                            Text="{Binding Ranges[4].RangeText}"
-                            TextColor="Black" />
-                    </Grid>
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                            FontSize="25"
+                            Text="{Binding Date}"
+                            TextColor="{Binding Ranges[0].DateColor}"
+                            VerticalOptions="CenterAndExpand" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                x:Name="b1"
+                                Grid.Column="0"
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="{Binding Ranges[0].Color}"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                                CommandParameter="{Binding Ranges[0].Id}"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{Binding Ranges[0].RangeText}"
+                                TextColor="Black" />
+                            <Button
+                                x:Name="b2"
+                                Grid.Column="1"
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="{Binding Ranges[1].Color}"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                                CommandParameter="{Binding Ranges[1].Id}"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{Binding Ranges[1].RangeText}"
+                                TextColor="Black" />
+                            <Button
+                                x:Name="b3"
+                                Grid.Column="2"
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="{Binding Ranges[2].Color}"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                                CommandParameter="{Binding Ranges[2].Id}"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{Binding Ranges[2].RangeText}"
+                                TextColor="Black" />
+                            <Button
+                                x:Name="b4"
+                                Grid.Column="3"
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="{Binding Ranges[3].Color}"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                                CommandParameter="{Binding Ranges[3].Id}"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{Binding Ranges[3].RangeText}"
+                                TextColor="Black" />
+                            <Button
+                                x:Name="b5"
+                                Grid.Column="4"
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="{Binding Ranges[4].Color}"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                Command="{Binding Source={x:Reference page}, Path=BindingContext.command}"
+                                CommandParameter="{Binding Ranges[4].Id}"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                IsVisible="{Binding Range5IsNull}"
+                                Text="{Binding Ranges[4].RangeText}"
+                                TextColor="Black" />
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Padding="10"
+            Clicked="OnScrollToToday"
+            FontSize="30"
+            HorizontalOptions="End"
+            Text="오늘로"
+            VerticalOptions="End" />
+    </Grid>
 </ContentPage>
-
-
-
-
-
-
-
-
-
-
-<!--<Grid Margin="0" Padding="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-
-                <Button
-                    Grid.Column="0"
-                    Margin="15,0,0,0"
-                    Clicked="Button_Clicked"
-                    HorizontalOptions="Start"
-                    Text="back"
-                    VerticalOptions="Center" />
-                <Label
-                    Grid.Column="1"
-                    BackgroundColor="Transparent"
-                    FontAttributes="Bold"
-                    FontSize="15"
-                    HorizontalOptions="Center"
-                    Text="맥체인 체크리스트"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="CenterAndExpand" />
-            </Grid>-->

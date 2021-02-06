@@ -18,7 +18,7 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="20"
+                FontSize="Title"
                 HorizontalOptions="Start"
                 Text="만나"
                 VerticalOptions="Center" />
@@ -46,16 +46,16 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-
         </Grid.RowDefinitions>
 
-
         <CollectionView
+            x:Name="mannaCollectionView"
             Margin="15,0,15,0"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
-            Footer="&#10;&#10;&#10;"
+            Footer="&#10;"
             ItemsSource="{Binding MannaContents}"
+            VerticalOptions="Fill"
             VerticalScrollBarVisibility="Always">
             <CollectionView.Header>
                 <StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
@@ -65,9 +65,34 @@
                         Text="{Binding Today}"
                         TextColor="Gray" />
 
+                    <yummy:PancakeView
+                        x:Name="rangeButton"
+                        Margin="0,0,0,15"
+                        BackgroundGradientEndPoint="0.5,0.0"
+                        BackgroundGradientStartPoint="0.0,0.5"
+                        CornerRadius="10">
+                        <!--<yummy:PancakeView.Shadow>
+                            <yummy:DropShadow Offset="2,2" Color="#000000" />
+                        </yummy:PancakeView.Shadow>-->
+                        <yummy:PancakeView.BackgroundGradientStops>
+                            <yummy:GradientStopCollection>
+                                <yummy:GradientStop Offset="0" Color="LightPink" />
+                                <yummy:GradientStop Offset="1" Color="LightSkyBlue" />
+                            </yummy:GradientStopCollection>
+                        </yummy:PancakeView.BackgroundGradientStops>
+                        <Label
+                            x:Name="allRangeLabel"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding ShareRange}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </yummy:PancakeView>
                     <Label
                         x:Name="verse"
                         FontAttributes="Bold"
+                        FontSize="Subtitle"
                         Text="{Binding JsonMannaData.Verse}"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
@@ -89,12 +114,14 @@
                         <Label
                             Grid.Row="0"
                             Grid.Column="0"
+                            FontSize="Body"
                             Text="{Binding Number}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
+                            FontSize="Body"
                             LineBreakMode="CharacterWrap"
                             Text="{Binding MannaString}"
                             TextColor="{AppThemeBinding Dark=White,
@@ -105,39 +132,5 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <yummy:PancakeView
-            x:Name="rangeButton"
-            BackgroundGradientEndPoint="0.5,0.0"
-            BackgroundGradientStartPoint="0.0,0.5"
-            VerticalOptions="End">
-            <yummy:PancakeView.Shadow>
-                <yummy:DropShadow Offset="2,2" Color="#000000" />
-            </yummy:PancakeView.Shadow>
-            <yummy:PancakeView.BackgroundGradientStops>
-                <yummy:GradientStopCollection>
-                    <yummy:GradientStop Offset="0" Color="LightPink" />
-                    <yummy:GradientStop Offset="1" Color="LightSkyBlue" />
-                </yummy:GradientStopCollection>
-            </yummy:PancakeView.BackgroundGradientStops>
-            <Label
-                x:Name="allRangeLabel"
-                FontSize="16"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                Text="{Binding ShareRange}"
-                TextColor="White"
-                VerticalOptions="Center" />
-        </yummy:PancakeView>
-
     </Grid>
 </ContentPage>
-
-
-<!--<StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}" Spacing="0">
-
-
-        <BoxView
-            Margin="0"
-            HeightRequest="1"
-            Color="LightGray" />
-            </StackLayout>-->

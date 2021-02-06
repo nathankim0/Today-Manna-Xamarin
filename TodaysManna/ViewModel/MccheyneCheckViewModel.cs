@@ -71,13 +71,6 @@ namespace TodaysManna.ViewModel
 
             foreach (var range in mccheyneCheckRangeList)
             {
-                //var dic = new Dictionary<int, string>();
-
-                //dic.Add(1, range.Range1);
-                //dic.Add(2, range.Range2);
-                //dic.Add(3, range.Range3);
-                //dic.Add(4, range.Range4);
-                //dic.Add(5, range.Range5);
                 var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : Color.Default;
                 var range5IsNull = true;
                 if (range.Range5 == "")
@@ -144,33 +137,17 @@ namespace TodaysManna.ViewModel
                 x.Ranges[0].IsChecked = Preferences.Get(x.Ranges[0]?.Id, false);
                 x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.SkyBlue : Color.White;
 
-                //Console.WriteLine("RangeText: " + x.Ranges[0].RangeText);
-                //Console.WriteLine("IsChecked: " + x.Ranges[0].IsChecked);
-
                 x.Ranges[1].IsChecked = Preferences.Get(x.Ranges[1]?.Id, false);
                 x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.LightPink : Color.White;
-
-                //Console.WriteLine("RangeText: " + x.Ranges[1].RangeText);
-                //Console.WriteLine("IsChecked: " + x.Ranges[1].IsChecked);
 
                 x.Ranges[2].IsChecked = Preferences.Get(x.Ranges[2]?.Id, false);
                 x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.LightGreen : Color.White;
 
-                //Console.WriteLine("RangeText: " + x.Ranges[2].RangeText);
-                //Console.WriteLine("IsChecked: " + x.Ranges[2].IsChecked);
-
                 x.Ranges[3].IsChecked = Preferences.Get(x.Ranges[3]?.Id, false);
                 x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.Yellow : Color.White;
 
-                //Console.WriteLine("RangeText: " + x.Ranges[3].RangeText);
-                //Console.WriteLine("IsChecked: " + x.Ranges[3].IsChecked);
-
                 x.Ranges[4].IsChecked = Preferences.Get(x.Ranges[4]?.Id, false);
-
                 x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;
-
-                //Console.WriteLine("RangeText: " + x.Ranges[4].RangeText);
-                //Console.WriteLine("IsChecked: " + x.Ranges[4].IsChecked);
             });
         }
 
@@ -216,7 +193,6 @@ namespace TodaysManna.ViewModel
         {
             string jsonFileName = "MccheyneRange2.json";
             MccheyneCheckRangeList ObjContactList = new MccheyneCheckRangeList();
-
 
             var assembly = typeof(MccheyneCheckListPage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
