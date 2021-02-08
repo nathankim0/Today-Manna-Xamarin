@@ -23,6 +23,8 @@
     <Folder Include="Views\" />
     <Folder Include="Rest\" />
     <Folder Include="Renderer\" />
+    <Folder Include="Datas\" />
+    <Folder Include="Popups\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
