@@ -2,17 +2,13 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using TodaysManna.ViewModel;
-using UIKit;
 using System.Linq;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace TodaysManna.Views
 {
     public partial class MannaPage : ContentPage
     {
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
-
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
             InitializeComponent();
@@ -25,6 +21,7 @@ namespace TodaysManna.Views
             tapGesture.Tapped += OnShareLabelTapped;
             rangeButton.GestureRecognizers.Add(tapGesture);
         }
+        
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {

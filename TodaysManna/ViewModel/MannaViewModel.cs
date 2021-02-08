@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -10,8 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Rg.Plugins.Popup.Services;
 using TodaysManna.Models;
+using TodaysManna.Popups;
 using TodaysManna.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static TodaysManna.Models.BibleAtData;
 using static TodaysManna.Models.MccheyneRangeData;
@@ -21,8 +25,7 @@ namespace TodaysManna.ViewModel
     public class MannaViewModel : INotifyPropertyChanged
     {
         private readonly RestService _restService;
-
-
+        
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
         //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
         private string appBibleUrl = "youversion://bible?reference=";
@@ -129,14 +132,23 @@ namespace TodaysManna.ViewModel
 
             _restService = new RestService();
 
-            try
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                GetManna();
+                try
+                {
+                    GetManna();
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("GetManna() Error");
+                    ShowErrorPopup();
+                }
             }
-            catch
+            else
             {
-                System.Diagnostics.Debug.WriteLine("GetManna() Error");
+                ShowErrorPopup();
             }
+            
             mccheyneRanges = new List<MccheyneRange>();
             try
             {
@@ -149,7 +161,12 @@ namespace TodaysManna.ViewModel
             var today = DateTime.Now.ToString("M-d");
             todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
+        private readonly ErrorPopup errorPopup = new ErrorPopup();
 
+        private async void ShowErrorPopup()
+        {
+            await PopupNavigation.Instance.PushAsync(errorPopup);
+        }
         private async void GetManna()
         {
             const string endPoint = Constants.MannaEndpoint;
@@ -157,24 +174,31 @@ namespace TodaysManna.ViewModel
             JsonMannaData = new MannaData();
             JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
 
-            var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
-            var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":")+1), "~", "-");
+            try
+            {
+                var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
+                var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
 
-            _bib = Regex.Replace(tmpBibleAt, @"\d", "");
-            _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
+                _bib = Regex.Replace(tmpBibleAt, @"\d", "");
+                _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
 
-            var _bibles = new List<Bible>();
-            _bibles = GetJsonBible();
+                var _bibles = new List<Bible>();
+                _bibles = GetJsonBible();
 
-            var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
+                var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
 
-            var redirectUrl= $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
+                var redirectUrl = $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
 
-            _completeUrl = $"{bibleUrl}{redirectUrl}";
-            _completeAppUrl= $"{appBibleUrl}{redirectUrl}";
+                _completeUrl = $"{bibleUrl}{redirectUrl}";
+                _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
 
-            SetMannaContents();
-            ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
+                SetMannaContents();
+                ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
+            }
+            catch(Exception e)
+            {
+                System.Diagnostics.Debug.Fail("GetManna() exception" + e.Message);
+            }
         }
 
         /// <summary>

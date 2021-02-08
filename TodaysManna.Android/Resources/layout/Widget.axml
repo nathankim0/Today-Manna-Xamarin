@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetBackground">
+    <RelativeLayout android:layout_width="72dip">
+        <ImageView
+            android:id="@+id/widgetAnnouncementIcon"
+            android:src="@drawable/announcement" />
+    </RelativeLayout>
+    <LinearLayout>
+        <TextView
+            android:id="@+id/widgetMedium"
+            android:text="HelloAppWidget" />
+        <TextView
+            android:id="@+id/widgetSmall"
+            android:text="Last refresh: 00:00" />
+    </LinearLayout>
+</LinearLayout>

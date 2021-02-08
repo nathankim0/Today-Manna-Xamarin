@@ -148,6 +148,8 @@ namespace TodaysManna.ViewModel
 
         private void SetCheck(string val)
         {
+            HapticFeedback.Perform(HapticFeedbackType.Click);
+
             MccheyneCheckList.ForEach(x =>
             {
                 if (x.Ranges[0].Id == val)

@@ -29,7 +29,7 @@ namespace TodaysManna.Views
         private void ScrollToToday()
         {
             var todayMccheyne = (BindingContext as MccheyneCheckViewModel).MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
-            collectionView.ScrollTo(todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Start, true);
+            collectionView.ScrollTo(todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Center, true);
         }
 
         protected override void OnAppearing()
@@ -96,18 +96,9 @@ namespace TodaysManna.Views
             
         }
 
-        private async void OnOptionClicked(System.Object sender, System.EventArgs e)
+        private async void OnOptionClicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(optionPopup);
         }
-
-
-
-        //protected override void OnBindingContextChanged()
-        //{
-        //    if(!(BindingContext is MccheyneCheckViewModel)) { return; }
-        //    base.OnBindingContextChanged();
-        //    ScrollToToday();
-        //}
     }
 }
