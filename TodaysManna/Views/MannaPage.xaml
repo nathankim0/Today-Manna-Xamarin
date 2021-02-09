@@ -44,7 +44,7 @@
     </NavigationPage.TitleView>
 
 
-    <Grid>
+    <Grid x:Name="contentGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
