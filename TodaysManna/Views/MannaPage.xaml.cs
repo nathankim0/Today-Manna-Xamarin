@@ -9,6 +9,9 @@ namespace TodaysManna.Views
     public partial class MannaPage : ContentPage
     {
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
+        private BottomSheet bottomSheet;
+        private MannaTextClickSheet mannaTextClickSheet;
+
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
             InitializeComponent();
@@ -20,8 +23,40 @@ namespace TodaysManna.Views
             var tapGesture = new TapGestureRecognizer();
             tapGesture.Tapped += OnShareLabelTapped;
             rangeButton.GestureRecognizers.Add(tapGesture);
+
+            bottomSheet = new BottomSheet();
+
+            mannaTextClickSheet = new MannaTextClickSheet();
+            bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(mannaTextClickSheet);
+
+            mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
+            mannaTextClickSheet.sharebuttonClicked += OnTextShareButtonClicked;
+            mannaTextClickSheet.savebuttonClicked += OnSaveButtonClicked;
+
+            contentGrid.Children.Add(bottomSheet);
         }
-        
+
+
+        private async void OnCoppyButtonClicked(object sender, EventArgs e)
+        {
+            await Clipboard.SetTextAsync(shareRangeString);
+            await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
+        }
+
+        private async void OnTextShareButtonClicked(object sender, EventArgs e)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = shareRangeString,
+                Title = "공유"
+            });
+        }
+
+        private void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+
+        }
+
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
@@ -55,7 +90,7 @@ namespace TodaysManna.Views
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }   
         }
-
+        string shareRangeString = "";
         private async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
             var t = sender as Grid;
@@ -77,13 +112,20 @@ namespace TodaysManna.Views
             var num = ((Label)t.Children.ElementAt(0)).Text;
             var manna = ((Label)t.Children.ElementAt(1)).Text;
 
-            var shareRangeString = $"({tmpRangeString}:{num}){manna}";
+            shareRangeString = $"({tmpRangeString}:{num}) {manna}";
 
-            await Clipboard.SetTextAsync(shareRangeString);
-            await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
+            //await Clipboard.SetTextAsync(shareRangeString);
+            //await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
 
-            ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
-            ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+            mannaTextClickSheet.textLabel.Text = shareRangeString;
+
+            bottomSheet.Show();
+
+            bottomSheet.hided += (s, ee) =>
+            {
+                ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
+                ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+            };
         }
 
 

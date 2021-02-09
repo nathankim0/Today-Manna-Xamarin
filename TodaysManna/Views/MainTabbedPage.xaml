@@ -20,11 +20,11 @@
             <local:MccheynePage />
         </x:Arguments>
     </NavigationPage>
-    <!--<NavigationPage Title="체크리스트" IconImageSource="tab_mc">
+    <NavigationPage Title="나의 만나" IconImageSource="tab_mc">
         <x:Arguments>
-            <local:SettingPage />
+            <local:MyPage />
         </x:Arguments>
-    </NavigationPage>-->
+    </NavigationPage>
 </TabbedPage>
 
 <!--<NavigationPage Title="Schedule" IconImageSource="schedule.png">
