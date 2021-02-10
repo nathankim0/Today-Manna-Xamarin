@@ -63,12 +63,14 @@
                     <StackLayout Padding="0,0,0,10" Orientation="Horizontal">
                         <Label
                             x:Name="today"
+                            FontFamily="dotum.ttf"
                             Text="{Binding Today}"
                             TextColor="Gray"
                             VerticalOptions="CenterAndExpand" />
                         <Button
                             BackgroundColor="Transparent"
                             Clicked="OnMannaTodayButtonClicked"
+                            FontFamily="dotum.ttf"
                             Text="오늘로"
                             TextColor="#0000EE"
                             VerticalOptions="CenterAndExpand" />
@@ -90,6 +92,7 @@
                         </yummy:PancakeView.BackgroundGradientStops>
                         <Label
                             x:Name="allRangeLabel"
+                            FontFamily="dotum.ttf"
                             FontSize="16"
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Center"
@@ -101,6 +104,7 @@
                         <Label
                             x:Name="verse"
                             FontAttributes="Bold"
+                            FontFamily="dotum.ttf"
                             FontSize="Subtitle"
                             HorizontalOptions="StartAndExpand"
                             Text="{Binding JsonMannaData.Verse}"
@@ -122,7 +126,7 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Grid.GestureRecognizers>
@@ -136,6 +140,7 @@
                         <Label
                             Grid.Row="0"
                             Grid.Column="0"
+                            FontFamily="dotum.ttf"
                             FontSize="Body"
                             Text="{Binding Number}"
                             TextColor="{AppThemeBinding Dark=White,
@@ -143,11 +148,19 @@
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
-                            FontSize="Body"
+                            FontFamily="dotum.ttf"
                             LineBreakMode="CharacterWrap"
                             Text="{Binding MannaString}"
                             TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
+                                                        Light=Black}">
+                            <Label.FontSize>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="20"
+                                    iOS="14" />
+                            </Label.FontSize>
+
+                        </Label>
                     </Grid>
 
                 </DataTemplate>
