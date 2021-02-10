@@ -72,22 +72,31 @@
                         <!--<BoxView BackgroundColor="Transparent" HeightRequest="10" />-->
                         <StackLayout Orientation="Horizontal">
                             <Label
+                                FontFamily="dotum.ttf"
                                 Text="{Binding DisplayDateRange}"
                                 TextColor="Gray"
                                 VerticalOptions="CenterAndExpand" />
                             <Button
                                 BackgroundColor="Transparent"
                                 Clicked="OnTodayButtonClicked"
+                                FontFamily="dotum.ttf"
                                 Text="오늘로"
                                 TextColor="#0000EE"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <Label
                             FontAttributes="Bold"
-                            FontSize="Subtitle"
+                            FontFamily="dotum.ttf"
                             Text="{Binding VerseRange}"
                             TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
+                                                        Light=Black}">
+                            <Label.FontSize>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="26"
+                                    iOS="20" />
+                            </Label.FontSize>
+                        </Label>
                     </StackLayout>
                 </DataTemplate>
             </ListView.HeaderTemplate>
@@ -122,10 +131,17 @@
 
                             <Label
                                 FontAttributes="Bold"
-                                FontSize="Subtitle"
+                                FontFamily="dotum.ttf"
                                 Text="{Binding HalfVerse}"
                                 TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}" />
+                                                            Light=Black}">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="22"
+                                        iOS="16" />
+                                </Label.FontSize>
+                            </Label>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -144,11 +160,18 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    FontSize="Body"
+                                    FontFamily="dotum.ttf"
                                     LineBreakMode="CharacterWrap"
                                     Text="{Binding Content}"
                                     TextColor="{AppThemeBinding Dark=White,
-                                                                Light=Black}" />
+                                                                Light=Black}">
+                                    <Label.FontSize>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Double"
+                                            Android="20"
+                                            iOS="14" />
+                                    </Label.FontSize>
+                                </Label>
                             </Grid>
                         </StackLayout>
                     </ViewCell>

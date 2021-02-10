@@ -25,6 +25,8 @@
     <Folder Include="Renderer\" />
     <Folder Include="Datas\" />
     <Folder Include="Popups\" />
+    <Folder Include="BottomSheets\" />
+    <Folder Include="Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
@@ -40,6 +42,7 @@
     <None Remove="mcc.json" />
     <None Remove="MccheyneRange.json" />
     <None Remove="MccheyneRange2.json" />
+    <None Remove="Fonts\dotum.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
