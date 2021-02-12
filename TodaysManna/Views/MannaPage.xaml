@@ -90,15 +90,26 @@
                                 <yummy:GradientStop Offset="1" Color="LightSkyBlue" />
                             </yummy:GradientStopCollection>
                         </yummy:PancakeView.BackgroundGradientStops>
-                        <Label
-                            x:Name="allRangeLabel"
-                            FontFamily="dotum.ttf"
-                            FontSize="16"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding ShareRange}"
-                            TextColor="White"
-                            VerticalOptions="Center" />
+                        <StackLayout>
+                            <Label
+                                x:Name="mannaRangeLabel"
+                                FontFamily="dotum.ttf"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding MannaShareRange}"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="mcRangeLabel"
+                                FontFamily="dotum.ttf"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding McShareRange}"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </StackLayout>
                     </yummy:PancakeView>
                     <StackLayout Orientation="Horizontal">
                         <Label
@@ -157,7 +168,7 @@
                                 <OnPlatform
                                     x:TypeArguments="x:Double"
                                     Android="20"
-                                    iOS="14" />
+                                    iOS="18" />
                             </Label.FontSize>
 
                         </Label>
