@@ -33,13 +33,15 @@
 
             <StackLayout>
                 <Label
+                    x:Name="errorLabel"
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
-                    Text="불러오기 오류! 네트워크를 확인해주세요."
+                    Text="오류 발생"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}" />
                 <Button
                     BackgroundColor="Transparent"
+                    Clicked="Button_Clicked"
                     HorizontalOptions="Center"
                     Text="확인"
                     TextColor="{AppThemeBinding Dark=White,

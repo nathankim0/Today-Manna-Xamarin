@@ -169,7 +169,7 @@
                                         <OnPlatform
                                             x:TypeArguments="x:Double"
                                             Android="20"
-                                            iOS="14" />
+                                            iOS="18" />
                                     </Label.FontSize>
                                 </Label>
                             </Grid>

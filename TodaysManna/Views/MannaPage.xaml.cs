@@ -39,6 +39,7 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
+            bottomSheet.Hide();
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
         }
@@ -50,6 +51,7 @@ namespace TodaysManna.Views
                 Text = shareRangeString,
                 Title = "공유"
             });
+            bottomSheet.Hide();
         }
 
         private void OnSaveButtonClicked(object sender, EventArgs e)
@@ -61,7 +63,8 @@ namespace TodaysManna.Views
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
             await rangeButton.ScaleTo(0.8, 150);
-            var shareText = allRangeLabel.Text;
+
+            var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
             await Clipboard.SetTextAsync(shareText);
             await DisplayAlert("클립보드에 복사됨", shareText, "확인");
 
@@ -117,8 +120,8 @@ namespace TodaysManna.Views
             //await Clipboard.SetTextAsync(shareRangeString);
             //await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
 
-            mannaTextClickSheet.textLabel.Text = shareRangeString;
-
+            //mannaTextClickSheet.textLabel.Text = shareRangeString;
+            mannaTextClickSheet.editor.Text = shareRangeString + "\n";
             bottomSheet.Show();
 
             bottomSheet.hided += (s, ee) =>

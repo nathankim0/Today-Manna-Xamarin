@@ -24,6 +24,8 @@ namespace TodaysManna.ViewModel
 {
     public class MannaViewModel : INotifyPropertyChanged
     {
+        private ErrorPopup errorPopup;
+
         private readonly RestService _restService;
         
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
@@ -100,16 +102,30 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        private string _shareRange;
-        public string ShareRange
+        private string _mannaShareRange;
+        public string MannaShareRange
         {
-            get => _shareRange;
+            get => _mannaShareRange;
             set
             {
-                if (_shareRange != value)
+                if (_mannaShareRange != value)
                 {
-                    _shareRange = value;
-                    OnPropertyChanged(nameof(ShareRange));
+                    _mannaShareRange = value;
+                    OnPropertyChanged(nameof(MannaShareRange));
+                }
+            }
+        }
+
+        private string _mcShareRange;
+        public string McShareRange
+        {
+            get => _mcShareRange;
+            set
+            {
+                if (_mcShareRange != value)
+                {
+                    _mcShareRange = value;
+                    OnPropertyChanged(nameof(McShareRange));
                 }
             }
         }
@@ -138,15 +154,15 @@ namespace TodaysManna.ViewModel
                 {
                     GetManna();
                 }
-                catch
+                catch(Exception e)
                 {
-                    System.Diagnostics.Debug.WriteLine("GetManna() Error");
-                    ShowErrorPopup();
+                    System.Diagnostics.Debug.Fail("GetManna() \n" + e.Message);
+                    ShowErrorPopup("만나 불러오기 오류");
                 }
             }
             else
             {
-                ShowErrorPopup();
+                ShowErrorPopup("만나 불러오기 오류");
             }
             
             mccheyneRanges = new List<MccheyneRange>();
@@ -154,17 +170,18 @@ namespace TodaysManna.ViewModel
             {
                 mccheyneRanges = GetJsonMccheyneRange();
             }
-            catch
+            catch(Exception e)
             {
-                System.Diagnostics.Debug.WriteLine("GetJsonMccheyneRange() Error");
+                System.Diagnostics.Debug.Fail("GetJsonMccheyneRange() \n" + e.Message);
+                ShowErrorPopup("맥체인 불러오기 오류");
             }
             var today = DateTime.Now.ToString("M-d");
             todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
-        private readonly ErrorPopup errorPopup = new ErrorPopup();
 
-        private async void ShowErrorPopup()
+        private async void ShowErrorPopup(string message)
         {
+            errorPopup = new ErrorPopup(message);
             await PopupNavigation.Instance.PushAsync(errorPopup);
         }
         private async void GetManna()
@@ -193,11 +210,14 @@ namespace TodaysManna.ViewModel
                 _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
 
                 SetMannaContents();
-                ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
+
+                MannaShareRange = $"만나: {JsonMannaData.Verse}";
+                McShareRange = $"맥체인: {todayMccheyneRange}";
             }
             catch(Exception e)
             {
-                System.Diagnostics.Debug.Fail("GetManna() exception" + e.Message);
+                System.Diagnostics.Debug.Fail("GetManna() \n" + e.Message);
+                ShowErrorPopup("만나 불러오기 오류");
             }
         }
 
@@ -235,7 +255,9 @@ namespace TodaysManna.ViewModel
             _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
 
             SetMannaContents();
-            ShareRange = $"만나: {JsonMannaData.Verse}\n맥체인: {todayMccheyneRange}";
+
+            MannaShareRange = $"만나: {JsonMannaData.Verse}";
+            McShareRange = $"맥체인: {todayMccheyneRange}";
         }
 
 

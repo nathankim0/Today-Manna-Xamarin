@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace TodaysManna
 {
@@ -58,13 +59,13 @@ namespace TodaysManna
                 {
                     0, 1, new Animation(v => BottomSheetContainer.SheetFrame.TranslationY = v,
                         height,
-                        BottomSheetContainer.CurrentY = height/2,
+                        BottomSheetContainer.CurrentY = height*0.2,
                         Easing.CubicOut)
                 }
             }.Commit(this, "VisiblePicker", 10, 400);
         }
 
-        protected async void Hide()
+        public async void Hide()
         {
             var backgroundFadeTask = BackgroundBox.FadeTo(0);
 
@@ -82,6 +83,14 @@ namespace TodaysManna
             IsVisible = false;
 
             hided?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public class BottomSheetPancakeView : PancakeView
+    {
+        public BottomSheetPancakeView()
+        {
+            
         }
     }
 
@@ -105,7 +114,7 @@ namespace TodaysManna
     {
         public event EventHandler BottomSheetPulledDown;
 
-        public readonly BottomSheetFrame SheetFrame;
+        public readonly BottomSheetPancakeView SheetFrame;
         public readonly StackLayout ContentStackLayout;
 
         public double MaxY;
@@ -128,12 +137,12 @@ namespace TodaysManna
                 Spacing = 0
             };
 
-            SheetFrame = new BottomSheetFrame
+            SheetFrame = new BottomSheetPancakeView
             {
-                CornerRadius = new CornerRadius(10,10,0,0),
+                CornerRadius = new CornerRadius(20,20,0,0),
                 IsClippedToBounds = true,
-                HasShadow = false,
                 Padding = 0,
+                BackgroundColor=Color.White,
                 Content = ContentStackLayout
             };
 
