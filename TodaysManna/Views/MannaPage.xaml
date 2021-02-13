@@ -137,7 +137,7 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="0,15,0,15">
+                    <Grid Padding="0,15,0,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Grid.GestureRecognizers>

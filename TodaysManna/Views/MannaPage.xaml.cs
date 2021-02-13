@@ -93,8 +93,25 @@ namespace TodaysManna.Views
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }   
         }
+
         string shareRangeString = "";
-        private async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+
+        //public void OnCollectionViewSelected(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (e.CurrentSelection == null) { return; }
+
+        //    var manna = e.CurrentSelection.FirstOrDefault() as MannaContent;
+        //    shareRangeString = $"({manna.Verse}) {manna.MannaString}";
+
+        //    mannaTextClickSheet.textLabel.Text = shareRangeString;
+        //    mannaTextClickSheet.editor.Text = "";
+
+        //    bottomSheet.Show();
+
+        //    ((CollectionView)sender).SelectedItem = null;
+        //}
+
+        private void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
             var t = sender as Grid;
 
@@ -113,18 +130,15 @@ namespace TodaysManna.Views
             {
                 System.Diagnostics.Debug.WriteLine(error.Message);
             }
+            
             var num = ((Label)t.Children.ElementAt(0)).Text;
             var manna = ((Label)t.Children.ElementAt(1)).Text;
 
             shareRangeString = $"({tmpRangeString}:{num}) {manna}";
 
-            //await Clipboard.SetTextAsync(shareRangeString);
-            //await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
-
             mannaTextClickSheet.textLabel.Text = shareRangeString;
             mannaTextClickSheet.editor.Text = "";
 
-            //mannaTextClickSheet.editor.Text = shareRangeString + "\n";
             bottomSheet.Show();
 
             bottomSheet.hided += (s, ee) =>
