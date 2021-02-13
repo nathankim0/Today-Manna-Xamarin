@@ -284,14 +284,17 @@ namespace TodaysManna.ViewModel
         {
             MannaContents.Clear();
             var allContents = "";
+            var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":")+1);
 
             foreach (var node in JsonMannaData.Contents)
             {
                 var onlyNum = int.Parse(Regex.Replace(node, @"\D", ""));
+                var verse = bookAndJang + onlyNum;
                 var onlyString = Regex.Replace(node, @"\d", "").Substring(1);
 
                 MannaContents.Add(new MannaContent
                 {
+                    Verse = verse,
                     Number = onlyNum,
                     MannaString = onlyString,
                 });
