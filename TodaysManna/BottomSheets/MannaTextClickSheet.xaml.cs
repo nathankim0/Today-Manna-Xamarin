@@ -8,6 +8,7 @@ namespace TodaysManna
         public EventHandler coppybuttonClicked;
         public EventHandler sharebuttonClicked;
         public EventHandler savebuttonClicked;
+        public EventHandler cancelbuttonClicked;
 
         public MannaTextClickSheet()
         {
@@ -25,6 +26,10 @@ namespace TodaysManna
         private void OnSaveButtonClicked(object sender, EventArgs e)
         {
             savebuttonClicked?.Invoke(this, EventArgs.Empty);
+        }
+        private void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            cancelbuttonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="AppDependencies\LocalNotification.cs" />
     <Compile Include="Renderer\WheelTimePickerRenderer.cs" />
     <Compile Include="Renderer\CustomPageRenderer.cs" />
+    <Compile Include="DependencyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

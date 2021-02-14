@@ -14,6 +14,8 @@ namespace TodaysManna.Views
         private MannaTextClickSheet mannaTextClickSheet;
 
         private bool hideFlag = false;
+        private string shareRangeString = "";
+        private int _bottomSheetHidedCount = 0;
 
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
@@ -35,24 +37,19 @@ namespace TodaysManna.Views
             mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
             mannaTextClickSheet.sharebuttonClicked += OnTextShareButtonClicked;
             mannaTextClickSheet.savebuttonClicked += OnSaveButtonClicked;
+            mannaTextClickSheet.cancelbuttonClicked += OnCancelButtonClicked;
 
             contentGrid.Children.Add(bottomSheet);
         }
 
-
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
-            hideFlag = true;
-            bottomSheet.Hide();
             await Clipboard.SetTextAsync(shareRangeString + "\n" + mannaTextClickSheet.editor.Text);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
-            hideFlag = true;
-            bottomSheet.Hide();
-
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = shareRangeString + "\n" + mannaTextClickSheet.editor.Text,
@@ -65,7 +62,12 @@ namespace TodaysManna.Views
             hideFlag = true;
             bottomSheet.Hide();
 
-            if (!await DisplayAlert("저장", "저장하시겠습니까? (취소하면 작성 중인 메모는 사라집니다)", "저장", "취소")) { return; }
+            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+            {
+                bottomSheet.Show();
+                _bottomSheetHidedCount = 0;
+                return;
+            }
 
             var memoItem = new MemoItem
             {
@@ -75,6 +77,11 @@ namespace TodaysManna.Views
             await App.Database.SaveItemAsync(memoItem);
         }
 
+        private void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            hideFlag = true;
+            bottomSheet.Hide();
+        }
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
@@ -109,32 +116,12 @@ namespace TodaysManna.Views
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }   
         }
-
-        string shareRangeString = "";
-
-        //public void OnCollectionViewSelected(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (e.CurrentSelection == null) { return; }
-
-        //    var manna = e.CurrentSelection.FirstOrDefault() as MannaContent;
-        //    shareRangeString = $"({manna.Verse}) {manna.MannaString}";
-
-        //    mannaTextClickSheet.textLabel.Text = shareRangeString;
-        //    mannaTextClickSheet.editor.Text = "";
-
-        //    bottomSheet.Show();
-
-        //    ((CollectionView)sender).SelectedItem = null;
-        //}
-        int cnt = 0;
         private void OnCollectionViewItemTapped(System.Object sender, System.EventArgs e)
         {
-            cnt = 0;
+            _bottomSheetHidedCount = 0;
 
-            var t = sender as Grid;
-
-            ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
-            ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.Underline;
+            var selectedGrid = sender as Grid;
+            SetSelectedItemUnderLined(selectedGrid, true);
 
             var verseText = verse.Text;
 
@@ -148,9 +135,9 @@ namespace TodaysManna.Views
             {
                 System.Diagnostics.Debug.WriteLine(error.Message);
             }
-            
-            var num = ((Label)t.Children.ElementAt(0)).Text;
-            var manna = ((Label)t.Children.ElementAt(1)).Text;
+
+            var num = ((Label)selectedGrid.Children.ElementAt(0)).Text;
+            var manna = ((Label)selectedGrid.Children.ElementAt(1)).Text;
 
             shareRangeString = $"({tmpRangeString}:{num}) {manna}";
 
@@ -158,47 +145,66 @@ namespace TodaysManna.Views
             mannaTextClickSheet.editor.Text = "";
 
             bottomSheet.Show();
-            
+
             bottomSheet.hided += async (s, ee) =>
             {
-                if (cnt > 0) return;
-                cnt++;
+                if (_bottomSheetHidedCount > 0)
+                {
+                    SetSelectedItemUnderLined(selectedGrid, false);
+                    return;
+                }
+                _bottomSheetHidedCount++;
                 System.Diagnostics.Debug.WriteLine("hided colled!");
 
-
-                if (mannaTextClickSheet.editor.Text != "" && !hideFlag)
+                if (mannaTextClickSheet.editor.Text != "")
                 {
-                    if (!await DisplayAlert("경고", "저장 버튼을 누르지 않으면 작성 중인 메모가 사라집니다", "확인", "취소"))
+                    if (!hideFlag)
                     {
-                        bottomSheet.Show();
-                        cnt = 0;
-                        return;
-                    }
-                    else
-                    {
-                        ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
-                        ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+                        if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+                        {
+                            bottomSheet.Show();
+                            _bottomSheetHidedCount = 0;
+                            return;
+                        }
+                        else
+                        {
+                            var memoItem = new MemoItem
+                            {
+                                Verse = shareRangeString,
+                                Note = mannaTextClickSheet.editor.Text
+                            };
+                            await App.Database.SaveItemAsync(memoItem);
+
+                            SetSelectedItemUnderLined(selectedGrid, false);
+                        }
                     }
                 }
                 else
                 {
-                    ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
-                    ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+                    SetSelectedItemUnderLined(selectedGrid, false);
                 }
                 hideFlag = false;
             };
         }
 
+        private static void SetSelectedItemUnderLined(Grid t, bool isUnderLined)
+        {
+            if (isUnderLined)
+            {
+                ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
+                ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.Underline;
+            }
+            else
+            {
+                ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
+                ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+            }
+        }
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
             backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
-        }
-
-        void mannaDatepicker_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
-        {
-            mannaViewModel.GetManna(e.NewDate);
         }
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
@@ -211,7 +217,12 @@ namespace TodaysManna.Views
             mannaDatepicker.Unfocus();
         }
 
-        void datepicker_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        private void OnDateSelected(object sender, DateChangedEventArgs e)
+        {
+            mannaViewModel.GetManna(e.NewDate);
+        }
+
+        private void OnDatepickerUnfocused(object sender, FocusEventArgs e)
         {
             backgroundBoxView.IsVisible = false;
         }
