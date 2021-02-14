@@ -11,29 +11,35 @@
             HeightRequest="5"
             HorizontalOptions="Center"
             WidthRequest="60" />
-        <Label x:Name="textLabel" x:FieldModifier="public" />
 
-        <Editor
-            x:Name="editor"
-            x:FieldModifier="public"
-            HeightRequest="200"
-            HorizontalOptions="FillAndExpand"
-            Placeholder="메모 작성"
-            VerticalOptions="FillAndExpand" />
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label x:Name="textLabel" x:FieldModifier="public" />
 
-        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-            <Button
-                Clicked="OnCoppyButtonClicked"
-                HorizontalOptions="StartAndExpand"
-                Text="복사" />
-            <Button
-                Clicked="OnShareButtonClicked"
-                HorizontalOptions="CenterAndExpand"
-                Text="공유" />
-            <Button
-                Clicked="OnSaveButtonClicked"
-                HorizontalOptions="EndAndExpand"
-                Text="저장" />
-        </StackLayout>
+                <Editor
+                    x:Name="editor"
+                    x:FieldModifier="public"
+                    HeightRequest="150"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="메모 작성"
+                    VerticalOptions="FillAndExpand" />
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                    <Button
+                        Clicked="OnCoppyButtonClicked"
+                        HorizontalOptions="StartAndExpand"
+                        Text="복사" />
+                    <Button
+                        Clicked="OnShareButtonClicked"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="공유" />
+                    <Button
+                        Clicked="OnSaveButtonClicked"
+                        HorizontalOptions="EndAndExpand"
+                        Text="저장" />
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 </ContentView>

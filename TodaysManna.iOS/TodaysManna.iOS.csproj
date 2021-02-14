@@ -133,6 +133,8 @@
     <ImageAsset Include="Assets.xcassets\ic_check.imageset\icons8-tick-box.pdf" />
     <ImageAsset Include="Assets.xcassets\ic_dateselect.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_dateselect.imageset\icons8-calendar.pdf" />
+    <ImageAsset Include="Assets.xcassets\delete.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\delete.imageset\delete.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -178,6 +180,7 @@
     <Folder Include="Assets.xcassets\ic_left.imageset\" />
     <Folder Include="Assets.xcassets\ic_check.imageset\" />
     <Folder Include="Assets.xcassets\ic_dateselect.imageset\" />
+    <Folder Include="Assets.xcassets\delete.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\fa-solid-900.ttf" />

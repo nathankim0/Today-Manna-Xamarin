@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.Views.MyPage_EditMemo"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ScrollView>
+        <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+            <Label
+                FontAttributes="Bold"
+                FontFamily="dotum.ttf"
+                Text="범위"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="20"
+                        iOS="18" />
+                </Label.FontSize>
+            </Label>
+            <Label
+                FontFamily="dotum.ttf"
+                Text="{Binding Verse}"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="16"
+                        iOS="14" />
+                </Label.FontSize>
+            </Label>
+
+
+            <Label
+                Padding="0,15,0,0"
+                FontAttributes="Bold"
+                FontFamily="dotum.ttf"
+                Text="메모"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="20"
+                        iOS="18" />
+                </Label.FontSize>
+            </Label>
+            <Entry
+                FontFamily="dotum.ttf"
+                Text="{Binding Note}"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <Entry.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="16"
+                        iOS="14" />
+                </Entry.FontSize>
+            </Entry>
+
+            <StackLayout
+                Padding="0,15,0,0"
+                Orientation="Horizontal"
+                Spacing="20">
+                <Button Clicked="OnSaveClicked" Text="저장" />
+                <Button Clicked="OnDeleteClicked" Text="삭제" />
+                <Button Clicked="OnCancelClicked" Text="취소" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
