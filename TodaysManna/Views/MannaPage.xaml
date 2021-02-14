@@ -90,7 +90,7 @@
                                 <yummy:GradientStop Offset="1" Color="LightSkyBlue" />
                             </yummy:GradientStopCollection>
                         </yummy:PancakeView.BackgroundGradientStops>
-                        <StackLayout>
+                        <StackLayout Margin="10">
                             <Label
                                 x:Name="mannaRangeLabel"
                                 FontFamily="dotum.ttf"
@@ -98,7 +98,7 @@
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding MannaShareRange}"
-                                TextColor="White"
+                                TextColor="Black"
                                 VerticalOptions="Center" />
                             <Label
                                 x:Name="mcRangeLabel"
@@ -107,7 +107,7 @@
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding McShareRange}"
-                                TextColor="White"
+                                TextColor="Black"
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </yummy:PancakeView>
@@ -139,7 +139,7 @@
                 <DataTemplate>
                     <Grid Padding="0,15,0,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            <TapGestureRecognizer Tapped="OnCollectionViewItemTapped" />
                         </Grid.GestureRecognizers>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

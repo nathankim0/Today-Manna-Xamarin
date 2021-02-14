@@ -3,6 +3,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using TodaysManna.ViewModel;
 using System.Linq;
+using TodaysManna.Models;
 
 namespace TodaysManna.Views
 {
@@ -11,6 +12,8 @@ namespace TodaysManna.Views
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
         private BottomSheet bottomSheet;
         private MannaTextClickSheet mannaTextClickSheet;
+
+        private bool hideFlag = false;
 
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
@@ -39,6 +42,7 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
+            hideFlag = true;
             bottomSheet.Hide();
             await Clipboard.SetTextAsync(shareRangeString + "\n" + mannaTextClickSheet.editor.Text);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
@@ -46,17 +50,29 @@ namespace TodaysManna.Views
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
+            hideFlag = true;
+            bottomSheet.Hide();
+
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = shareRangeString + "\n" + mannaTextClickSheet.editor.Text,
                 Title = "공유"
             });
-            bottomSheet.Hide();
         }
 
-        private void OnSaveButtonClicked(object sender, EventArgs e)
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
+            hideFlag = true;
+            bottomSheet.Hide();
 
+            if (!await DisplayAlert("저장", "저장하시겠습니까? (취소하면 작성 중인 메모는 사라집니다)", "저장", "취소")) { return; }
+
+            var memoItem = new MemoItem
+            {
+                Verse = shareRangeString,
+                Note = mannaTextClickSheet.editor.Text
+            };
+            await App.Database.SaveItemAsync(memoItem);
         }
 
 
@@ -110,9 +126,11 @@ namespace TodaysManna.Views
 
         //    ((CollectionView)sender).SelectedItem = null;
         //}
-
-        private void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        int cnt = 0;
+        private void OnCollectionViewItemTapped(System.Object sender, System.EventArgs e)
         {
+            cnt = 0;
+
             var t = sender as Grid;
 
             ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
@@ -140,11 +158,34 @@ namespace TodaysManna.Views
             mannaTextClickSheet.editor.Text = "";
 
             bottomSheet.Show();
-
-            bottomSheet.hided += (s, ee) =>
+            
+            bottomSheet.hided += async (s, ee) =>
             {
-                ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
-                ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+                if (cnt > 0) return;
+                cnt++;
+                System.Diagnostics.Debug.WriteLine("hided colled!");
+
+
+                if (mannaTextClickSheet.editor.Text != "" && !hideFlag)
+                {
+                    if (!await DisplayAlert("경고", "저장 버튼을 누르지 않으면 작성 중인 메모가 사라집니다", "확인", "취소"))
+                    {
+                        bottomSheet.Show();
+                        cnt = 0;
+                        return;
+                    }
+                    else
+                    {
+                        ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
+                        ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+                    }
+                }
+                else
+                {
+                    ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
+                    ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+                }
+                hideFlag = false;
             };
         }
 
