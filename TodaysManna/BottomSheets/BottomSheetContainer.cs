@@ -81,6 +81,7 @@ namespace TodaysManna
             await Task.WhenAll(new Task[] { backgroundFadeTask, startingTranslateTask, destinationTranslateTask });
 
             IsVisible = false;
+            DependencyService.Get<IKeyboardHelper>().HideKeyboard();
 
             hided?.Invoke(this, EventArgs.Empty);
         }

@@ -47,18 +47,20 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
-            <Entry
+            <Editor
+                AutoSize="TextChanges"
                 FontFamily="dotum.ttf"
+                Placeholder="메모 작성"
                 Text="{Binding Note}"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
-                <Entry.FontSize>
+                <Editor.FontSize>
                     <OnPlatform
                         x:TypeArguments="x:Double"
                         Android="16"
                         iOS="14" />
-                </Entry.FontSize>
-            </Entry>
+                </Editor.FontSize>
+            </Editor>
 
             <StackLayout
                 Padding="0,15,0,0"

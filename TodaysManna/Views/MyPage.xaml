@@ -29,11 +29,13 @@
     <CollectionView
         x:Name="collectionView"
         Margin="15,0,15,0"
+        BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                          Light=White}"
         SelectionChanged="OnCollectionViewSelectionChanged"
         SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <SwipeView Padding="0,10,0,10">
+                <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <SwipeView.RightItems>
                         <SwipeItems>
                             <SwipeItem

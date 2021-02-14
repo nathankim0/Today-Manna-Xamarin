@@ -19,24 +19,17 @@
                 <Editor
                     x:Name="editor"
                     x:FieldModifier="public"
+                    AutoSize="TextChanges"
                     HeightRequest="150"
                     HorizontalOptions="FillAndExpand"
                     Placeholder="메모 작성"
                     VerticalOptions="FillAndExpand" />
 
-                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                    <Button
-                        Clicked="OnCoppyButtonClicked"
-                        HorizontalOptions="StartAndExpand"
-                        Text="복사" />
-                    <Button
-                        Clicked="OnShareButtonClicked"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="공유" />
-                    <Button
-                        Clicked="OnSaveButtonClicked"
-                        HorizontalOptions="EndAndExpand"
-                        Text="저장" />
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <Button Clicked="OnCoppyButtonClicked" Text="복사" />
+                    <Button Clicked="OnShareButtonClicked" Text="공유" />
+                    <Button Clicked="OnSaveButtonClicked" Text="저장" />
+                    <Button Clicked="OnCancelButtonClicked" Text="취소" />
 
                 </StackLayout>
             </StackLayout>

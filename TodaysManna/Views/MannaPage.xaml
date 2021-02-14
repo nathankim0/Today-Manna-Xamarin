@@ -191,9 +191,9 @@
         <DatePicker
             x:Name="mannaDatepicker"
             BackgroundColor="Transparent"
-            DateSelected="mannaDatepicker_DateSelected"
+            DateSelected="OnDateSelected"
             IsVisible="false"
-            Unfocused="datepicker_Unfocused" />
+            Unfocused="OnDatepickerUnfocused" />
 
     </Grid>
 </ContentPage>
