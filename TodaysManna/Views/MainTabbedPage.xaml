@@ -6,7 +6,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     android:TabbedPage.IsSwipePagingEnabled="False"
-    android:TabbedPage.OffscreenPageLimit="2"
+    android:TabbedPage.OffscreenPageLimit="3"
     android:TabbedPage.ToolbarPlacement="Bottom"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true">
@@ -26,12 +26,3 @@
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>
-
-<!--<NavigationPage Title="Schedule" IconImageSource="schedule.png">
-        <x:Arguments>
-            <local:SchedulePage />
-        </x:Arguments>
-    </NavigationPage>
-
-    <local:MannaPage Title="만나" IconImageSource="tab_manna" />
-    <local:MccheynePage Title="맥체인" IconImageSource="tab_mc" />-->

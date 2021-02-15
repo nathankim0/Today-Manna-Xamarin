@@ -268,7 +268,7 @@ namespace TodaysManna.ViewModel
 
 
             var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {
                 var jsonString = reader.ReadToEnd();
@@ -311,7 +311,7 @@ namespace TodaysManna.ViewModel
 
 
             var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {
                 var jsonString = reader.ReadToEnd();

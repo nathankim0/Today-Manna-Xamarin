@@ -37,7 +37,7 @@ namespace TodaysManna.Models
             }
         }
 
-        private Color _color;
+        private Color _color = Color.White;
         public Color Color {
             get => _color;
             set
@@ -50,8 +50,8 @@ namespace TodaysManna.Models
             }
         }
 
-        private Color _dateColor;
-        public Color DateColor
+        private Color _dateColor = Color.Black;
+        public Color DateColor 
         {
             get => _dateColor;
             set
@@ -63,7 +63,7 @@ namespace TodaysManna.Models
                 }
             }
         }
-
+        
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

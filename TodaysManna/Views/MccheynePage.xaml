@@ -194,10 +194,10 @@
         <DatePicker
             x:Name="datepicker"
             BackgroundColor="Transparent"
-            DateSelected="DatePicker_DateSelected"
+            DateSelected="OnDatePickerDateSelected"
             Format="D"
             IsVisible="false"
-            Unfocused="datepicker_Unfocused" />
+            Unfocused="OnDatepickerUnfocused" />
 
         <Grid
             x:Name="bottomGrid"
