@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -40,19 +40,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="BibleAt.json" />
-    <None Remove="mcc.json" />
-    <None Remove="MccheyneRange.json" />
-    <None Remove="MccheyneRange2.json" />
-    <None Remove="Fonts\dotum.ttf" />
+    <None Remove="Datas\BibleAt.json" />
+    <None Remove="Datas\mcc.json" />
+    <None Remove="Datas\MccheyneRange.json" />
+    <None Remove="Datas\MccheyneRange2.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BibleAt.json" />
-    <EmbeddedResource Include="mcc.json" />
-    <EmbeddedResource Include="MccheyneRange.json" />
-    <EmbeddedResource Include="MccheyneRange2.json" />
+    <EmbeddedResource Include="Datas\BibleAt.json" />
+    <EmbeddedResource Include="Datas\mcc.json" />
+    <EmbeddedResource Include="Datas\MccheyneRange.json" />
+    <EmbeddedResource Include="Datas\MccheyneRange2.json" />
   </ItemGroup>
 </Project>

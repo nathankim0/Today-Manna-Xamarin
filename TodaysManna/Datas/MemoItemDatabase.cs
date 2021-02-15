@@ -65,7 +65,6 @@ namespace TodaysManna.Datas
         {
             return Database.DeleteAsync(item);
         }
-
     }
 
     public static class TaskExtensions

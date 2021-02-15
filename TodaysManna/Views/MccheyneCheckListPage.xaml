@@ -32,11 +32,7 @@
                 VerticalOptions="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <ContentPage.Content>
         <CollectionView
             x:Name="collectionView"
             Margin="0"
@@ -44,7 +40,11 @@
             <CollectionView.Header />
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10,10,10,10">
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
                         <Label
                             Padding="5,0,0,0"
                             FontAttributes="Bold"
@@ -52,7 +52,7 @@
                             Text="{Binding Date}"
                             TextColor="{Binding Ranges[0].DateColor}"
                             VerticalOptions="CenterAndExpand" />
-                        <Grid>
+                        <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
@@ -136,17 +136,9 @@
                                 Text="{Binding Ranges[4].RangeText}"
                                 TextColor="Black" />
                         </Grid>
-                    </StackLayout>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <!--<Button
-            Padding="10"
-            Clicked="OnScrollToToday"
-            FontSize="30"
-            HorizontalOptions="End"
-            Text="오늘로"
-            VerticalOptions="End" />-->
-    </Grid>
+    </ContentPage.Content>
 </ContentPage>

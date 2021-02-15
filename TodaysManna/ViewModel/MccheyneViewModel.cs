@@ -316,7 +316,7 @@ namespace TodaysManna.ViewModel
             var ObjContactList = new MccheyneList();
 
             var assembly = typeof(MccheynePage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
 
             using (var reader = new StreamReader(stream))
             {

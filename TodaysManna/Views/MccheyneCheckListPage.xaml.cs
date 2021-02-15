@@ -9,17 +9,18 @@ using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Forms.Xaml;
 
 namespace TodaysManna.Views
 {
     public partial class MccheyneCheckListPage : ContentPage
     {
         private OptionPopup optionPopup;
-        public MccheyneCheckListPage(/*MccheyneCheckViewModel mccheyneCheckViewModel*/)
+        public MccheyneCheckListPage(MccheyneCheckViewModel mccheyneCheckViewModel)
         {
             //On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
             InitializeComponent();
-            BindingContext = new MccheyneCheckViewModel();// mccheyneCheckViewModel;
+            BindingContext = mccheyneCheckViewModel; //new MccheyneCheckViewModel();// mccheyneCheckViewModel;
 
             optionPopup = new OptionPopup();
 
@@ -29,7 +30,7 @@ namespace TodaysManna.Views
         private void ScrollToToday()
         {
             var todayMccheyne = (BindingContext as MccheyneCheckViewModel).MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
-            collectionView.ScrollTo(todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Center, true);
+            collectionView.ScrollTo(todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Center, false);
         }
 
         protected override void OnAppearing()

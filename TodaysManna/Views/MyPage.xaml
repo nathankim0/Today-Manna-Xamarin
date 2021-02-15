@@ -39,11 +39,9 @@
                     <SwipeView.RightItems>
                         <SwipeItems>
                             <SwipeItem
-                                BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                                  Light=White}"
+                                BackgroundColor="Red"
                                 Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
                                 CommandParameter="{Binding}"
-                                IconImageSource="delete.png"
                                 Text="Delete" />
                         </SwipeItems>
                     </SwipeView.RightItems>
@@ -52,9 +50,6 @@
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
                         CornerRadius="15">
-                        <!--<yummy:PancakeView.Shadow>
-                            <yummy:DropShadow Offset="2,2" Color="#000000" />
-                        </yummy:PancakeView.Shadow>-->
                         <yummy:PancakeView.BackgroundGradientStops>
                             <yummy:GradientStopCollection>
                                 <yummy:GradientStop Offset="0" Color="DarkSalmon" />
@@ -80,10 +75,7 @@
                         </StackLayout>
                     </yummy:PancakeView>
                 </SwipeView>
-
-
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
 </ContentPage>
