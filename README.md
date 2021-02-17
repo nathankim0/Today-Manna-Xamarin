@@ -3,6 +3,8 @@
 ![last commit badge](https://img.shields.io/github/last-commit/Jinyeob/Today-Manna-iOS)
 <a href='https://developer.apple.com/kr/'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
 
+<img stc="https://user-images.githubusercontent.com/37360089/108218648-39858d00-7178-11eb-87bf-21f881716e83.gif" width="50%"/>
+
 <p>
    Provides today's Bible scope, verses and M'Cheine scope.<br/>
    You can see also <a href="https://github.com/Jinyeob/Today-Manna-Android" target="_blank">Android</a> version.
