@@ -9,15 +9,18 @@ namespace TodaysManna
 {
     public partial class App : Xamarin.Forms.Application
     {
-        static MemoItemDatabase database;
-        static MccheyneCheckViewModel mccheyneCheckViewModel;
+        private static MemoItemDatabase database;
+
+        public static MccheyneCheckViewModel mccheyneCheckViewModel;
+        public static MccheyneCheckListPage mccheyneCheckListPage;
 
         public App()
         {
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzkyMTQ5QDMxMzgyZTM0MmUzMEp5TmpEcTZabW5hTFBycEp4S2RpRlo0ckxvOHRZMnR1SW0wOFM2c0lSa009");
-            //Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-
             InitializeComponent();
+
+            mccheyneCheckViewModel = new MccheyneCheckViewModel();
+            mccheyneCheckListPage = new MccheyneCheckListPage();
+
             MainPage = new MainTabbedPage();
         }
 
@@ -30,18 +33,6 @@ namespace TodaysManna
                     database = new MemoItemDatabase();
                 }
                 return database;
-            }
-        }
-
-        public static MccheyneCheckViewModel McCheckViewModel
-        {
-            get
-            {
-                if (mccheyneCheckViewModel == null)
-                {
-                    mccheyneCheckViewModel = new MccheyneCheckViewModel();
-                }
-                return mccheyneCheckViewModel;
             }
         }
 

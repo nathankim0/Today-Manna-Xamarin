@@ -9,20 +9,4 @@
     android:TabbedPage.OffscreenPageLimit="3"
     android:TabbedPage.ToolbarPlacement="Bottom"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
-    ios:Page.UseSafeArea="true">
-    <NavigationPage Title="만나" IconImageSource="tab_manna">
-        <x:Arguments>
-            <local:MannaPage />
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="맥체인" IconImageSource="tab_mc">
-        <x:Arguments>
-            <local:MccheynePage />
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="나의 만나" IconImageSource="tab_mc">
-        <x:Arguments>
-            <local:MyPage />
-        </x:Arguments>
-    </NavigationPage>
-</TabbedPage>
+    ios:Page.UseSafeArea="true" />

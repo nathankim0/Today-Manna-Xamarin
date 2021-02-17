@@ -10,7 +10,7 @@ namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
-        private readonly MccheyneCheckListPage mccheyneCheckListPage;
+        //private readonly MccheyneCheckListPage mccheyneCheckListPage;
 
         private readonly double gridX;
         private readonly double gridY;
@@ -35,7 +35,7 @@ namespace TodaysManna.Views
             mccheyneView.GestureRecognizers.Add(leftSwipeGesture);
             mccheyneView.GestureRecognizers.Add(rightSwipeGesture);
 
-            mccheyneCheckListPage = new MccheyneCheckListPage(App.McCheckViewModel);
+            //mccheyneCheckListPage = new MccheyneCheckListPage();
         }
 
         private void PageToLeft()
@@ -203,10 +203,10 @@ namespace TodaysManna.Views
             await DisplayAlert("클립보드에 복사됨", address, "확인");
         }
 
-        private async void OnCheckButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(mccheyneCheckListPage);
-        }
+        //private async void OnCheckButtonClicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(App.mccheyneCheckListPage);
+        //}
 
         private void OnBackgroundTapped(object sender, EventArgs e)
         {

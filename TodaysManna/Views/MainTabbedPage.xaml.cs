@@ -7,25 +7,19 @@ namespace TodaysManna.Views
 {
     public partial class MainTabbedPage : TabbedPage
     {
-        //private MannaPage mannaPage;
-        //private MccheynePage mccheynePage;
-        //private SettingPage settingPage;
         public MainTabbedPage()
         {
             InitializeComponent();
 
-
-            //var mannaViewModel = new MannaViewModel();
-            //var mccheyneViewModel = new MccheyneViewModel();
-            //var mccheyneCheckListViewModel = new MccheyneCheckViewModel();
-
-            //mannaPage = new MannaPage(mannaViewModel);
-            //mccheynePage = new MccheynePage(mccheyneViewModel);
-            //settingPage = new SettingPage(mccheyneCheckListViewModel);
-
-            //Children.Add(mannaPage);
-            //Children.Add(mccheynePage);
-            //Children.Add(settingPage);
+            var navMannaPage = new NavigationPage(new MannaPage()) { Title="만나", IconImageSource= "tab_manna" };
+            var navMccheynePage = new NavigationPage(new MccheynePage()) { Title = "맥체인", IconImageSource = "tab_mc" };
+            var navMccheyneCheckListPage = new NavigationPage(App.mccheyneCheckListPage);
+            var navMyPage = new NavigationPage(new MyPage()) { Title = "나의 만나", IconImageSource = "tab_manna" };
+            
+            Children.Add(navMannaPage);
+            Children.Add(navMccheynePage);
+            Children.Add(navMccheyneCheckListPage);
+            Children.Add(navMyPage);
 
         }
     }

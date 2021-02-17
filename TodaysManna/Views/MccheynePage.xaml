@@ -22,7 +22,7 @@
                 HorizontalOptions="Start"
                 Text="맥체인"
                 VerticalOptions="Center" />
-            <ImageButton
+            <!--<ImageButton
                 x:Name="checkButton"
                 Margin="0"
                 Padding="0,0,15,0"
@@ -32,7 +32,7 @@
                 HorizontalOptions="EndAndExpand"
                 Source="ic_check"
                 VerticalOptions="Center"
-                WidthRequest="40" />
+                WidthRequest="40" />-->
             <ImageButton
                 Margin="0,0,5,0"
                 Padding="8"
