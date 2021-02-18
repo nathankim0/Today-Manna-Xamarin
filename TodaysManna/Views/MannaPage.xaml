@@ -17,10 +17,16 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="Title"
                 HorizontalOptions="Start"
                 Text="만나"
-                VerticalOptions="Center" />
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="26"
+                        iOS="24" />
+                </Label.FontSize>
+            </Label>
             <ImageButton
                 Padding="0,0,15,0"
                 BackgroundColor="Transparent"
@@ -79,9 +85,6 @@
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
                         CornerRadius="10">
-                        <!--<yummy:PancakeView.Shadow>
-                            <yummy:DropShadow Offset="2,2" Color="#000000" />
-                        </yummy:PancakeView.Shadow>-->
                         <yummy:PancakeView.BackgroundGradientStops>
                             <yummy:GradientStopCollection>
                                 <yummy:GradientStop Offset="0" Color="LightPink" />
@@ -165,8 +168,8 @@
                             <Label.FontSize>
                                 <OnPlatform
                                     x:TypeArguments="x:Double"
-                                    Android="20"
-                                    iOS="18" />
+                                    Android="18"
+                                    iOS="16" />
                             </Label.FontSize>
 
                         </Label>

@@ -11,15 +11,15 @@ namespace TodaysManna
         public EventHandler hided;
         public readonly BottomSheetContainer BottomSheetContainer;
         protected readonly BoxView BackgroundBox;
-        double height = 0;
+        private readonly double _height = 0;
         public BottomSheet()
         {
-            height = DeviceDisplay.MainDisplayInfo.Height/ DeviceDisplay.MainDisplayInfo.Density;
+            _height = DeviceDisplay.MainDisplayInfo.Height/ DeviceDisplay.MainDisplayInfo.Density;
             IsVisible = false;
 
             BottomSheetContainer = new BottomSheetContainer();
             BottomSheetContainer.BottomSheetPulledDown += OnBottomSheetDisappear;
-            BottomSheetContainer.MaxY = height;
+            BottomSheetContainer.MaxY = _height;
             var backgroundGesture = new TapGestureRecognizer();
             backgroundGesture.Tapped += OnBottomSheetDisappear;
 
@@ -58,8 +58,8 @@ namespace TodaysManna
                 },
                 {
                     0, 1, new Animation(v => BottomSheetContainer.SheetFrame.TranslationY = v,
-                        height,
-                        BottomSheetContainer.CurrentY = height * 0.1,
+                        _height,
+                        BottomSheetContainer.CurrentY = _height * 0.1,
                         Easing.CubicOut)
                 }
             }.Commit(this, "VisiblePicker", 10, 400);
@@ -75,7 +75,7 @@ namespace TodaysManna
 
             var destinationTranslateTask = BottomSheetContainer.SheetFrame.TranslateTo(
                 BottomSheetContainer.SheetFrame.X,
-                BottomSheetContainer.CurrentY = height,
+                BottomSheetContainer.CurrentY = _height,
                 400, Easing.CubicOut);
 
             await Task.WhenAll(new Task[] { backgroundFadeTask, startingTranslateTask, destinationTranslateTask });

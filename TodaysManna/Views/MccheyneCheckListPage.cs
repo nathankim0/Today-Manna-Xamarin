@@ -7,29 +7,27 @@ using System;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
-using System.Text.RegularExpressions;
 using Rg.Plugins.Popup.Services;
-using Xamarin.Forms.Xaml;
 using TodaysManna.Models;
 
 namespace TodaysManna.Views
 {
     public partial class MccheyneCheckListPage : ContentPage
     {
-        private CollectionView collectionView;
-        private OptionPopup optionPopup;
-        private MccheyneCheckContent todayMccheyne;
+        private CollectionView _collectionView;
+        private readonly OptionPopup _optionPopup;
+        private readonly MccheyneCheckContent _todayMccheyne;
 
         public MccheyneCheckListPage()
         {
             BindingContext = App.mccheyneCheckViewModel; 
             Initialize();
 
-            todayMccheyne = (BindingContext as MccheyneCheckViewModel).MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
-            optionPopup = new OptionPopup();
+            _todayMccheyne = (BindingContext as MccheyneCheckViewModel).MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
+            _optionPopup = new OptionPopup();
 
-            optionPopup.CheckButtonClicked += OnCheckButtonClicked;
-            optionPopup.ClearButtonClicked+= OnClearButtonClicked;
+            _optionPopup.CheckButtonClicked += OnCheckButtonClicked;
+            _optionPopup.ClearButtonClicked+= OnClearButtonClicked;
         }
 
         private void Initialize()
@@ -49,10 +47,16 @@ namespace TodaysManna.Views
             {
                 BackgroundColor = Color.Transparent,
                 FontAttributes = FontAttributes.Bold,
-                FontSize = 25,
                 HorizontalOptions = LayoutOptions.Start,
                 Text = "체크리스트",
                 VerticalOptions = LayoutOptions.Center
+            };
+
+            titleLabel.FontSize = Device.RuntimePlatform switch
+            {
+                Device.Android => 26,
+                Device.iOS => 24,
+                _ => 24,
             };
 
             var titleOptionButton = new Button
@@ -60,7 +64,7 @@ namespace TodaysManna.Views
                 Margin = new Thickness(0,0,5,0),
                 Padding = 8,
                 BackgroundColor = Color.Transparent,
-                HorizontalOptions = LayoutOptions.End,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
                 Text = "옵션",
                 TextColor = Color.FromHex("#0000EE"),
                 VerticalOptions = LayoutOptions.Center
@@ -69,16 +73,17 @@ namespace TodaysManna.Views
 
             var titleStackLayout = new StackLayout
             {
+                Padding=new Thickness(15,0,15,0),
                 Orientation=StackOrientation.Horizontal,
                 Children = {titleLabel,titleOptionButton}
             };
 
             NavigationPage.SetTitleView(this, titleStackLayout);
 
-            collectionView = new CollectionView { Margin = 0 };
-            collectionView.SetBinding(CollectionView.ItemsSourceProperty, "MccheyneCheckList");
+            _collectionView = new CollectionView { Margin = 0 };
+            _collectionView.SetBinding(CollectionView.ItemsSourceProperty, "MccheyneCheckList");
 
-            collectionView.ItemTemplate = new DataTemplate(() =>
+            _collectionView.ItemTemplate = new DataTemplate(() =>
                 {
                     var collectionViewDataTemplateGrid = new Grid
                     {
@@ -150,18 +155,18 @@ namespace TodaysManna.Views
 
                     return collectionViewDataTemplateGrid;
                 });
+            Content = _collectionView;
             ScrollToToday();
-            Content = collectionView;
         }
 
         public void ScrollToToday()
         {
-            collectionView.ScrollTo(todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Center, true);
+            _collectionView.ScrollTo(_todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Center, true);
         }
 
         protected override void OnAppearing()
         {
-            //ScrollToToday();
+            ScrollToToday();
         }
 
         private void OnScrollToToday(object sender, EventArgs e)
@@ -225,7 +230,7 @@ namespace TodaysManna.Views
 
         private async void OnOptionClicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(optionPopup);
+            await PopupNavigation.Instance.PushAsync(_optionPopup);
         }
     }
 }
