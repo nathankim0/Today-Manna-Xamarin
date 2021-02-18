@@ -18,27 +18,22 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="Title"
                 HorizontalOptions="Start"
                 Text="맥체인"
-                VerticalOptions="Center" />
-            <!--<ImageButton
-                x:Name="checkButton"
-                Margin="0"
-                Padding="0,0,15,0"
-                BackgroundColor="Transparent"
-                BorderWidth="0"
-                Clicked="OnCheckButtonClicked"
-                HorizontalOptions="EndAndExpand"
-                Source="ic_check"
-                VerticalOptions="Center"
-                WidthRequest="40" />-->
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="26"
+                        iOS="24" />
+                </Label.FontSize>
+            </Label>
             <ImageButton
                 Margin="0,0,5,0"
                 Padding="8"
                 BackgroundColor="Transparent"
                 Clicked="OnDateButtonClicked"
-                HorizontalOptions="End"
+                HorizontalOptions="EndAndExpand"
                 Source="ic_dateselect"
                 VerticalOptions="Center"
                 WidthRequest="40" />
@@ -50,8 +45,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
         <ListView
             x:Name="mccheyneView"
             Margin="15,0,15,0"
@@ -69,7 +62,6 @@
             <ListView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Vertical">
-                        <!--<BoxView BackgroundColor="Transparent" HeightRequest="10" />-->
                         <StackLayout Orientation="Horizontal">
                             <Label
                                 FontFamily="dotum.ttf"
@@ -93,8 +85,8 @@
                             <Label.FontSize>
                                 <OnPlatform
                                     x:TypeArguments="x:Double"
-                                    Android="26"
-                                    iOS="20" />
+                                    Android="20"
+                                    iOS="18" />
                             </Label.FontSize>
                         </Label>
                     </StackLayout>
@@ -132,14 +124,15 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontFamily="dotum.ttf"
+                                IsVisible="{Binding IsHalfVerseVisible}"
                                 Text="{Binding HalfVerse}"
                                 TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}">
                                 <Label.FontSize>
                                     <OnPlatform
                                         x:TypeArguments="x:Double"
-                                        Android="22"
-                                        iOS="16" />
+                                        Android="20"
+                                        iOS="18" />
                                 </Label.FontSize>
                             </Label>
                             <Grid>
@@ -168,8 +161,8 @@
                                     <Label.FontSize>
                                         <OnPlatform
                                             x:TypeArguments="x:Double"
-                                            Android="20"
-                                            iOS="18" />
+                                            Android="18"
+                                            iOS="16" />
                                     </Label.FontSize>
                                 </Label>
                             </Grid>
