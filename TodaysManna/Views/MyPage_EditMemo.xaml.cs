@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using TodaysManna.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TodaysManna.Views
@@ -11,19 +11,31 @@ namespace TodaysManna.Views
         {
             InitializeComponent();
         }
-        async void OnSaveClicked(object sender, EventArgs e)
+        private async void OnSaveClicked(object sender, EventArgs e)
         {
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
         }
 
-        async void OnDeleteClicked(object sender, EventArgs e)
+        private async void OnShareClicked(object sender, EventArgs e)
         {
-            await App.Database.DeleteItemAsync((MemoItem)BindingContext);
-            await Navigation.PopAsync();
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = $"{((MemoItem)BindingContext).Verse}\n{((MemoItem)BindingContext).Note}",
+                Title = "공유"
+            });
         }
 
-        async void OnCancelClicked(object sender, EventArgs e)
+        private async void OnDeleteClicked(object sender, EventArgs e)
+        {
+            if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
+            {
+                await App.Database.DeleteItemAsync((MemoItem)BindingContext);
+                await Navigation.PopAsync();
+            }
+        }
+
+        private async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }

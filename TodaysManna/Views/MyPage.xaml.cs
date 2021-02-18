@@ -18,9 +18,13 @@ namespace TodaysManna.Views
             InitializeComponent();
             BindingContext = myViewModel;
 
-            myViewModel.deleted += async (s, e) =>
+            myViewModel.deleted += async (s, memoItem) =>
             {
-                collectionView.ItemsSource = await App.Database.GetItemsAsync();
+                if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
+                {
+                    await App.Database.DeleteItemAsync(memoItem);
+                    collectionView.ItemsSource = await App.Database.GetItemsAsync();
+                }
             };
         }
 
@@ -43,13 +47,12 @@ namespace TodaysManna.Views
     }
     public class MyViewModel : INotifyPropertyChanged
     {
-        public EventHandler deleted;
+        public EventHandler<MemoItem> deleted;
         public ICommand DeleteCommand => new Command<MemoItem>(RemoveItem);
 
-        private async void RemoveItem(MemoItem memoItem)
+        private void RemoveItem(MemoItem memoItem)
         {
-            await App.Database.DeleteItemAsync(memoItem);
-            deleted?.Invoke(this, EventArgs.Empty);
+            deleted?.Invoke(this, memoItem);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

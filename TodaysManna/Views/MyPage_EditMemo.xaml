@@ -20,6 +20,7 @@
                 </Label.FontSize>
             </Label>
             <Label
+                x:Name="verseLabel"
                 FontFamily="dotum.ttf"
                 Text="{Binding Verse}"
                 TextColor="{AppThemeBinding Dark=White,
@@ -48,6 +49,7 @@
                 </Label.FontSize>
             </Label>
             <Editor
+                x:Name="memoEditor"
                 AutoSize="TextChanges"
                 FontFamily="dotum.ttf"
                 Placeholder="메모 작성"
@@ -68,6 +70,8 @@
                 Spacing="20">
                 <Button Clicked="OnSaveClicked" Text="저장" />
                 <Button Clicked="OnDeleteClicked" Text="삭제" />
+                <Button Clicked="OnShareClicked" Text="공유" />
+
                 <Button Clicked="OnCancelClicked" Text="취소" />
             </StackLayout>
         </StackLayout>
