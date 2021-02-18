@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using TodaysManna.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TodaysManna.Views
@@ -25,6 +26,14 @@ namespace TodaysManna.Views
                     await App.Database.DeleteItemAsync(memoItem);
                     collectionView.ItemsSource = await App.Database.GetItemsAsync();
                 }
+            };
+            myViewModel.shared += async (s, memoItem) =>
+            {
+                await Share.RequestAsync(new ShareTextRequest
+                {
+                    Text = memoItem.Verse+"\n"+memoItem.Note,
+                    Title = "공유"
+                });
             };
         }
 
@@ -48,11 +57,18 @@ namespace TodaysManna.Views
     public class MyViewModel : INotifyPropertyChanged
     {
         public EventHandler<MemoItem> deleted;
+        public EventHandler<MemoItem> shared;
+
         public ICommand DeleteCommand => new Command<MemoItem>(RemoveItem);
+        public ICommand ShareCommand => new Command<MemoItem>(ShareItem);
 
         private void RemoveItem(MemoItem memoItem)
         {
             deleted?.Invoke(this, memoItem);
+        }
+        private void ShareItem(MemoItem memoItem)
+        {
+            shared?.Invoke(this, memoItem);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

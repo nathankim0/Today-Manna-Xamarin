@@ -38,11 +38,17 @@
                 <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <SwipeView.RightItems>
                         <SwipeItems>
+
                             <SwipeItem
                                 BackgroundColor="Red"
                                 Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
                                 CommandParameter="{Binding}"
                                 Text="Delete" />
+                            <SwipeItem
+                                BackgroundColor="LightYellow"
+                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ShareCommand}"
+                                CommandParameter="{Binding}"
+                                Text="Share" />
                         </SwipeItems>
                     </SwipeView.RightItems>
 
