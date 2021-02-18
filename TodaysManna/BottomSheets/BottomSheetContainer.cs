@@ -59,7 +59,7 @@ namespace TodaysManna
                 {
                     0, 1, new Animation(v => BottomSheetContainer.SheetFrame.TranslationY = v,
                         _height,
-                        BottomSheetContainer.CurrentY = _height * 0.1,
+                        BottomSheetContainer.CurrentY = _height * 0.4,
                         Easing.CubicOut)
                 }
             }.Commit(this, "VisiblePicker", 10, 400);
@@ -181,7 +181,7 @@ namespace TodaysManna
 
                     if (_up)
                     {
-                        SheetFrame.TranslateTo(SheetFrame.X, CurrentY = 0, 250, Easing.CubicOut);
+                        SheetFrame.TranslateTo(SheetFrame.X, CurrentY, 250, Easing.CubicOut);
                     }
 
                     else if (_down)

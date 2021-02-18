@@ -15,12 +15,12 @@ namespace TodaysManna
             InitializeComponent();
         }
 
-        void Button_Clicked(System.Object sender, System.EventArgs e)
+        void Button_Clicked(object sender, EventArgs e)
         {
             CheckButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        void Button_Clicked_1(System.Object sender, System.EventArgs e)
+        void Button_Clicked_1(object sender, EventArgs e)
         {
             ClearButtonClicked?.Invoke(this, EventArgs.Empty);
         }

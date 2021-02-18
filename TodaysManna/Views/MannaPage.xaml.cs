@@ -4,16 +4,18 @@ using Xamarin.Forms;
 using TodaysManna.ViewModel;
 using System.Linq;
 using TodaysManna.Models;
+using TodaysManna.Popups;
+using Rg.Plugins.Popup.Services;
 
 namespace TodaysManna.Views
 {
     public partial class MannaPage : ContentPage
     {
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
-        private BottomSheet bottomSheet;
-        private MannaTextClickSheet mannaTextClickSheet;
+        private readonly BottomSheet _bottomSheet;
+        private readonly MannaTextClickSheet _mannaTextClickSheet;
+        private readonly MemoPopup _memoPopup;
 
-        private bool hideFlag = false;
         private string shareRangeString = "";
         private int _bottomSheetHidedCount = 0;
 
@@ -29,22 +31,47 @@ namespace TodaysManna.Views
             tapGesture.Tapped += OnShareLabelTapped;
             rangeButton.GestureRecognizers.Add(tapGesture);
 
-            bottomSheet = new BottomSheet();
+            _bottomSheet = new BottomSheet();
 
-            mannaTextClickSheet = new MannaTextClickSheet();
-            bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(mannaTextClickSheet);
+            _mannaTextClickSheet = new MannaTextClickSheet();
+            _bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(_mannaTextClickSheet);
 
-            mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
-            mannaTextClickSheet.sharebuttonClicked += OnTextShareButtonClicked;
-            mannaTextClickSheet.savebuttonClicked += OnSaveButtonClicked;
-            mannaTextClickSheet.cancelbuttonClicked += OnCancelButtonClicked;
+            _mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
+            _mannaTextClickSheet.memobuttonClicked += OnMemoButtonClicked;
+            _mannaTextClickSheet.sharebuttonClicked += OnTextShareButtonClicked;
+            _mannaTextClickSheet.savebuttonClicked += OnSaveButtonClicked;
+            _mannaTextClickSheet.cancelbuttonClicked += OnCancelButtonClicked;
 
-            contentGrid.Children.Add(bottomSheet);
+            contentGrid.Children.Add(_bottomSheet);
+
+            _memoPopup = new MemoPopup();
+            _memoPopup.SaveButtonClicked += async (s, memoText) =>
+            {
+                if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+                {
+                    return;
+                }
+
+                var memoItem = new MemoItem
+                {
+                    Verse = shareRangeString,
+                    Note = memoText
+                };
+                await App.Database.SaveItemAsync(memoItem);
+            };
+        }
+
+        private async void OnMemoButtonClicked(object sender, EventArgs e)
+        {
+            _bottomSheet.Hide();
+            _memoPopup.SetBibleText(shareRangeString);
+            await PopupNavigation.Instance.PushAsync(_memoPopup);
+            
         }
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
-            await Clipboard.SetTextAsync(shareRangeString + "\n" + mannaTextClickSheet.editor.Text);
+            await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
@@ -52,35 +79,32 @@ namespace TodaysManna.Views
         {
             await Share.RequestAsync(new ShareTextRequest
             {
-                Text = shareRangeString + "\n" + mannaTextClickSheet.editor.Text,
+                Text = shareRangeString,
                 Title = "공유"
             });
         }
 
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            hideFlag = true;
-            bottomSheet.Hide();
+            _bottomSheet.Hide();
 
             if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
             {
-                bottomSheet.Show();
-                _bottomSheetHidedCount = 0;
+                _bottomSheet.Show();
                 return;
             }
 
             var memoItem = new MemoItem
             {
                 Verse = shareRangeString,
-                Note = mannaTextClickSheet.editor.Text
+                Note =""
             };
             await App.Database.SaveItemAsync(memoItem);
         }
 
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
-            hideFlag = true;
-            bottomSheet.Hide();
+            _bottomSheet.Hide();
         }
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
@@ -116,10 +140,9 @@ namespace TodaysManna.Views
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }   
         }
-        private void OnCollectionViewItemTapped(System.Object sender, System.EventArgs e)
+        private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
-            _bottomSheetHidedCount = 0;
-
+        	_bottomSheetHidedCount = 0;
             var selectedGrid = sender as Grid;
             SetSelectedItemUnderLined(selectedGrid, true);
 
@@ -141,12 +164,11 @@ namespace TodaysManna.Views
 
             shareRangeString = $"({tmpRangeString}:{num}) {manna}";
 
-            mannaTextClickSheet.textLabel.Text = shareRangeString;
-            mannaTextClickSheet.editor.Text = "";
+            _mannaTextClickSheet.textLabel.Text = shareRangeString;
 
-            bottomSheet.Show();
+            _bottomSheet.Show();
 
-            bottomSheet.hided += async (s, ee) =>
+            _bottomSheet.hided += (s, ee) =>
             {
                 if (_bottomSheetHidedCount > 0)
                 {
@@ -154,36 +176,8 @@ namespace TodaysManna.Views
                     return;
                 }
                 _bottomSheetHidedCount++;
-                System.Diagnostics.Debug.WriteLine("hided colled!");
-
-                if (mannaTextClickSheet.editor.Text != "")
-                {
-                    if (!hideFlag)
-                    {
-                        if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-                        {
-                            bottomSheet.Show();
-                            _bottomSheetHidedCount = 0;
-                            return;
-                        }
-                        else
-                        {
-                            var memoItem = new MemoItem
-                            {
-                                Verse = shareRangeString,
-                                Note = mannaTextClickSheet.editor.Text
-                            };
-                            await App.Database.SaveItemAsync(memoItem);
-
-                            SetSelectedItemUnderLined(selectedGrid, false);
-                        }
-                    }
-                }
-                else
-                {
-                    SetSelectedItemUnderLined(selectedGrid, false);
-                }
-                hideFlag = false;
+                SetSelectedItemUnderLined(selectedGrid, false);
+                System.Diagnostics.Debug.WriteLine("hided called!");
             };
         }
 

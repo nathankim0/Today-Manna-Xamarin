@@ -5,6 +5,7 @@ namespace TodaysManna
 {
     public partial class MannaTextClickSheet : ContentView
     {
+        public EventHandler memobuttonClicked;
         public EventHandler coppybuttonClicked;
         public EventHandler sharebuttonClicked;
         public EventHandler savebuttonClicked;
@@ -15,6 +16,10 @@ namespace TodaysManna
             InitializeComponent();
         }
 
+        private void OnMemoButtonClicked(object sender, EventArgs e)
+        {
+            memobuttonClicked?.Invoke(this, EventArgs.Empty);
+        }
         private void OnCoppyButtonClicked(object sender, EventArgs e)
         {
             coppybuttonClicked?.Invoke(this, EventArgs.Empty);
