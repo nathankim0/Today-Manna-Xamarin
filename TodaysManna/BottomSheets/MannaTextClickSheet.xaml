@@ -16,16 +16,8 @@
             <StackLayout Padding="20">
                 <Label x:Name="textLabel" x:FieldModifier="public" />
 
-                <Editor
-                    x:Name="editor"
-                    x:FieldModifier="public"
-                    AutoSize="TextChanges"
-                    HeightRequest="150"
-                    HorizontalOptions="FillAndExpand"
-                    Placeholder="메모 작성"
-                    VerticalOptions="FillAndExpand" />
-
                 <StackLayout Orientation="Horizontal" Spacing="20">
+                    <Button Clicked="OnMemoButtonClicked" Text="메모작성" />
                     <Button Clicked="OnCoppyButtonClicked" Text="복사" />
                     <Button Clicked="OnShareButtonClicked" Text="공유" />
                     <Button Clicked="OnSaveButtonClicked" Text="저장" />

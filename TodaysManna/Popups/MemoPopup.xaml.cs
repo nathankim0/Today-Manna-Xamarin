@@ -1,32 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
-namespace TodaysManna
+namespace TodaysManna.Popups
 {
-    public partial class OptionPopup : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class MemoPopup : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public EventHandler CheckButtonClicked;
-        public EventHandler ClearButtonClicked;
-
-        public OptionPopup()
+        public EventHandler<string> SaveButtonClicked;
+        public MemoPopup()
         {
             InitializeComponent();
         }
-
-        void Button_Clicked(object sender, EventArgs e)
+        public void SetBibleText(string text)
         {
-            CheckButtonClicked?.Invoke(this, EventArgs.Empty);
+            bibleLabel.Text = text;
+        }
+        private async void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            SaveButtonClicked?.Invoke(this, editor.Text);
+            await PopupNavigation.Instance.PopAsync();
         }
 
-        void Button_Clicked_1(object sender, EventArgs e)
-        {
-            ClearButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
 
         protected override void OnAppearing()
         {
+            editor.Text = "";
             base.OnAppearing();
         }
 
@@ -86,17 +90,18 @@ namespace TodaysManna
         // Invoked when a hardware back button is pressed
         protected override bool OnBackButtonPressed()
         {
+            return false;
             // Return true if you don't want to close this popup page when a back button is pressed
-            return base.OnBackButtonPressed();
+            //return base.OnBackButtonPressed();
         }
 
         // Invoked when background is clicked
         protected override bool OnBackgroundClicked()
         {
+            return false;
             // Return false if you don't want to close this popup page when a background of the popup page is clicked
-            return base.OnBackgroundClicked();
+            //return base.OnBackgroundClicked();
         }
 
-        
     }
 }

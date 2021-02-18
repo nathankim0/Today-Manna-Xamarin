@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="TodaysManna.Popups.MemoPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+    <!--  You can set an animation in the xaml file or in the csharp code behind  -->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="200"
+            DurationOut="150"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="1" />
+    </pages:PopupPage.Animation>
+    <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
+    <Frame
+        x:Name="frame"
+        Margin="0"
+        Padding="20,20,20,20"
+        BackgroundColor="{AppThemeBinding Dark=Black,
+                                          Light=White}"
+        CornerRadius="10"
+        HeightRequest="400"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        WidthRequest="200">
+
+        <ScrollView BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+
+                    <RowDefinition Height="250" />
+
+                    <RowDefinition Height="auto" />
+
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    Text="메모 작성"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    x:Name="bibleLabel"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                    <Label.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="15"
+                            iOS="13" />
+                    </Label.FontSize>
+                </Label>
+                <Editor
+                    x:Name="editor"
+                    Grid.Row="2"
+                    BackgroundColor="LightGray"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Editor.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="15"
+                            iOS="13" />
+                    </Editor.FontSize>
+                </Editor>
+
+                <StackLayout
+                    Grid.Row="3"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="End">
+                    <Button
+                        Padding="0,0,50,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OnCancelButtonClicked"
+                        HorizontalOptions="Start"
+                        Text="취소" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        Clicked="OnSaveButtonClicked"
+                        HorizontalOptions="EndAndExpand"
+                        Text="저장" />
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </Frame>
+</pages:PopupPage>
