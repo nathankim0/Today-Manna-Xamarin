@@ -52,11 +52,14 @@ namespace TodaysManna.Views
                 VerticalOptions = LayoutOptions.Center
             };
 
-            titleLabel.FontSize = Device.RuntimePlatform switch
+            switch (Device.RuntimePlatform)
             {
-                Device.Android => 26,
-                Device.iOS => 24,
-                _ => 24,
+                case Device.Android:
+                    titleLabel.FontSize = 26;
+                    break;
+                case Device.iOS:
+                    titleLabel.FontSize = 24;
+                    break;
             };
 
             var titleOptionButton = new Button
