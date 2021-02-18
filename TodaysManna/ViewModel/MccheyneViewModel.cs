@@ -135,7 +135,6 @@ namespace TodaysManna.ViewModel
             MccheyneContents3.Clear();
             MccheyneContents4.Clear();
 
-            //  var _verseRange = GetMccheyneRange(dateTime);
             DisplayDateRange = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
             var dateTimeString=dateTime.ToString("M_d");
 
@@ -161,21 +160,18 @@ namespace TodaysManna.ViewModel
                     switch (node2.Id)
                     {
                         case "1":
-                            
-                           // System.Diagnostics.Debug.WriteLine($"{_firstNum}장{_secondNum}절");
-
                             if (a != _halfVerse)
                             {
                                 MccheyneContents1.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange= _verseRange,
                                     Book = node2.Book,
                                     FirstNumber=_firstNum,
                                     SecondNumber=_secondNum,
                                     Verse = node2.Verse,
                                     FullVerse=_fullVerse + "\n\n",
                                     HalfVerse= _halfVerse,
+                                    IsHalfVerseVisible=true,
                                     Content = node2.Content
                                 });
                             }
@@ -184,13 +180,13 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents1.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange = _verseRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
                                     FullVerse = "",
                                     HalfVerse = "",
+                                    IsHalfVerseVisible=false,
                                     Content = node2.Content
                                 });
                             }
@@ -203,13 +199,13 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents2.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange = _verseRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
                                     FullVerse = _fullVerse + "\n\n",
                                     HalfVerse = _halfVerse,
+                                    IsHalfVerseVisible = true,
                                     Content = node2.Content
                                 });
                             }
@@ -218,13 +214,13 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents2.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange = _verseRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
                                     FullVerse = "",
                                     HalfVerse = "",
+                                    IsHalfVerseVisible = false,
                                     Content = node2.Content
                                 });
                             }
@@ -237,13 +233,13 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents3.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange = _verseRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
                                     FullVerse = _fullVerse + "\n\n",
                                     HalfVerse = _halfVerse,
+                                    IsHalfVerseVisible = true,
                                     Content = node2.Content
                                 });
                             }
@@ -252,13 +248,13 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents3.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange = _verseRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
                                     FullVerse = "",
                                     HalfVerse = "",
+                                    IsHalfVerseVisible = false,
                                     Content = node2.Content
                                 });
                             }
@@ -271,13 +267,13 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents4.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    //FullRange = _verseRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
                                     FullVerse=_fullVerse + "\n\n",
                                     HalfVerse = _halfVerse,
+                                    IsHalfVerseVisible = true,
                                     Content = node2.Content
                                 });
                             }
@@ -293,6 +289,7 @@ namespace TodaysManna.ViewModel
                                     Verse = node2.Verse,
                                     FullVerse="",
                                     HalfVerse = "",
+                                    IsHalfVerseVisible = false,
                                     Content = node2.Content
                                 });
                             }
@@ -300,11 +297,6 @@ namespace TodaysManna.ViewModel
 
                             break;
                     }
-
-                    //System.Diagnostics.Debug.WriteLine(node2.Id);
-                    //System.Diagnostics.Debug.WriteLine(node2.Book);
-                    //System.Diagnostics.Debug.WriteLine(node2.Verse);
-                    //System.Diagnostics.Debug.WriteLine(node2.Content);
                 }
             }
         }

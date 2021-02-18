@@ -1,9 +1,6 @@
-﻿using System;
-using TodaysManna.Datas;
+﻿using TodaysManna.Datas;
 using TodaysManna.ViewModel;
 using TodaysManna.Views;
-using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace TodaysManna
 {

@@ -44,33 +44,7 @@ namespace TodaysManna.Views
     public class MyViewModel : INotifyPropertyChanged
     {
         public EventHandler deleted;
-        //private ObservableCollection<MemoItem> _memoItems = new ObservableCollection<MemoItem>();
-        //public ObservableCollection<MemoItem> MemoItems
-        //{
-        //    get => _memoItems;
-        //    set
-        //    {
-        //        if (_memoItems != value)
-        //        {
-        //            _memoItems = value;
-        //            OnPropertyChanged(nameof(_memoItems));
-        //        }
-        //    }
-        //}
-        //private IList<MemoItem> source;
-
         public ICommand DeleteCommand => new Command<MemoItem>(RemoveItem);
-
-        public MyViewModel()
-        {
-            //GetItem();
-        }
-
-        //private async void GetItem()
-        //{
-        //    source = await App.Database.GetItemsAsync();
-        //    MemoItems = new ObservableCollection<MemoItem>(source);
-        //}
 
         private async void RemoveItem(MemoItem memoItem)
         {
