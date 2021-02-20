@@ -62,5 +62,12 @@ namespace TodaysManna.Views
         {
             await Navigation.PopAsync();
         }
+
+        protected override async void OnDisappearing()
+        {
+            await App.Database.SaveItemAsync((MemoItem)BindingContext);
+
+            base.OnDisappearing();
+        }
     }
 }
