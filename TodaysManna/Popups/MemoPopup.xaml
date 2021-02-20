@@ -22,14 +22,13 @@
     <Frame
         x:Name="frame"
         Margin="0"
-        Padding="20,20,20,20"
+        Padding="10,10,10,10"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
         CornerRadius="10"
         HeightRequest="400"
         HorizontalOptions="Center"
-        VerticalOptions="Center"
-        WidthRequest="200">
+        VerticalOptions="Center">
 
         <ScrollView BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
 

@@ -59,7 +59,7 @@ namespace TodaysManna
                 {
                     0, 1, new Animation(v => BottomSheetContainer.SheetFrame.TranslationY = v,
                         _height,
-                        BottomSheetContainer.CurrentY = _height * 0.4,
+                        BottomSheetContainer.CurrentY = _height * 0.3,
                         Easing.CubicOut)
                 }
             }.Commit(this, "VisiblePicker", 10, 400);
