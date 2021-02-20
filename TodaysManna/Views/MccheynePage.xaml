@@ -41,7 +41,7 @@
     </NavigationPage.TitleView>
 
 
-    <Grid>
+    <Grid x:Name="mccheynGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>

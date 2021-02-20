@@ -5,11 +5,19 @@ using System.Linq;
 using TodaysManna.Models;
 using Xamarin.Essentials;
 using ListView = Xamarin.Forms.ListView;
+using TodaysManna.Popups;
+using Rg.Plugins.Popup.Services;
 
 namespace TodaysManna.Views
 {
     public partial class MccheynePage : ContentPage
     {
+        private readonly BottomSheet _bottomSheet;
+        private readonly MannaTextClickSheet _mannaTextClickSheet;
+        private readonly MemoPopup _memoPopup;
+
+        private string shareRangeString = "";
+
         private readonly double gridX;
         private readonly double gridY;
 
@@ -32,6 +40,35 @@ namespace TodaysManna.Views
 
             mccheyneView.GestureRecognizers.Add(leftSwipeGesture);
             mccheyneView.GestureRecognizers.Add(rightSwipeGesture);
+
+            _bottomSheet = new BottomSheet();
+            _mannaTextClickSheet = new MannaTextClickSheet();
+
+            _bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(_mannaTextClickSheet);
+
+            _mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
+            _mannaTextClickSheet.memobuttonClicked += OnMemoButtonClicked;
+            _mannaTextClickSheet.sharebuttonClicked += OnTextShareButtonClicked;
+            _mannaTextClickSheet.savebuttonClicked += OnSaveButtonClicked;
+            _mannaTextClickSheet.cancelbuttonClicked += OnCancelButtonClicked;
+
+            mccheynGrid.Children.Add(_bottomSheet);
+
+            _memoPopup = new MemoPopup();
+            _memoPopup.SaveButtonClicked += async (s, memoText) =>
+            {
+                if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+                {
+                    return;
+                }
+
+                var memoItem = new MemoItem
+                {
+                    Verse = shareRangeString,
+                    Note = memoText
+                };
+                await App.Database.SaveItemAsync(memoItem);
+            };
         }
 
         private void PageToLeft()
@@ -179,15 +216,16 @@ namespace TodaysManna.Views
                     previousScrollPosition = 0;
             }
         }
-        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
 
             var mccheyne = e.SelectedItem as MccheyneContent;
-            var shareRangeString = $"({mccheyne.Book}{mccheyne.Verse}) {mccheyne.Content}";
+            shareRangeString = $"({mccheyne.Book}{mccheyne.Verse}) {mccheyne.Content}";
 
-            await Clipboard.SetTextAsync(shareRangeString);
-            await DisplayAlert("클립보드에 복사됨", shareRangeString, "확인");
+            _mannaTextClickSheet.textLabel.Text = shareRangeString;
+
+            _bottomSheet.Show();
 
             ((ListView)sender).SelectedItem = null;
         }
@@ -205,10 +243,54 @@ namespace TodaysManna.Views
             datepicker.Unfocus();
         }
 
-        void OnDatepickerUnfocused(object sender, FocusEventArgs e)
+        private void OnDatepickerUnfocused(object sender, FocusEventArgs e)
         {
             backgroundBoxView.IsVisible = false;
         }
 
+        private async void OnMemoButtonClicked(object sender, EventArgs e)
+        {
+            _bottomSheet.Hide();
+            _memoPopup.SetBibleText(shareRangeString);
+            await PopupNavigation.Instance.PushAsync(_memoPopup);
+        }
+
+        private async void OnCoppyButtonClicked(object sender, EventArgs e)
+        {
+            await Clipboard.SetTextAsync(shareRangeString);
+            await DisplayAlert("클립보드에 복사됨", null, "확인");
+        }
+
+        private async void OnTextShareButtonClicked(object sender, EventArgs e)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = shareRangeString,
+                Title = "공유"
+            });
+        }
+
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            _bottomSheet.Hide();
+
+            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+            {
+                _bottomSheet.Show();
+                return;
+            }
+
+            var memoItem = new MemoItem
+            {
+                Verse = shareRangeString,
+                Note = ""
+            };
+            await App.Database.SaveItemAsync(memoItem);
+        }
+
+        private void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            _bottomSheet.Hide();
+        }
     }
 }
