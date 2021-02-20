@@ -18,19 +18,27 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="Title"
                 HorizontalOptions="Start"
                 Text="나의 만나"
-                VerticalOptions="Center" />
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="26"
+                        iOS="24" />
+                </Label.FontSize>
+            </Label>
 
         </StackLayout>
     </NavigationPage.TitleView>
 
     <CollectionView
         x:Name="collectionView"
-        Margin="15,0,15,0"
+        Margin="20,0,20,0"
         BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                           Light=White}"
+        Footer="&#10;&#10;"
+        Header="&#10;&#10;"
         SelectionChanged="OnCollectionViewSelectionChanged"
         SelectionMode="Single">
         <CollectionView.ItemTemplate>
@@ -38,7 +46,6 @@
                 <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <SwipeView.RightItems>
                         <SwipeItems>
-
                             <SwipeItem
                                 BackgroundColor="Red"
                                 Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
@@ -66,18 +73,30 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontFamily="dotum.ttf"
-                                FontSize="18"
                                 HorizontalOptions="StartAndExpand"
                                 Text="{Binding Verse}"
                                 TextColor="White"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="14"
+                                        iOS="12" />
+                                </Label.FontSize>
+                            </Label>
                             <Label
                                 FontFamily="dotum.ttf"
-                                FontSize="16"
                                 HorizontalOptions="StartAndExpand"
                                 Text="{Binding Note}"
                                 TextColor="White"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="14"
+                                        iOS="12" />
+                                </Label.FontSize>
+                            </Label>
                         </StackLayout>
                     </yummy:PancakeView>
                 </SwipeView>

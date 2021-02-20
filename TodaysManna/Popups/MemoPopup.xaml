@@ -21,12 +21,10 @@
     <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
     <Frame
         x:Name="frame"
-        Margin="0"
-        Padding="10,10,10,10"
+        Margin="20"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
         CornerRadius="10"
-        HeightRequest="400"
         HorizontalOptions="Center"
         VerticalOptions="Center">
 
@@ -36,9 +34,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
-
-                    <RowDefinition Height="250" />
-
+                    <RowDefinition Height="200" />
                     <RowDefinition Height="auto" />
 
                 </Grid.RowDefinitions>
@@ -48,8 +44,7 @@
                     HorizontalOptions="Center"
                     Text="메모 작성"
                     TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="StartAndExpand" />
+                                                Light=Black}" />
                 <Label
                     x:Name="bibleLabel"
                     Grid.Row="1"
@@ -67,9 +62,8 @@
                 <Editor
                     x:Name="editor"
                     Grid.Row="2"
-                    BackgroundColor="LightGray"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand">
+                    BackgroundColor="NavajoWhite"
+                    Placeholder="메모를 작성해주세요...">
                     <Editor.FontSize>
                         <OnPlatform
                             x:TypeArguments="x:Double"
@@ -81,8 +75,7 @@
                 <StackLayout
                     Grid.Row="3"
                     HorizontalOptions="CenterAndExpand"
-                    Orientation="Horizontal"
-                    VerticalOptions="End">
+                    Orientation="Horizontal">
                     <Button
                         Padding="0,0,50,0"
                         BackgroundColor="Transparent"

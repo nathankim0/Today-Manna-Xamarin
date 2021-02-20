@@ -55,20 +55,7 @@ namespace TodaysManna.Views
             mccheynGrid.Children.Add(_bottomSheet);
 
             _memoPopup = new MemoPopup();
-            _memoPopup.SaveButtonClicked += async (s, memoText) =>
-            {
-                if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-                {
-                    return;
-                }
-
-                var memoItem = new MemoItem
-                {
-                    Verse = shareRangeString,
-                    Note = memoText
-                };
-                await App.Database.SaveItemAsync(memoItem);
-            };
+            _memoPopup.SaveButtonClicked += OnSaveButtonClicked;
         }
 
         private void PageToLeft()
@@ -292,5 +279,21 @@ namespace TodaysManna.Views
         {
             _bottomSheet.Hide();
         }
+
+        private async void OnSaveButtonClicked(object sender, string memoText)
+        {
+            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+            {
+                return;
+            }
+
+            var memoItem = new MemoItem
+            {
+                Verse = shareRangeString,
+                Note = memoText
+            };
+            await App.Database.SaveItemAsync(memoItem);
+        }
+
     }
 }

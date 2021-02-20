@@ -14,16 +14,25 @@
 
         <ScrollView>
             <StackLayout Padding="20">
-                <Label x:Name="textLabel" x:FieldModifier="public" />
+                <Label
+                    x:Name="textLabel"
+                    x:FieldModifier="public"
+                    LineBreakMode="CharacterWrap"
+                    TextColor="Black" />
 
-                <StackLayout Orientation="Horizontal" Spacing="20">
-                    <Button Clicked="OnMemoButtonClicked" Text="메모작성" />
-                    <Button Clicked="OnCoppyButtonClicked" Text="복사" />
-                    <Button Clicked="OnShareButtonClicked" Text="공유" />
-                    <Button Clicked="OnSaveButtonClicked" Text="저장" />
-                    <Button Clicked="OnCancelButtonClicked" Text="취소" />
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Button Clicked="OnMemoButtonClicked" Text="메모작성" />
+                        <Button Clicked="OnCoppyButtonClicked" Text="복사" />
+                        <Button Clicked="OnShareButtonClicked" Text="공유" />
+                    </StackLayout>
 
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <Button Clicked="OnSaveButtonClicked" Text="저장" />
+                        <Button Clicked="OnCancelButtonClicked" Text="취소" />
+                    </StackLayout>
                 </StackLayout>
+
             </StackLayout>
         </ScrollView>
     </StackLayout>
