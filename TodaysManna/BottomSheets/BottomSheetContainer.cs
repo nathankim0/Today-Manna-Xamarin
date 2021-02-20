@@ -12,14 +12,17 @@ namespace TodaysManna
         public readonly BottomSheetContainer BottomSheetContainer;
         protected readonly BoxView BackgroundBox;
         private readonly double _height = 0;
+        private readonly double _bottomSheetHeight;
         public BottomSheet()
         {
             _height = DeviceDisplay.MainDisplayInfo.Height/ DeviceDisplay.MainDisplayInfo.Density;
+            _bottomSheetHeight = _height * 0.3;
             IsVisible = false;
 
             BottomSheetContainer = new BottomSheetContainer();
             BottomSheetContainer.BottomSheetPulledDown += OnBottomSheetDisappear;
-            BottomSheetContainer.MaxY = _height;
+            BottomSheetContainer.MaxY = _bottomSheetHeight;
+
             var backgroundGesture = new TapGestureRecognizer();
             backgroundGesture.Tapped += OnBottomSheetDisappear;
 
@@ -59,7 +62,7 @@ namespace TodaysManna
                 {
                     0, 1, new Animation(v => BottomSheetContainer.SheetFrame.TranslationY = v,
                         _height,
-                        BottomSheetContainer.CurrentY = _height * 0.3,
+                        BottomSheetContainer.CurrentY = _bottomSheetHeight,
                         Easing.CubicOut)
                 }
             }.Commit(this, "VisiblePicker", 10, 400);
@@ -122,6 +125,8 @@ namespace TodaysManna
         public double CurrentY;
 
         private bool _up, _down;
+
+        private bool _fullUp;
         private bool _fullDown;
 
         public BottomSheetContainer()
@@ -170,7 +175,9 @@ namespace TodaysManna
                         _down = true;
                     }
 
+                    _fullUp = e.TotalY <= MaxY / 2;
                     _fullDown = e.TotalY >= MaxY / 2;
+                   
 
                     break;
 
@@ -181,20 +188,26 @@ namespace TodaysManna
 
                     if (_up)
                     {
-                        SheetFrame.TranslateTo(SheetFrame.X, CurrentY, 250, Easing.CubicOut);
+                        if (_fullUp)
+                        {
+                            SheetFrame.TranslateTo(SheetFrame.X, CurrentY = 0, 250, Easing.CubicOut);
+                        }
+                        else
+                        {
+                            SheetFrame.TranslateTo(SheetFrame.X, CurrentY = MaxY, 250, Easing.CubicOut);
+                        }
                     }
 
                     else if (_down)
                     {
-                        BottomSheetPulledDown?.Invoke(this, EventArgs.Empty);
-                        //if (_fullDown)
-                        //{
-                        //    BottomSheetPulledDown?.Invoke(this, EventArgs.Empty);
-                        //}
-                        //else // 완전히 내리지 않았을 경우 -> 올라감
-                        //{
-                        //    SheetFrame.TranslateTo(SheetFrame.X, CurrentY = 0, 250, Easing.CubicOut);
-                        //}
+                        if (_fullDown)
+                        {
+                            BottomSheetPulledDown?.Invoke(this, EventArgs.Empty);
+                        }
+                        else // 완전히 내리지 않았을 경우 -> 올라감
+                        {
+                            SheetFrame.TranslateTo(SheetFrame.X, CurrentY = MaxY, 250, Easing.CubicOut);
+                        }
                     }
 
                     break;
