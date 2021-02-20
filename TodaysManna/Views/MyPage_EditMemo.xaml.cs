@@ -19,11 +19,34 @@ namespace TodaysManna.Views
 
         private async void OnShareClicked(object sender, EventArgs e)
         {
-            await Share.RequestAsync(new ShareTextRequest
+            if(!(BindingContext is MemoItem memoItem)) { return; }
+            string verse = "";
+            string note = "";
+            string text = "";
+
+            try
             {
-                Text = $"{((MemoItem)BindingContext).Verse}\n{((MemoItem)BindingContext).Note}",
-                Title = "공유"
-            });
+                verse = memoItem.Verse;
+                note = memoItem.Note;
+                text = $"{verse}\n{note}";
+            }
+            catch(Exception exception)
+            {
+                System.Diagnostics.Debug.Fail("OnsharedClicked " + exception.Message);
+            }
+
+            try
+            {
+                await Share.RequestAsync(new ShareTextRequest
+                {
+                    Text = text,
+                    Title = "공유"
+                });
+            }
+            catch(Exception exception)
+            {
+                System.Diagnostics.Debug.Fail("OnsharedClicked ShareTextRequest " + exception.Message);
+            }
         }
 
         private async void OnDeleteClicked(object sender, EventArgs e)

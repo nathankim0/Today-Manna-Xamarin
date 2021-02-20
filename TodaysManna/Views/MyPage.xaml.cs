@@ -19,22 +19,36 @@ namespace TodaysManna.Views
             InitializeComponent();
             BindingContext = myViewModel;
 
-            myViewModel.deleted += async (s, memoItem) =>
+            myViewModel.deleted += OnSwipeViewDeleteClicked;
+            myViewModel.shared += OnSwipeViewSharedClicked;
+        }
+
+        private async void OnSwipeViewDeleteClicked(object sender, MemoItem memoItem)
+        {
+            if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
-                if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
-                {
-                    await App.Database.DeleteItemAsync(memoItem);
-                    collectionView.ItemsSource = await App.Database.GetItemsAsync();
-                }
-            };
-            myViewModel.shared += async (s, memoItem) =>
+                await App.Database.DeleteItemAsync(memoItem);
+                collectionView.ItemsSource = await App.Database.GetItemsAsync();
+            }
+        }
+
+        private async void OnSwipeViewSharedClicked(object sender, MemoItem memoItem)
+        {
+            try
             {
                 await Share.RequestAsync(new ShareTextRequest
                 {
-                    Text = memoItem.Verse+"\n"+memoItem.Note,
+                    Text = memoItem.Verse + "\n" + memoItem.Note,
                     Title = "공유"
                 });
-            };
+            }
+            catch(Exception error)
+            {
+                System.Diagnostics.Debug.WriteLine(error.Message);
+                await Clipboard.SetTextAsync(memoItem.Verse + "\n" + memoItem.Note);
+                await DisplayAlert("클립보드에 복사됨", memoItem.Verse + "\n" + memoItem.Note, "확인");
+            }
+
         }
 
         protected override async void OnAppearing()
