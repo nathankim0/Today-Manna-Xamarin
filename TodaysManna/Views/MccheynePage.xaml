@@ -29,14 +29,12 @@
                 </Label.FontSize>
             </Label>
             <ImageButton
-                Margin="0,0,5,0"
-                Padding="8"
                 BackgroundColor="Transparent"
                 Clicked="OnDateButtonClicked"
                 HorizontalOptions="EndAndExpand"
                 Source="ic_dateselect"
                 VerticalOptions="Center"
-                WidthRequest="40" />
+                WidthRequest="30" />
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -119,7 +117,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                        <StackLayout Padding="0,15,0,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
                             <Label
                                 FontAttributes="Bold"

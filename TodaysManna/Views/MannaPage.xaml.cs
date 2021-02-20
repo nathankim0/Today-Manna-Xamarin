@@ -12,14 +12,15 @@ namespace TodaysManna.Views
     public partial class MannaPage : ContentPage
     {
         private readonly MannaViewModel mannaViewModel = new MannaViewModel();
+
         private readonly BottomSheet _bottomSheet;
         private readonly MannaTextClickSheet _mannaTextClickSheet;
+
         private readonly MemoPopup _memoPopup;
 
         private string shareRangeString = "";
-        //private int _bottomSheetHidedCount = 0;
 
-        public MannaPage(/*MannaViewModel mannaViewModel*/)
+        public MannaPage()
         {
             InitializeComponent();
             BindingContext = mannaViewModel;
@@ -34,16 +35,6 @@ namespace TodaysManna.Views
             _bottomSheet = new BottomSheet();
 
             _mannaTextClickSheet = new MannaTextClickSheet();
-            _bottomSheet.hided += (s, ee) =>
-            {
-                //if (_bottomSheetHidedCount > 0)
-                //{
-                //    return;
-                //}
-                //_bottomSheetHidedCount++;
-                System.Diagnostics.Debug.WriteLine("hided called!");
-            };
-
             _bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(_mannaTextClickSheet);
 
             _mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
@@ -55,22 +46,9 @@ namespace TodaysManna.Views
             contentGrid.Children.Add(_bottomSheet);
 
             _memoPopup = new MemoPopup();
-            _memoPopup.SaveButtonClicked += async (s, memoText) =>
-            {
-                if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-                {
-                    return;
-                }
-
-                var memoItem = new MemoItem
-                {
-                    Verse = shareRangeString,
-                    Note = memoText
-                };
-                await App.Database.SaveItemAsync(memoItem);
-            };
+            _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
         }
-
+        
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
             _bottomSheet.Hide();
@@ -225,6 +203,21 @@ namespace TodaysManna.Views
         private void OnDatepickerUnfocused(object sender, FocusEventArgs e)
         {
             backgroundBoxView.IsVisible = false;
+        }
+
+        private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
+        {
+            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+            {
+                return;
+            }
+
+            var memoItem = new MemoItem
+            {
+                Verse = shareRangeString,
+                Note = memoText
+            };
+            await App.Database.SaveItemAsync(memoItem);
         }
     }
 }

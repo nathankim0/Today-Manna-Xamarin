@@ -28,22 +28,19 @@
                 </Label.FontSize>
             </Label>
             <ImageButton
-                Padding="0,0,15,0"
                 BackgroundColor="Transparent"
                 Clicked="OnEnglishButtonClicked"
                 HorizontalOptions="EndAndExpand"
                 Source="ic_english"
                 VerticalOptions="Center"
-                WidthRequest="40" />
+                WidthRequest="30" />
             <ImageButton
-                Margin="0,0,5,0"
-                Padding="8"
                 BackgroundColor="Transparent"
                 Clicked="OnMannaDateButtonClicked"
                 HorizontalOptions="End"
                 Source="ic_dateselect"
                 VerticalOptions="Center"
-                WidthRequest="40" />
+                WidthRequest="30" />
         </StackLayout>
     </NavigationPage.TitleView>
 
