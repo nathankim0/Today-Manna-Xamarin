@@ -17,7 +17,7 @@ namespace TodaysManna.Views
         private readonly MemoPopup _memoPopup;
 
         private string shareRangeString = "";
-        private int _bottomSheetHidedCount = 0;
+        //private int _bottomSheetHidedCount = 0;
 
         public MannaPage(/*MannaViewModel mannaViewModel*/)
         {
@@ -34,6 +34,16 @@ namespace TodaysManna.Views
             _bottomSheet = new BottomSheet();
 
             _mannaTextClickSheet = new MannaTextClickSheet();
+            _bottomSheet.hided += (s, ee) =>
+            {
+                //if (_bottomSheetHidedCount > 0)
+                //{
+                //    return;
+                //}
+                //_bottomSheetHidedCount++;
+                System.Diagnostics.Debug.WriteLine("hided called!");
+            };
+
             _bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(_mannaTextClickSheet);
 
             _mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
@@ -142,9 +152,9 @@ namespace TodaysManna.Views
         }
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
-        	_bottomSheetHidedCount = 0;
+        	//_bottomSheetHidedCount = 0;
             var selectedGrid = sender as Grid;
-            SetSelectedItemUnderLined(selectedGrid, true);
+            //SetSelectedItemUnderLined(selectedGrid, true);
 
             var verseText = verse.Text;
 
@@ -154,31 +164,27 @@ namespace TodaysManna.Views
             {
                 tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
             }
-            catch (NullReferenceException error)
+            catch (Exception error)
+            {
+                System.Diagnostics.Debug.WriteLine("OnCollectionViewItemTapped error! : " + error.Message);
+            }
+
+            string num = "";
+            string manna = "";
+            try
+            {
+                num = ((Label)selectedGrid.Children.ElementAt(0)).Text;
+                manna = ((Label)selectedGrid.Children.ElementAt(1)).Text;
+            }
+            catch (Exception error)
             {
                 System.Diagnostics.Debug.WriteLine(error.Message);
             }
 
-            var num = ((Label)selectedGrid.Children.ElementAt(0)).Text;
-            var manna = ((Label)selectedGrid.Children.ElementAt(1)).Text;
-
             shareRangeString = $"({tmpRangeString}:{num}) {manna}";
-
             _mannaTextClickSheet.textLabel.Text = shareRangeString;
 
             _bottomSheet.Show();
-
-            _bottomSheet.hided += (s, ee) =>
-            {
-                if (_bottomSheetHidedCount > 0)
-                {
-                    SetSelectedItemUnderLined(selectedGrid, false);
-                    return;
-                }
-                _bottomSheetHidedCount++;
-                SetSelectedItemUnderLined(selectedGrid, false);
-                System.Diagnostics.Debug.WriteLine("hided called!");
-            };
         }
 
         private static void SetSelectedItemUnderLined(Grid t, bool isUnderLined)
