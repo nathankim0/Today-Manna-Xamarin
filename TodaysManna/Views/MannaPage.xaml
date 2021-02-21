@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:TodaysManna"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Title="만나"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
@@ -28,19 +29,24 @@
                 </Label.FontSize>
             </Label>
             <ImageButton
-                BackgroundColor="Transparent"
                 Clicked="OnEnglishButtonClicked"
                 HorizontalOptions="EndAndExpand"
-                Source="ic_english"
-                VerticalOptions="Center"
-                WidthRequest="30" />
+                VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.Translate}"
+                        Size="30"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
+                </ImageButton.Source>
+            </ImageButton>
             <ImageButton
                 BackgroundColor="Transparent"
                 Clicked="OnMannaDateButtonClicked"
                 HorizontalOptions="End"
                 Source="ic_dateselect"
-                VerticalOptions="Center"
-                WidthRequest="30" />
+                VerticalOptions="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
 
