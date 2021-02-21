@@ -44,6 +44,7 @@
     <None Remove="Datas\mcc.json" />
     <None Remove="Datas\MccheyneRange.json" />
     <None Remove="Datas\MccheyneRange2.json" />
+    <None Remove="Fonts\materialdesignicons.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
