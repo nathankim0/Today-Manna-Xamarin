@@ -82,7 +82,6 @@
 
         <CollectionView
             x:Name="mannaCollectionView"
-            Margin="15,0,15,0"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
             Footer="&#10;"
@@ -90,7 +89,7 @@
             VerticalOptions="Fill"
             VerticalScrollBarVisibility="Always">
             <CollectionView.Header>
-                <StackLayout BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                <StackLayout Padding="15,0,15,0" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <StackLayout Padding="0,0,0,10" Orientation="Horizontal">
                         <Label
                             x:Name="today"
@@ -108,7 +107,6 @@
                     </StackLayout>
                     <yummy:PancakeView
                         x:Name="rangeButton"
-                        Margin="0,0,0,10"
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
                         CornerRadius="10">
@@ -172,7 +170,7 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="0,15,0,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                    <Grid Padding="15,15,15,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnCollectionViewItemTapped" />
                         </Grid.GestureRecognizers>

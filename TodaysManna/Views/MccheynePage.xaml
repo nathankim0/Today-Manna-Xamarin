@@ -61,7 +61,6 @@
         </Grid.RowDefinitions>
         <ListView
             x:Name="mccheyneView"
-            Margin="15,0,15,0"
             BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                               Light=White}"
             Footer=""
@@ -75,7 +74,7 @@
             VerticalScrollBarVisibility="Always">
             <ListView.HeaderTemplate>
                 <DataTemplate>
-                    <StackLayout Orientation="Vertical">
+                    <StackLayout Padding="15,0,15,0" Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
                             <Label
                                 FontFamily="dotum.ttf"
@@ -133,7 +132,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="0,15,0,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                        <StackLayout Padding="15,15,15,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
 
                             <Label
                                 FontAttributes="Bold"
