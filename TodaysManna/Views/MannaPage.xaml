@@ -14,7 +14,8 @@
     Shell.NavBarIsVisible="False">
 
     <NavigationPage.TitleView>
-        <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
+
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
@@ -29,24 +30,47 @@
                 </Label.FontSize>
             </Label>
             <ImageButton
+                BackgroundColor="Transparent"
                 Clicked="OnEnglishButtonClicked"
                 HorizontalOptions="EndAndExpand"
                 VerticalOptions="Center">
                 <ImageButton.Source>
                     <FontImageSource
                         FontFamily="materialdesignicons"
-                        Glyph="{x:Static local:FontIcons.Translate}"
+                        Glyph="{x:Static local:FontIcons.AlphabetLatin}"
                         Size="30"
                         Color="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
+                                                Light=Black}">
+                        <FontImageSource.Size>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="32"
+                                iOS="30" />
+                        </FontImageSource.Size>
+                    </FontImageSource>
                 </ImageButton.Source>
             </ImageButton>
             <ImageButton
+                Padding="10,0,5,0"
                 BackgroundColor="Transparent"
                 Clicked="OnMannaDateButtonClicked"
-                HorizontalOptions="End"
-                Source="ic_dateselect"
-                VerticalOptions="Center" />
+                HorizontalOptions="End">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.CalendarBlank}"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                        <FontImageSource.Size>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="32"
+                                iOS="30" />
+                        </FontImageSource.Size>
+                    </FontImageSource>
+                </ImageButton.Source>
+
+            </ImageButton>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -133,9 +157,16 @@
                             BackgroundColor="Transparent"
                             Clicked="OnShareButtonClicked"
                             HorizontalOptions="End"
-                            Source="share"
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="40" />
+                            VerticalOptions="CenterAndExpand">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="materialdesignicons"
+                                    Glyph="{x:Static local:FontIcons.ShareVariant}"
+                                    Size="30"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light=Black}" />
+                            </ImageButton.Source>
+                        </ImageButton>
                     </StackLayout>
                 </StackLayout>
             </CollectionView.Header>
