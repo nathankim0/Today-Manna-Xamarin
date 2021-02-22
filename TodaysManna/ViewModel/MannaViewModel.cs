@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -10,21 +9,15 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Rg.Plugins.Popup.Services;
-using TodaysManna.Models;
-using TodaysManna.Popups;
 using TodaysManna.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static TodaysManna.Models.BibleAtData;
-using static TodaysManna.Models.MccheyneRangeData;
 
 namespace TodaysManna.ViewModel
 {
     public class MannaViewModel : INotifyPropertyChanged
     {
-        private ErrorPopup errorPopup;
 
         private readonly RestService _restService;
         
@@ -37,14 +30,23 @@ namespace TodaysManna.ViewModel
 
         public static string todayMccheyneRange;
 
+        private string _bib = "창";
+        private int _jang= 1;
+        
 
-        private int _jang;
-        private string _bib;
-
-        public static List<MccheyneRange> mccheyneRanges;
-
-        public ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
-        public ObservableCollection<MannaContent> MannaContents { get { return _mannaContents; } }
+        private ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
+        public ObservableCollection<MannaContent> MannaContents
+        {
+            get =>_mannaContents;
+            set
+            {
+                if (_mannaContents != value)
+                {
+                    _mannaContents = value;
+                    OnPropertyChanged(nameof(MannaContents));
+                }
+            }
+        }
 
         private MannaData _mannaData = new MannaData();
         public MannaData JsonMannaData
@@ -140,8 +142,6 @@ namespace TodaysManna.ViewModel
             IsRefreshing = false;
         });
 
-
-
         public MannaViewModel()
         {
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
@@ -150,74 +150,27 @@ namespace TodaysManna.ViewModel
 
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                try
-                {
-                    GetManna();
-                }
-                catch(Exception e)
-                {
-                    System.Diagnostics.Debug.Fail("GetManna() \n" + e.Message);
-                    ShowErrorPopup("만나 불러오기 오류");
-                }
+                GetManna();
             }
             else
             {
-                ShowErrorPopup("만나 불러오기 오류");
+                App.ShowErrorPopup("인터넷 연결을 확인해주세요.");
             }
-            
-            mccheyneRanges = new List<MccheyneRange>();
-            try
-            {
-                mccheyneRanges = GetJsonMccheyneRange();
-            }
-            catch(Exception e)
-            {
-                System.Diagnostics.Debug.Fail("GetJsonMccheyneRange() \n" + e.Message);
-                ShowErrorPopup("맥체인 불러오기 오류");
-            }
+
             var today = DateTime.Now.ToString("M-d");
-            todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
+            todayMccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
 
-        private async void ShowErrorPopup(string message)
-        {
-            errorPopup = new ErrorPopup(message);
-            await PopupNavigation.Instance.PushAsync(errorPopup);
-        }
         private async void GetManna()
         {
-            const string endPoint = Constants.MannaEndpoint;
-
-            JsonMannaData = new MannaData();
-            JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
-
             try
             {
-                var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
-                var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
-
-                _bib = Regex.Replace(tmpBibleAt, @"\d", "");
-                _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
-
-                var _bibles = new List<Bible>();
-                _bibles = GetJsonBible();
-
-                var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
-
-                var redirectUrl = $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
-
-                _completeUrl = $"{bibleUrl}{redirectUrl}";
-                _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
-
-                SetMannaContents();
-
-                MannaShareRange = $"만나: {JsonMannaData.Verse}";
-                McShareRange = $"맥체인: {todayMccheyneRange}";
+                await GetJsonMannaAndSetContents(Constants.MannaEndpoint);
             }
             catch(Exception e)
             {
-                System.Diagnostics.Debug.Fail("GetManna() \n" + e.Message);
-                ShowErrorPopup("만나 불러오기 오류");
+                System.Diagnostics.Debug.Fail("# MannaViewModel GetManna() \n" + e.Message);
+                App.ShowErrorPopup("만나 불러오기 오류");
             }
         }
 
@@ -230,16 +183,54 @@ namespace TodaysManna.ViewModel
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
 
             var newDateString = dateTime.ToString("yyyy-MM-dd");
-            var endPoint = Constants.MannaEndpoint+ newDateString;
+            var endPoint = Constants.MannaEndpoint + newDateString;
 
             var findMccheyneDate = dateTime.ToString("M-d");
-            todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
+            todayMccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
 
+            try
+            {
+                await GetJsonMannaAndSetContents(endPoint);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.Fail("# MannaViewModel GetManna(DateTime dateTime) \n" + e.Message);
+                App.ShowErrorPopup("만나 불러오기 오류");
+            }
+        }
+
+        private async Task GetJsonMannaAndSetContents(string endPoint)
+        {
             JsonMannaData = new MannaData();
             JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
 
-            var tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
-            var tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
+            string tmpBibleAt = "창1";
+            string tmpVerseNumRange = "1-10";
+
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("***** GetJsonMannaAndSetContents *****");
+
+            try
+            {
+                tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
+                Console.WriteLine("tmpBibleAt: " + tmpBibleAt);
+            }
+            catch (Exception e)
+            {
+                tmpBibleAt = "창1";
+                System.Diagnostics.Debug.Fail("# MannaViewModel GetJsonMannaAndSetContents tmpBibleAt \n" + e.Message);
+            }
+
+            try
+            {
+                tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
+                Console.WriteLine("tmpVerseNumRange: " + tmpVerseNumRange);
+            }
+            catch (Exception e)
+            {
+                tmpVerseNumRange = "1-10";
+                System.Diagnostics.Debug.Fail("# MannaViewModel GetJsonMannaAndSetContents tmpVerseNumRange \n" + e.Message);
+            }
 
             _bib = Regex.Replace(tmpBibleAt, @"\d", "");
             _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
@@ -258,22 +249,29 @@ namespace TodaysManna.ViewModel
 
             MannaShareRange = $"만나: {JsonMannaData.Verse}";
             McShareRange = $"맥체인: {todayMccheyneRange}";
-        }
 
+            Console.WriteLine("_bib: " + _bib);
+            Console.WriteLine("_jang: " + _jang);
+            Console.WriteLine("_jang: " + engBib);
+            Console.WriteLine("redirectUrl: " + redirectUrl);
+            Console.WriteLine("_completeUrl: " + _completeUrl);
+            Console.WriteLine("_completeAppUrl: " + _completeAppUrl);
+            Console.WriteLine("MannaShareRange: " + MannaShareRange);
+            Console.WriteLine("McShareRange: " + McShareRange);
+
+            Console.WriteLine("--------------------------------------------------------");
+        }
 
         private List<Bible> GetJsonBible()
         {
             var jsonFileName = "BibleAt.json";
             var ObjContactList = new BibleList();
 
-
             var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {
                 var jsonString = reader.ReadToEnd();
-
-                //Converting JSON Array Objects into generic list    
                 ObjContactList = JsonConvert.DeserializeObject<BibleList>(jsonString);
             }
             
@@ -282,7 +280,14 @@ namespace TodaysManna.ViewModel
 
         private void SetMannaContents()
         {
-            MannaContents.Clear();
+            try
+            {
+                MannaContents.Clear();
+            }
+            catch
+            {
+
+            }
             var allContents = "";
             var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":")+1);
 
@@ -304,25 +309,6 @@ namespace TodaysManna.ViewModel
             AllString = allContents;
         }
 
-        private List<MccheyneRange> GetJsonMccheyneRange()
-        {
-            var jsonFileName = "MccheyneRange.json";
-            var ObjContactList = new MccheyneRangeList();
-
-
-            var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
-            using (var reader = new StreamReader(stream))
-            {
-                var jsonString = reader.ReadToEnd();
-
-                //Converting JSON Array Objects into generic list    
-                ObjContactList = JsonConvert.DeserializeObject<MccheyneRangeList>(jsonString);
-            }
-
-            return ObjContactList.Ranges;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName="")
@@ -331,32 +317,3 @@ namespace TodaysManna.ViewModel
         }
     }
 }
-
-
-//private void FormattingJsonFile()
-//{
-//    var jsonArray = new JArray();
-
-//    foreach (var node in mccheyneRanges)
-//    {
-//        var json = new JObject();
-//        json.Add($"date", node.Date);
-
-//        char[] delimiterChars = { ',' };
-//        var range = node.Range;
-//        string[] words = range.Split(delimiterChars);
-
-//        int i = 1;
-//        foreach (var word in words)
-//        {
-//            json.Add($"range{i}", word);
-//            i++;
-//        }
-//        jsonArray.Add(json);
-//    }
-//    string str_json = JsonConvert.SerializeObject(jsonArray);
-//    System.Diagnostics.Debug.WriteLine(str_json);
-//    JsonConvert.SerializeObject(jsonArray, Formatting.Indented);
-//    File.WriteAllText(@"/Users/jinyeob/Downloads/path2.json", str_json.ToString());
-
-//}

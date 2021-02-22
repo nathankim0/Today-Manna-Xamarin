@@ -11,8 +11,6 @@ namespace TodaysManna.Views
 {
     public partial class MannaPage : ContentPage
     {
-        private readonly MannaViewModel mannaViewModel = new MannaViewModel();
-
         private readonly BottomSheet _bottomSheet;
         private readonly MannaTextClickSheet _mannaTextClickSheet;
 
@@ -23,7 +21,7 @@ namespace TodaysManna.Views
         public MannaPage()
         {
             InitializeComponent();
-            BindingContext = mannaViewModel;
+            BindingContext = new MannaViewModel();
 
             mannaDatepicker.MinimumDate = new DateTime(DateTime.Now.Year, 1, 1);
             mannaDatepicker.MaximumDate = DateTime.Now;
@@ -130,14 +128,11 @@ namespace TodaysManna.Views
         }
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
-        	//_bottomSheetHidedCount = 0;
             var selectedGrid = sender as Grid;
-            //SetSelectedItemUnderLined(selectedGrid, true);
 
             var verseText = verse.Text;
-
-
             string tmpRangeString = "";
+
             try
             {
                 tmpRangeString = verseText.Substring(0, verseText.IndexOf(":"));
@@ -149,6 +144,7 @@ namespace TodaysManna.Views
 
             string num = "";
             string manna = "";
+
             try
             {
                 num = ((Label)selectedGrid.Children.ElementAt(0)).Text;
@@ -163,20 +159,6 @@ namespace TodaysManna.Views
             _mannaTextClickSheet.textLabel.Text = shareRangeString;
 
             _bottomSheet.Show();
-        }
-
-        private static void SetSelectedItemUnderLined(Grid t, bool isUnderLined)
-        {
-            if (isUnderLined)
-            {
-                ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
-                ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.Underline;
-            }
-            else
-            {
-                ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
-                ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
-            }
         }
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
@@ -197,7 +179,7 @@ namespace TodaysManna.Views
 
         private void OnDateSelected(object sender, DateChangedEventArgs e)
         {
-            mannaViewModel.GetManna(e.NewDate);
+            (BindingContext as MannaViewModel).GetManna(e.NewDate);
         }
 
         private void OnDatepickerUnfocused(object sender, FocusEventArgs e)
@@ -221,3 +203,20 @@ namespace TodaysManna.Views
         }
     }
 }
+
+
+
+
+//private static void SetSelectedItemUnderLined(Grid t, bool isUnderLined)
+//{
+//    if (isUnderLined)
+//    {
+//        ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
+//        ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.Underline;
+//    }
+//    else
+//    {
+//        ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
+//        ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
+//    }
+//}
