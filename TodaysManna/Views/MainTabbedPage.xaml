@@ -3,10 +3,61 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:baselocal="clr-namespace:TodaysManna"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
     android:TabbedPage.IsSwipePagingEnabled="False"
     android:TabbedPage.OffscreenPageLimit="3"
     android:TabbedPage.ToolbarPlacement="Bottom"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
-    ios:Page.UseSafeArea="true" />
+    ios:Page.UseSafeArea="true">
+
+    <NavigationPage Title="만나">
+        <x:Arguments>
+            <local:MannaPage />
+        </x:Arguments>
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                FontFamily="materialdesignicons"
+                Glyph="{x:Static baselocal:FontIcons.BookOpenVariant}"
+                Color="{AppThemeBinding Dark=White,
+                                        Light=Black}" />
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+    <NavigationPage Title="맥체인">
+        <x:Arguments>
+            <local:MccheynePage />
+        </x:Arguments>
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                FontFamily="materialdesignicons"
+                Glyph="{x:Static baselocal:FontIcons.BookOpenPageVariantOutline}"
+                Color="{AppThemeBinding Dark=White,
+                                        Light=Black}" />
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+    <NavigationPage Title="체크리스트">
+        <x:Arguments>
+            <local:MccheyneCheckListPage />
+        </x:Arguments>
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                FontFamily="materialdesignicons"
+                Glyph="{x:Static baselocal:FontIcons.CheckBoxMultipleOutline}"
+                Color="{AppThemeBinding Dark=White,
+                                        Light=Black}" />
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+    <NavigationPage Title="나의 만나">
+        <x:Arguments>
+            <local:MyPage />
+        </x:Arguments>
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                FontFamily="materialdesignicons"
+                Glyph="{x:Static baselocal:FontIcons.BookmarkOutline}"
+                Color="{AppThemeBinding Dark=White,
+                                        Light=Black}" />
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+</TabbedPage>
