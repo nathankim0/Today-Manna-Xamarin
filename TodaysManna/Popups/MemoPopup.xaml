@@ -62,8 +62,11 @@
                 <Editor
                     x:Name="editor"
                     Grid.Row="2"
-                    BackgroundColor="NavajoWhite"
-                    Placeholder="메모를 작성해주세요...">
+                    BackgroundColor="{AppThemeBinding Dark=Gray,
+                                                      Light=#ececec}"
+                    Placeholder="메모를 작성해주세요..."
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}">
                     <Editor.FontSize>
                         <OnPlatform
                             x:TypeArguments="x:Double"

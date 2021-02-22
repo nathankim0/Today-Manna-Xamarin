@@ -19,7 +19,10 @@ namespace TodaysManna.Popups
         }
         private async void OnCancelButtonClicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PopAsync();
+            if (await DisplayAlert("", "정말 취소하시겠습니까? 작성 중인 메모는 삭제됩니다.", "예", "돌아가기"))
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
