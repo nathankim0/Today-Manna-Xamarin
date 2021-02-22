@@ -5,12 +5,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TodaysManna.Models;
 using TodaysManna.Views;
 using static TodaysManna.Models.MccheyneData;
-using static TodaysManna.Models.MccheyneRangeData;
 
 namespace TodaysManna.ViewModel
 {
@@ -301,7 +299,6 @@ namespace TodaysManna.ViewModel
             }
         }
 
-
         private IEnumerable<Days> GetJsonBible()
         {
             var jsonFileName = "mcc.json";
@@ -322,11 +319,10 @@ namespace TodaysManna.ViewModel
         public void GetMccheyneRange(DateTime thisDate)
         {
             var date = thisDate.ToString("M-d");
-            VerseRange = MannaViewModel.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
+            VerseRange = App.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
