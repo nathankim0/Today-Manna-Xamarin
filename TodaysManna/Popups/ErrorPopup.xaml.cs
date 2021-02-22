@@ -7,10 +7,9 @@ namespace TodaysManna.Popups
 {
     public partial class ErrorPopup : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public ErrorPopup(string message)
+        public ErrorPopup()
         {
             InitializeComponent();
-            errorLabel.Text = message;
         }
 
         private async void Button_Clicked(System.Object sender, System.EventArgs e)
