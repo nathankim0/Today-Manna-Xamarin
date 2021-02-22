@@ -14,7 +14,7 @@
     NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
     <NavigationPage.TitleView>
-        <StackLayout Padding="15,0,15,0" Orientation="Horizontal">
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
@@ -41,6 +41,21 @@
         Header="&#10;&#10;"
         SelectionChanged="OnCollectionViewSelectionChanged"
         SelectionMode="Single">
+        <CollectionView.EmptyView>
+            <StackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="dotum.ttf"
+                    Text="아직 저장한 메모가 없네요!&#10;묵상을 작성해보는 것은 어떨까요?✍️&#10;(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)">
+                    <Label.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="20"
+                            iOS="18" />
+                    </Label.FontSize>
+                </Label>
+            </StackLayout>
+        </CollectionView.EmptyView>
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
@@ -63,6 +78,7 @@
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
                         CornerRadius="15">
+
                         <yummy:PancakeView.BackgroundGradientStops>
                             <yummy:GradientStopCollection>
                                 <yummy:GradientStop Offset="0" Color="DarkSalmon" />
