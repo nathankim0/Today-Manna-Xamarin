@@ -71,8 +71,6 @@
                 <Button Clicked="OnSaveClicked" Text="저장" />
                 <Button Clicked="OnDeleteClicked" Text="삭제" />
                 <Button Clicked="OnShareClicked" Text="공유" />
-
-                <Button Clicked="OnCancelClicked" Text="취소" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

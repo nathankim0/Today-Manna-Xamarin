@@ -282,11 +282,6 @@ namespace TodaysManna.Views
 
         private async void OnSaveButtonClicked(object sender, string memoText)
         {
-            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-            {
-                return;
-            }
-
             var memoItem = new MemoItem
             {
                 Verse = shareRangeString,
