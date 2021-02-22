@@ -59,7 +59,7 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <SwipeView.RightItems>
+                    <!--<SwipeView.RightItems>
                         <SwipeItems>
                             <SwipeItem
                                 BackgroundColor="Red"
@@ -72,7 +72,7 @@
                                 CommandParameter="{Binding}"
                                 Text="Share" />
                         </SwipeItems>
-                    </SwipeView.RightItems>
+                    </SwipeView.RightItems>-->
 
                     <yummy:PancakeView
                         BackgroundGradientEndPoint="0.5,0.0"
