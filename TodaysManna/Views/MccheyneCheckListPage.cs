@@ -16,22 +16,22 @@ namespace TodaysManna.Views
     {
         private CollectionView _collectionView;
         private readonly OptionPopup _optionPopup;
-        private readonly MccheyneCheckContent _todayMccheyne;
+        private MccheyneCheckContent _todayMccheyne;
 
         public MccheyneCheckListPage()
         {
             BindingContext = App.mccheyneCheckViewModel; 
             Initialize();
 
-            _todayMccheyne = (BindingContext as MccheyneCheckViewModel).MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
             _optionPopup = new OptionPopup();
-
             _optionPopup.CheckButtonClicked += OnCheckButtonClicked;
             _optionPopup.ClearButtonClicked+= OnClearButtonClicked;
         }
 
         private void Initialize()
         {
+            _todayMccheyne = App.mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
+
             On<iOS>().SetUseSafeArea(true);
             On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
             On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
@@ -52,33 +52,43 @@ namespace TodaysManna.Views
                 VerticalOptions = LayoutOptions.Center
             };
 
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-                    titleLabel.FontSize = 26;
-                    break;
-                case Device.iOS:
-                    titleLabel.FontSize = 24;
-                    break;
-            };
-
-            var titleOptionButton = new Button
+            var titleOptionButton = new ImageButton
             {
                 Margin = new Thickness(0,0,5,0),
                 Padding = 8,
                 BackgroundColor = Color.Transparent,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
-                Text = "옵션",
-                TextColor = Color.FromHex("#0000EE"),
                 VerticalOptions = LayoutOptions.Center
             };
+            var titleOptionButtonFontImageSource = new FontImageSource
+            {
+                Glyph = FontIcons.AppleKeyboardOption,
+                FontFamily = "materialdesignicons",
+            };
+
+            titleOptionButtonFontImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
+            titleOptionButton.Source = titleOptionButtonFontImageSource;
             titleOptionButton.Clicked += OnOptionClicked;
 
             var titleStackLayout = new StackLayout
             {
-                Padding=new Thickness(15,0,15,0),
+                Padding=new Thickness(0,0,15,0),
                 Orientation=StackOrientation.Horizontal,
                 Children = {titleLabel,titleOptionButton}
+            };
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    titleLabel.FontSize = 26;
+                    titleOptionButtonFontImageSource.Size = 32;
+                    titleStackLayout.Padding = new Thickness(0, 0, 15, 0);
+                    break;
+                case Device.iOS:
+                    titleLabel.FontSize = 24;
+                    titleOptionButtonFontImageSource.Size = 30;
+                    titleStackLayout.Padding = new Thickness(15, 0, 15, 0);
+                    break;
             };
 
             NavigationPage.SetTitleView(this, titleStackLayout);
@@ -159,12 +169,13 @@ namespace TodaysManna.Views
                     return collectionViewDataTemplateGrid;
                 });
             Content = _collectionView;
+
             ScrollToToday();
         }
 
         public void ScrollToToday()
         {
-            _collectionView.ScrollTo(_todayMccheyne, null, Xamarin.Forms.ScrollToPosition.Center, true);
+            _collectionView.ScrollTo(_todayMccheyne, null, ScrollToPosition.Center, false);
         }
 
         protected override void OnAppearing()

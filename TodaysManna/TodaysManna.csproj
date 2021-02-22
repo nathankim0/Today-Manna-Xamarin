@@ -54,5 +54,6 @@
     <EmbeddedResource Include="Datas\mcc.json" />
     <EmbeddedResource Include="Datas\MccheyneRange.json" />
     <EmbeddedResource Include="Datas\MccheyneRange2.json" />
+    <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
   </ItemGroup>
 </Project>
