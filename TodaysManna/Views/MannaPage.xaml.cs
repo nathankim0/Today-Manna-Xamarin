@@ -189,11 +189,6 @@ namespace TodaysManna.Views
 
         private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
         {
-            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-            {
-                return;
-            }
-
             var memoItem = new MemoItem
             {
                 Verse = shareRangeString,
@@ -203,20 +198,3 @@ namespace TodaysManna.Views
         }
     }
 }
-
-
-
-
-//private static void SetSelectedItemUnderLined(Grid t, bool isUnderLined)
-//{
-//    if (isUnderLined)
-//    {
-//        ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.Underline;
-//        ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.Underline;
-//    }
-//    else
-//    {
-//        ((Label)t.Children.ElementAt(0)).TextDecorations = TextDecorations.None;
-//        ((Label)t.Children.ElementAt(1)).TextDecorations = TextDecorations.None;
-//    }
-//}

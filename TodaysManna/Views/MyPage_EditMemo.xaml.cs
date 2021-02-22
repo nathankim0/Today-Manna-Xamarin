@@ -58,11 +58,6 @@ namespace TodaysManna.Views
             }
         }
 
-        private async void OnCancelClicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
-
         protected override async void OnDisappearing()
         {
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
