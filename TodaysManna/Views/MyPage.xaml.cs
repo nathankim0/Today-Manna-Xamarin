@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace TodaysManna.Views
 {
-    public partial class MyPage : ContentPage
+    public partial class MyPage : ContentView
     {
         private MyViewModel myViewModel = new MyViewModel();
         public MyPage()
@@ -25,7 +25,7 @@ namespace TodaysManna.Views
 
         private async void OnSwipeViewDeleteClicked(object sender, MemoItem memoItem)
         {
-            if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
+            if (await App.Current.MainPage.DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
                 await App.Database.DeleteItemAsync(memoItem);
                 collectionView.ItemsSource = await App.Database.GetItemsAsync();
@@ -46,16 +46,17 @@ namespace TodaysManna.Views
             {
                 System.Diagnostics.Debug.WriteLine(error.Message);
                 await Clipboard.SetTextAsync(memoItem.Verse + "\n" + memoItem.Note);
-                await DisplayAlert("클립보드에 복사됨", memoItem.Verse + "\n" + memoItem.Note, "확인");
+                await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", memoItem.Verse + "\n" + memoItem.Note, "확인");
             }
 
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            collectionView.ItemsSource = await App.Database.GetItemsAsync();
-        }
+        //protected override async void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    collectionView.ItemsSource = await App.Database.GetItemsAsync();
+
+        //}
 
         private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {

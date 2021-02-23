@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<ContentView
     x:Class="TodaysManna.Views.MccheynePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
-    Title="맥체인"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
@@ -256,4 +255,4 @@
                 TextColor="#0000EE" />
         </Grid>
     </Grid>
-</ContentPage>
+</ContentView>

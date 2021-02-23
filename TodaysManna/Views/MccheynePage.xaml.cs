@@ -10,7 +10,7 @@ using Rg.Plugins.Popup.Services;
 
 namespace TodaysManna.Views
 {
-    public partial class MccheynePage : ContentPage
+    public partial class MccheynePage : ContentView
     {
         private readonly BottomSheet _bottomSheet;
         private readonly MannaTextClickSheet _mannaTextClickSheet;
@@ -221,7 +221,7 @@ namespace TodaysManna.Views
         {
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
-            await DisplayAlert("클립보드에 복사됨", address, "확인");
+            await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", address, "확인");
         }
 
         private void OnBackgroundTapped(object sender, EventArgs e)
@@ -245,7 +245,7 @@ namespace TodaysManna.Views
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
             await Clipboard.SetTextAsync(shareRangeString);
-            await DisplayAlert("클립보드에 복사됨", null, "확인");
+            await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
@@ -261,7 +261,7 @@ namespace TodaysManna.Views
         {
             _bottomSheet.Hide();
 
-            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+            if (!await App.Current.MainPage.DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
             {
                 _bottomSheet.Show();
                 return;
@@ -269,6 +269,7 @@ namespace TodaysManna.Views
 
             var memoItem = new MemoItem
             {
+                Date = DateTime.Now,
                 Verse = shareRangeString,
                 Note = ""
             };
@@ -284,6 +285,7 @@ namespace TodaysManna.Views
         {
             var memoItem = new MemoItem
             {
+                Date = DateTime.Now,
                 Verse = shareRangeString,
                 Note = memoText
             };

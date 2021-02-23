@@ -8,6 +8,7 @@ using TodaysManna.Datas;
 using TodaysManna.Popups;
 using TodaysManna.ViewModel;
 using TodaysManna.Views;
+using Xamarin.Forms;
 using static TodaysManna.Models.MccheyneRangeData;
 
 namespace TodaysManna
@@ -29,7 +30,9 @@ namespace TodaysManna
             InitializeComponent();            
             CreateData();
 
-            MainPage = new MainTabbedPage();
+            //MainPage = new MainTabbedPage();
+
+            MainPage = new NavigationPage(new MainTabView());
         }
 
         private void CreateData()

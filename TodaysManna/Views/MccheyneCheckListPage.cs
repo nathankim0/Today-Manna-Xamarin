@@ -12,7 +12,7 @@ using TodaysManna.Models;
 
 namespace TodaysManna.Views
 {
-    public partial class MccheyneCheckListPage : ContentPage
+    public partial class MccheyneCheckListPage : ContentView
     {
         private CollectionView _collectionView;
         private readonly OptionPopup _optionPopup;
@@ -32,12 +32,12 @@ namespace TodaysManna.Views
         {
             _todayMccheyne = App.mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
 
-            On<iOS>().SetUseSafeArea(true);
-            On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
-            On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
+            //App.Current.MainPage.On<iOS>().SetUseSafeArea(true);
+            //App.Current.MainPage.On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
+            //App.Current.MainPage.On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
 
-            Title = "체크리스트";
-            IconImageSource = "tab_mc";
+            //Title = "체크리스트";
+            //IconImageSource = "tab_mc";
             this.SetAppThemeColor(BackgroundColorProperty, Color.White, Color.FromHex("#2e2e2e"));
 
             NavigationPage.SetBackButtonTitle(this, "");
@@ -178,10 +178,10 @@ namespace TodaysManna.Views
             _collectionView.ScrollTo(_todayMccheyne, null, ScrollToPosition.Center, false);
         }
 
-        protected override void OnAppearing()
-        {
-            ScrollToToday();
-        }
+        //protected override void OnAppearing()
+        //{
+        //    ScrollToToday();
+        //}
 
         private void OnScrollToToday(object sender, EventArgs e)
         {
@@ -192,7 +192,7 @@ namespace TodaysManna.Views
         {
             if (!(BindingContext is MccheyneCheckViewModel viewModel)) { return; }
 
-            bool IsConfirmed = await DisplayAlert("오늘까지 체크", "정말 체크 하시겠습니까?", "확인", "취소");
+            bool IsConfirmed = await App.Current.MainPage.DisplayAlert("오늘까지 체크", "정말 체크 하시겠습니까?", "확인", "취소");
             var today = DateTime.Now;
             if (IsConfirmed)
             {
@@ -224,7 +224,7 @@ namespace TodaysManna.Views
         {
             if (!(BindingContext is MccheyneCheckViewModel viewModel)) { return; }
 
-            bool IsConfirmed = await DisplayAlert("초기화", "정말 초기화 하시겠습니까?", "확인", "취소");
+            bool IsConfirmed = await App.Current.MainPage.DisplayAlert("초기화", "정말 초기화 하시겠습니까?", "확인", "취소");
             if (IsConfirmed)
             {
                 await PopupNavigation.Instance.PopAsync();

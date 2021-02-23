@@ -18,6 +18,7 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -33,6 +34,7 @@
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
     <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\MainTabbedPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
@@ -48,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MainTabbedPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Datas\BibleAt.json" />

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.Views.MainTabView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:baselocal="clr-namespace:TodaysManna"
+    xmlns:pages="clr-namespace:TodaysManna.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="TabItemTemplate">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Margin="6"
+                        HeightRequest="24"
+                        HorizontalOptions="Center"
+                        Source="{TemplateBinding CurrentIcon}"
+                        VerticalOptions="Center"
+                        WidthRequest="24" />
+                    <Label
+                        Grid.Row="1"
+                        FontSize="{TemplateBinding FontSize}"
+                        HorizontalOptions="Center"
+                        Text="{TemplateBinding Text}"
+                        TextColor="{TemplateBinding CurrentTextColor}" />
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="FabTabItemTemplate">
+                <Grid>
+                    <ImageButton
+                        Margin="0,0,0,0"
+                        Padding="10"
+                        BackgroundColor="White"
+                        BorderColor="LightGray"
+                        BorderWidth="2"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        InputTransparent="True"
+                        Source="{TemplateBinding CurrentIcon}"
+                        WidthRequest="60">
+                        <ImageButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="iOS" Value="30" />
+                                <On Platform="Android" Value="60" />
+                                <On Platform="UWP" Value="36" />
+                            </OnPlatform>
+                        </ImageButton.CornerRadius>
+                        <ImageButton.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="Android, iOS, UWP">True</On>
+                                <On Platform="macOS">False</On>
+                            </OnPlatform>
+                        </ImageButton.IsVisible>
+                    </ImageButton>
+                    <BoxView
+                        Margin="6"
+                        BackgroundColor="#FF0000"
+                        CornerRadius="30"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        InputTransparent="True"
+                        WidthRequest="60">
+                        <BoxView.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="Android, iOS, UWP">False</On>
+                                <On Platform="macOS">True</On>
+                            </OnPlatform>
+                        </BoxView.IsVisible>
+                    </BoxView>
+                </Grid>
+            </ControlTemplate>
+
+            <Style x:Key="CustomTabStyle" TargetType="xct:TabView">
+                <Setter Property="IsTabTransitionEnabled" Value="True" />
+                <Setter Property="TabStripHeight" Value="48" />
+                <Setter Property="TabContentBackgroundColor" Value="#C2C3C3" />
+                <Setter Property="TabStripPlacement" Value="Bottom" />
+            </Style>
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <Grid>
+            <xct:TabView Style="{StaticResource CustomTabStyle}">
+                <xct:TabView.TabStripBackgroundView>
+                    <BoxView
+                        BackgroundColor="White"
+                        CornerRadius="20,20,0,0"
+                        WidthRequest="30" />
+                </xct:TabView.TabStripBackgroundView>
+
+                <xct:TabViewItem
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    FontFamily="materialdesignicons"
+                    Text="만나">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.BookOpenVariant}"
+                            Color="LightGray" />
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.BookOpenVariant}"
+                            Color="Black" />
+                    </xct:TabViewItem.IconSelected>
+                    <pages:MannaPage />
+                </xct:TabViewItem>
+
+                <xct:TabViewItem
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    FontFamily="materialdesignicons"
+                    Text="맥체인">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.BookOpenPageVariantOutline}"
+                            Color="LightGray" />
+
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.BookOpenPageVariantOutline}"
+                            Color="Black" />
+                    </xct:TabViewItem.IconSelected>
+                    <pages:MccheynePage />
+                </xct:TabViewItem>
+
+                <xct:TabViewItem
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    FontFamily="materialdesignicons"
+                    Text="체크리스트">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.CheckBoxMultipleOutline}"
+                            Color="LightGray" />
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.CheckBoxMultipleOutline}"
+                            Color="Black" />
+                    </xct:TabViewItem.IconSelected>
+                    <pages:MccheyneCheckListPage />
+                </xct:TabViewItem>
+
+                <xct:TabViewItem
+                    ControlTemplate="{StaticResource TabItemTemplate}"
+                    FontFamily="materialdesignicons"
+                    Text="나의 만나">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.BookmarkOutline}"
+                            Color="LightGray" />
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static baselocal:FontIcons.BookmarkOutline}"
+                            Color="Black" />
+                    </xct:TabViewItem.IconSelected>
+                    <pages:MyPage />
+                </xct:TabViewItem>
+
+            </xct:TabView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

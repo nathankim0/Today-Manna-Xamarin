@@ -9,7 +9,7 @@ using Rg.Plugins.Popup.Services;
 
 namespace TodaysManna.Views
 {
-    public partial class MannaPage : ContentPage
+    public partial class MannaPage : ContentView
     {
         private readonly BottomSheet _bottomSheet;
         private readonly MannaTextClickSheet _mannaTextClickSheet;
@@ -58,7 +58,7 @@ namespace TodaysManna.Views
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
             await Clipboard.SetTextAsync(shareRangeString);
-            await DisplayAlert("클립보드에 복사됨", null, "확인");
+            await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace TodaysManna.Views
         {
             _bottomSheet.Hide();
 
-            if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
+            if (!await App.Current.MainPage.DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
             {
                 _bottomSheet.Show();
                 return;
@@ -82,6 +82,7 @@ namespace TodaysManna.Views
 
             var memoItem = new MemoItem
             {
+                Date = DateTime.Now,
                 Verse = shareRangeString,
                 Note =""
             };
@@ -99,7 +100,7 @@ namespace TodaysManna.Views
 
             var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
             await Clipboard.SetTextAsync(shareText);
-            await DisplayAlert("클립보드에 복사됨", shareText, "확인");
+            await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", shareText, "확인");
 
             await rangeButton.ScaleTo(1, 150);
         }
@@ -191,6 +192,7 @@ namespace TodaysManna.Views
         {
             var memoItem = new MemoItem
             {
+                Date = DateTime.Now,
                 Verse = shareRangeString,
                 Note = memoText
             };

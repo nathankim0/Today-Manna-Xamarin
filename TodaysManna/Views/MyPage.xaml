@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<ContentView
     x:Class="TodaysManna.Views.MyPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="맥체인"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
@@ -28,19 +27,18 @@
                         iOS="24" />
                 </Label.FontSize>
             </Label>
-
         </StackLayout>
     </NavigationPage.TitleView>
 
     <CollectionView
         x:Name="collectionView"
-        Margin="20,0,20,0"
         BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                           Light=White}"
-        Footer="&#10;&#10;"
-        Header="&#10;&#10;"
         SelectionChanged="OnCollectionViewSelectionChanged"
         SelectionMode="Single">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2" />
+        </CollectionView.ItemsLayout>
         <CollectionView.EmptyView>
             <StackLayout>
                 <Label
@@ -58,8 +56,72 @@
         </CollectionView.EmptyView>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <!--<SwipeView.RightItems>
+                <StackLayout Padding="15,5,15,5">
+                    <yummy:PancakeView
+                        BackgroundGradientEndPoint="0.5,0.0"
+                        BackgroundGradientStartPoint="0.0,0.5"
+                        CornerRadius="15">
+                        <yummy:PancakeView.BackgroundGradientStops>
+                            <yummy:GradientStopCollection>
+                                <yummy:GradientStop Offset="0" Color="DarkSalmon" />
+                                <yummy:GradientStop Offset="1" Color="DarkSlateGray" />
+                            </yummy:GradientStopCollection>
+                        </yummy:PancakeView.BackgroundGradientStops>
+                        <StackLayout Margin="10">
+                            <Label
+                                FontAttributes="Bold"
+                                FontFamily="dotum.ttf"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"
+                                TextColor="White">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="14"
+                                        iOS="12" />
+                                </Label.FontSize>
+                            </Label>
+                            <Label
+                                FontAttributes="Bold"
+                                FontFamily="dotum.ttf"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Verse}"
+                                TextColor="White">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="14"
+                                        iOS="12" />
+                                </Label.FontSize>
+                            </Label>
+                            <Label
+                                FontFamily="dotum.ttf"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Note}"
+                                TextColor="White">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="14"
+                                        iOS="12" />
+                                </Label.FontSize>
+                            </Label>
+                        </StackLayout>
+                    </yummy:PancakeView>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>
+
+
+<!--
+    Footer="&#10;&#10;"
+    Header="&#10;&#10;"
+-->
+
+<!--<SwipeView Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                    <SwipeView.RightItems>
                         <SwipeItems>
                             <SwipeItem
                                 BackgroundColor="Red"
@@ -72,51 +134,5 @@
                                 CommandParameter="{Binding}"
                                 Text="Share" />
                         </SwipeItems>
-                    </SwipeView.RightItems>-->
-
-                    <yummy:PancakeView
-                        BackgroundGradientEndPoint="0.5,0.0"
-                        BackgroundGradientStartPoint="0.0,0.5"
-                        CornerRadius="15">
-
-                        <yummy:PancakeView.BackgroundGradientStops>
-                            <yummy:GradientStopCollection>
-                                <yummy:GradientStop Offset="0" Color="DarkSalmon" />
-                                <yummy:GradientStop Offset="1" Color="DarkSlateGray" />
-                            </yummy:GradientStopCollection>
-                        </yummy:PancakeView.BackgroundGradientStops>
-                        <StackLayout Margin="10">
-                            <Label
-                                FontAttributes="Bold"
-                                FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
-                                Text="{Binding Verse}"
-                                TextColor="White"
-                                VerticalOptions="Center">
-                                <Label.FontSize>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="14"
-                                        iOS="12" />
-                                </Label.FontSize>
-                            </Label>
-                            <Label
-                                FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
-                                Text="{Binding Note}"
-                                TextColor="White"
-                                VerticalOptions="Center">
-                                <Label.FontSize>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="14"
-                                        iOS="12" />
-                                </Label.FontSize>
-                            </Label>
-                        </StackLayout>
-                    </yummy:PancakeView>
-                </SwipeView>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-</ContentPage>
+                    </SwipeView.RightItems>
+                    </SwipeView>-->
