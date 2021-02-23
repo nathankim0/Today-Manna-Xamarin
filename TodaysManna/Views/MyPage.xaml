@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    Title="맥체인"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
@@ -28,13 +27,11 @@
                         iOS="24" />
                 </Label.FontSize>
             </Label>
-
         </StackLayout>
     </NavigationPage.TitleView>
 
     <CollectionView
         x:Name="collectionView"
-        Margin="20,0,20,0"
         BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                           Light=White}"
         Footer="&#10;&#10;"
@@ -58,22 +55,7 @@
         </CollectionView.EmptyView>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <SwipeView Padding="0,10,0,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <!--<SwipeView.RightItems>
-                        <SwipeItems>
-                            <SwipeItem
-                                BackgroundColor="Red"
-                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
-                                CommandParameter="{Binding}"
-                                Text="Delete" />
-                            <SwipeItem
-                                BackgroundColor="LightYellow"
-                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ShareCommand}"
-                                CommandParameter="{Binding}"
-                                Text="Share" />
-                        </SwipeItems>
-                    </SwipeView.RightItems>-->
-
+                <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <yummy:PancakeView
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
@@ -89,8 +71,7 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
-                                Text="{Binding Verse}"
+                                Text="{Binding Date}"
                                 TextColor="White"
                                 VerticalOptions="Center">
                                 <Label.FontSize>
@@ -101,11 +82,21 @@
                                 </Label.FontSize>
                             </Label>
                             <Label
+                                FontAttributes="Bold"
                                 FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Verse}"
+                                TextColor="White">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="14"
+                                        iOS="12" />
+                                </Label.FontSize>
+                            </Label>
+                            <Label
+                                FontFamily="dotum.ttf"
                                 Text="{Binding Note}"
-                                TextColor="White"
-                                VerticalOptions="Center">
+                                TextColor="White">
                                 <Label.FontSize>
                                     <OnPlatform
                                         x:TypeArguments="x:Double"
@@ -115,8 +106,9 @@
                             </Label>
                         </StackLayout>
                     </yummy:PancakeView>
-                </SwipeView>
+                </StackLayout>
             </DataTemplate>
+
         </CollectionView.ItemTemplate>
     </CollectionView>
 </ContentPage>
