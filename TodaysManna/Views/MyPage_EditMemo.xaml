@@ -9,6 +9,33 @@
             <Label
                 FontAttributes="Bold"
                 FontFamily="dotum.ttf"
+                Text="날짜"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="20"
+                        iOS="18" />
+                </Label.FontSize>
+            </Label>
+            <DatePicker
+                Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"
+                FontFamily="dotum.ttf"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <DatePicker.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="16"
+                        iOS="14" />
+                </DatePicker.FontSize>
+            </DatePicker>
+
+            <Label
+                Padding="0,15,0,0"
+                FontAttributes="Bold"
+                FontFamily="dotum.ttf"
                 Text="범위"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -32,7 +59,6 @@
                         iOS="14" />
                 </Label.FontSize>
             </Label>
-
 
             <Label
                 Padding="0,15,0,0"
