@@ -82,6 +82,7 @@ namespace TodaysManna.Views
 
             var memoItem = new MemoItem
             {
+                Date = DateTime.Now,
                 Verse = shareRangeString,
                 Note =""
             };
@@ -191,6 +192,7 @@ namespace TodaysManna.Views
         {
             var memoItem = new MemoItem
             {
+                Date = DateTime.Now,
                 Verse = shareRangeString,
                 Note = memoText
             };
