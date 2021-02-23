@@ -148,7 +148,35 @@ namespace TodaysManna.ViewModel
 
         private void SetCheck(string val)
         {
-            //HapticFeedback.Perform(HapticFeedbackType.Click);
+            try
+            {
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+                try
+                {
+                    // Use default vibration length
+                    Vibration.Vibrate();
+
+                    // Or use specified time
+                    var duration = TimeSpan.FromMilliseconds(500);
+                    Vibration.Vibrate(duration);
+                }
+                catch (FeatureNotSupportedException ex2)
+                {
+                    // Feature not supported on device
+                }
+                catch (Exception ex2)
+                {
+                    // Other error has occurred.
+                }
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
 
             MccheyneCheckList.ForEach(x =>
             {
