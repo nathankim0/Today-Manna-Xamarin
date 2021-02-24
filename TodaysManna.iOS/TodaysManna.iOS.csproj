@@ -62,9 +62,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Distribution: JinYeob Kim (75TT7T2Y4B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
+    <CodesignProvision>MannaProfile</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -122,20 +123,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
-    <ImageAsset Include="Assets.xcassets\tab_manna.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\tab_mc.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\tab_mc.imageset\icons8-briefcase.pdf" />
-    <ImageAsset Include="Assets.xcassets\tab_manna.imageset\icons8-news.pdf" />
-    <ImageAsset Include="Assets.xcassets\share.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\share.imageset\QuickActions_Share_2x.png" />
-    <ImageAsset Include="Assets.xcassets\ic_english.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_english.imageset\icons8-translation-50-2.png" />
-    <ImageAsset Include="Assets.xcassets\ic_check.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_check.imageset\icons8-tick-box.pdf" />
-    <ImageAsset Include="Assets.xcassets\ic_dateselect.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_dateselect.imageset\icons8-calendar.pdf" />
-    <ImageAsset Include="Assets.xcassets\delete.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\delete.imageset\delete.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
