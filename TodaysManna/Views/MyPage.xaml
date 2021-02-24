@@ -39,7 +39,7 @@
         SelectionChanged="OnCollectionViewSelectionChanged"
         SelectionMode="Single">
         <CollectionView.EmptyView>
-            <StackLayout>
+            <StackLayout Padding="15,0,15,0">
                 <Label
                     FontAttributes="Bold"
                     FontFamily="dotum.ttf"
