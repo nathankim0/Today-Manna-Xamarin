@@ -9,7 +9,8 @@ namespace TodaysManna.Views
 {
     public partial class MainTabbedPage : TabbedPage
     {
-        NavigationPage navMccheyneCheckListPage;
+        private readonly NavigationPage navMccheyneCheckListPage;
+
         public MainTabbedPage()
         {
             //InitializeComponent();
@@ -69,8 +70,6 @@ namespace TodaysManna.Views
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
             Children.Add(navMyPage);
-
-
         }
 
         protected override void OnCurrentPageChanged()
