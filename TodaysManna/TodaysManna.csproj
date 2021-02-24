@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MainTabbedPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Datas\BibleAt.json" />
