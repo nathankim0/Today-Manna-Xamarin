@@ -96,7 +96,5 @@ namespace TodaysManna
             // Return false if you don't want to close this popup page when a background of the popup page is clicked
             return base.OnBackgroundClicked();
         }
-
-        
     }
 }

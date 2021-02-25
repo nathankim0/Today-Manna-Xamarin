@@ -19,7 +19,7 @@ namespace TodaysManna.Views
 
         private async void OnShareClicked(object sender, EventArgs e)
         {
-            if(!(BindingContext is MemoItem memoItem)) { return; }
+            if (!(BindingContext is MemoItem memoItem)) { return; }
             string verse = "";
             string note = "";
             string text = "";
@@ -30,7 +30,7 @@ namespace TodaysManna.Views
                 note = memoItem.Note;
                 text = $"{verse}\n{note}";
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 System.Diagnostics.Debug.Fail("OnsharedClicked " + exception.Message);
             }
@@ -43,7 +43,7 @@ namespace TodaysManna.Views
                     Title = "공유"
                 });
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 System.Diagnostics.Debug.Fail("OnsharedClicked ShareTextRequest " + exception.Message);
             }

@@ -33,7 +33,7 @@ namespace TodaysManna.ViewModel
                     OnPropertyChanged(nameof(MccheyneCheckList));
                 }
             }
-            
+
         }
 
         public ICommand command { get; set; }
@@ -134,7 +134,7 @@ namespace TodaysManna.ViewModel
         {
             MccheyneCheckList.ForEach(x =>
             {
-                for(int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     x.Ranges[i].IsChecked = Preferences.Get(x.Ranges[i]?.Id, false);
                 }

@@ -19,7 +19,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>10.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.jinyeob.manna</string>
 	<key>UILaunchStoryboardName</key>
@@ -43,5 +43,9 @@
 	<string>3.2</string>
 	<key>CFBundleVersion</key>
 	<string>3.2</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

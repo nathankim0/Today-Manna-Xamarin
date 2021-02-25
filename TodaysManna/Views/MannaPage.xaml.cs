@@ -46,13 +46,13 @@ namespace TodaysManna.Views
             _memoPopup = new MemoPopup();
             _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
         }
-        
+
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
             await PopupNavigation.Instance.PushAsync(_memoPopup);
-            
+
         }
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace TodaysManna.Views
             {
                 Date = DateTime.Now,
                 Verse = shareRangeString,
-                Note =""
+                Note = ""
             };
             await App.Database.SaveItemAsync(memoItem);
         }
@@ -125,7 +125,7 @@ namespace TodaysManna.Views
             {
                 var uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-            }   
+            }
         }
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {

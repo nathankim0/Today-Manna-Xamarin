@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LaunchScreen.storyboard = LaunchScreen.storyboard
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSignalNotificationServiceExtension", "OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj", "{09F0D74E-86D5-44B7-87A4-188565A08312}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +60,17 @@ Global
 		{4DCB7FAF-00FB-4E77-9198-218A00E6454B}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{4DCB7FAF-00FB-4E77-9198-218A00E6454B}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{4DCB7FAF-00FB-4E77-9198-218A00E6454B}.Release|iPhone.Build.0 = Release|Any CPU
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Debug|iPhone.Build.0 = Debug|iPhone
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Release|iPhone.ActiveCfg = Release|iPhone
+		{09F0D74E-86D5-44B7-87A4-188565A08312}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 EndGlobal

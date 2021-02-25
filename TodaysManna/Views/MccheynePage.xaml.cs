@@ -119,7 +119,7 @@ namespace TodaysManna.Views
             else if (flag == 4)
             {
             }
-            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(),ScrollToPosition.End, false);
+            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.End, false);
         }
         private void OnRightButtonClicked(object sender, EventArgs e)
         {
@@ -143,7 +143,7 @@ namespace TodaysManna.Views
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-           mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
+            mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
             flag = 1;
         }
 

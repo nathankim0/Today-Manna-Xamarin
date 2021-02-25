@@ -27,7 +27,9 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
+<MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
+<CodesignProvision>VS: com.jinyeob.manna Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -37,8 +39,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <CodesignProvision>MannaProfile</CodesignProvision>
-    <CodesignKey>Apple Distribution: JinYeob Kim (75TT7T2Y4B)</CodesignKey>
+    <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
+    <CodesignProvision>iOS Team Provisioning Profile: com.jinyeob.manna</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,11 +51,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
+    <CodesignProvision>VS: com.jinyeob.manna Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -62,10 +65,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Distribution: JinYeob Kim (75TT7T2Y4B)</CodesignKey>
+    <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <CodesignProvision>MannaProfile</CodesignProvision>
+    <CodesignProvision>iOS Team Provisioning Profile: com.jinyeob.manna</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -135,12 +138,23 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Com.OneSignal">
+      <Version>3.10.4</Version>
+    </PackageReference>
+    <PackageReference Include="FirebaseDatabase.net">
+      <Version>4.0.5</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\TodaysManna\TodaysManna.csproj">
       <Project>{4DCB7FAF-00FB-4E77-9198-218A00E6454B}</Project>
       <Name>TodaysManna</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{09F0D74E-86D5-44B7-87A4-188565A08312}</Project>
+      <Name>OneSignalNotificationServiceExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

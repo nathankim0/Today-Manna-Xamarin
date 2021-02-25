@@ -18,6 +18,7 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Com.OneSignal" Version="3.10.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

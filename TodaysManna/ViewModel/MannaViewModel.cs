@@ -20,7 +20,7 @@ namespace TodaysManna.ViewModel
     {
 
         private readonly RestService _restService;
-        
+
         private string bibleUrl = "https://www.bible.com/ko/bible/1/";
         //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
         private string appBibleUrl = "youversion://bible?reference=";
@@ -31,13 +31,13 @@ namespace TodaysManna.ViewModel
         public static string todayMccheyneRange;
 
         private string _bib = "창";
-        private int _jang= 1;
-        
+        private int _jang = 1;
+
 
         private ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
         public ObservableCollection<MannaContent> MannaContents
         {
-            get =>_mannaContents;
+            get => _mannaContents;
             set
             {
                 if (_mannaContents != value)
@@ -65,7 +65,7 @@ namespace TodaysManna.ViewModel
         private string _today = "";
         public string Today
         {
-            get=> _today;
+            get => _today;
             set
             {
                 if (_today != value)
@@ -167,7 +167,7 @@ namespace TodaysManna.ViewModel
             {
                 await GetJsonMannaAndSetContents(Constants.MannaEndpoint);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("# MannaViewModel GetManna() \n" + e.Message);
                 App.ShowErrorPopup("만나 불러오기 오류");
@@ -274,7 +274,7 @@ namespace TodaysManna.ViewModel
                 var jsonString = reader.ReadToEnd();
                 ObjContactList = JsonConvert.DeserializeObject<BibleList>(jsonString);
             }
-            
+
             return ObjContactList.Bibles;
         }
 
@@ -289,7 +289,7 @@ namespace TodaysManna.ViewModel
 
             }
             var allContents = "";
-            var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":")+1);
+            var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":") + 1);
 
             foreach (var node in JsonMannaData.Contents)
             {
@@ -311,7 +311,7 @@ namespace TodaysManna.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName="")
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

@@ -7,6 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using Com.OneSignal;
+using Com.OneSignal.Abstractions;
+using System.Collections.Generic;
 
 namespace TodaysManna.Droid
 {
@@ -15,6 +18,19 @@ namespace TodaysManna.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //Remove this method to stop OneSignal Debugging  
+            OneSignal.Current.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.NONE);
+
+            OneSignal.Current.StartInit("adc1c000-02c1-4c08-8313-bbdadc331645")
+            .Settings(new Dictionary<string, bool>() {
+    { IOSSettings.kOSSettingsKeyAutoPrompt, false },
+    { IOSSettings.kOSSettingsKeyInAppLaunchURL, false } })
+            .InFocusDisplaying(OSInFocusDisplayOption.Notification)
+            .EndInit();
+
+            // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
+            OneSignal.Current.RegisterForPushNotifications();
+
             base.Window.RequestFeature(WindowFeatures.ActionBar);
             // Name of the MainActivity theme you had there before.
             // Or you can use global::Android.Resource.Style.ThemeHoloLight
@@ -28,6 +44,8 @@ namespace TodaysManna.Droid
             Rg.Plugins.Popup.Popup.Init(this);
 
             Forms.SetFlags("FastRenderers_Experimental");
+
+            
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

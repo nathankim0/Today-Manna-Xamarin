@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Com.OneSignal;
+using Com.OneSignal.Abstractions;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.Datas;
@@ -26,10 +28,23 @@ namespace TodaysManna
 
         public App()
         {
-            InitializeComponent();            
+            InitializeComponent();
             CreateData();
 
             MainPage = new MainTabbedPage();
+
+            //Remove this method to stop OneSignal Debugging  
+            OneSignal.Current.SetLogLevel(LOG_LEVEL.VERBOSE, LOG_LEVEL.NONE);
+
+            OneSignal.Current.StartInit("adc1c000-02c1-4c08-8313-bbdadc331645")
+            .Settings(new Dictionary<string, bool>() {
+    { IOSSettings.kOSSettingsKeyAutoPrompt, false },
+    { IOSSettings.kOSSettingsKeyInAppLaunchURL, false } })
+            .InFocusDisplaying(OSInFocusDisplayOption.Notification)
+            .EndInit();
+
+            // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
+            OneSignal.Current.RegisterForPushNotifications();
         }
 
         private void CreateData()
@@ -86,7 +101,7 @@ namespace TodaysManna
             {
                 await PopupNavigation.Instance.PushAsync(errorPopup);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("ShowErrorPopup Error: " + e.Message);
             }

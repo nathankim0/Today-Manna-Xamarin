@@ -15,7 +15,7 @@ namespace TodaysManna
         private readonly double _bottomSheetHeight;
         public BottomSheet()
         {
-            _height = DeviceDisplay.MainDisplayInfo.Height/ DeviceDisplay.MainDisplayInfo.Density;
+            _height = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
             _bottomSheetHeight = _height * 0.3;
             IsVisible = false;
 
@@ -32,9 +32,9 @@ namespace TodaysManna
                 BackgroundColor = Color.FromRgba(0, 0, 0, 0.5),
                 GestureRecognizers = { backgroundGesture }
             };
-            
-            Children.Add(BackgroundBox, 0,0);
-            Children.Add(BottomSheetContainer,0,0);
+
+            Children.Add(BackgroundBox, 0, 0);
+            Children.Add(BottomSheetContainer, 0, 0);
         }
 
         private void OnBottomSheetDisappear(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace TodaysManna
     {
         public BottomSheetPancakeView()
         {
-            
+
         }
     }
 
@@ -145,10 +145,10 @@ namespace TodaysManna
 
             SheetFrame = new BottomSheetPancakeView
             {
-                CornerRadius = new CornerRadius(20,20,0,0),
+                CornerRadius = new CornerRadius(20, 20, 0, 0),
                 IsClippedToBounds = true,
                 Padding = 0,
-                BackgroundColor=Color.White,
+                BackgroundColor = Color.White,
                 Content = ContentStackLayout
             };
 
@@ -177,7 +177,7 @@ namespace TodaysManna
 
                     _fullUp = e.TotalY <= MaxY / 2;
                     _fullDown = e.TotalY >= MaxY / 2;
-                   
+
 
                     break;
 

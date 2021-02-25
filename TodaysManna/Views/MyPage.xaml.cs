@@ -42,7 +42,7 @@ namespace TodaysManna.Views
                     Title = "공유"
                 });
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 System.Diagnostics.Debug.WriteLine(error.Message);
                 await Clipboard.SetTextAsync(memoItem.Verse + "\n" + memoItem.Note);

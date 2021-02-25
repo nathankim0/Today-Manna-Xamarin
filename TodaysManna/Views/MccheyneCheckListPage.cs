@@ -27,7 +27,7 @@ namespace TodaysManna.Views
 
             _optionPopup = new OptionPopup();
             _optionPopup.CheckButtonClicked += OnCheckButtonClicked;
-            _optionPopup.ClearButtonClicked+= OnClearButtonClicked;
+            _optionPopup.ClearButtonClicked += OnClearButtonClicked;
         }
 
         protected override void OnAppearing()
@@ -47,7 +47,7 @@ namespace TodaysManna.Views
 
             NavigationPage.SetBackButtonTitle(this, "");
             NavigationPage.SetHasNavigationBar(this, true);
-           
+
             var titleLabel = new Label
             {
                 BackgroundColor = Color.Transparent,
@@ -59,7 +59,7 @@ namespace TodaysManna.Views
 
             var titleOptionButton = new ImageButton
             {
-                Margin = new Thickness(0,0,5,0),
+                Margin = new Thickness(0, 0, 5, 0),
                 Padding = 8,
                 BackgroundColor = Color.Transparent,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
@@ -77,9 +77,9 @@ namespace TodaysManna.Views
 
             var titleStackLayout = new StackLayout
             {
-                Padding=new Thickness(0,0,15,0),
-                Orientation=StackOrientation.Horizontal,
-                Children = {titleLabel,titleOptionButton}
+                Padding = new Thickness(0, 0, 15, 0),
+                Orientation = StackOrientation.Horizontal,
+                Children = { titleLabel, titleOptionButton }
             };
 
             switch (Device.RuntimePlatform)
@@ -112,7 +112,7 @@ namespace TodaysManna.Views
                             new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
                         }
                     };
-                    
+
                     var checkDateLabel = new Label
                     {
                         Padding = new Thickness(5, 0, 0, 0),
@@ -237,7 +237,7 @@ namespace TodaysManna.Views
                     }
                 });
             }
-            
+
         }
 
         private async void OnOptionClicked(object sender, EventArgs e)

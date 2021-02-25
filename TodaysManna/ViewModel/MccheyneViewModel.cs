@@ -134,7 +134,7 @@ namespace TodaysManna.ViewModel
             MccheyneContents4.Clear();
 
             DisplayDateRange = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
-            var dateTimeString=dateTime.ToString("M_d");
+            var dateTimeString = dateTime.ToString("M_d");
 
             var daysOfMccheynes = GetJsonBible();
 
@@ -142,7 +142,7 @@ namespace TodaysManna.ViewModel
 
             foreach (var node in daysOfMccheynes)
             {
-                var t= node.GetType().GetProperty(todayProperty).GetValue(node, null) as List<Mccheyne>;
+                var t = node.GetType().GetProperty(todayProperty).GetValue(node, null) as List<Mccheyne>;
 
                 var a = "";
                 var b = "";
@@ -152,7 +152,7 @@ namespace TodaysManna.ViewModel
                 foreach (var node2 in t)
                 {
                     var _firstNum = node2.Verse.Substring(0, node2.Verse.IndexOf(":"));
-                    var _secondNum = node2.Verse.Substring(node2.Verse.IndexOf(":")+1);
+                    var _secondNum = node2.Verse.Substring(node2.Verse.IndexOf(":") + 1);
                     var _fullVerse = $"{node2.Book} {node2.Verse}";
                     var _halfVerse = $"{node2.Book} {_firstNum}";
                     switch (node2.Id)
@@ -164,12 +164,12 @@ namespace TodaysManna.ViewModel
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
-                                    FirstNumber=_firstNum,
-                                    SecondNumber=_secondNum,
+                                    FirstNumber = _firstNum,
+                                    SecondNumber = _secondNum,
                                     Verse = node2.Verse,
-                                    FullVerse=_fullVerse + "\n\n",
-                                    HalfVerse= _halfVerse,
-                                    IsHalfVerseVisible=true,
+                                    FullVerse = _fullVerse + "\n\n",
+                                    HalfVerse = _halfVerse,
+                                    IsHalfVerseVisible = true,
                                     Content = node2.Content
                                 });
                             }
@@ -184,12 +184,12 @@ namespace TodaysManna.ViewModel
                                     Verse = node2.Verse,
                                     FullVerse = "",
                                     HalfVerse = "",
-                                    IsHalfVerseVisible=false,
+                                    IsHalfVerseVisible = false,
                                     Content = node2.Content
                                 });
                             }
                             a = _halfVerse;
-                           
+
                             break;
                         case "2":
                             if (b != _halfVerse)
@@ -269,7 +269,7 @@ namespace TodaysManna.ViewModel
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
-                                    FullVerse=_fullVerse + "\n\n",
+                                    FullVerse = _fullVerse + "\n\n",
                                     HalfVerse = _halfVerse,
                                     IsHalfVerseVisible = true,
                                     Content = node2.Content
@@ -285,7 +285,7 @@ namespace TodaysManna.ViewModel
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
                                     Verse = node2.Verse,
-                                    FullVerse="",
+                                    FullVerse = "",
                                     HalfVerse = "",
                                     IsHalfVerseVisible = false,
                                     Content = node2.Content
@@ -309,7 +309,7 @@ namespace TodaysManna.ViewModel
 
             using (var reader = new StreamReader(stream))
             {
-                var jsonString = reader.ReadToEnd();  
+                var jsonString = reader.ReadToEnd();
                 ObjContactList = JsonConvert.DeserializeObject<MccheyneList>(jsonString);
             }
 
@@ -321,7 +321,7 @@ namespace TodaysManna.ViewModel
             var date = thisDate.ToString("M-d");
             VerseRange = App.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

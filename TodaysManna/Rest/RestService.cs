@@ -26,14 +26,14 @@ namespace TodaysManna
                     string content = await response.Content.ReadAsStringAsync();
                     mannaData = JsonConvert.DeserializeObject<MannaData>(content);
                     Console.WriteLine($"@@@@@{mannaData.Verse}");
-                    foreach(var node in mannaData.Contents)
+                    foreach (var node in mannaData.Contents)
                     {
                         Console.WriteLine($"@@@@@{node}");
                     }
                 }
             }
             catch (Exception ex)
-            {                
+            {
                 Debug.WriteLine("\tERROR {0}", ex.Message);
             }
 
