@@ -29,6 +29,7 @@
     <Folder Include="Popups\" />
     <Folder Include="BottomSheets\" />
     <Folder Include="Fonts\" />
+    <Folder Include="FireBaseService\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />

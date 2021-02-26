@@ -94,10 +94,12 @@ namespace TodaysManna
 
         protected override void OnStart()
         {
+            FirebaseEvent.eventTracker.SendEvent("start_app");
         }
 
         protected override void OnSleep()
         {
+            FirebaseEvent.eventTracker.SendEvent("sleep_app");
         }
 
         protected override void OnResume()

@@ -9,7 +9,10 @@ namespace TodaysManna.Views
 {
     public partial class MainTabbedPage : TabbedPage
     {
+        private readonly NavigationPage navMannaPage;
+        private readonly NavigationPage navMccheynePage;
         private readonly NavigationPage navMccheyneCheckListPage;
+        private readonly NavigationPage navMyPage;
 
         public MainTabbedPage()
         {
@@ -22,7 +25,7 @@ namespace TodaysManna.Views
             On<Android>().SetOffscreenPageLimit(4);
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
-            var navMannaPage = new NavigationPage(new MannaPage())
+            navMannaPage = new NavigationPage(new MannaPage())
             {
                 Title = "만나",
             };
@@ -33,7 +36,7 @@ namespace TodaysManna.Views
             };
             navMannaPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            var navMccheynePage = new NavigationPage(new MccheynePage())
+            navMccheynePage = new NavigationPage(new MccheynePage())
             {
                 Title = "맥체인",
             };
@@ -55,7 +58,7 @@ namespace TodaysManna.Views
             };
             navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            var navMyPage = new NavigationPage(new MyPage())
+            navMyPage = new NavigationPage(new MyPage())
             {
                 Title = "메모",
             };
@@ -76,9 +79,22 @@ namespace TodaysManna.Views
         {
             base.OnCurrentPageChanged();
 
-            if (CurrentPage.Equals(navMccheyneCheckListPage))
+            if (CurrentPage.Equals(navMannaPage))
             {
+                FirebaseEvent.eventTracker.SendEvent("view_navMannaPage");
+            }
+            else if (CurrentPage.Equals(navMccheynePage))
+            {
+                FirebaseEvent.eventTracker.SendEvent("view_navMccheynePage");
+            }
+            else if (CurrentPage.Equals(navMccheyneCheckListPage))
+            {
+                FirebaseEvent.eventTracker.SendEvent("view_navMccheyneCheckListPage");
                 App.mccheyneCheckListPage.ScrollToToday();
+            }
+            else if (CurrentPage.Equals(navMyPage))
+            {
+                FirebaseEvent.eventTracker.SendEvent("view_navMyPage");
             }
         }
     }
