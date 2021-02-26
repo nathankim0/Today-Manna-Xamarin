@@ -49,6 +49,8 @@ namespace TodaysManna.Views
         
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_text_memo");
+
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
             await PopupNavigation.Instance.PushAsync(_memoPopup);
@@ -57,12 +59,16 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_text_coppy");
+
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_text_share");
+
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = shareRangeString,
@@ -96,6 +102,8 @@ namespace TodaysManna.Views
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_range_share");
+
             await rangeButton.ScaleTo(0.8, 150);
 
             var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
@@ -107,6 +115,8 @@ namespace TodaysManna.Views
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_share");
+
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = today.Text + "\n\n" + verse.Text + "\n\n" + (BindingContext as MannaViewModel).AllString,
@@ -116,6 +126,8 @@ namespace TodaysManna.Views
 
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_english");
+
             try
             {
                 var uri = new Uri(((MannaViewModel)BindingContext)._completeAppUrl);
@@ -164,11 +176,15 @@ namespace TodaysManna.Views
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_date");
+
             backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
         }
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_today");
+
             mannaDatepicker.Date = DateTime.Now;
         }
 
