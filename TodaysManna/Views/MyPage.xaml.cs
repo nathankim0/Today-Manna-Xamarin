@@ -61,6 +61,8 @@ namespace TodaysManna.Views
         {
             if (e.CurrentSelection != null)
             {
+                FirebaseEvent.eventTracker.SendEvent("mypage_memo_select");
+
                 await Navigation.PushAsync(new MyPage_EditMemo
                 {
                     BindingContext = e.CurrentSelection.FirstOrDefault() as MemoItem

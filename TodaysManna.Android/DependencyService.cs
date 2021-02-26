@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Views.InputMethods;
+using Firebase.Analytics;
 using TodaysManna.Droid;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(DroidKeyboardHelper))]
+[assembly: Dependency(typeof(EventTrackerDroid))]
+
 namespace TodaysManna.Droid
 {
     public class DroidKeyboardHelper : IKeyboardHelper
@@ -19,6 +24,40 @@ namespace TodaysManna.Droid
                 var token = activity.CurrentFocus == null ? null : activity.CurrentFocus.WindowToken;
                 inputMethodManager.HideSoftInputFromWindow(token, 0);
             }
+        }
+    }
+    public class EventTrackerDroid : IEventTracker
+    {
+        public void SendEvent(string eventId)
+        {
+            SendEvent(eventId, null);
+        }
+
+        public void SendEvent(string eventId, string paramName, string value)
+        {
+            SendEvent(eventId, new Dictionary<string, string>
+            {
+                {paramName, value}
+            });
+        }
+
+        public void SendEvent(string eventId, IDictionary<string, string> parameters)
+        {
+            var firebaseAnalytics = FirebaseAnalytics.GetInstance(Forms.Context);
+
+            if (parameters == null)
+            {
+                firebaseAnalytics.LogEvent(eventId, null);
+                return;
+            }
+             
+            var bundle = new Bundle();
+            foreach (var param in parameters)
+            {
+                bundle.PutString(param.Key, param.Value);
+            }
+
+            firebaseAnalytics.LogEvent(eventId, bundle);
         }
     }
 }
