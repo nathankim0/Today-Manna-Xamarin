@@ -23,7 +23,7 @@ namespace TodaysManna
         public static List<MccheyneRange> mccheyneRanges;
 
         public static int OpenCount = 0;
-        //merged
+        
         public App()
         { 
             InitializeComponent();            
