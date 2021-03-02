@@ -79,6 +79,9 @@
     <Compile Include="Renderer\BottomSheetFrameRenderer.cs" />
     <Compile Include="DependencyService.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="AppWidget.cs" />
+    <Compile Include="WidgetJobService.cs" />
+    <Compile Include="WidgetScheduleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -110,10 +113,19 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\xml\appwidget_provider.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Widget.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Renderer\" />
+    <Folder Include="Resources\xml\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TodaysManna\TodaysManna.csproj">

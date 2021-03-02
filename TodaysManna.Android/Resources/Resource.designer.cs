@@ -18052,17 +18052,23 @@ namespace TodaysManna.Droid
 			// aapt resource value: 0x7F080138
 			public const int visible_removing_fragment_view_tag = 2131231032;
 			
-			// aapt resource value: 0x7F08013A
-			public const int withinBounds = 2131231034;
-			
 			// aapt resource value: 0x7F080139
-			public const int withText = 2131231033;
+			public const int widget_background = 2131231033;
 			
-			// aapt resource value: 0x7F08013B
-			public const int wrap_content = 2131231035;
+			// aapt resource value: 0x7F08013A
+			public const int widget_refresh = 2131231034;
 			
 			// aapt resource value: 0x7F08013C
-			public const int zero_corner_chip = 2131231036;
+			public const int withinBounds = 2131231036;
+			
+			// aapt resource value: 0x7F08013B
+			public const int withText = 2131231035;
+			
+			// aapt resource value: 0x7F08013D
+			public const int wrap_content = 2131231037;
+			
+			// aapt resource value: 0x7F08013E
+			public const int zero_corner_chip = 2131231038;
 			
 			static Id()
 			{
@@ -18546,6 +18552,9 @@ namespace TodaysManna.Droid
 			
 			// aapt resource value: 0x7F0B0072
 			public const int Toolbar = 2131427442;
+			
+			// aapt resource value: 0x7F0B0073
+			public const int Widget = 2131427443;
 			
 			static Layout()
 			{
@@ -24825,25 +24834,28 @@ namespace TodaysManna.Droid
 		{
 			
 			// aapt resource value: 0x7F110000
-			public const int image_share_filepaths = 2131820544;
+			public const int appwidget_provider = 2131820544;
 			
 			// aapt resource value: 0x7F110001
-			public const int standalone_badge = 2131820545;
+			public const int image_share_filepaths = 2131820545;
 			
 			// aapt resource value: 0x7F110002
-			public const int standalone_badge_gravity_bottom_end = 2131820546;
+			public const int standalone_badge = 2131820546;
 			
 			// aapt resource value: 0x7F110003
-			public const int standalone_badge_gravity_bottom_start = 2131820547;
+			public const int standalone_badge_gravity_bottom_end = 2131820547;
 			
 			// aapt resource value: 0x7F110004
-			public const int standalone_badge_gravity_top_start = 2131820548;
+			public const int standalone_badge_gravity_bottom_start = 2131820548;
 			
 			// aapt resource value: 0x7F110005
-			public const int standalone_badge_offset = 2131820549;
+			public const int standalone_badge_gravity_top_start = 2131820549;
 			
 			// aapt resource value: 0x7F110006
-			public const int xamarin_essentials_fileprovider_file_paths = 2131820550;
+			public const int standalone_badge_offset = 2131820550;
+			
+			// aapt resource value: 0x7F110007
+			public const int xamarin_essentials_fileprovider_file_paths = 2131820551;
 			
 			static Xml()
 			{
