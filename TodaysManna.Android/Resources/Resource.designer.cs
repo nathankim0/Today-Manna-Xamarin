@@ -18053,22 +18053,25 @@ namespace TodaysManna.Droid
 			public const int visible_removing_fragment_view_tag = 2131231032;
 			
 			// aapt resource value: 0x7F080139
-			public const int widget_background = 2131231033;
+			public const int widgetMedium = 2131231033;
 			
 			// aapt resource value: 0x7F08013A
-			public const int widget_refresh = 2131231034;
-			
-			// aapt resource value: 0x7F08013C
-			public const int withinBounds = 2131231036;
+			public const int widget_background = 2131231034;
 			
 			// aapt resource value: 0x7F08013B
-			public const int withText = 2131231035;
+			public const int widget_refresh = 2131231035;
 			
 			// aapt resource value: 0x7F08013D
-			public const int wrap_content = 2131231037;
+			public const int withinBounds = 2131231037;
+			
+			// aapt resource value: 0x7F08013C
+			public const int withText = 2131231036;
 			
 			// aapt resource value: 0x7F08013E
-			public const int zero_corner_chip = 2131231038;
+			public const int wrap_content = 2131231038;
+			
+			// aapt resource value: 0x7F08013F
+			public const int zero_corner_chip = 2131231039;
 			
 			static Id()
 			{
