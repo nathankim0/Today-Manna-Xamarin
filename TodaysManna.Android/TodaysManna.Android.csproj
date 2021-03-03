@@ -80,8 +80,6 @@
     <Compile Include="DependencyService.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="AppWidget.cs" />
-    <Compile Include="WidgetJobService.cs" />
-    <Compile Include="WidgetScheduleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
