@@ -23,10 +23,12 @@ namespace TodaysManna
         public static List<MccheyneRange> mccheyneRanges;
 
         public static int OpenCount = 0;
-        
+
         public App()
-        { 
-            InitializeComponent();            
+        {
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.SyncfusionKey);
+
             CreateData();
 
             MainPage = new MainTabbedPage();
@@ -86,7 +88,7 @@ namespace TodaysManna
             {
                 await PopupNavigation.Instance.PushAsync(errorPopup);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("ShowErrorPopup Error: " + e.Message);
             }

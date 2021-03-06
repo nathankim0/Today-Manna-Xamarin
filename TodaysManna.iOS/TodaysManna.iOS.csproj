@@ -143,6 +143,9 @@
     <PackageReference Include="FirebaseDatabase.net">
       <Version>4.0.6</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar.IOS">
+      <Version>18.4.0.46</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

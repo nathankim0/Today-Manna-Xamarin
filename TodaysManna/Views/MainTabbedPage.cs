@@ -12,6 +12,7 @@ namespace TodaysManna.Views
         private readonly NavigationPage navMannaPage;
         private readonly NavigationPage navMccheynePage;
         private readonly NavigationPage navMccheyneCheckListPage;
+        private readonly NavigationPage navCalendarPage;
         private readonly NavigationPage navMyPage;
 
         public MainTabbedPage()
@@ -58,6 +59,17 @@ namespace TodaysManna.Views
             };
             navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
+            navCalendarPage = new NavigationPage(new MannaCalendarView())
+            {
+                Title = "캘린더",
+            };
+            navCalendarPage.IconImageSource = new FontImageSource
+            {
+                FontFamily = "materialdesignicons",
+                Glyph = FontIcons.CalendarOutline,
+            };
+            navCalendarPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
+
             navMyPage = new NavigationPage(new MyPage())
             {
                 Title = "메모",
@@ -72,6 +84,7 @@ namespace TodaysManna.Views
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
+            Children.Add(navCalendarPage);
             Children.Add(navMyPage);
         }
 
