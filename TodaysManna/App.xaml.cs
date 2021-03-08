@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfCalendar.XForms;
 using TodaysManna.Datas;
 using TodaysManna.Popups;
 using TodaysManna.ViewModel;
@@ -21,6 +22,9 @@ namespace TodaysManna
         public static MccheyneCheckViewModel mccheyneCheckViewModel;
         public static MccheyneCheckListPage mccheyneCheckListPage;
         public static List<MccheyneRange> mccheyneRanges;
+
+        public static MannaCalendarViewModel mannaCalendarViewModel;
+
 
         public static int OpenCount = 0;
 
@@ -51,6 +55,8 @@ namespace TodaysManna
                 System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
                 ShowErrorPopup("맥체인 불러오기 오류");
             }
+
+            mannaCalendarViewModel = new MannaCalendarViewModel();
         }
 
         private List<MccheyneRange> GetJsonMccheyneRange()
