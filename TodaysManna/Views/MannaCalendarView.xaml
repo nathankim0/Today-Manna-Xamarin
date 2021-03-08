@@ -29,14 +29,15 @@
 
         <syncfusion:SfCalendar
             x:Name="calendar"
+            BackgroundColor="Transparent"
             DataSource="{Binding CalendarInlineEvents}"
-            InlineViewMode="Inline"
-            MaximumEventIndicatorCount="1"
+            InlineViewMode="Agenda"
+            MaximumEventIndicatorCount="2"
             ShowInlineEvents="True"
             ViewMode="MonthView">
-            <syncfusion:SfCalendar.BindingContext>
-                <local:MannaCalendarViewModel />
-            </syncfusion:SfCalendar.BindingContext>
+            <syncfusion:SfCalendar.MonthViewSettings>
+                <syncfusion:MonthViewSettings />
+            </syncfusion:SfCalendar.MonthViewSettings>
         </syncfusion:SfCalendar>
     </ContentPage.Content>
 </ContentPage>
