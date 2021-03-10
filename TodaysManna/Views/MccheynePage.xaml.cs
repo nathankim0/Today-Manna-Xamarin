@@ -176,11 +176,15 @@ namespace TodaysManna.Views
 
         private void OnTodayButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("mccheyn_today");
+
             datepicker.Date = DateTime.Now;
         }
 
         private void OnDateButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("mccheyn_date");
+
             backgroundBoxView.IsVisible = true;
             datepicker.Focus();
         }
@@ -219,6 +223,8 @@ namespace TodaysManna.Views
 
         private async void OnReportTapped(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("mccheyn_report");
+
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
             await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", address, "확인");
@@ -244,12 +250,16 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("mccheyn_text_coppy");
+
             await Clipboard.SetTextAsync(shareRangeString);
             await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("mccheyn_text_share");
+
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = shareRangeString,

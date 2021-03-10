@@ -19,6 +19,8 @@
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.3" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.4.0.46" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -30,6 +32,7 @@
     <Folder Include="Popups\" />
     <Folder Include="BottomSheets\" />
     <Folder Include="Fonts\" />
+    <Folder Include="FireBaseService\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />

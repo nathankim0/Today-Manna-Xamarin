@@ -41,11 +41,14 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidKeyStore>True</AndroidKeyStore>
     <AndroidSigningKeyStore>/Users/jinyeob/AndroidStudioProjects/keystore/TodayManna.jks</AndroidSigningKeyStore>
     <AndroidSigningStorePass>960812</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>todaymanna</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>960812</AndroidSigningKeyPass>
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86_64;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -59,6 +62,15 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>118.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="FirebaseDatabase.net">
+      <Version>4.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar.Android">
+      <Version>18.4.0.46</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -69,6 +81,8 @@
     </Compile>
     <Compile Include="Renderer\BottomSheetFrameRenderer.cs" />
     <Compile Include="DependencyService.cs" />
+    <Compile Include="SplashActivity.cs" />
+    <Compile Include="AppWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -92,35 +106,19 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\drawable\ic_english.png">
+    <AndroidResource Include="Resources\drawable\splash_logo.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\share.png">
+    <AndroidResource Include="Resources\drawable\splash_screen.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\tab_manna.png">
+    <AndroidResource Include="Resources\xml\appwidget_provider.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\tab_mc.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ic_left.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ic_check.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ic_dateselect.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\delete.png">
+    <AndroidResource Include="Resources\layout\Widget.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -128,12 +126,16 @@
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Renderer\" />
+    <Folder Include="Resources\xml\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TodaysManna\TodaysManna.csproj">
       <Project>{4DCB7FAF-00FB-4E77-9198-218A00E6454B}</Project>
       <Name>TodaysManna</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

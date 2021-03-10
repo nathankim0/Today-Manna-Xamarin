@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfCalendar.XForms;
 using TodaysManna.Datas;
 using TodaysManna.Popups;
 using TodaysManna.ViewModel;
@@ -23,11 +24,16 @@ namespace TodaysManna
         public static MccheyneCheckListPage mccheyneCheckListPage;
         public static List<MccheyneRange> mccheyneRanges;
 
+        public static MannaCalendarViewModel mannaCalendarViewModel;
+
+
         public static int OpenCount = 0;
 
         public App()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.SyncfusionKey);
+
             CreateData();
 
             //MainPage = new MainTabbedPage();
@@ -52,6 +58,8 @@ namespace TodaysManna
                 System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
                 ShowErrorPopup("맥체인 불러오기 오류");
             }
+
+            mannaCalendarViewModel = new MannaCalendarViewModel();
         }
 
         private List<MccheyneRange> GetJsonMccheyneRange()
@@ -89,7 +97,7 @@ namespace TodaysManna
             {
                 await PopupNavigation.Instance.PushAsync(errorPopup);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("ShowErrorPopup Error: " + e.Message);
             }
@@ -97,10 +105,12 @@ namespace TodaysManna
 
         protected override void OnStart()
         {
+            FirebaseEvent.eventTracker.SendEvent("start_app");
         }
 
         protected override void OnSleep()
         {
+            FirebaseEvent.eventTracker.SendEvent("sleep_app");
         }
 
         protected override void OnResume()

@@ -14,7 +14,6 @@
 
     <NavigationPage.TitleView>
         <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
-
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
@@ -68,11 +67,9 @@
                         </FontImageSource.Size>
                     </FontImageSource>
                 </ImageButton.Source>
-
             </ImageButton>
         </StackLayout>
     </NavigationPage.TitleView>
-
 
     <Grid x:Name="contentGrid">
         <Grid.RowDefinitions>
@@ -103,6 +100,7 @@
                             Text="오늘로"
                             TextColor="#0000EE"
                             VerticalOptions="CenterAndExpand" />
+                        <Switch x:Name="switch" Toggled="switch_Toggled" />
                     </StackLayout>
                     <yummy:PancakeView
                         x:Name="rangeButton"

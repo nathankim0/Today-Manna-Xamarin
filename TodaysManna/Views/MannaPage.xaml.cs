@@ -6,6 +6,7 @@ using System.Linq;
 using TodaysManna.Models;
 using TodaysManna.Popups;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfCalendar.XForms;
 
 namespace TodaysManna.Views
 {
@@ -49,6 +50,8 @@ namespace TodaysManna.Views
         
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_text_memo");
+
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
             await PopupNavigation.Instance.PushAsync(_memoPopup);
@@ -57,12 +60,16 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_text_coppy");
+
             await Clipboard.SetTextAsync(shareRangeString);
             await App.Current.MainPage.DisplayAlert("클립보드에 복사됨", null, "확인");
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_text_share");
+
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = shareRangeString,
@@ -96,6 +103,8 @@ namespace TodaysManna.Views
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_range_share");
+
             await rangeButton.ScaleTo(0.8, 150);
 
             var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
@@ -107,6 +116,8 @@ namespace TodaysManna.Views
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_share");
+
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = today.Text + "\n\n" + verse.Text + "\n\n" + (BindingContext as MannaViewModel).AllString,
@@ -116,6 +127,8 @@ namespace TodaysManna.Views
 
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_english");
+
             try
             {
                 var uri = new Uri(((MannaViewModel)BindingContext)._completeAppUrl);
@@ -164,11 +177,15 @@ namespace TodaysManna.Views
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_date");
+
             backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
         }
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
+            FirebaseEvent.eventTracker.SendEvent("manna_today");
+
             mannaDatepicker.Date = DateTime.Now;
         }
 
@@ -197,6 +214,28 @@ namespace TodaysManna.Views
                 Note = memoText
             };
             await App.Database.SaveItemAsync(memoItem);
+        }
+
+        void switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        {
+            Console.WriteLine(e.Value);
+            var event1 = new CalendarInlineEvent();
+
+            if (e.Value == true)
+            {
+                event1.IsAllDay = true;
+                event1.StartTime = DateTime.Now;
+                event1.EndTime = DateTime.Now;
+                event1.Subject = "만나";
+                event1.Color = Color.Fuchsia;
+
+                App.mannaCalendarViewModel.CalendarInlineEvents.Add(event1);
+            }
+            else
+            {
+                App.mannaCalendarViewModel.CalendarInlineEvents.Remove(event1);
+
+            }
         }
     }
 }

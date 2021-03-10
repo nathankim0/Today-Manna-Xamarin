@@ -19,6 +19,7 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
+            
             <DatePicker
                 Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"
                 FontFamily="dotum.ttf"
@@ -46,6 +47,7 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
+
             <Label
                 x:Name="verseLabel"
                 FontFamily="dotum.ttf"
@@ -74,6 +76,7 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
+
             <Editor
                 x:Name="memoEditor"
                 AutoSize="TextChanges"

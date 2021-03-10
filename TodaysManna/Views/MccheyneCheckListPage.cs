@@ -20,21 +20,25 @@ namespace TodaysManna.Views
 
         public MccheyneCheckListPage()
         {
-            BindingContext = App.mccheyneCheckViewModel; 
+            BindingContext = App.mccheyneCheckViewModel;
+
             Initialize();
+            _todayMccheyne = App.mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
 
             _optionPopup = new OptionPopup();
             _optionPopup.CheckButtonClicked += OnCheckButtonClicked;
             _optionPopup.ClearButtonClicked+= OnClearButtonClicked;
         }
 
+        protected override void OnAppearing()
+        {
+            ScrollToToday();
+        }
         private void Initialize()
         {
-            _todayMccheyne = App.mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
-
-            //App.Current.MainPage.On<iOS>().SetUseSafeArea(true);
-            //App.Current.MainPage.On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
-            //App.Current.MainPage.On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
+            On<iOS>().SetUseSafeArea(true);
+            On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
+            On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
 
             //Title = "체크리스트";
             //IconImageSource = "tab_mc";
@@ -169,20 +173,13 @@ namespace TodaysManna.Views
                     return collectionViewDataTemplateGrid;
                 });
             Content = _collectionView;
-
-            ScrollToToday();
         }
 
         public void ScrollToToday()
         {
             _collectionView.ScrollTo(_todayMccheyne, null, ScrollToPosition.Center, false);
         }
-
-        //protected override void OnAppearing()
-        //{
-        //    ScrollToToday();
-        //}
-
+        
         private void OnScrollToToday(object sender, EventArgs e)
         {
             ScrollToToday();

@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using Syncfusion.SfCalendar.XForms.iOS;
 using UIKit;
 using UserNotifications;
 //using Syncfusion.XForms.iOS.EffectsView;
@@ -24,7 +25,10 @@ namespace TodaysManna.iOS
             Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+            SfCalendarRenderer.Init();
             LoadApplication(new App());
+
+            Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
         }

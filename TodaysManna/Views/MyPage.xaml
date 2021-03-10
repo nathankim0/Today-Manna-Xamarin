@@ -40,7 +40,7 @@
             <GridItemsLayout Orientation="Vertical" Span="2" />
         </CollectionView.ItemsLayout>
         <CollectionView.EmptyView>
-            <StackLayout>
+            <StackLayout Padding="15,0,15,0">
                 <Label
                     FontAttributes="Bold"
                     FontFamily="dotum.ttf"
@@ -56,7 +56,7 @@
         </CollectionView.EmptyView>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Padding="15,5,15,5">
+                <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <yummy:PancakeView
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
@@ -71,9 +71,9 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
-                                Text="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"
-                                TextColor="White">
+                                Text="{Binding Date}"
+                                TextColor="White"
+                                VerticalOptions="Center">
                                 <Label.FontSize>
                                     <OnPlatform
                                         x:TypeArguments="x:Double"
@@ -84,7 +84,6 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
                                 Text="{Binding Verse}"
                                 TextColor="White">
                                 <Label.FontSize>
@@ -96,7 +95,6 @@
                             </Label>
                             <Label
                                 FontFamily="dotum.ttf"
-                                HorizontalOptions="StartAndExpand"
                                 Text="{Binding Note}"
                                 TextColor="White">
                                 <Label.FontSize>
@@ -110,29 +108,7 @@
                     </yummy:PancakeView>
                 </StackLayout>
             </DataTemplate>
+
         </CollectionView.ItemTemplate>
     </CollectionView>
 </ContentView>
-
-
-<!--
-    Footer="&#10;&#10;"
-    Header="&#10;&#10;"
--->
-
-<!--<SwipeView Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <SwipeView.RightItems>
-                        <SwipeItems>
-                            <SwipeItem
-                                BackgroundColor="Red"
-                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
-                                CommandParameter="{Binding}"
-                                Text="Delete" />
-                            <SwipeItem
-                                BackgroundColor="LightYellow"
-                                Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ShareCommand}"
-                                CommandParameter="{Binding}"
-                                Text="Share" />
-                        </SwipeItems>
-                    </SwipeView.RightItems>
-                    </SwipeView>-->

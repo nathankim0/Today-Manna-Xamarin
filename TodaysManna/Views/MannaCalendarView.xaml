@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.Views.MannaCalendarView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna.ViewModel"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms">
+
+    <NavigationPage.TitleView>
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
+            <Label
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Text="캘린더"
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="26"
+                        iOS="24" />
+                </Label.FontSize>
+            </Label>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+
+        <syncfusion:SfCalendar
+            x:Name="calendar"
+            BackgroundColor="Transparent"
+            DataSource="{Binding CalendarInlineEvents}"
+            InlineViewMode="Agenda"
+            MaximumEventIndicatorCount="2"
+            ShowInlineEvents="True"
+            ViewMode="MonthView">
+            <syncfusion:SfCalendar.MonthViewSettings>
+                <syncfusion:MonthViewSettings />
+            </syncfusion:SfCalendar.MonthViewSettings>
+        </syncfusion:SfCalendar>
+    </ContentPage.Content>
+</ContentPage>
