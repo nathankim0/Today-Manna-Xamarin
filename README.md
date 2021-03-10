@@ -99,11 +99,8 @@ async public void LoginFunc()
 | <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png"/> |
 
 -->
-![Simulator Screen Shot - iPhone 12 - 2021-02-23 at 19 13 31](https://user-images.githubusercontent.com/37360089/110575680-a7830a00-81a2-11eb-8ab0-43c095c7031a.png)
-![Simulator Screen Shot - iPhone 12 - 2021-02-23 at 19 14 18](https://user-images.githubusercontent.com/37360089/110575682-a81ba080-81a2-11eb-9d8b-b5dc830c4917.png)
-![Simulator Screen Shot - iPhone 12 - 2021-02-23 at 19 14 20](https://user-images.githubusercontent.com/37360089/110575684-a8b43700-81a2-11eb-8d4c-a2ffe3a34388.png)
-![Simulator Screen Shot - iPhone 12 - 2021-02-23 at 19 14 27](https://user-images.githubusercontent.com/37360089/110575686-a8b43700-81a2-11eb-9598-beaddc799899.png)
-![Simulator Screen Shot - iPhone 12 - 2021-02-23 at 19 14 57](https://user-images.githubusercontent.com/37360089/110575689-a94ccd80-81a2-11eb-9e8f-24f63d922888.png)
+<img src="https://user-images.githubusercontent.com/37360089/110575680-a7830a00-81a2-11eb-8ab0-43c095c7031a.png" width="30%"/><img src="https://user-images.githubusercontent.com/37360089/110575682-a81ba080-81a2-11eb-9d8b-b5dc830c4917.png width="30%"/>
+<img src="https://user-images.githubusercontent.com/37360089/110575684-a8b43700-81a2-11eb-8d4c-a2ffe3a34388.png width="30%"/><img src="https://user-images.githubusercontent.com/37360089/110575686-a8b43700-81a2-11eb-9598-beaddc799899.png width="30%"/><img src="https://user-images.githubusercontent.com/37360089/110575689-a94ccd80-81a2-11eb-9e8f-24f63d922888.png width="30%"/>
 
 
 ### 파싱한 웹페이지
