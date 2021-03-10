@@ -193,19 +193,17 @@ namespace TodaysManna.Views
         {
             if (previousScrollPosition < e.ScrollY)
             {
-                bottomGrid.TranslateTo(gridX, 70, 250, Easing.CubicOut);
+                bottomGrid.TranslateTo(gridX, 70, 250u, Easing.CubicOut);
                 bottomGrid.FadeTo(0, 150);
 
                 previousScrollPosition = e.ScrollY;
             }
-            else
+            else if(previousScrollPosition > e.ScrollY)
             {
                 bottomGrid.Opacity = 1;
-                bottomGrid.TranslateTo(gridX, gridY, 200, Easing.CubicOut);
-
-                if (Convert.ToInt16(e.ScrollY) == 0)
-                    previousScrollPosition = 0;
+                bottomGrid.TranslateTo(gridX, gridY, 200u, Easing.CubicOut);
             }
+            previousScrollPosition = e.ScrollY;
         }
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
