@@ -11,6 +11,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <ControlTemplate x:Key="TabItemTemplate">
+
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -92,7 +93,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <xct:TabView Style="{StaticResource CustomTabStyle}">
+            <xct:TabView IsSwipeEnabled="False" Style="{StaticResource CustomTabStyle}">
                 <xct:TabView.TabStripBackgroundView>
                     <BoxView
                         BackgroundColor="White"

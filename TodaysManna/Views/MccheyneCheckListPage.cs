@@ -30,15 +30,16 @@ namespace TodaysManna.Views
             _optionPopup.ClearButtonClicked+= OnClearButtonClicked;
         }
 
-        protected override void OnAppearing()
-        {
-            ScrollToToday();
-        }
+        //protected override void OnAppearing()
+        //{
+        //    ScrollToToday();
+        //}
+
         private void Initialize()
         {
-            On<iOS>().SetUseSafeArea(true);
-            On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
-            On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
+            //On<iOS>().SetUseSafeArea(true);
+            //On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
+            //On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
 
             //Title = "체크리스트";
             //IconImageSource = "tab_mc";
