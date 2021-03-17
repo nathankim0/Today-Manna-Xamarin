@@ -44,7 +44,7 @@
     <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>/Users/jinyeob/AndroidStudioProjects/keystore/TodayManna.jks</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>/Users/nathan-kim/todaysmannakeystore/TodayManna.jks</AndroidSigningKeyStore>
     <AndroidSigningStorePass>960812</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>todaymanna</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>960812</AndroidSigningKeyPass>

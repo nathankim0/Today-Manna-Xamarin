@@ -3,13 +3,12 @@ using System.Threading.Tasks;
 
 namespace TodaysManna.Models
 {
-    public class WidgetService
+    public static class WidgetService
     {
-        public WidgetService()
-        {
-        }
+        public static string WidgetString = "";
+        public static EventHandler<string> widgetReady;
 
-        public async Task<string> GetRangeOnWidgetAsync()
+        public static async void SetRangeOnWidgetAsync()
         {
             var _restService = new RestService();
 
@@ -22,7 +21,9 @@ namespace TodaysManna.Models
             var MannaShareRange = $"만나: {JsonMannaData.Verse}";
             var McShareRange = $"맥체인: {todayMccheyneRange}";
 
-            return DateTime.Now.ToString("yyyy-MM-dd (ddd)") + "\n" + MannaShareRange + "\n" + McShareRange;
+            WidgetString = DateTime.Now.ToString("yyyy-MM-dd (ddd)") + "\n" + MannaShareRange + "\n" + McShareRange;
+
+            widgetReady.Invoke(null, WidgetString);
         }
     }
 }
