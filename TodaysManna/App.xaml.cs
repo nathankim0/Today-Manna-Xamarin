@@ -36,6 +36,7 @@ namespace TodaysManna
             CreateData();
 
             MainPage = new MainTabbedPage();
+            //MainPage = new NTabView();
         }
 
         private void CreateData()
