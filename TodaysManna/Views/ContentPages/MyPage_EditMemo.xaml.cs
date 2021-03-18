@@ -14,7 +14,7 @@ namespace TodaysManna.Views
         private async void OnSaveClicked(object sender, EventArgs e)
         {
             FirebaseEvent.eventTracker.SendEvent("editmemo_save_buttonclicked");
-
+            ((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
         }
@@ -68,7 +68,7 @@ namespace TodaysManna.Views
         protected override async void OnDisappearing()
         {
             FirebaseEvent.eventTracker.SendEvent("editmemo_save_disappearing");
-
+            ((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
 
             base.OnDisappearing();

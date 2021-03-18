@@ -20,7 +20,7 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.4.0.46" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.3" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0-pre2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -33,7 +33,8 @@
     <Folder Include="BottomSheets\" />
     <Folder Include="Fonts\" />
     <Folder Include="FireBaseService\" />
-    <Folder Include="Views\TabView %28XCT%29\" />
+    <Folder Include="Views\ContentViews\" />
+    <Folder Include="Views\ContentPages\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
@@ -61,5 +62,16 @@
     <EmbeddedResource Include="Datas\MccheyneRange.json" />
     <EmbeddedResource Include="Datas\MccheyneRange2.json" />
     <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ContentViews\MccheyneView.xaml.cs">
+      <DependentUpon>MccheyneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ContentViews\MyPageView.xaml.cs">
+      <DependentUpon>MyPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\NTabView.xaml.cs">
+      <DependentUpon>NTabView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -1,15 +1,25 @@
-﻿using System;
+﻿using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
-using Xamarin.CommunityToolkit;
-using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
-using NavigationPage = Xamarin.Forms.NavigationPage;
 using TodaysManna.Views;
+using TodaysManna.ViewModel;
 
 namespace TodaysManna
 {
+    public partial class NTabViewWithXaml : ContentPage
+    {
+        public NTabViewWithXaml()
+        {
+            InitializeComponent();
+        }
+
+        void OnFabTabTapped(object sender, TabTappedEventArgs e)
+        {
+            DisplayAlert("NTabViewWithXaml", "Tab Tapped.", "Ok");
+        }
+    }
+
     public class NTabView : ContentPage
     {
         public NTabView()
@@ -22,9 +32,8 @@ namespace TodaysManna
                 TabStripPlacement = TabStripPlacement.Bottom,
                 TabStripBackgroundColor = Color.White,
                 TabStripHeight = 60,
-                IsSwipeEnabled=false,
-                IsTabTransitionEnabled=false,
-                IsTabStripVisible=false
+                IsSwipeEnabled = false,
+                IsTabTransitionEnabled = false,
             };
 
             var tabViewItem0 = new TabViewItem
@@ -32,7 +41,7 @@ namespace TodaysManna
                 Text = "만나",
                 
             };
-            tabViewItem0.Content = new MannaPage().Content;
+            tabViewItem0.Content = new MannaView();
             tabViewItem0.Icon = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
@@ -44,7 +53,7 @@ namespace TodaysManna
             {
                 Text = "맥체인"
             };
-            tabViewItem1.Content = new MccheynePage().Content;
+            tabViewItem1.Content = new MccheyneView();
             tabViewItem1.Icon = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
@@ -56,7 +65,13 @@ namespace TodaysManna
             {
                 Text = "체크리스트"
             };
-            tabViewItem2.Content = App.mccheyneCheckListPage.Content;
+
+            //todo LazyView Test
+            var lazyView = new LazyView<MccheyneCheckListView>();
+            lazyView.BindingContext = MccheyneCheckViewModel.Current;
+            lazyView.SetBinding(BaseLazyView.IsLoadedProperty, "Loaded");
+
+            //tabViewItem2.Content = App.mccheyneCheckListPage;
             tabViewItem2.Icon = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
@@ -68,7 +83,7 @@ namespace TodaysManna
             {
                 Text = "캘린더"
             };
-            tabViewItem3.Content = new MannaCalendarView().Content;
+            //tabViewItem3.Content = new MannaCalendarView();
             tabViewItem3.Icon = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
@@ -80,7 +95,7 @@ namespace TodaysManna
             {
                 Text = "체크리스트"
             };
-            tabViewItem4.Content = new MyPage().Content;
+            tabViewItem4.Content = new MyPageView();
             tabViewItem4.Icon = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
