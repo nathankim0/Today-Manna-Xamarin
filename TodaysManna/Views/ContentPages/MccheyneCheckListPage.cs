@@ -9,6 +9,8 @@ using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.Models;
+using Xamarin.CommunityToolkit;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace TodaysManna.Views
 {
@@ -173,6 +175,41 @@ namespace TodaysManna.Views
 
                     return collectionViewDataTemplateGrid;
                 });
+            
+
+            //todo StateLayout
+
+            //var grid = new Grid();
+            //grid.SetBinding(StateLayout.CurrentStateProperty, "CurrentState");
+            //var stateView = new StateView()
+            //{
+            //    StateKey = LayoutState.Loading
+            //};
+            //stateView.Content = new Grid
+            //{
+            //    Children =
+            //    {
+            //        new StackLayout
+            //        {
+            //            VerticalOptions = LayoutOptions.Center,
+            //            HorizontalOptions = LayoutOptions.Center,
+            //            Children =
+            //            {
+            //                new ActivityIndicator
+            //                {
+            //                    Color = Color.Red
+            //                },
+            //                new Label
+            //                {
+            //                    Text="Loading...",
+            //                    HorizontalOptions = LayoutOptions.Center
+            //                }
+            //            }
+            //        }
+            //    }
+            //};
+            //StateLayout.
+
             Content = _collectionView;
         }
 

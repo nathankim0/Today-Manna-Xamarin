@@ -304,7 +304,7 @@ namespace TodaysManna.ViewModel
             var jsonFileName = "mcc.json";
             var ObjContactList = new MccheyneList();
 
-            var assembly = typeof(MccheynePage).GetTypeInfo().Assembly;
+            var assembly = typeof(MccheyneView).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
 
             using (var reader = new StreamReader(stream))

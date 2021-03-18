@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Newtonsoft.Json;
 using TodaysManna.Models;
 using TodaysManna.Views;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -192,7 +193,7 @@ namespace TodaysManna.ViewModel
             const string jsonFileName = "MccheyneRange2.json";
             var ObjContactList = new MccheyneCheckRangeList();
 
-            var assembly = typeof(MccheyneCheckListPage).GetTypeInfo().Assembly;
+            var assembly = typeof(MccheyneCheckListView).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {
@@ -203,6 +204,22 @@ namespace TodaysManna.ViewModel
             }
 
             return ObjContactList.CheckRanges;
+        }
+
+        public static MccheyneCheckViewModel Current { get; } = new MccheyneCheckViewModel();
+        bool loaded;
+
+        public bool Loaded
+        {
+            get => loaded;
+            set
+            {
+                if (loaded != value)
+                {
+                    loaded = value;
+                    OnPropertyChanged(nameof(Loaded));
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

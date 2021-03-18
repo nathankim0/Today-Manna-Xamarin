@@ -59,16 +59,16 @@ namespace TodaysManna.Views
             };
             navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navCalendarPage = new NavigationPage(new MannaCalendarView())
-            {
-                Title = "캘린더",
-            };
-            navCalendarPage.IconImageSource = new FontImageSource
-            {
-                FontFamily = "materialdesignicons",
-                Glyph = FontIcons.CalendarOutline,
-            };
-            navCalendarPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
+            //navCalendarPage = new NavigationPage(new MannaCalendarView())
+            //{
+            //    Title = "캘린더",
+            //};
+            //navCalendarPage.IconImageSource = new FontImageSource
+            //{
+            //    FontFamily = "materialdesignicons",
+            //    Glyph = FontIcons.CalendarOutline,
+            //};
+            //navCalendarPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
             navMyPage = new NavigationPage(new MyPage())
             {
@@ -84,7 +84,7 @@ namespace TodaysManna.Views
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
-            Children.Add(navCalendarPage);
+            //Children.Add(navCalendarPage);
             Children.Add(navMyPage);
         }
 

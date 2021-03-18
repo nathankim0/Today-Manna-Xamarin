@@ -20,18 +20,18 @@
                 </Label.FontSize>
             </Label>
 
-            <DatePicker
-                Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"
+            <Label
+                Text="{Binding Date}"
                 FontFamily="dotum.ttf"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
-                <DatePicker.FontSize>
+                <Label.FontSize>
                     <OnPlatform
                         x:TypeArguments="x:Double"
                         Android="16"
                         iOS="14" />
-                </DatePicker.FontSize>
-            </DatePicker>
+                </Label.FontSize>
+            </Label>
 
             <Label
                 Padding="0,15,0,0"
@@ -104,3 +104,5 @@
         </StackLayout>
     </ScrollView>
 </ContentPage>
+
+<!--Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"-->

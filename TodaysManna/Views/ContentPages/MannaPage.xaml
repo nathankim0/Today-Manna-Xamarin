@@ -100,7 +100,7 @@
                             Text="오늘로"
                             TextColor="#0000EE"
                             VerticalOptions="CenterAndExpand" />
-                        <Switch x:Name="switch" Toggled="switch_Toggled" />
+                        <!--<Switch x:Name="switch" Toggled="switch_Toggled" />-->
                     </StackLayout>
                     <yummy:PancakeView
                         x:Name="rangeButton"

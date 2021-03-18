@@ -216,26 +216,26 @@ namespace TodaysManna.Views
             await App.Database.SaveItemAsync(memoItem);
         }
 
-        void switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
-        {
-            Console.WriteLine(e.Value);
-            var event1 = new CalendarInlineEvent();
+        //void switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        //{
+        //    Console.WriteLine(e.Value);
+        //    var event1 = new CalendarInlineEvent();
 
-            if (e.Value == true)
-            {
-                event1.IsAllDay = true;
-                event1.StartTime = DateTime.Now;
-                event1.EndTime = DateTime.Now;
-                event1.Subject = "만나";
-                event1.Color = Color.Fuchsia;
+        //    if (e.Value == true)
+        //    {
+        //        event1.IsAllDay = true;
+        //        event1.StartTime = DateTime.Now;
+        //        event1.EndTime = DateTime.Now;
+        //        event1.Subject = "만나";
+        //        event1.Color = Color.Fuchsia;
 
-                App.mannaCalendarViewModel.CalendarInlineEvents.Add(event1);
-            }
-            else
-            {
-                App.mannaCalendarViewModel.CalendarInlineEvents.Remove(event1);
+        //        App.mannaCalendarViewModel.CalendarInlineEvents.Add(event1);
+        //    }
+        //    else
+        //    {
+        //        App.mannaCalendarViewModel.CalendarInlineEvents.Remove(event1);
 
-            }
-        }
+        //    }
+        //}
     }
 }
