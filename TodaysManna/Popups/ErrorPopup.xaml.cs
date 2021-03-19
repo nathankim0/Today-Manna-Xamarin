@@ -16,5 +16,10 @@ namespace TodaysManna.Popups
         {
             await PopupNavigation.Instance.PopAsync();
         }
+
+        public void SetMessage(string text)
+        {
+            errorLabel.Text = text;
+        }
     }
 }

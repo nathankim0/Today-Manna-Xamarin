@@ -14,12 +14,13 @@
     Shell.NavBarIsVisible="False">
 
     <NavigationPage.TitleView>
-        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 HorizontalOptions="StartAndExpand"
                 Text="맥체인"
+                FontFamily="batang"
                 VerticalOptions="Center">
                 <Label.FontSize>
                     <OnPlatform
@@ -74,23 +75,23 @@
             <ListView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15,0,15,0" Orientation="Vertical">
-                        <StackLayout Padding="0,0,0,10" Orientation="Horizontal">
+                        <StackLayout Padding="0,0,0,2" Orientation="Horizontal">
                             <Label
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
                                 Text="{Binding DisplayDateRange}"
                                 TextColor="Gray"
                                 VerticalOptions="CenterAndExpand" />
                             <Button
                                 BackgroundColor="Transparent"
                                 Clicked="OnTodayButtonClicked"
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
                                 Text="오늘로"
                                 TextColor="#0000EE"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <Label
                             FontAttributes="Bold"
-                            FontFamily="dotum.ttf"
+                            FontFamily="batang"
                             Text="{Binding VerseRange}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}">
@@ -135,7 +136,7 @@
 
                             <Label
                                 FontAttributes="Bold"
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
                                 IsVisible="{Binding IsHalfVerseVisible}"
                                 Text="{Binding HalfVerse}"
                                 TextColor="{AppThemeBinding Dark=White,
@@ -165,7 +166,7 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    FontFamily="dotum.ttf"
+                                    FontFamily="batang"
                                     LineBreakMode="CharacterWrap"
                                     Text="{Binding Content}"
                                     TextColor="{AppThemeBinding Dark=White,
@@ -207,7 +208,8 @@
         <Grid
             x:Name="bottomGrid"
             Margin="0,0,0,10"
-            BackgroundColor="Transparent"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                                Light=White}"
             VerticalOptions="End">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -218,15 +220,27 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button
+            <ImageButton
                 x:Name="leftImageButton"
                 Grid.Column="0"
                 BackgroundColor="Transparent"
                 Clicked="OnLeftButtonClicked"
-                FontSize="40"
-                IsVisible="false"
-                Text="◀"
-                TextColor="#0000EE" />
+                IsVisible="false">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.ChevronLeftCircle}"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                        <FontImageSource.Size>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="35"
+                                iOS="26" />
+                        </FontImageSource.Size>
+                    </FontImageSource>
+                </ImageButton.Source>
+            </ImageButton>
             <Frame
                 x:Name="centerFrame"
                 Grid.Column="1"
@@ -239,20 +253,33 @@
                     x:Name="centerLocationLabel"
                     BackgroundColor="Transparent"
                     FontSize="15"
+                    FontFamily="batang"
                     HorizontalOptions="CenterAndExpand"
                     Text="1/4"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
                     VerticalOptions="CenterAndExpand" />
             </Frame>
-            <Button
+            <ImageButton
                 x:Name="rightImageButton"
                 Grid.Column="2"
                 BackgroundColor="Transparent"
-                Clicked="OnRightButtonClicked"
-                FontSize="40"
-                Text="▶"
-                TextColor="#0000EE" />
+                Clicked="OnRightButtonClicked" >
+                 <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.ChevronRightCircle}"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                        <FontImageSource.Size>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="35"
+                                iOS="26" />
+                        </FontImageSource.Size>
+                    </FontImageSource>
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
     </Grid>
 </ContentPage>

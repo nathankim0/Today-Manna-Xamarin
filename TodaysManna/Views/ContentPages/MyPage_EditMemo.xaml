@@ -8,7 +8,7 @@
         <StackLayout Margin="20" VerticalOptions="StartAndExpand">
             <Label
                 FontAttributes="Bold"
-                FontFamily="dotum.ttf"
+                FontFamily="batang"
                 Text="날짜"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -22,7 +22,7 @@
 
             <Label
                 Text="{Binding Date}"
-                FontFamily="dotum.ttf"
+                FontFamily="batang"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
                 <Label.FontSize>
@@ -36,7 +36,7 @@
             <Label
                 Padding="0,15,0,0"
                 FontAttributes="Bold"
-                FontFamily="dotum.ttf"
+                FontFamily="batang"
                 Text="범위"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -50,7 +50,7 @@
 
             <Label
                 x:Name="verseLabel"
-                FontFamily="dotum.ttf"
+                FontFamily="batang"
                 Text="{Binding Verse}"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -65,7 +65,7 @@
             <Label
                 Padding="0,15,0,0"
                 FontAttributes="Bold"
-                FontFamily="dotum.ttf"
+                FontFamily="batang"
                 Text="메모"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -76,11 +76,15 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
-
+            <StackLayout BackgroundColor="{AppThemeBinding Dark=White,
+                                            Light=Black}" Padding="1">
             <Editor
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                            Light=White}"
                 x:Name="memoEditor"
+                
                 AutoSize="TextChanges"
-                FontFamily="dotum.ttf"
+                FontFamily="batang"
                 Placeholder="메모 작성"
                 Text="{Binding Note}"
                 TextColor="{AppThemeBinding Dark=White,
@@ -92,7 +96,7 @@
                         iOS="14" />
                 </Editor.FontSize>
             </Editor>
-
+                </StackLayout>
             <StackLayout
                 Padding="0,15,0,0"
                 Orientation="Horizontal"

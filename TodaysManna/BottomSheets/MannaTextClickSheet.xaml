@@ -12,13 +12,14 @@
             HorizontalOptions="Center"
             WidthRequest="60" />
 
-        <ScrollView>
+        <ScrollView >
             <StackLayout Padding="20">
                 <Label
+                    FontFamily="batang"
                     x:Name="textLabel"
                     x:FieldModifier="public"
                     LineBreakMode="CharacterWrap"
-                    TextColor="Black" />
+                    TextColor="Black"/>
 
                 <StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="20">

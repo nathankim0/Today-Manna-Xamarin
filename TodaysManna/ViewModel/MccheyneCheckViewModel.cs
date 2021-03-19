@@ -149,7 +149,19 @@ namespace TodaysManna.ViewModel
 
         private void SetCheck(string val)
         {
-            //HapticFeedback.Perform(HapticFeedbackType.Click);
+            try
+{
+    // Perform click feedback
+    HapticFeedback.Perform(HapticFeedbackType.Click);
+}
+catch (FeatureNotSupportedException ex)
+{
+    // Feature not supported on device
+}
+catch (Exception ex)
+{
+    // Other error has occurred.
+}
             FirebaseEvent.eventTracker.SendEvent("mccheynchecklist_check");
 
             MccheyneCheckList.ForEach(x =>

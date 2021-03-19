@@ -103,15 +103,34 @@ namespace TodaysManna.Views
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
+            try
+{
+    // Perform click feedback
+    HapticFeedback.Perform(HapticFeedbackType.Click);
+}
+catch (FeatureNotSupportedException ex)
+{
+    // Feature not supported on device
+}
+catch (Exception ex)
+{
+    // Other error has occurred.
+}
+
             FirebaseEvent.eventTracker.SendEvent("manna_range_share");
 
-            await rangeButton.ScaleTo(0.8, 150);
+            new Animation {
+            { 0, 0.5, new Animation (v => rangeButton.Opacity = v, 1, 0.6) },
+            { 0.5, 1, new Animation (v => rangeButton.Opacity = v, 0.6, 1) }
+            }.Commit(this, "ChildAnimations", 16, 500);
 
             var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
             await Clipboard.SetTextAsync(shareText);
-            await DisplayAlert("클립보드에 복사됨", shareText, "확인");
 
-            await rangeButton.ScaleTo(1, 150);
+            //ErrorPopup errorPopup = new ErrorPopup();
+            //errorPopup.SetMessage("클립보드에 복사됨");
+
+            await DisplayAlert("클립보드에 복사됨", shareText, "확인");
         }
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
@@ -142,6 +161,20 @@ namespace TodaysManna.Views
         }
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
+            try
+{
+    // Perform click feedback
+    HapticFeedback.Perform(HapticFeedbackType.Click);
+}
+catch (FeatureNotSupportedException ex)
+{
+    // Feature not supported on device
+}
+catch (Exception ex)
+{
+    // Other error has occurred.
+}
+
             var selectedGrid = sender as Grid;
 
             var verseText = verse.Text;
@@ -169,7 +202,7 @@ namespace TodaysManna.Views
                 System.Diagnostics.Debug.WriteLine(error.Message);
             }
 
-            shareRangeString = $"({tmpRangeString}:{num}) {manna}";
+            shareRangeString = $"({tmpRangeString}:{num}) {manna}\n";
             _mannaTextClickSheet.textLabel.Text = shareRangeString;
 
             _bottomSheet.Show();
@@ -182,8 +215,23 @@ namespace TodaysManna.Views
             backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
         }
+
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
+            try
+{
+    // Perform click feedback
+    HapticFeedback.Perform(HapticFeedbackType.Click);
+}
+catch (FeatureNotSupportedException ex)
+{
+    // Feature not supported on device
+}
+catch (Exception ex)
+{
+    // Other error has occurred.
+}
+
             FirebaseEvent.eventTracker.SendEvent("manna_today");
 
             mannaDatepicker.Date = DateTime.Now;

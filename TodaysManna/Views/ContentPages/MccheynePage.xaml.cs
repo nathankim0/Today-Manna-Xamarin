@@ -68,6 +68,20 @@ namespace TodaysManna.Views
 
         private void PageToLeft()
         {
+            try
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
             if (flag == 1)
             {
             }
@@ -100,6 +114,20 @@ namespace TodaysManna.Views
 
         private void PageToRight()
         {
+            try
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
             if (flag == 1)
             {
                 centerLocationLabel.Text = "2/4";
@@ -184,6 +212,20 @@ namespace TodaysManna.Views
 
         private void OnTodayButtonClicked(object sender, EventArgs e)
         {
+            try
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
             FirebaseEvent.eventTracker.SendEvent("mccheyn_today");
 
             datepicker.Date = DateTime.Now;
@@ -251,8 +293,22 @@ namespace TodaysManna.Views
         {
             if (e.SelectedItem == null) return;
 
+            try
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
             var mccheyne = e.SelectedItem as MccheyneContent;
-            shareRangeString = $"({mccheyne.Book}{mccheyne.Verse}) {mccheyne.Content}";
+            shareRangeString = $"({mccheyne.Book}{mccheyne.Verse}) {mccheyne.Content}\n";
 
             _mannaTextClickSheet.textLabel.Text = shareRangeString;
 
