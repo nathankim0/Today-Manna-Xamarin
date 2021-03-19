@@ -193,7 +193,7 @@ namespace TodaysManna.ViewModel
             const string jsonFileName = "MccheyneRange2.json";
             var ObjContactList = new MccheyneCheckRangeList();
 
-            var assembly = typeof(MccheyneCheckListView).GetTypeInfo().Assembly;
+            var assembly = typeof(MccheyneCheckListPage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {

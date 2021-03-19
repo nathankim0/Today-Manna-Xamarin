@@ -7,6 +7,7 @@ using Xamarin.Essentials;
 using ListView = Xamarin.Forms.ListView;
 using TodaysManna.Popups;
 using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace TodaysManna.Views
 {
@@ -21,6 +22,10 @@ namespace TodaysManna.Views
         private readonly double gridX;
         private readonly double gridY;
 
+        //private readonly double titleX;
+        //private readonly double titleY;
+
+
         private int flag = 1;
         private double previousScrollPosition = 0;
 
@@ -31,6 +36,9 @@ namespace TodaysManna.Views
 
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
+
+            //titleX = TitleLayout.TranslationX;
+            //titleY = TitleLayout.TranslationY;
 
             var leftSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Left };
             var rightSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right };
@@ -119,7 +127,7 @@ namespace TodaysManna.Views
             else if (flag == 4)
             {
             }
-            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(),ScrollToPosition.End, false);
+            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.End, false);
         }
         private void OnRightButtonClicked(object sender, EventArgs e)
         {
@@ -143,7 +151,7 @@ namespace TodaysManna.Views
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-           mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
+            mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
             flag = 1;
         }
 
@@ -191,15 +199,49 @@ namespace TodaysManna.Views
 
         private void OnListViewScrolled(object sender, ScrolledEventArgs e)
         {
-            if (previousScrollPosition < e.ScrollY)
+
+            if (previousScrollPosition < e.ScrollY) //down
             {
+                //var one = TitleLayout.TranslateTo(titleX, titleY - 100, 200u, Easing.CubicOut);
+                //var two = TitleLayout.FadeTo(0, 150);
+
+                //new Animation
+                //{
+                //    {
+                //        0, 0.5, new Animation(v => TitleLayout.TranslationY = v,titleY,titleY-100,
+                //            Easing.CubicOut)
+                //    },
+                //    {
+                //        0, 1, new Animation(v => TitleLayout.Opacity = v,
+                //            1,
+                //            0)
+                //    }
+                //}.Commit(this, "VisiblePicker", 10, 250u, null, (v, c) => { TitleLayout.IsVisible = false; });
+
                 bottomGrid.TranslateTo(gridX, 70, 250u, Easing.CubicOut);
                 bottomGrid.FadeTo(0, 150);
 
                 previousScrollPosition = e.ScrollY;
             }
-            else if(previousScrollPosition > e.ScrollY)
+            else if (previousScrollPosition > e.ScrollY) //up
             {
+                //TitleLayout.Opacity = 1;
+                //TitleLayout.TranslateTo(titleX, titleY, 250u, Easing.CubicOut);
+
+                //TitleLayout.IsVisible = true;
+                //new Animation
+                //{
+                //    {
+                //        0, 0.5, new Animation(v => TitleLayout.TranslationY = v,TitleLayout.TranslationY,titleY,
+                //            Easing.CubicOut)
+                //    },
+                //    {
+                //        0, 1, new Animation(v => TitleLayout.Opacity = v,
+                //            0,
+                //            1)
+                //    }
+                //}.Commit(this, "VisiblePicker", 10, 200u);
+
                 bottomGrid.Opacity = 1;
                 bottomGrid.TranslateTo(gridX, gridY, 200u, Easing.CubicOut);
             }
