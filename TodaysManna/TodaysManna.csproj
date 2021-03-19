@@ -33,12 +33,16 @@
     <Folder Include="BottomSheets\" />
     <Folder Include="Fonts\" />
     <Folder Include="FireBaseService\" />
-    <Folder Include="Views\ContentViews\" />
     <Folder Include="Views\ContentPages\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
     <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\ContentViews\MccheyneCheckListView.cs" />
+    <Compile Remove="Views\ContentViews\MannaView.xaml.cs" />
+    <Compile Remove="Views\ContentViews\MccheyneView.xaml.cs" />
+    <Compile Remove="Views\ContentViews\MyPageView.xaml.cs" />
+    <Compile Remove="Views\NTabView.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
@@ -55,6 +59,10 @@
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
     <EmbeddedResource Remove="Views\MainTabbedPage.xaml" />
+    <EmbeddedResource Remove="Views\ContentViews\MccheyneView.xaml" />
+    <EmbeddedResource Remove="Views\ContentViews\MannaView.xaml" />
+    <EmbeddedResource Remove="Views\ContentViews\MyPageView.xaml" />
+    <EmbeddedResource Remove="Views\NTabView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Datas\BibleAt.json" />
@@ -62,16 +70,5 @@
     <EmbeddedResource Include="Datas\MccheyneRange.json" />
     <EmbeddedResource Include="Datas\MccheyneRange2.json" />
     <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ContentViews\MccheyneView.xaml.cs">
-      <DependentUpon>MccheyneView.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ContentViews\MyPageView.xaml.cs">
-      <DependentUpon>MyPageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\NTabView.xaml.cs">
-      <DependentUpon>NTabView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 </Project>

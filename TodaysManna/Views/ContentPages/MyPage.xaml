@@ -93,7 +93,7 @@
                                         iOS="12" />
                                 </Label.FontSize>
                             </Label>
-                            <Label
+                            <!--<Label
                                 FontFamily="dotum.ttf"
                                 Text="{Binding Note}"
                                 TextColor="White">
@@ -103,7 +103,7 @@
                                         Android="14"
                                         iOS="12" />
                                 </Label.FontSize>
-                            </Label>
+                            </Label>-->
                         </StackLayout>
                     </yummy:PancakeView>
                 </StackLayout>
