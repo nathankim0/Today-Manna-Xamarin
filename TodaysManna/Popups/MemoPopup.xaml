@@ -43,11 +43,13 @@
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
                     Text="메모 작성"
+                    FontFamily="batang"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}" />
                 <Label
                     x:Name="bibleLabel"
                     Grid.Row="1"
+                    FontFamily="batang"
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
                     TextColor="{AppThemeBinding Dark=White,
@@ -59,21 +61,31 @@
                             iOS="13" />
                     </Label.FontSize>
                 </Label>
-                <Editor
-                    x:Name="editor"
-                    Grid.Row="2"
-                    BackgroundColor="{AppThemeBinding Dark=Gray,
-                                                      Light=#ececec}"
-                    Placeholder="메모를 작성해주세요..."
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}">
-                    <Editor.FontSize>
-                        <OnPlatform
-                            x:TypeArguments="x:Double"
-                            Android="15"
-                            iOS="13" />
-                    </Editor.FontSize>
-                </Editor>
+
+                  <StackLayout
+                      Grid.Row="2"
+                      VerticalOptions="FillAndExpand"
+                      BackgroundColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                      Padding="1">
+            <Editor
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                            Light=White}"
+                x:Name="editor"
+                                FontFamily="batang"
+                Placeholder="메모 작성"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
+                <Editor.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="16"
+                        iOS="14" />
+                </Editor.FontSize>
+            </Editor>
+                </StackLayout>
+
 
                 <StackLayout
                     Grid.Row="3"

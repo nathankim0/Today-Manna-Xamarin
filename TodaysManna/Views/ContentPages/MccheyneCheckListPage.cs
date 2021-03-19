@@ -52,6 +52,7 @@ namespace TodaysManna.Views
            
             var titleLabel = new Label
             {
+                FontFamily="batang",
                 BackgroundColor = Color.Transparent,
                 FontAttributes = FontAttributes.Bold,
                 HorizontalOptions = LayoutOptions.Start,
@@ -79,7 +80,7 @@ namespace TodaysManna.Views
 
             var titleStackLayout = new StackLayout
             {
-                Padding=new Thickness(0,0,15,0),
+                Padding=new Thickness(0,0,10,0),
                 Orientation=StackOrientation.Horizontal,
                 Children = {titleLabel,titleOptionButton}
             };
@@ -94,7 +95,7 @@ namespace TodaysManna.Views
                 case Device.iOS:
                     titleLabel.FontSize = 24;
                     titleOptionButtonFontImageSource.Size = 30;
-                    titleStackLayout.Padding = new Thickness(15, 0, 15, 0);
+                    titleStackLayout.Padding = new Thickness(10, 0, 15, 0);
                     break;
             };
 
@@ -120,6 +121,7 @@ namespace TodaysManna.Views
                         Padding = new Thickness(5, 0, 0, 0),
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 25,
+                        FontFamily="batang",
                         VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     checkDateLabel.SetBinding(Label.TextProperty, "Date");
@@ -147,6 +149,7 @@ namespace TodaysManna.Views
                     {
                         var checkButton = new Button
                         {
+                            FontFamily = "batang",
                             Margin = 0,
                             Padding = 0,
                             BorderColor = Color.Black,

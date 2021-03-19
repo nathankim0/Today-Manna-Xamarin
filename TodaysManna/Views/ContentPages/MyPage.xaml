@@ -5,6 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+        xmlns:local="clr-namespace:TodaysManna"
+
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
@@ -13,12 +15,13 @@
     NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
     <NavigationPage.TitleView>
-        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
             <Label
+                FontFamily="batang"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
-                Text="나의 만나"
+                Text="메모"
                 VerticalOptions="Center">
                 <Label.FontSize>
                     <OnPlatform
@@ -35,14 +38,13 @@
         BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                           Light=White}"
         Footer="&#10;&#10;"
-        Header="&#10;&#10;"
         SelectionChanged="OnCollectionViewSelectionChanged"
         SelectionMode="Single">
         <CollectionView.EmptyView>
-            <StackLayout Padding="15,0,15,0">
+            <StackLayout Padding="10,20,15,0">
                 <Label
                     FontAttributes="Bold"
-                    FontFamily="dotum.ttf"
+                    FontFamily="batang"
                     Text="아직 저장한 메모가 없네요!&#10;묵상을 작성해보는 것은 어떨까요?✍️&#10;(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)">
                     <Label.FontSize>
                         <OnPlatform
@@ -55,7 +57,84 @@
         </CollectionView.EmptyView>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+
+                 <Grid Padding="15,5,15,5"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="AUTO" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+
+                            <StackLayout
+                                Grid.Column="0"
+                                VerticalOptions="Center">
+                                    <Label
+                                        TextColor="{AppThemeBinding Dark=White, Light=LightGray}"
+                                    FontFamily="batang"
+                                    Text="{Binding Date}"
+                                    VerticalOptions="Center">
+                                        <Label.FontSize>
+                                            <OnPlatform
+                                                x:TypeArguments="x:Double"
+                                                Android="14"
+                                                iOS="12" />
+                                        </Label.FontSize>
+                                    </Label>
+                                 <Label
+                                   Margin="0,-5,0,0"
+
+                                FontAttributes="Bold"
+                                FontFamily="batang"
+                                MaxLines="1"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding Verse}">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="18"
+                                        iOS="16" />
+                                </Label.FontSize>
+                            </Label>
+                                <Label
+                                FontFamily="batang"
+                                MaxLines="2"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding Note}">
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="15"
+                                        iOS="13" />
+                                </Label.FontSize>
+                            </Label>
+                            </StackLayout>
+
+                            <Image Grid.Column="1">
+                                 <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="materialdesignicons"
+                                        Glyph="{x:Static local:FontIcons.ChevronRight}"
+                                        Size="30"
+                                        Color="{AppThemeBinding Dark=White,
+                                                                Light=Black}">
+                                        <FontImageSource.Size>
+                                            <OnPlatform
+                                                x:TypeArguments="x:Double"
+                                                Android="32"
+                                                iOS="30" />
+                                        </FontImageSource.Size>
+                                    </FontImageSource>
+                                  </Image.Source>
+                            </Image>
+                     <BoxView HeightRequest="1" BackgroundColor="{AppThemeBinding Dark=White,
+                                                                Light=LightGray}" Grid.Row="1" Grid.ColumnSpan="2"/>
+                     </Grid>
+
+                <!--<StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
                     <yummy:PancakeView
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
@@ -70,7 +149,7 @@
                         <StackLayout Margin="10">
                             <Label
                                 FontAttributes="Bold"
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
                                 Text="{Binding Date}"
                                 TextColor="White"
                                 VerticalOptions="Center">
@@ -83,7 +162,9 @@
                             </Label>
                             <Label
                                 FontAttributes="Bold"
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
+                                MaxLines="1"
+                                LineBreakMode="TailTruncation"
                                 Text="{Binding Verse}"
                                 TextColor="White">
                                 <Label.FontSize>
@@ -93,8 +174,10 @@
                                         iOS="12" />
                                 </Label.FontSize>
                             </Label>
-                            <!--<Label
-                                FontFamily="dotum.ttf"
+                            <Label
+                                FontFamily="batang"
+                                MaxLines="1"
+                                LineBreakMode="TailTruncation"
                                 Text="{Binding Note}"
                                 TextColor="White">
                                 <Label.FontSize>
@@ -103,10 +186,10 @@
                                         Android="14"
                                         iOS="12" />
                                 </Label.FontSize>
-                            </Label>-->
+                            </Label>
                         </StackLayout>
                     </yummy:PancakeView>
-                </StackLayout>
+                </StackLayout>-->
             </DataTemplate>
 
         </CollectionView.ItemTemplate>

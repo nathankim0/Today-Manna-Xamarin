@@ -13,8 +13,9 @@
     Shell.NavBarIsVisible="False">
 
     <NavigationPage.TitleView>
-        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='15,0,15,0'}" Orientation="Horizontal">
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
             <Label
+                FontFamily="batang"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 HorizontalOptions="Start"
@@ -86,24 +87,51 @@
             VerticalScrollBarVisibility="Always">
             <CollectionView.Header>
                 <StackLayout Padding="15,0,15,0" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <StackLayout Padding="0,0,0,10" Orientation="Horizontal">
+                    <StackLayout Padding="0,0,0,2" Orientation="Horizontal">
                         <Label
                             x:Name="today"
-                            FontFamily="dotum.ttf"
+                            FontFamily="batang"
                             Text="{Binding Today}"
                             TextColor="Gray"
                             VerticalOptions="CenterAndExpand" />
                         <Button
                             BackgroundColor="Transparent"
                             Clicked="OnMannaTodayButtonClicked"
-                            FontFamily="dotum.ttf"
+                            FontFamily="batang"
                             Text="오늘로"
                             TextColor="#0000EE"
                             VerticalOptions="CenterAndExpand" />
                         <!--<Switch x:Name="switch" Toggled="switch_Toggled" />-->
                     </StackLayout>
-                    <yummy:PancakeView
+                    <Frame
+                        Margin="0"
+                         x:Name="rangeButton"
+                        BackgroundColor="LightGray"
+                        HasShadow="True">
+                         <StackLayout Margin="5">
+                            <Label
+                                x:Name="mannaRangeLabel"
+                                FontFamily="batang"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding MannaShareRange}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="mcRangeLabel"
+                                FontFamily="batang"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding McShareRange}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                    <!--<yummy:PancakeView
                         x:Name="rangeButton"
+                        BackgroundColor="LightGray"
                         BackgroundGradientEndPoint="0.5,0.0"
                         BackgroundGradientStartPoint="0.0,0.5"
                         CornerRadius="10">
@@ -116,7 +144,7 @@
                         <StackLayout Margin="10">
                             <Label
                                 x:Name="mannaRangeLabel"
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
                                 FontSize="16"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
@@ -125,7 +153,7 @@
                                 VerticalOptions="Center" />
                             <Label
                                 x:Name="mcRangeLabel"
-                                FontFamily="dotum.ttf"
+                                FontFamily="batang"
                                 FontSize="16"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
@@ -133,12 +161,12 @@
                                 TextColor="Black"
                                 VerticalOptions="Center" />
                         </StackLayout>
-                    </yummy:PancakeView>
+                    </yummy:PancakeView>-->
                     <StackLayout Orientation="Horizontal">
                         <Label
                             x:Name="verse"
                             FontAttributes="Bold"
-                            FontFamily="dotum.ttf"
+                            FontFamily="batang"
                             FontSize="Subtitle"
                             HorizontalOptions="StartAndExpand"
                             Text="{Binding JsonMannaData.Verse}"
@@ -181,7 +209,7 @@
                         <Label
                             Grid.Row="0"
                             Grid.Column="0"
-                            FontFamily="dotum.ttf"
+                            FontFamily="batang"
                             FontSize="Body"
                             Text="{Binding Number}"
                             TextColor="{AppThemeBinding Dark=White,
@@ -189,7 +217,7 @@
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
-                            FontFamily="dotum.ttf"
+                            FontFamily="batang"
                             LineBreakMode="CharacterWrap"
                             Text="{Binding MannaString}"
                             TextColor="{AppThemeBinding Dark=White,

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -55,6 +55,7 @@
     <None Remove="Datas\MccheyneRange.json" />
     <None Remove="Datas\MccheyneRange2.json" />
     <None Remove="Fonts\materialdesignicons.ttf" />
+    <None Remove="Fonts\batang.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
@@ -70,5 +71,6 @@
     <EmbeddedResource Include="Datas\MccheyneRange.json" />
     <EmbeddedResource Include="Datas\MccheyneRange2.json" />
     <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
+    <EmbeddedResource Include="Fonts\batang.ttf" />
   </ItemGroup>
 </Project>
