@@ -14,6 +14,7 @@ namespace TodaysManna.Views
         private readonly NavigationPage navMccheyneCheckListPage;
         private readonly NavigationPage navCalendarPage;
         private readonly NavigationPage navMyPage;
+        MccheyneCheckListPage mccheyneCheckListPage;
 
         public MainTabbedPage()
         {
@@ -22,6 +23,7 @@ namespace TodaysManna.Views
             On<iOS>().SetUseSafeArea(true);
             On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
 
+            On<Android>().DisableSmoothScroll();
             On<Android>().DisableSwipePaging();
             On<Android>().SetOffscreenPageLimit(4);
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
@@ -48,7 +50,8 @@ namespace TodaysManna.Views
             };
             navMccheynePage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navMccheyneCheckListPage = new NavigationPage(App.mccheyneCheckListPage)
+            mccheyneCheckListPage = new MccheyneCheckListPage();
+            navMccheyneCheckListPage = new NavigationPage(mccheyneCheckListPage)
             {
                 Title = "체크리스트",
             };
@@ -103,7 +106,7 @@ namespace TodaysManna.Views
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
                 FirebaseEvent.eventTracker.SendEvent("view_navMccheyneCheckListPage");
-                App.mccheyneCheckListPage.ScrollToToday();
+                mccheyneCheckListPage.ScrollToToday();
             }
             else if (CurrentPage.Equals(navMyPage))
             {

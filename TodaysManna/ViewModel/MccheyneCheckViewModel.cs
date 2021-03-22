@@ -38,10 +38,16 @@ namespace TodaysManna.ViewModel
         }
 
         public ICommand command { get; set; }
+        public ICommand easterEggCommand { get; set; }
 
-        public MccheyneCheckViewModel()
+        public INavigation Navigation { get; set; }
+
+        public MccheyneCheckViewModel(INavigation navigation)
         {
+            Navigation = navigation;
+
             command = new Command<string>(SetCheck);
+            easterEggCommand = new Command<string>(SetEasterEgg);
 
             mccheyneCheckRangeList = new List<MccheyneCheckRange>();
             try
@@ -150,18 +156,18 @@ namespace TodaysManna.ViewModel
         private void SetCheck(string val)
         {
             try
-{
-    // Perform click feedback
-    HapticFeedback.Perform(HapticFeedbackType.Click);
-}
-catch (FeatureNotSupportedException ex)
-{
-    // Feature not supported on device
-}
-catch (Exception ex)
-{
-    // Other error has occurred.
-}
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
             FirebaseEvent.eventTracker.SendEvent("mccheynchecklist_check");
 
             MccheyneCheckList.ForEach(x =>
@@ -199,6 +205,18 @@ catch (Exception ex)
             });
         }
 
+        private async void SetEasterEgg(string date)
+        {
+            System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
+            if (date.Equals("3-27"))
+            {
+                await Navigation.PushAsync(new FatherPage());
+            }
+            if (date.Equals("8-12"))
+            {
+                await Navigation.PushAsync(new QrScanPage());
+            }
+        }
 
         private List<MccheyneCheckRange> GetJsonMccheyneRange()
         {
@@ -218,21 +236,21 @@ catch (Exception ex)
             return ObjContactList.CheckRanges;
         }
 
-        public static MccheyneCheckViewModel Current { get; } = new MccheyneCheckViewModel();
-        bool loaded;
+        //public static MccheyneCheckViewModel Current { get; } = new MccheyneCheckViewModel();
+        //bool loaded;
 
-        public bool Loaded
-        {
-            get => loaded;
-            set
-            {
-                if (loaded != value)
-                {
-                    loaded = value;
-                    OnPropertyChanged(nameof(Loaded));
-                }
-            }
-        }
+        //public bool Loaded
+        //{
+        //    get => loaded;
+        //    set
+        //    {
+        //        if (loaded != value)
+        //        {
+        //            loaded = value;
+        //            OnPropertyChanged(nameof(Loaded));
+        //        }
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

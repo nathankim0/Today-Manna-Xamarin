@@ -9,8 +9,9 @@ using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.Models;
-using Xamarin.CommunityToolkit;
-using Xamarin.CommunityToolkit.UI.Views;
+using Acr.UserDialogs;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace TodaysManna.Views
 {
@@ -22,14 +23,34 @@ namespace TodaysManna.Views
 
         public MccheyneCheckListPage()
         {
-            BindingContext = App.mccheyneCheckViewModel;
+            var mccheyneCheckViewModel = new MccheyneCheckViewModel(Navigation);
+            BindingContext = mccheyneCheckViewModel;
 
-            Initialize();
-            _todayMccheyne = App.mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
+            On<iOS>().SetUseSafeArea(true);
+            On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
+            //On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
+
+            Title = "체크리스트";
+            IconImageSource = "tab_mc";
+            this.SetAppThemeColor(BackgroundColorProperty, Color.White, Color.FromHex("#2e2e2e"));
+
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    new Thread(() => Initialize()).Start();
+                    break;
+                case Device.iOS:
+                    Initialize();
+                    break;
+            };
+
+
+            _todayMccheyne = mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
 
             _optionPopup = new OptionPopup();
             _optionPopup.CheckButtonClicked += OnCheckButtonClicked;
-            _optionPopup.ClearButtonClicked+= OnClearButtonClicked;
+            _optionPopup.ClearButtonClicked += OnClearButtonClicked;
         }
 
         protected override void OnAppearing()
@@ -39,20 +60,13 @@ namespace TodaysManna.Views
 
         private void Initialize()
         {
-            On<iOS>().SetUseSafeArea(true);
-            On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
-            On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
-
-            Title = "체크리스트";
-            IconImageSource = "tab_mc";
-            this.SetAppThemeColor(BackgroundColorProperty, Color.White, Color.FromHex("#2e2e2e"));
-
             NavigationPage.SetBackButtonTitle(this, "");
             NavigationPage.SetHasNavigationBar(this, true);
-           
+
+
             var titleLabel = new Label
             {
-                FontFamily="batang",
+                FontFamily = "batang",
                 BackgroundColor = Color.Transparent,
                 FontAttributes = FontAttributes.Bold,
                 HorizontalOptions = LayoutOptions.Start,
@@ -62,7 +76,7 @@ namespace TodaysManna.Views
 
             var titleOptionButton = new ImageButton
             {
-                Margin = new Thickness(0,0,5,0),
+                Margin = new Thickness(0, 0, 5, 0),
                 Padding = 8,
                 BackgroundColor = Color.Transparent,
                 HorizontalOptions = LayoutOptions.EndAndExpand,
@@ -80,9 +94,9 @@ namespace TodaysManna.Views
 
             var titleStackLayout = new StackLayout
             {
-                Padding=new Thickness(0,0,10,0),
-                Orientation=StackOrientation.Horizontal,
-                Children = {titleLabel,titleOptionButton}
+                Padding = new Thickness(0, 0, 10, 0),
+                Orientation = StackOrientation.Horizontal,
+                Children = { titleLabel, titleOptionButton }
             };
 
             switch (Device.RuntimePlatform)
@@ -115,17 +129,23 @@ namespace TodaysManna.Views
                             new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
                         }
                     };
-                    
+
                     var checkDateLabel = new Label
                     {
                         Padding = new Thickness(5, 0, 0, 0),
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 25,
-                        FontFamily="batang",
+                        FontFamily = "batang",
                         VerticalOptions = LayoutOptions.CenterAndExpand
                     };
                     checkDateLabel.SetBinding(Label.TextProperty, "Date");
                     checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
+
+                    var t = new TapGestureRecognizer();
+                    t.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
+                    t.SetBinding(TapGestureRecognizer.CommandParameterProperty, "Date");
+                    checkDateLabel.GestureRecognizers.Add(t);
+
                     Grid.SetRow(checkDateLabel, 0);
                     collectionViewDataTemplateGrid.Children.Add(checkDateLabel);
 
@@ -178,7 +198,7 @@ namespace TodaysManna.Views
 
                     return collectionViewDataTemplateGrid;
                 });
-            
+
 
             //todo StateLayout
 
@@ -214,6 +234,7 @@ namespace TodaysManna.Views
             //StateLayout.
 
             Content = _collectionView;
+
         }
 
         public void ScrollToToday()
@@ -277,7 +298,7 @@ namespace TodaysManna.Views
                     }
                 });
             }
-            
+
         }
 
         private async void OnOptionClicked(object sender, EventArgs e)

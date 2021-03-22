@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna;assembly=TodaysManna"
+    x:Class="TodaysManna.Views.FatherPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+            <Label Text="아빠 사랑해요 ~" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+
+        <CarouselView ItemsSource="{Binding FatherPictures}">
+    <CarouselView.ItemTemplate>
+        <DataTemplate>
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+
+                <local:PinchToZoomContainer VerticalOptions="StartAndExpand"
+                               HorizontalOptions="Center" >
+                <local:PinchToZoomContainer.Content>
+                    
+                <Image Source="{Binding FaImage}"
+                               Aspect="AspectFill"/>
+                </local:PinchToZoomContainer.Content>
+            </local:PinchToZoomContainer>
+            </StackLayout>
+        </DataTemplate>
+    </CarouselView.ItemTemplate>
+</CarouselView>
+</StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

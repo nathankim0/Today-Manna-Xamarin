@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Newtonsoft.Json;
 using TodaysManna.Views;
 using Xamarin.Essentials;
@@ -150,7 +151,9 @@ namespace TodaysManna.ViewModel
 
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                GetManna();
+              
+                 GetManna();
+                
             }
             else
             {
