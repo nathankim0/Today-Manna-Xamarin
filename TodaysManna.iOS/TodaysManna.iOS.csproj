@@ -39,7 +39,6 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -125,6 +124,22 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
+    <ImageAsset Include="Assets.xcassets\fa0.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa0.imageset\fa0.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa1.imageset\fa1.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa2.imageset\fa2.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa3.imageset\fa3.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa4.imageset\fa4.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa5.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa5.imageset\fa5.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa6.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa6.imageset\fa6.jpg" />
+    <ImageAsset Include="Assets.xcassets\fa7.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fa7.imageset\fa7.JPG" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -148,6 +163,12 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar.IOS">
       <Version>18.4.0.46</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>3.1.0-beta2</Version>
+    </PackageReference>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.481</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -183,6 +204,14 @@
     <Folder Include="Assets.xcassets\ic_check.imageset\" />
     <Folder Include="Assets.xcassets\ic_dateselect.imageset\" />
     <Folder Include="Assets.xcassets\delete.imageset\" />
+    <Folder Include="Assets.xcassets\fa0.imageset\" />
+    <Folder Include="Assets.xcassets\fa1.imageset\" />
+    <Folder Include="Assets.xcassets\fa2.imageset\" />
+    <Folder Include="Assets.xcassets\fa3.imageset\" />
+    <Folder Include="Assets.xcassets\fa4.imageset\" />
+    <Folder Include="Assets.xcassets\fa5.imageset\" />
+    <Folder Include="Assets.xcassets\fa6.imageset\" />
+    <Folder Include="Assets.xcassets\fa7.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\fa-solid-900.ttf" />

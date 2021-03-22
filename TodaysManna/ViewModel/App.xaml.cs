@@ -18,32 +18,23 @@ namespace TodaysManna
         public static ErrorPopup errorPopup;
 
         private static MemoItemDatabase database;
-
-        public static MccheyneCheckViewModel mccheyneCheckViewModel;
-        public static MccheyneCheckListPage mccheyneCheckListPage;
         public static List<MccheyneRange> mccheyneRanges;
-
-        public static MannaCalendarViewModel mannaCalendarViewModel;
 
         public static int OpenCount = 0;
 
         public App()
         {
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.SyncfusionKey);
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.SyncfusionKey);
 
             CreateData();
 
             MainPage = new MainTabbedPage();
-            //MainPage = new NTabView();
         }
 
         private void CreateData()
         {
             errorPopup = new ErrorPopup();
-
-            mccheyneCheckViewModel = new MccheyneCheckViewModel();
-            mccheyneCheckListPage = new MccheyneCheckListPage();
 
             mccheyneRanges = new List<MccheyneRange>();
             try
@@ -55,8 +46,6 @@ namespace TodaysManna
                 System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
                 ShowErrorPopup("맥체인 불러오기 오류");
             }
-
-            mannaCalendarViewModel = new MannaCalendarViewModel();
         }
 
         private List<MccheyneRange> GetJsonMccheyneRange()

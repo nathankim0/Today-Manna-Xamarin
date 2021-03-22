@@ -10,7 +10,6 @@ namespace TodaysManna.Views
         public MannaCalendarView()
         {
             InitializeComponent();
-            BindingContext = App.mannaCalendarViewModel;
         }
     }
 }
