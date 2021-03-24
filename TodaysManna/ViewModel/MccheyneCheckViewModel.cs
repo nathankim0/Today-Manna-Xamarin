@@ -46,8 +46,8 @@ namespace TodaysManna.ViewModel
         {
             Navigation = navigation;
 
-            command = new Command<string>(SetCheck);
-            easterEggCommand = new Command<string>(SetEasterEgg);
+            command = new Command<string>(OnCheckButtonTabbed);
+            easterEggCommand = new Command<string>(OnDateTabbed);
 
             mccheyneCheckRangeList = new List<MccheyneCheckRange>();
             try
@@ -153,7 +153,7 @@ namespace TodaysManna.ViewModel
             });
         }
 
-        private void SetCheck(string val)
+        private void OnCheckButtonTabbed(string val)
         {
             try
             {
@@ -204,13 +204,18 @@ namespace TodaysManna.ViewModel
                 }
             });
         }
-
-        private async void SetEasterEgg(string date)
+        static int tabcount = 0;
+        private async void OnDateTabbed(string date)
         {
             System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
             if (date.Equals("3-27"))
             {
-                await Navigation.PushAsync(new FatherPage());
+                tabcount++;
+                if (tabcount >= 2)
+                {
+                    tabcount = 0;
+                    await Navigation.PushAsync(new FatherPage());
+                }
             }
             if (date.Equals("8-12"))
             {
