@@ -124,22 +124,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
-    <ImageAsset Include="Assets.xcassets\fa0.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa0.imageset\fa0.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa1.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa1.imageset\fa1.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa2.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa2.imageset\fa2.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa3.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa3.imageset\fa3.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa4.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa4.imageset\fa4.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa5.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa5.imageset\fa5.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa6.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa6.imageset\fa6.jpg" />
-    <ImageAsset Include="Assets.xcassets\fa7.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\fa7.imageset\fa7.JPG" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
