@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MannaCalendarView : ContentPage
     {

@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TodaysManna.Views;
-using static TodaysManna.Models.MccheyneRangeData;
+using static TodaysManna.MccheyneRangeData;
 
-namespace TodaysManna.Models
+namespace TodaysManna
 {
     public static class WidgetService
     {

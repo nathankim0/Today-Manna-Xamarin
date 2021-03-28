@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="TodaysManna.Views.MccheynePage"
+    x:Class="TodaysManna.MccheynePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -18,9 +18,9 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
+                FontFamily="batang"
                 HorizontalOptions="StartAndExpand"
                 Text="맥체인"
-                FontFamily="batang"
                 VerticalOptions="Center">
                 <Label.FontSize>
                     <OnPlatform
@@ -209,7 +209,7 @@
             x:Name="bottomGrid"
             Margin="0,0,0,10"
             BackgroundColor="{AppThemeBinding Dark=Black,
-                                                Light=White}"
+                                              Light=White}"
             VerticalOptions="End">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -252,8 +252,8 @@
                 <Label
                     x:Name="centerLocationLabel"
                     BackgroundColor="Transparent"
-                    FontSize="15"
                     FontFamily="batang"
+                    FontSize="15"
                     HorizontalOptions="CenterAndExpand"
                     Text="1/4"
                     TextColor="{AppThemeBinding Dark=White,
@@ -264,8 +264,8 @@
                 x:Name="rightImageButton"
                 Grid.Column="2"
                 BackgroundColor="Transparent"
-                Clicked="OnRightButtonClicked" >
-                 <ImageButton.Source>
+                Clicked="OnRightButtonClicked">
+                <ImageButton.Source>
                     <FontImageSource
                         FontFamily="materialdesignicons"
                         Glyph="{x:Static local:FontIcons.ChevronRightCircle}"

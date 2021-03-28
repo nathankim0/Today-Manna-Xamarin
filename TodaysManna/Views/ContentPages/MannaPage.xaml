@@ -1,5 +1,5 @@
 ﻿<ContentPage
-    x:Class="TodaysManna.Views.MannaPage"
+    x:Class="TodaysManna.MannaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -15,9 +15,9 @@
     <NavigationPage.TitleView>
         <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
             <Label
-                FontFamily="batang"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
+                FontFamily="batang"
                 HorizontalOptions="Start"
                 Text="만나"
                 VerticalOptions="Center">
@@ -104,11 +104,11 @@
                         <!--<Switch x:Name="switch" Toggled="switch_Toggled" />-->
                     </StackLayout>
                     <Frame
+                        x:Name="rangeButton"
                         Margin="0"
-                         x:Name="rangeButton"
                         BackgroundColor="LightGray"
                         HasShadow="True">
-                         <StackLayout Margin="5">
+                        <StackLayout Margin="5">
                             <Label
                                 x:Name="mannaRangeLabel"
                                 FontFamily="batang"

@@ -1,15 +1,11 @@
 ﻿using System;
-using TodaysManna.ViewModel;
 using Xamarin.Forms;
 using System.Linq;
-using TodaysManna.Models;
 using Xamarin.Essentials;
 using ListView = Xamarin.Forms.ListView;
-using TodaysManna.Popups;
 using Rg.Plugins.Popup.Services;
-using System.Threading.Tasks;
 
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MccheynePage : ContentPage
     {
@@ -226,14 +222,14 @@ namespace TodaysManna.Views
                 // Other error has occurred.
             }
 
-            FirebaseEvent.eventTracker.SendEvent("mccheyn_today");
+            FirebaseEventService.eventTracker.SendEvent("mccheyn_today");
 
             datepicker.Date = DateTime.Now;
         }
 
         private void OnDateButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("mccheyn_date");
+            FirebaseEventService.eventTracker.SendEvent("mccheyn_date");
 
             backgroundBoxView.IsVisible = true;
             datepicker.Focus();
@@ -319,7 +315,7 @@ namespace TodaysManna.Views
 
         private async void OnReportTapped(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("mccheyn_report");
+            FirebaseEventService.eventTracker.SendEvent("mccheyn_report");
 
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
@@ -346,7 +342,7 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("mccheyn_text_coppy");
+            FirebaseEventService.eventTracker.SendEvent("mccheyn_text_coppy");
 
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
@@ -354,7 +350,7 @@ namespace TodaysManna.Views
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("mccheyn_text_share");
+            FirebaseEventService.eventTracker.SendEvent("mccheyn_text_share");
 
             await Share.RequestAsync(new ShareTextRequest
             {

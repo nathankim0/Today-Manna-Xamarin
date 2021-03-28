@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Newtonsoft.Json;
-using TodaysManna.Models;
 using TodaysManna.Views;
-using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using static TodaysManna.Models.MccheyneCheckData;
+using static TodaysManna.MccheyneCheckData;
 
-namespace TodaysManna.ViewModel
+namespace TodaysManna
 {
     public class MccheyneCheckViewModel : INotifyPropertyChanged
     {
@@ -168,7 +165,7 @@ namespace TodaysManna.ViewModel
             {
                 // Other error has occurred.
             }
-            FirebaseEvent.eventTracker.SendEvent("mccheynchecklist_check");
+            FirebaseEventService.eventTracker.SendEvent("mccheynchecklist_check");
 
             MccheyneCheckList.ForEach(x =>
             {

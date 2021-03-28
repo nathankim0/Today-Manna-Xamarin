@@ -1,19 +1,15 @@
 ﻿using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms;
-using TodaysManna.ViewModel;
 using System.Linq;
 using System;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
-using TodaysManna.Models;
-using Acr.UserDialogs;
-using System.Threading.Tasks;
 using System.Threading;
 
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MccheyneCheckListPage : ContentPage
     {

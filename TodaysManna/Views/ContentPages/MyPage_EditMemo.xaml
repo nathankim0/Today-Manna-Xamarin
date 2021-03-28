@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="TodaysManna.Views.MyPage_EditMemo"
+    x:Class="TodaysManna.MyPage_EditMemo"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -21,8 +21,8 @@
             </Label>
 
             <Label
-                Text="{Binding Date}"
                 FontFamily="batang"
+                Text="{Binding Date}"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
                 <Label.FontSize>
@@ -76,27 +76,25 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
-            <StackLayout BackgroundColor="{AppThemeBinding Dark=White,
-                                            Light=Black}" Padding="1">
-            <Editor
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                            Light=White}"
-                x:Name="memoEditor"
-                
-                AutoSize="TextChanges"
-                FontFamily="batang"
-                Placeholder="메모 작성"
-                Text="{Binding Note}"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}">
-                <Editor.FontSize>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        Android="16"
-                        iOS="14" />
-                </Editor.FontSize>
-            </Editor>
-                </StackLayout>
+            <StackLayout Padding="1" BackgroundColor="{AppThemeBinding Dark=White, Light=Black}">
+                <Editor
+                    x:Name="memoEditor"
+                    AutoSize="TextChanges"
+                    BackgroundColor="{AppThemeBinding Dark=Black,
+                                                      Light=White}"
+                    FontFamily="batang"
+                    Placeholder="메모 작성"
+                    Text="{Binding Note}"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                    <Editor.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="16"
+                            iOS="14" />
+                    </Editor.FontSize>
+                </Editor>
+            </StackLayout>
             <StackLayout
                 Padding="0,15,0,0"
                 Orientation="Horizontal"
@@ -109,4 +107,4 @@
     </ScrollView>
 </ContentPage>
 
-<!--Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"-->
+<!--  Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"  -->

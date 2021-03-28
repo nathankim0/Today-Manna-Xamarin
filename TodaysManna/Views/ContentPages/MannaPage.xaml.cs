@@ -1,14 +1,10 @@
 ﻿using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using TodaysManna.ViewModel;
 using System.Linq;
-using TodaysManna.Models;
-using TodaysManna.Popups;
 using Rg.Plugins.Popup.Services;
-using Syncfusion.SfCalendar.XForms;
 
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MannaPage : ContentPage
     {
@@ -50,7 +46,7 @@ namespace TodaysManna.Views
         
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("manna_text_memo");
+            FirebaseEventService.eventTracker.SendEvent("manna_text_memo");
 
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
@@ -60,7 +56,7 @@ namespace TodaysManna.Views
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("manna_text_coppy");
+            FirebaseEventService.eventTracker.SendEvent("manna_text_coppy");
 
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
@@ -68,7 +64,7 @@ namespace TodaysManna.Views
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("manna_text_share");
+            FirebaseEventService.eventTracker.SendEvent("manna_text_share");
 
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -117,7 +113,7 @@ catch (Exception ex)
     // Other error has occurred.
 }
 
-            FirebaseEvent.eventTracker.SendEvent("manna_range_share");
+            FirebaseEventService.eventTracker.SendEvent("manna_range_share");
 
             new Animation {
             { 0, 0.5, new Animation (v => rangeButton.Opacity = v, 1, 0.6) },
@@ -135,7 +131,7 @@ catch (Exception ex)
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("manna_share");
+            FirebaseEventService.eventTracker.SendEvent("manna_share");
 
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -146,7 +142,7 @@ catch (Exception ex)
 
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("manna_english");
+            FirebaseEventService.eventTracker.SendEvent("manna_english");
 
             try
             {
@@ -210,7 +206,7 @@ catch (Exception ex)
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("manna_date");
+            FirebaseEventService.eventTracker.SendEvent("manna_date");
 
             backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
@@ -232,7 +228,7 @@ catch (Exception ex)
     // Other error has occurred.
 }
 
-            FirebaseEvent.eventTracker.SendEvent("manna_today");
+            FirebaseEventService.eventTracker.SendEvent("manna_today");
 
             mannaDatepicker.Date = DateTime.Now;
         }

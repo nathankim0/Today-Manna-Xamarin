@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace TodaysManna.Renderer
+namespace TodaysManna
 {
     public class CustomPage : ContentPage
     {

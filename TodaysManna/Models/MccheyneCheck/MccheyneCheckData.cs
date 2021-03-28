@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-namespace TodaysManna.Models
+
+namespace TodaysManna
 {
     public class MccheyneCheckData
     {

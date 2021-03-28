@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MyPage : ContentPage
     {
@@ -64,7 +61,7 @@ namespace TodaysManna.Views
         {
             if (e.CurrentSelection != null)
             {
-                FirebaseEvent.eventTracker.SendEvent("mypage_memo_select");
+                FirebaseEventService.eventTracker.SendEvent("mypage_memo_select");
 
                 await Navigation.PushAsync(new MyPage_EditMemo
                 {
