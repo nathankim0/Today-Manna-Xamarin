@@ -1,9 +1,7 @@
 ﻿using System;
 using UserNotifications;
 using Foundation;
-using static CoreText.CTFontFeatureAllTypographicFeatures;
 using TodaysManna.iOS.AppDependencies;
-using TodaysManna.AppInterfaces;
 
 [assembly: Xamarin.Forms.Dependency(typeof(LocalNotification))]
 namespace TodaysManna.iOS.AppDependencies
