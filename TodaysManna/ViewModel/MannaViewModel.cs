@@ -8,12 +8,10 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
 using Newtonsoft.Json;
-using TodaysManna.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static TodaysManna.Models.BibleAtData;
+using static TodaysManna.BibleAtData;
 
 namespace TodaysManna
 {

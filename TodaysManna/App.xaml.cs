@@ -4,12 +4,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
-using Syncfusion.SfCalendar.XForms;
-using TodaysManna.Datas;
-using TodaysManna.Popups;
-using TodaysManna.ViewModel;
-using TodaysManna.Views;
-using static TodaysManna.Models.MccheyneRangeData;
+using static TodaysManna.MccheyneRangeData;
 
 namespace TodaysManna
 {
