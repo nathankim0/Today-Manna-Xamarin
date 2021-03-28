@@ -4,8 +4,9 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using TabbedPage = Xamarin.Forms.TabbedPage;
+using TodaysManna.Views;
 
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MainTabbedPage : TabbedPage
     {
@@ -97,20 +98,20 @@ namespace TodaysManna.Views
 
             if (CurrentPage.Equals(navMannaPage))
             {
-                FirebaseEvent.eventTracker.SendEvent("view_navMannaPage");
+                FirebaseEventService.eventTracker.SendEvent("view_navMannaPage");
             }
             else if (CurrentPage.Equals(navMccheynePage))
             {
-                FirebaseEvent.eventTracker.SendEvent("view_navMccheynePage");
+                FirebaseEventService.eventTracker.SendEvent("view_navMccheynePage");
             }
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
-                FirebaseEvent.eventTracker.SendEvent("view_navMccheyneCheckListPage");
+                FirebaseEventService.eventTracker.SendEvent("view_navMccheyneCheckListPage");
                 mccheyneCheckListPage.ScrollToToday();
             }
             else if (CurrentPage.Equals(navMyPage))
             {
-                FirebaseEvent.eventTracker.SendEvent("view_navMyPage");
+                FirebaseEventService.eventTracker.SendEvent("view_navMyPage");
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TodaysManna.Models
+namespace TodaysManna
 {
     public class MccheyneContent
     {

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace TodaysManna.Models
+namespace TodaysManna
 {
     public class MccheyneCheckContent : INotifyPropertyChanged
     {

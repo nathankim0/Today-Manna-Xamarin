@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
-namespace TodaysManna.Popups
+namespace TodaysManna
 {
     public partial class ErrorPopup : Rg.Plugins.Popup.Pages.PopupPage
     {

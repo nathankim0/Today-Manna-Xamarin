@@ -17,7 +17,7 @@ namespace TodaysManna
     {
         public static ErrorPopup errorPopup;
 
-        private static MemoItemDatabase database;
+        private static MemoItemDatabaseService database;
         public static List<MccheyneRange> mccheyneRanges;
 
         public static int OpenCount = 0;
@@ -64,13 +64,13 @@ namespace TodaysManna
             return ObjContactList.Ranges;
         }
 
-        public static MemoItemDatabase Database
+        public static MemoItemDatabaseService Database
         {
             get
             {
                 if (database == null)
                 {
-                    database = new MemoItemDatabase();
+                    database = new MemoItemDatabaseService();
                 }
                 return database;
             }
@@ -91,12 +91,12 @@ namespace TodaysManna
 
         protected override void OnStart()
         {
-            FirebaseEvent.eventTracker.SendEvent("start_app");
+            FirebaseEventService.eventTracker.SendEvent("start_app");
         }
 
         protected override void OnSleep()
         {
-            FirebaseEvent.eventTracker.SendEvent("sleep_app");
+            FirebaseEventService.eventTracker.SendEvent("sleep_app");
         }
 
         protected override void OnResume()

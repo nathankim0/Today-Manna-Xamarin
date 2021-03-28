@@ -15,7 +15,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using static TodaysManna.Models.BibleAtData;
 
-namespace TodaysManna.ViewModel
+namespace TodaysManna
 {
     public class MannaViewModel : INotifyPropertyChanged
     {

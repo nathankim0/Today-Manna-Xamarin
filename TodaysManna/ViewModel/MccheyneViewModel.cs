@@ -6,11 +6,10 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using TodaysManna.Models;
 using TodaysManna.Views;
-using static TodaysManna.Models.MccheyneData;
+using static TodaysManna.MccheyneData;
 
-namespace TodaysManna.ViewModel
+namespace TodaysManna
 {
     public class MccheyneViewModel : INotifyPropertyChanged
     {

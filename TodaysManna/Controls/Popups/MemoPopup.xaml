@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="TodaysManna.Popups.MemoPopup"
+    x:Class="TodaysManna.MemoPopup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
@@ -41,16 +41,16 @@
                 <Label
                     Grid.Row="0"
                     BackgroundColor="Transparent"
+                    FontFamily="batang"
                     HorizontalOptions="Center"
                     Text="메모 작성"
-                    FontFamily="batang"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}" />
                 <Label
                     x:Name="bibleLabel"
                     Grid.Row="1"
-                    FontFamily="batang"
                     BackgroundColor="Transparent"
+                    FontFamily="batang"
                     HorizontalOptions="Center"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}">
@@ -62,28 +62,28 @@
                     </Label.FontSize>
                 </Label>
 
-                  <StackLayout
-                      Grid.Row="2"
-                      VerticalOptions="FillAndExpand"
-                      BackgroundColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                      Padding="1">
-            <Editor
-                VerticalOptions="FillAndExpand"
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                            Light=White}"
-                x:Name="editor"
-                                FontFamily="batang"
-                Placeholder="메모 작성"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}">
-                <Editor.FontSize>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        Android="16"
-                        iOS="14" />
-                </Editor.FontSize>
-            </Editor>
+                <StackLayout
+                    Grid.Row="2"
+                    Padding="1"
+                    BackgroundColor="{AppThemeBinding Dark=White,
+                                                      Light=Black}"
+                    VerticalOptions="FillAndExpand">
+                    <Editor
+                        x:Name="editor"
+                        BackgroundColor="{AppThemeBinding Dark=Black,
+                                                          Light=White}"
+                        FontFamily="batang"
+                        Placeholder="메모 작성"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="FillAndExpand">
+                        <Editor.FontSize>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="16"
+                                iOS="14" />
+                        </Editor.FontSize>
+                    </Editor>
                 </StackLayout>
 
 

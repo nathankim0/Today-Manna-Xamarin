@@ -29,14 +29,18 @@
     <Folder Include="ViewModel\" />
     <Folder Include="Views\" />
     <Folder Include="Rest\" />
-    <Folder Include="Renderer\" />
     <Folder Include="Datas\" />
-    <Folder Include="Popups\" />
-    <Folder Include="BottomSheets\" />
     <Folder Include="Fonts\" />
-    <Folder Include="FireBaseService\" />
     <Folder Include="Views\ContentPages\" />
     <Folder Include="Views\ContentPages\EasterEggPages\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Controls\BottomSheets\" />
+    <Folder Include="Controls\Popups\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\Manna\" />
+    <Folder Include="Models\Mccheyne\" />
+    <Folder Include="Models\MccheyneCheck\" />
+    <Folder Include="Models\Memo\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
@@ -46,6 +50,10 @@
     <Compile Remove="Views\ContentViews\MccheyneView.xaml.cs" />
     <Compile Remove="Views\ContentViews\MyPageView.xaml.cs" />
     <Compile Remove="Views\NTabView.xaml.cs" />
+    <Compile Remove="ViewModel\MannaCalendarViewModel.cs" />
+    <Compile Remove="Models\Person.cs" />
+    <Compile Remove="Datas\FirebaseHelper.cs" />
+    <Compile Remove="Views\ContentPages\MannaCalendarView.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
@@ -67,6 +75,7 @@
     <EmbeddedResource Remove="Views\ContentViews\MannaView.xaml" />
     <EmbeddedResource Remove="Views\ContentViews\MyPageView.xaml" />
     <EmbeddedResource Remove="Views\NTabView.xaml" />
+    <EmbeddedResource Remove="Views\ContentPages\MannaCalendarView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Datas\BibleAt.json" />

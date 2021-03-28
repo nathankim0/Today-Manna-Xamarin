@@ -1,9 +1,8 @@
 ﻿using System;
-using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace TodaysManna.Views
+namespace TodaysManna
 {
     public partial class MyPage_EditMemo : ContentPage
     {
@@ -13,7 +12,7 @@ namespace TodaysManna.Views
         }
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("editmemo_save_buttonclicked");
+            FirebaseEventService.eventTracker.SendEvent("editmemo_save_buttonclicked");
             //((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
@@ -23,7 +22,7 @@ namespace TodaysManna.Views
         {
             if(!(BindingContext is MemoItem memoItem)) { return; }
 
-            FirebaseEvent.eventTracker.SendEvent("editmemo_share");
+            FirebaseEventService.eventTracker.SendEvent("editmemo_share");
 
             string verse = "";
             string note = "";
@@ -56,7 +55,7 @@ namespace TodaysManna.Views
 
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
-            FirebaseEvent.eventTracker.SendEvent("editmemo_delete");
+            FirebaseEventService.eventTracker.SendEvent("editmemo_delete");
 
             if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
@@ -67,7 +66,7 @@ namespace TodaysManna.Views
 
         protected override async void OnDisappearing()
         {
-            FirebaseEvent.eventTracker.SendEvent("editmemo_save_disappearing");
+            FirebaseEventService.eventTracker.SendEvent("editmemo_save_disappearing");
 
             //((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);

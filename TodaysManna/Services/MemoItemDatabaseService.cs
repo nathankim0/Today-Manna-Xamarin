@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
-using TodaysManna.Models;
 
-namespace TodaysManna.Datas
+namespace TodaysManna
 {
-    public class MemoItemDatabase
+    public class MemoItemDatabaseService
     {
         static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
         {
@@ -17,7 +16,7 @@ namespace TodaysManna.Datas
         static SQLiteAsyncConnection Database => lazyInitializer.Value;
         static bool initialized = false;
 
-        public MemoItemDatabase()
+        public MemoItemDatabaseService()
         {
             InitializeAsync().SafeFireAndForget(false);
         }

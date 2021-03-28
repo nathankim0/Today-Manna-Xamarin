@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
-namespace TodaysManna.Popups
+namespace TodaysManna
 {
     public partial class MemoPopup : Rg.Plugins.Popup.Pages.PopupPage
     {

@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
-namespace TodaysManna.Models
+
+namespace TodaysManna
 {
     public class MemoItem
     {
