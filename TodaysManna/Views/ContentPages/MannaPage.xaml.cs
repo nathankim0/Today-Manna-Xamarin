@@ -43,7 +43,7 @@ namespace TodaysManna
             _memoPopup = new MemoPopup();
             _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
         }
-        
+
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
             FirebaseEventService.eventTracker.SendEvent("manna_text_memo");
@@ -51,7 +51,7 @@ namespace TodaysManna
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
             await PopupNavigation.Instance.PushAsync(_memoPopup);
-            
+
         }
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
@@ -87,7 +87,7 @@ namespace TodaysManna
             {
                 Date = DateTime.Now,
                 Verse = shareRangeString,
-                Note =""
+                Note = ""
             };
             await App.Database.SaveItemAsync(memoItem);
         }
@@ -100,18 +100,18 @@ namespace TodaysManna
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
             try
-{
-    // Perform click feedback
-    HapticFeedback.Perform(HapticFeedbackType.Click);
-}
-catch (FeatureNotSupportedException ex)
-{
-    // Feature not supported on device
-}
-catch (Exception ex)
-{
-    // Other error has occurred.
-}
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
 
             FirebaseEventService.eventTracker.SendEvent("manna_range_share");
 
@@ -153,23 +153,23 @@ catch (Exception ex)
             {
                 var uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-            }   
+            }
         }
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
             try
-{
-    // Perform click feedback
-    HapticFeedback.Perform(HapticFeedbackType.Click);
-}
-catch (FeatureNotSupportedException ex)
-{
-    // Feature not supported on device
-}
-catch (Exception ex)
-{
-    // Other error has occurred.
-}
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
 
             var selectedGrid = sender as Grid;
 
@@ -215,18 +215,18 @@ catch (Exception ex)
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
             try
-{
-    // Perform click feedback
-    HapticFeedback.Perform(HapticFeedbackType.Click);
-}
-catch (FeatureNotSupportedException ex)
-{
-    // Feature not supported on device
-}
-catch (Exception ex)
-{
-    // Other error has occurred.
-}
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
 
             FirebaseEventService.eventTracker.SendEvent("manna_today");
 
