@@ -66,17 +66,11 @@
     <PackageReference Include="Xamarin.Firebase.Analytics">
       <Version>118.0.2</Version>
     </PackageReference>
-    <PackageReference Include="FirebaseDatabase.net">
-      <Version>4.0.6</Version>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar.Android">
-      <Version>18.4.0.46</Version>
-    </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile.Forms">
       <Version>3.1.0-beta2</Version>
     </PackageReference>
     <PackageReference Include="Acr.UserDialogs">
-      <Version>7.1.0.481</Version>
+      <Version>7.1.0.483</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
