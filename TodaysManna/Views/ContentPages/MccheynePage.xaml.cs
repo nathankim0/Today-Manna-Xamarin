@@ -222,14 +222,14 @@ namespace TodaysManna
                 // Other error has occurred.
             }
 
-            FirebaseEventService.eventTracker.SendEvent("mccheyn_today");
+            FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_today");
 
             datepicker.Date = DateTime.Now;
         }
 
         private void OnDateButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("mccheyn_date");
+            FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_date");
 
             backgroundBoxView.IsVisible = true;
             datepicker.Focus();
@@ -315,7 +315,7 @@ namespace TodaysManna
 
         private async void OnReportTapped(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("mccheyn_report");
+            FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_report");
 
             var address = "jinyeob07@gmail.com";
             await Clipboard.SetTextAsync(address);
@@ -342,7 +342,7 @@ namespace TodaysManna
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("mccheyn_text_coppy");
+            FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_coppy");
 
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
@@ -350,7 +350,7 @@ namespace TodaysManna
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("mccheyn_text_share");
+            FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_share");
 
             await Share.RequestAsync(new ShareTextRequest
             {

@@ -4,7 +4,6 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using TabbedPage = Xamarin.Forms.TabbedPage;
-using TodaysManna.Views;
 
 namespace TodaysManna
 {
@@ -13,14 +12,11 @@ namespace TodaysManna
         private readonly NavigationPage navMannaPage;
         private readonly NavigationPage navMccheynePage;
         private readonly NavigationPage navMccheyneCheckListPage;
-        private readonly NavigationPage navCalendarPage;
         private readonly NavigationPage navMyPage;
         MccheyneCheckListPage mccheyneCheckListPage;
 
         public MainTabbedPage()
         {
-            //InitializeComponent();
-
             On<iOS>().SetUseSafeArea(true);
             On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
 
@@ -63,17 +59,6 @@ namespace TodaysManna
             };
             navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            //navCalendarPage = new NavigationPage(new MannaCalendarView())
-            //{
-            //    Title = "캘린더",
-            //};
-            //navCalendarPage.IconImageSource = new FontImageSource
-            //{
-            //    FontFamily = "materialdesignicons",
-            //    Glyph = FontIcons.CalendarOutline,
-            //};
-            //navCalendarPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
-
             navMyPage = new NavigationPage(new MyPage())
             {
                 Title = "메모",
@@ -88,7 +73,6 @@ namespace TodaysManna
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
-            //Children.Add(navCalendarPage);
             Children.Add(navMyPage);
         }
 
@@ -98,20 +82,20 @@ namespace TodaysManna
 
             if (CurrentPage.Equals(navMannaPage))
             {
-                FirebaseEventService.eventTracker.SendEvent("view_navMannaPage");
+                FirebaseEventService.SendEventOnPlatformSpecific("view_navMannaPage");
             }
             else if (CurrentPage.Equals(navMccheynePage))
             {
-                FirebaseEventService.eventTracker.SendEvent("view_navMccheynePage");
+                FirebaseEventService.SendEventOnPlatformSpecific("view_navMccheynePage");
             }
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
-                FirebaseEventService.eventTracker.SendEvent("view_navMccheyneCheckListPage");
+                FirebaseEventService.SendEventOnPlatformSpecific("view_navMccheyneCheckListPage");
                 mccheyneCheckListPage.ScrollToToday();
             }
             else if (CurrentPage.Equals(navMyPage))
             {
-                FirebaseEventService.eventTracker.SendEvent("view_navMyPage");
+                FirebaseEventService.SendEventOnPlatformSpecific("view_navMyPage");
             }
         }
     }

@@ -1,10 +1,7 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Acr.UserDialogs;
@@ -26,15 +23,11 @@ namespace TodaysManna.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Rg.Plugins.Popup.Popup.Init(this);
-
             Forms.SetFlags("FastRenderers_Experimental");
 
+            Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
-
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
+            Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
 
             LoadApplication(new App());
