@@ -72,9 +72,6 @@
       <HintPath>..\packages\Acr.UserDialogs.7.1.0.481\lib\xamarinmac20\Acr.UserDialogs.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing.Common" />
-    <Reference Include="Xamarin.CommunityToolkit">
-      <HintPath>..\packages\Xamarin.CommunityToolkit.1.1.0\lib\xamarinmac20\Xamarin.CommunityToolkit.dll</HintPath>
-    </Reference>
     <Reference Include="netstandard" />
     <Reference Include="Xamarin.Forms.PancakeView">
       <HintPath>..\packages\Xamarin.Forms.PancakeView.2.3.0.763-beta\lib\xamarinmac20\Xamarin.Forms.PancakeView.dll</HintPath>
@@ -97,9 +94,6 @@
     <Reference Include="SQLitePCLRaw.core">
       <HintPath>..\packages\SQLitePCLRaw.core.2.0.5-pre20210119130047\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Sqlite">
-      <HintPath>..\packages\Microsoft.Data.Sqlite.Core.6.0.0-preview.2.21154.2\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
       <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.2.0.4\lib\netstandard2.0\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
     </Reference>
@@ -108,15 +102,6 @@
     </Reference>
     <Reference Include="SQLite-net">
       <HintPath>..\packages\sqlite-net-pcl.1.8.0-beta\lib\netstandard2.0\SQLite-net.dll</HintPath>
-    </Reference>
-    <Reference Include="zxing">
-      <HintPath>..\packages\ZXing.Net.0.16.6\lib\netstandard2.1\zxing.dll</HintPath>
-    </Reference>
-    <Reference Include="ZXingNetMobile">
-      <HintPath>..\packages\ZXing.Net.Mobile.3.1.0-beta2\lib\xamarinmac20\ZXingNetMobile.dll</HintPath>
-    </Reference>
-    <Reference Include="ZXing.Net.Mobile.Forms">
-      <HintPath>..\packages\ZXing.Net.Mobile.Forms.3.1.0-beta2\lib\xamarinmac20\ZXing.Net.Mobile.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +145,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.5.0.0.2012\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.5.0.0.2012\build\Xamarin.Forms.targets')" />
-  <Import Project="..\packages\Xamarin.CommunityToolkit.1.1.0\build\Xamarin.CommunityToolkit.targets" Condition="Exists('..\packages\Xamarin.CommunityToolkit.1.1.0\build\Xamarin.CommunityToolkit.targets')" />
   <Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

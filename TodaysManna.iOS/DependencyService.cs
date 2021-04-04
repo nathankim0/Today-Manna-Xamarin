@@ -22,7 +22,7 @@ namespace TodaysManna.iOS
     {
         public void SendEvent(string eventId)
         {
-            SendEvent(eventId, (IDictionary<string, string>)null);
+            SendEvent(eventId, null);
         }
 
         public void SendEvent(string eventId, string paramName, string value)

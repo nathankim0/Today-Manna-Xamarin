@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Newtonsoft.Json;
-using TodaysManna.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -165,7 +164,7 @@ namespace TodaysManna
             {
                 // Other error has occurred.
             }
-            FirebaseEventService.eventTracker.SendEvent("mccheynchecklist_check");
+            FirebaseEventService.SendEventOnPlatformSpecific("mccheynchecklist_check");
 
             MccheyneCheckList.ForEach(x =>
             {
@@ -211,12 +210,10 @@ namespace TodaysManna
                 if (tabcount >= 2)
                 {
                     tabcount = 0;
-                    await Navigation.PushAsync(new FatherPage());
                 }
             }
             if (date.Equals("8-12"))
             {
-                await Navigation.PushAsync(new QrScanPage());
             }
         }
 

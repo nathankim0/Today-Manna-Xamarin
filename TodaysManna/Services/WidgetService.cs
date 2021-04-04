@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
-using TodaysManna.Views;
 using static TodaysManna.MccheyneRangeData;
 
 namespace TodaysManna

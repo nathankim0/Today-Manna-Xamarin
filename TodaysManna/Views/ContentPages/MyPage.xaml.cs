@@ -61,7 +61,7 @@ namespace TodaysManna
         {
             if (e.CurrentSelection != null)
             {
-                FirebaseEventService.eventTracker.SendEvent("mypage_memo_select");
+                FirebaseEventService.SendEventOnPlatformSpecific("mypage_memo_select");
 
                 await Navigation.PushAsync(new MyPage_EditMemo
                 {

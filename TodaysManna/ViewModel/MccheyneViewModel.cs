@@ -6,7 +6,6 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using TodaysManna.Views;
 using static TodaysManna.MccheyneData;
 
 namespace TodaysManna

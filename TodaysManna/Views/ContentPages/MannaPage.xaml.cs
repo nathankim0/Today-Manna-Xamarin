@@ -46,7 +46,7 @@ namespace TodaysManna
 
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("manna_text_memo");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_text_memo");
 
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
@@ -56,7 +56,7 @@ namespace TodaysManna
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("manna_text_coppy");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_text_coppy");
 
             await Clipboard.SetTextAsync(shareRangeString);
             await DisplayAlert("클립보드에 복사됨", null, "확인");
@@ -64,7 +64,7 @@ namespace TodaysManna
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("manna_text_share");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_text_share");
 
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -113,7 +113,7 @@ namespace TodaysManna
                 // Other error has occurred.
             }
 
-            FirebaseEventService.eventTracker.SendEvent("manna_range_share");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_range_share");
 
             new Animation {
             { 0, 0.5, new Animation (v => rangeButton.Opacity = v, 1, 0.6) },
@@ -131,7 +131,7 @@ namespace TodaysManna
 
         private async void OnShareButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("manna_share");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_share");
 
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -142,7 +142,7 @@ namespace TodaysManna
 
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("manna_english");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_english");
 
             try
             {
@@ -206,7 +206,7 @@ namespace TodaysManna
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("manna_date");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_date");
 
             backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
@@ -228,7 +228,7 @@ namespace TodaysManna
                 // Other error has occurred.
             }
 
-            FirebaseEventService.eventTracker.SendEvent("manna_today");
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_today");
 
             mannaDatepicker.Date = DateTime.Now;
         }
@@ -260,26 +260,5 @@ namespace TodaysManna
             await App.Database.SaveItemAsync(memoItem);
         }
 
-        //void switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
-        //{
-        //    Console.WriteLine(e.Value);
-        //    var event1 = new CalendarInlineEvent();
-
-        //    if (e.Value == true)
-        //    {
-        //        event1.IsAllDay = true;
-        //        event1.StartTime = DateTime.Now;
-        //        event1.EndTime = DateTime.Now;
-        //        event1.Subject = "만나";
-        //        event1.Color = Color.Fuchsia;
-
-        //        App.mannaCalendarViewModel.CalendarInlineEvents.Add(event1);
-        //    }
-        //    else
-        //    {
-        //        App.mannaCalendarViewModel.CalendarInlineEvents.Remove(event1);
-
-        //    }
-        //}
     }
 }

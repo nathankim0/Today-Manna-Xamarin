@@ -12,7 +12,7 @@ namespace TodaysManna
         }
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("editmemo_save_buttonclicked");
+            FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_buttonclicked");
             //((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
@@ -22,7 +22,7 @@ namespace TodaysManna
         {
             if(!(BindingContext is MemoItem memoItem)) { return; }
 
-            FirebaseEventService.eventTracker.SendEvent("editmemo_share");
+            FirebaseEventService.SendEventOnPlatformSpecific("editmemo_share");
 
             string verse = "";
             string note = "";
@@ -55,7 +55,7 @@ namespace TodaysManna
 
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
-            FirebaseEventService.eventTracker.SendEvent("editmemo_delete");
+            FirebaseEventService.SendEventOnPlatformSpecific("editmemo_delete");
 
             if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
@@ -66,7 +66,7 @@ namespace TodaysManna
 
         protected override async void OnDisappearing()
         {
-            FirebaseEventService.eventTracker.SendEvent("editmemo_save_disappearing");
+            FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_disappearing");
 
             //((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
