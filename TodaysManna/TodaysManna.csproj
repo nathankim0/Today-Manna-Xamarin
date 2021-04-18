@@ -18,7 +18,6 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

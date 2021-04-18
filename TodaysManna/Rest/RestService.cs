@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using TodaysManna.Models;
 
 namespace TodaysManna
 {
@@ -15,16 +16,16 @@ namespace TodaysManna
             _client = new HttpClient();
         }
 
-        public async Task<MannaData> GetMannaDataAsync(string uri)
+        public async Task<JsonMannaModel> GetMannaDataAsync(string uri)
         {
-            MannaData mannaData = new MannaData();
+            JsonMannaModel mannaData = new JsonMannaModel();
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    mannaData = JsonConvert.DeserializeObject<MannaData>(content);
+                    mannaData = JsonConvert.DeserializeObject<JsonMannaModel>(content);
                     Console.WriteLine($"@@@@@{mannaData.Verse}");
                     foreach(var node in mannaData.Contents)
                     {

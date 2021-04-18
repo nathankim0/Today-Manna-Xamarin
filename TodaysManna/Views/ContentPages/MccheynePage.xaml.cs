@@ -4,6 +4,8 @@ using System.Linq;
 using Xamarin.Essentials;
 using ListView = Xamarin.Forms.ListView;
 using Rg.Plugins.Popup.Services;
+using TodaysManna.ViewModel;
+using TodaysManna.Models;
 
 namespace TodaysManna
 {
@@ -18,10 +20,6 @@ namespace TodaysManna
         private readonly double gridX;
         private readonly double gridY;
 
-        //private readonly double titleX;
-        //private readonly double titleY;
-
-
         private int flag = 1;
         private double previousScrollPosition = 0;
 
@@ -32,9 +30,6 @@ namespace TodaysManna
 
             gridX = bottomGrid.TranslationX;
             gridY = bottomGrid.TranslationY;
-
-            //titleX = TitleLayout.TranslationX;
-            //titleY = TitleLayout.TranslationY;
 
             var leftSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Left };
             var rightSwipeGesture = new SwipeGestureRecognizer { Direction = SwipeDirection.Right };
@@ -78,34 +73,33 @@ namespace TodaysManna
                 // Other error has occurred.
             }
 
-            if (flag == 1)
+            switch (flag)
             {
+                case 2:
+                    centerLocationLabel.Text = "1/4";
+                    mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
+                    flag = 1;
+                    leftImageButton.IsVisible = false;
+                    rightImageButton.IsVisible = true;
+                    break;
+                case 3:
+                    centerLocationLabel.Text = "2/4";
+                    mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
+                    flag = 2;
+                    leftImageButton.IsVisible = true;
+                    rightImageButton.IsVisible = true;
+                    break;
+                case 4:
+                    centerLocationLabel.Text = "3/4";
+                    mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
+                    flag = 3;
+                    leftImageButton.IsVisible = true;
+                    rightImageButton.IsVisible = true;
+                    break;
+                default:
+                    break;
             }
-            else if (flag == 2) // 2->1
-            {
-                centerLocationLabel.Text = "1/4";
-                mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents1");
-                flag = 1;
-                leftImageButton.IsVisible = false;
-                rightImageButton.IsVisible = true;
-            }
-            else if (flag == 3) // 3->2
-            {
-                centerLocationLabel.Text = "2/4";
-                mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
-                flag = 2;
-                leftImageButton.IsVisible = true;
-                rightImageButton.IsVisible = true;
-            }
-            else if (flag == 4) // 4->3
-            {
-                centerLocationLabel.Text = "3/4";
-                mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
-                flag = 3;
-                leftImageButton.IsVisible = true;
-                rightImageButton.IsVisible = true;
-            }
-            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.End, false);
+            MccheyneViewSctollToTop();
         }
 
         private void PageToRight()
@@ -124,35 +118,42 @@ namespace TodaysManna
                 // Other error has occurred.
             }
 
-            if (flag == 1)
+            switch (flag)
             {
-                centerLocationLabel.Text = "2/4";
-                mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
-                flag = 2;
-                leftImageButton.IsVisible = true;
-                rightImageButton.IsVisible = true;
+                case 1:
+                    centerLocationLabel.Text = "2/4";
+                    mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents2");
+                    flag = 2;
+                    leftImageButton.IsVisible = true;
+                    rightImageButton.IsVisible = true;
+                    break;
+                case 2:
+                    centerLocationLabel.Text = "3/4";
+                    mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
+                    leftImageButton.IsVisible = true;
+                    rightImageButton.IsVisible = true;
+                    flag = 3;
+                    break;
+                case 3:
+                    centerLocationLabel.Text = "4/4";
+                    mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents4");
+                    flag = 4;
+                    leftImageButton.IsVisible = true;
+                    rightImageButton.IsVisible = false;
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
             }
-            else if (flag == 2)
-            {
-                centerLocationLabel.Text = "3/4";
-                mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents3");
-                leftImageButton.IsVisible = true;
-                rightImageButton.IsVisible = true;
-                flag = 3;
-            }
-            else if (flag == 3)
-            {
-                centerLocationLabel.Text = "4/4";
-                mccheyneView.SetBinding(ListView.ItemsSourceProperty, "MccheyneContents4");
-                flag = 4;
-                leftImageButton.IsVisible = true;
-                rightImageButton.IsVisible = false;
-            }
-            else if (flag == 4)
-            {
-            }
+            MccheyneViewSctollToTop();
+        }
+
+        private void MccheyneViewSctollToTop()
+        {
             mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.End, false);
         }
+
         private void OnRightButtonClicked(object sender, EventArgs e)
         {
             PageToRight();
@@ -237,25 +238,8 @@ namespace TodaysManna
 
         private void OnListViewScrolled(object sender, ScrolledEventArgs e)
         {
-
             if (previousScrollPosition < e.ScrollY) //down
             {
-                //var one = TitleLayout.TranslateTo(titleX, titleY - 100, 200u, Easing.CubicOut);
-                //var two = TitleLayout.FadeTo(0, 150);
-
-                //new Animation
-                //{
-                //    {
-                //        0, 0.5, new Animation(v => TitleLayout.TranslationY = v,titleY,titleY-100,
-                //            Easing.CubicOut)
-                //    },
-                //    {
-                //        0, 1, new Animation(v => TitleLayout.Opacity = v,
-                //            1,
-                //            0)
-                //    }
-                //}.Commit(this, "VisiblePicker", 10, 250u, null, (v, c) => { TitleLayout.IsVisible = false; });
-
                 bottomGrid.TranslateTo(gridX, 70, 250u, Easing.CubicOut);
                 bottomGrid.FadeTo(0, 150);
 
@@ -263,23 +247,6 @@ namespace TodaysManna
             }
             else if (previousScrollPosition > e.ScrollY) //up
             {
-                //TitleLayout.Opacity = 1;
-                //TitleLayout.TranslateTo(titleX, titleY, 250u, Easing.CubicOut);
-
-                //TitleLayout.IsVisible = true;
-                //new Animation
-                //{
-                //    {
-                //        0, 0.5, new Animation(v => TitleLayout.TranslationY = v,TitleLayout.TranslationY,titleY,
-                //            Easing.CubicOut)
-                //    },
-                //    {
-                //        0, 1, new Animation(v => TitleLayout.Opacity = v,
-                //            0,
-                //            1)
-                //    }
-                //}.Commit(this, "VisiblePicker", 10, 200u);
-
                 bottomGrid.Opacity = 1;
                 bottomGrid.TranslateTo(gridX, gridY, 200u, Easing.CubicOut);
             }

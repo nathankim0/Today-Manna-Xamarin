@@ -3,6 +3,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
+using TodaysManna.ViewModel;
 
 namespace TodaysManna
 {
@@ -122,9 +123,6 @@ namespace TodaysManna
 
             var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
             await Clipboard.SetTextAsync(shareText);
-
-            //ErrorPopup errorPopup = new ErrorPopup();
-            //errorPopup.SetMessage("클립보드에 복사됨");
 
             await DisplayAlert("클립보드에 복사됨", shareText, "확인");
         }

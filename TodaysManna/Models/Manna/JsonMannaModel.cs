@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace TodaysManna
+namespace TodaysManna.Models
 {
-    public class MannaData
+    public class JsonMannaModel
     {
         [JsonProperty("verse")]
         public string Verse { get; set; } = "";

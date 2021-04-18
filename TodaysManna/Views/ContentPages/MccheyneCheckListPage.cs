@@ -8,6 +8,8 @@ using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
 using System.Threading;
+using TodaysManna.ViewModel;
+using TodaysManna.Models;
 
 namespace TodaysManna
 {
@@ -15,7 +17,7 @@ namespace TodaysManna
     {
         private CollectionView _collectionView;
         private readonly OptionPopup _optionPopup;
-        private MccheyneCheckContent _todayMccheyne;
+        private MccheyneCheckListContent _todayMccheyne;
 
         public MccheyneCheckListPage()
         {
@@ -30,7 +32,6 @@ namespace TodaysManna
             IconImageSource = "tab_mc";
             this.SetAppThemeColor(BackgroundColorProperty, Color.White, Color.FromHex("#2e2e2e"));
 
-
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:
@@ -39,8 +40,10 @@ namespace TodaysManna
                 case Device.iOS:
                     Initialize();
                     break;
+                default:
+                    Initialize();
+                    break;
             };
-
 
             _todayMccheyne = mccheyneCheckViewModel.MccheyneCheckList.Where(x => x.Date == DateTime.Now.ToString("M-d")).FirstOrDefault();
 
@@ -58,7 +61,6 @@ namespace TodaysManna
         {
             NavigationPage.SetBackButtonTitle(this, "");
             NavigationPage.SetHasNavigationBar(this, true);
-
 
             var titleLabel = new Label
             {
@@ -111,47 +113,44 @@ namespace TodaysManna
 
             NavigationPage.SetTitleView(this, titleStackLayout);
 
-            _collectionView = new CollectionView { Margin = 0 };
-            _collectionView.SetBinding(CollectionView.ItemsSourceProperty, "MccheyneCheckList");
-
-            _collectionView.ItemTemplate = new DataTemplate(() =>
+            var checkListDataTemplate = new DataTemplate(() =>
+            {
+                var collectionViewDataTemplateGrid = new Grid
                 {
-                    var collectionViewDataTemplateGrid = new Grid
-                    {
-                        Padding = 10,
-                        RowDefinitions =
+                    Padding = 10,
+                    RowDefinitions =
                         {
                             new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
                             new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
                         }
-                    };
+                };
 
-                    var checkDateLabel = new Label
-                    {
-                        Padding = new Thickness(5, 0, 0, 0),
-                        FontAttributes = FontAttributes.Bold,
-                        FontSize = 25,
-                        FontFamily = "batang",
-                        VerticalOptions = LayoutOptions.CenterAndExpand
-                    };
-                    checkDateLabel.SetBinding(Label.TextProperty, "Date");
-                    checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
+                var checkDateLabel = new Label
+                {
+                    Padding = new Thickness(5, 0, 0, 0),
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 25,
+                    FontFamily = "batang",
+                    VerticalOptions = LayoutOptions.CenterAndExpand
+                };
+                checkDateLabel.SetBinding(Label.TextProperty, "Date");
+                checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
 
-                    var t = new TapGestureRecognizer();
-                    t.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
-                    t.SetBinding(TapGestureRecognizer.CommandParameterProperty, "Date");
-                    checkDateLabel.GestureRecognizers.Add(t);
+                var t = new TapGestureRecognizer();
+                t.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
+                t.SetBinding(TapGestureRecognizer.CommandParameterProperty, "Date");
+                checkDateLabel.GestureRecognizers.Add(t);
 
-                    Grid.SetRow(checkDateLabel, 0);
-                    collectionViewDataTemplateGrid.Children.Add(checkDateLabel);
+                Grid.SetRow(checkDateLabel, 0);
+                collectionViewDataTemplateGrid.Children.Add(checkDateLabel);
 
-                    var checkButtonGrid = new Grid
-                    {
-                        RowDefinitions =
+                var checkButtonGrid = new Grid
+                {
+                    RowDefinitions =
                         {
                             new RowDefinition { Height = new GridLength(50) },
                         },
-                        ColumnDefinitions =
+                    ColumnDefinitions =
                         {
                             new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
                             new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
@@ -159,78 +158,47 @@ namespace TodaysManna
                             new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
                             new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
                         }
+                };
+
+                for (int i = 0; i < 5; i++)
+                {
+                    var checkButton = new Button
+                    {
+                        FontFamily = "batang",
+                        Margin = 0,
+                        Padding = 0,
+                        BorderColor = Color.Black,
+                        BorderWidth = 1,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = 14,
+                        TextColor = Color.Black
                     };
 
-                    for (int i = 0; i < 5; i++)
+                    checkButton.SetBinding(Button.BackgroundColorProperty, $"Ranges[{i}].Color");
+                    checkButton.SetBinding(Button.TextProperty, $"Ranges[{i}].RangeText");
+                    checkButton.SetBinding(Button.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "command" });
+                    checkButton.SetBinding(Button.CommandParameterProperty, $"Ranges[{i}].Id");
+
+                    if (i == 4)
                     {
-                        var checkButton = new Button
-                        {
-                            FontFamily = "batang",
-                            Margin = 0,
-                            Padding = 0,
-                            BorderColor = Color.Black,
-                            BorderWidth = 1,
-                            FontAttributes = FontAttributes.Bold,
-                            FontSize = 14,
-                            TextColor = Color.Black
-                        };
-
-                        checkButton.SetBinding(Button.BackgroundColorProperty, $"Ranges[{i}].Color");
-                        checkButton.SetBinding(Button.TextProperty, $"Ranges[{i}].RangeText");
-                        checkButton.SetBinding(Button.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "command" });
-                        checkButton.SetBinding(Button.CommandParameterProperty, $"Ranges[{i}].Id");
-
-                        if (i == 4)
-                        {
-                            checkButton.SetBinding(Button.IsVisibleProperty, "Range5IsNull");
-                        }
-
-                        Grid.SetColumn(checkButton, i);
-                        checkButtonGrid.Children.Add(checkButton);
+                        checkButton.SetBinding(Button.IsVisibleProperty, "Range5IsNull");
                     }
 
-                    Grid.SetRow(checkButtonGrid, 1);
-                    collectionViewDataTemplateGrid.Children.Add(checkButtonGrid);
+                    Grid.SetColumn(checkButton, i);
+                    checkButtonGrid.Children.Add(checkButton);
+                }
 
-                    return collectionViewDataTemplateGrid;
-                });
+                Grid.SetRow(checkButtonGrid, 1);
+                collectionViewDataTemplateGrid.Children.Add(checkButtonGrid);
 
+                return collectionViewDataTemplateGrid;
+            });
 
-            //todo StateLayout
-
-            //var grid = new Grid();
-            //grid.SetBinding(StateLayout.CurrentStateProperty, "CurrentState");
-            //var stateView = new StateView()
-            //{
-            //    StateKey = LayoutState.Loading
-            //};
-            //stateView.Content = new Grid
-            //{
-            //    Children =
-            //    {
-            //        new StackLayout
-            //        {
-            //            VerticalOptions = LayoutOptions.Center,
-            //            HorizontalOptions = LayoutOptions.Center,
-            //            Children =
-            //            {
-            //                new ActivityIndicator
-            //                {
-            //                    Color = Color.Red
-            //                },
-            //                new Label
-            //                {
-            //                    Text="Loading...",
-            //                    HorizontalOptions = LayoutOptions.Center
-            //                }
-            //            }
-            //        }
-            //    }
-            //};
-            //StateLayout.
+            _collectionView = new CollectionView { Margin = 0 };
+            _collectionView.SetBinding(ItemsView.ItemsSourceProperty, "MccheyneCheckList");
+            _collectionView.ItemTemplate = checkListDataTemplate;
 
             Content = _collectionView;
-
         }
 
         public void ScrollToToday()

@@ -1,5 +1,4 @@
-﻿using System;
-namespace TodaysManna
+﻿namespace TodaysManna.Models
 {
     public class MccheyneContent
     {

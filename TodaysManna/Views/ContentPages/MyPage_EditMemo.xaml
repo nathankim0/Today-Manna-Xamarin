@@ -106,5 +106,3 @@
         </StackLayout>
     </ScrollView>
 </ContentPage>
-
-<!--  Date="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}"  -->

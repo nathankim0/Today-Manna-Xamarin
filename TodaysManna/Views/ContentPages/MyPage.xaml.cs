@@ -70,6 +70,7 @@ namespace TodaysManna
             }
         }
     }
+
     public class MyPageViewModel : INotifyPropertyChanged
     {
         public EventHandler<MemoItem> deleted;
