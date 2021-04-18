@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace TodaysManna
+namespace TodaysManna.Models
 {
-    public class MccheyneData
+    public class JsonMccheyneContentModel
     {
         public partial class MccheyneList
         {

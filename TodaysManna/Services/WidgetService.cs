@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
-using static TodaysManna.MccheyneRangeData;
+using TodaysManna.Models;
+using static TodaysManna.Models.JsonMccheyneRangeModel;
 
 namespace TodaysManna
 {
@@ -16,7 +17,7 @@ namespace TodaysManna
         public static async void SetRangeOnWidgetAsync()
         {
             var _restService = new RestService();
-            var JsonMannaData = new MannaData();
+            var JsonMannaData = new JsonMannaModel();
 
             CreateData();
 

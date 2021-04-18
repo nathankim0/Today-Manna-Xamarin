@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static TodaysManna.BibleAtData;
+using static TodaysManna.Models.BibleAtData;
 
-namespace TodaysManna
+namespace TodaysManna.ViewModel
 {
-    public class MannaViewModel : INotifyPropertyChanged
+    public class MannaViewModel : BaseViewModel
     {
-
         private readonly RestService _restService;
         
-        private string bibleUrl = "https://www.bible.com/ko/bible/1/";
-        //  private const string sample = "https://www.bible.com/ko/bible/GEN.1.KJV";
-        private string appBibleUrl = "youversion://bible?reference=";
+        private string _webBibleUrl = "https://www.bible.com/ko/bible/1/"; //https://www.bible.com/ko/bible/GEN.1.KJV
+        private string _appBibleUrl = "youversion://bible?reference=";
 
         public string _completeUrl { get; set; } = "";
         public string _completeAppUrl { get; set; } = "";
@@ -32,104 +29,26 @@ namespace TodaysManna
         private string _bib = "창";
         private int _jang= 1;
         
-
         private ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
-        public ObservableCollection<MannaContent> MannaContents
-        {
-            get =>_mannaContents;
-            set
-            {
-                if (_mannaContents != value)
-                {
-                    _mannaContents = value;
-                    OnPropertyChanged(nameof(MannaContents));
-                }
-            }
-        }
+        public ObservableCollection<MannaContent> MannaContents { get => _mannaContents; set => SetProperty(ref _mannaContents, value); }
 
-        private MannaData _mannaData = new MannaData();
-        public MannaData JsonMannaData
-        {
-            get => _mannaData;
-            set
-            {
-                if (_mannaData != value)
-                {
-                    _mannaData = value;
-                    OnPropertyChanged(nameof(JsonMannaData));
-                }
-            }
-        }
+        private JsonMannaModel _jsonMannaData = new JsonMannaModel();
+        public JsonMannaModel JsonMannaData { get => _jsonMannaData; set => SetProperty(ref _jsonMannaData, value); }
 
         private string _today = "";
-        public string Today
-        {
-            get=> _today;
-            set
-            {
-                if (_today != value)
-                {
-                    _today = value;
-                    OnPropertyChanged(nameof(Today));
-                }
-            }
-        }
+        public string Today { get => _today; set => SetProperty(ref _today, value); }
 
         private string _allString = "";
-        public string AllString
-        {
-            get => _allString;
-            set
-            {
-                if (_allString != value)
-                {
-                    _allString = value;
-                    OnPropertyChanged(nameof(AllString));
-                }
-            }
-        }
+        public string AllString { get => _allString; set => SetProperty(ref _allString, value); }
 
         private bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set
-            {
-                if (_isRefreshing != value)
-                {
-                    _isRefreshing = value;
-                    OnPropertyChanged(nameof(IsRefreshing));
-                }
-            }
-        }
+        public bool IsRefreshing { get => _isRefreshing; set => SetProperty(ref _isRefreshing, value); }
 
         private string _mannaShareRange;
-        public string MannaShareRange
-        {
-            get => _mannaShareRange;
-            set
-            {
-                if (_mannaShareRange != value)
-                {
-                    _mannaShareRange = value;
-                    OnPropertyChanged(nameof(MannaShareRange));
-                }
-            }
-        }
+        public string MannaShareRange { get => _mannaShareRange; set => SetProperty(ref _mannaShareRange, value); }
 
         private string _mcShareRange;
-        public string McShareRange
-        {
-            get => _mcShareRange;
-            set
-            {
-                if (_mcShareRange != value)
-                {
-                    _mcShareRange = value;
-                    OnPropertyChanged(nameof(McShareRange));
-                }
-            }
-        }
+        public string McShareRange { get => _mcShareRange; set => SetProperty(ref _mcShareRange, value); }
 
         public ICommand RefreshCommand => new Command(() =>
         {
@@ -147,20 +66,39 @@ namespace TodaysManna
 
             _restService = new RestService();
 
+            Connectivity.ConnectivityChanged += OnConnectivityChanged;
+
+            InitDate();
+        }
+
+        private async void InitDate()
+        {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-              
-                 GetManna();
-                
+                GetManna();
             }
             else
             {
-                App.ShowErrorPopup("인터넷 연결을 확인해주세요.");
+                await Application.Current.MainPage.DisplayAlert("인터넷 연결을 확인해주세요.", "", "확인");
             }
 
             var today = DateTime.Now.ToString("M-d");
             todayMccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
         }
+
+        private async void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess != NetworkAccess.Internet)
+            {
+                await Application.Current.MainPage.DisplayAlert("인터넷 연결을 확인해주세요.", "", "확인");
+                return;
+            }
+            else
+            {
+                GetManna();
+            }
+        }
+
 
         private async void GetManna()
         {
@@ -171,7 +109,7 @@ namespace TodaysManna
             catch(Exception e)
             {
                 System.Diagnostics.Debug.Fail("# MannaViewModel GetManna() \n" + e.Message);
-                App.ShowErrorPopup("만나 불러오기 오류");
+                await Application.Current.MainPage.DisplayAlert("만나 로드 실패", "", "확인");
             }
         }
 
@@ -196,13 +134,13 @@ namespace TodaysManna
             catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("# MannaViewModel GetManna(DateTime dateTime) \n" + e.Message);
-                App.ShowErrorPopup("만나 불러오기 오류");
+                await Application.Current.MainPage.DisplayAlert("만나 로드 실패", "", "확인");
             }
         }
 
         private async Task GetJsonMannaAndSetContents(string endPoint)
         {
-            JsonMannaData = new MannaData();
+            JsonMannaData = new JsonMannaModel();
             JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
 
             string tmpBibleAt = "창1";
@@ -243,8 +181,8 @@ namespace TodaysManna
 
             var redirectUrl = $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
 
-            _completeUrl = $"{bibleUrl}{redirectUrl}";
-            _completeAppUrl = $"{appBibleUrl}{redirectUrl}";
+            _completeUrl = $"{_webBibleUrl}{redirectUrl}";
+            _completeAppUrl = $"{_appBibleUrl}{redirectUrl}";
 
             SetMannaContents();
 
@@ -285,10 +223,11 @@ namespace TodaysManna
             {
                 MannaContents.Clear();
             }
-            catch
+            catch(Exception e)
             {
-
+                System.Diagnostics.Debug.Fail("# MannaViewModel SetMannaContents \n" + e.Message);
             }
+
             var allContents = "";
             var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":")+1);
 
@@ -308,13 +247,6 @@ namespace TodaysManna
                 allContents += node + "\n\n";
             }
             AllString = allContents;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName="")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

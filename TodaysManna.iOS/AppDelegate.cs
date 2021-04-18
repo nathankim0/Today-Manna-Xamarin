@@ -27,7 +27,5 @@ namespace TodaysManna.iOS
 
             return base.FinishedLaunching(app, options);
         }
-
-        
     }
 }

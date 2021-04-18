@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
-using Rg.Plugins.Popup.Services;
-using static TodaysManna.MccheyneRangeData;
+using static TodaysManna.Models.JsonMccheyneRangeModel;
 
 namespace TodaysManna
 {
@@ -20,17 +19,14 @@ namespace TodaysManna
         public App()
         {
             InitializeComponent();
-            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Constants.SyncfusionKey);
 
             CreateData();
 
             MainPage = new MainTabbedPage();
         }
 
-        private void CreateData()
+        private async void CreateData()
         {
-            errorPopup = new ErrorPopup();
-
             mccheyneRanges = new List<MccheyneRange>();
             try
             {
@@ -39,7 +35,7 @@ namespace TodaysManna
             catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
-                ShowErrorPopup("맥체인 불러오기 오류");
+                await MainPage.DisplayAlert("맥체인 불러오기 오류", "", "확인");
             }
         }
 
@@ -68,19 +64,6 @@ namespace TodaysManna
                     database = new MemoItemDatabaseService();
                 }
                 return database;
-            }
-        }
-
-        public static async void ShowErrorPopup(string message)
-        {
-            errorPopup.errorLabel.Text = message;
-            try
-            {
-                await PopupNavigation.Instance.PushAsync(errorPopup);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.Fail("ShowErrorPopup Error: " + e.Message);
             }
         }
 

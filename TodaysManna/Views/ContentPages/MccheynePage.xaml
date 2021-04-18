@@ -159,6 +159,7 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
+                                    FontFamily="batang"
                                     FontSize="Body"
                                     Text="{Binding SecondNumber}"
                                     TextColor="{AppThemeBinding Dark=White,
@@ -208,8 +209,7 @@
         <Grid
             x:Name="bottomGrid"
             Margin="0,0,0,10"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
+            BackgroundColor="Transparent"
             VerticalOptions="End">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -235,8 +235,8 @@
                         <FontImageSource.Size>
                             <OnPlatform
                                 x:TypeArguments="x:Double"
-                                Android="35"
-                                iOS="26" />
+                                Android="40"
+                                iOS="30" />
                         </FontImageSource.Size>
                     </FontImageSource>
                 </ImageButton.Source>
@@ -248,7 +248,8 @@
                 Padding="0"
                 BackgroundColor="Transparent"
                 CornerRadius="15"
-                HasShadow="False">
+                HasShadow="False"
+                InputTransparent="True">
                 <Label
                     x:Name="centerLocationLabel"
                     BackgroundColor="Transparent"
@@ -274,8 +275,8 @@
                         <FontImageSource.Size>
                             <OnPlatform
                                 x:TypeArguments="x:Double"
-                                Android="35"
-                                iOS="26" />
+                                Android="40"
+                                iOS="30" />
                         </FontImageSource.Size>
                     </FontImageSource>
                 </ImageButton.Source>

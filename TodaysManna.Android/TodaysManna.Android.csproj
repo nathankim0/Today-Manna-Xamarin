@@ -66,9 +66,6 @@
     <PackageReference Include="Xamarin.Firebase.Analytics">
       <Version>118.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Acr.UserDialogs">
-      <Version>7.1.0.483</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

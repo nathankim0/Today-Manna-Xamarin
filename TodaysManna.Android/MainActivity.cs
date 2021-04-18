@@ -4,7 +4,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.OS;
 using Xamarin.Forms;
-using Acr.UserDialogs;
 
 namespace TodaysManna.Droid
 {
@@ -28,7 +27,6 @@ namespace TodaysManna.Droid
             Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
-            UserDialogs.Init(this);
 
             LoadApplication(new App());
         }

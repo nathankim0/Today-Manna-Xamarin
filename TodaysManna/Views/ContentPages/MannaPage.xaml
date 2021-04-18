@@ -100,7 +100,6 @@
                             Text="오늘로"
                             TextColor="#0000EE"
                             VerticalOptions="CenterAndExpand" />
-                        <!--<Switch x:Name="switch" Toggled="switch_Toggled" />-->
                     </StackLayout>
                     <Frame
                         x:Name="rangeButton"
@@ -128,39 +127,6 @@
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </Frame>
-                    <!--<yummy:PancakeView
-                        x:Name="rangeButton"
-                        BackgroundColor="LightGray"
-                        BackgroundGradientEndPoint="0.5,0.0"
-                        BackgroundGradientStartPoint="0.0,0.5"
-                        CornerRadius="10">
-                        <yummy:PancakeView.BackgroundGradientStops>
-                            <yummy:GradientStopCollection>
-                                <yummy:GradientStop Offset="0" Color="LightPink" />
-                                <yummy:GradientStop Offset="1" Color="LightSkyBlue" />
-                            </yummy:GradientStopCollection>
-                        </yummy:PancakeView.BackgroundGradientStops>
-                        <StackLayout Margin="10">
-                            <Label
-                                x:Name="mannaRangeLabel"
-                                FontFamily="batang"
-                                FontSize="16"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding MannaShareRange}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-                            <Label
-                                x:Name="mcRangeLabel"
-                                FontFamily="batang"
-                                FontSize="16"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding McShareRange}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </yummy:PancakeView>-->
                     <StackLayout Orientation="Horizontal">
                         <Label
                             x:Name="verse"

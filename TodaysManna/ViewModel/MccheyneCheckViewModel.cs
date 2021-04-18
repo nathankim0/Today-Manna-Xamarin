@@ -1,37 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using static TodaysManna.MccheyneCheckData;
+using static TodaysManna.Models.JsonMccheyneCheckListModel;
 
-namespace TodaysManna
+namespace TodaysManna.ViewModel
 {
-    public class MccheyneCheckViewModel : INotifyPropertyChanged
+    public class MccheyneCheckViewModel : BaseViewModel
     {
         private readonly List<MccheyneCheckRange> mccheyneCheckRangeList;
 
-        private ObservableCollection<MccheyneCheckContent> _mccheyneCheckList = new ObservableCollection<MccheyneCheckContent>();
-        public ObservableCollection<MccheyneCheckContent> MccheyneCheckList
-        {
-            get => _mccheyneCheckList;
-            set
-            {
-                if (_mccheyneCheckList != value)
-                {
-                    _mccheyneCheckList = value;
-                    OnPropertyChanged(nameof(MccheyneCheckList));
-                }
-            }
-            
-        }
+        private ObservableCollection<MccheyneCheckListContent> _mccheyneCheckList = new ObservableCollection<MccheyneCheckListContent>();
+        public ObservableCollection<MccheyneCheckListContent> MccheyneCheckList { get => _mccheyneCheckList; set => SetProperty(ref _mccheyneCheckList, value); }
 
         public ICommand command { get; set; }
         public ICommand easterEggCommand { get; set; }
@@ -81,7 +68,7 @@ namespace TodaysManna
                     range5IsNull = false;
                 }
 
-                MccheyneCheckList.Add(new MccheyneCheckContent
+                MccheyneCheckList.Add(new MccheyneCheckListContent
                 {
                     Date = range.Date,
                     Ranges = new MccheyneOneRange[]
@@ -201,7 +188,7 @@ namespace TodaysManna
             });
         }
         static int tabcount = 0;
-        private async void OnDateTabbed(string date)
+        private void OnDateTabbed(string date)
         {
             System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
             if (date.Equals("3-27"))
@@ -227,35 +214,10 @@ namespace TodaysManna
             using (var reader = new StreamReader(stream))
             {
                 var jsonString = reader.ReadToEnd();
-
-                //Converting JSON Array Objects into generic list    
                 ObjContactList = JsonConvert.DeserializeObject<MccheyneCheckRangeList>(jsonString);
             }
 
             return ObjContactList.CheckRanges;
-        }
-
-        //public static MccheyneCheckViewModel Current { get; } = new MccheyneCheckViewModel();
-        //bool loaded;
-
-        //public bool Loaded
-        //{
-        //    get => loaded;
-        //    set
-        //    {
-        //        if (loaded != value)
-        //        {
-        //            loaded = value;
-        //            OnPropertyChanged(nameof(Loaded));
-        //        }
-        //    }
-        //}
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

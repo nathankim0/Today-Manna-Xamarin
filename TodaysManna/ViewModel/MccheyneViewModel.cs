@@ -1,100 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using static TodaysManna.MccheyneData;
+using TodaysManna.Models;
+using static TodaysManna.Models.JsonMccheyneContentModel;
 
-namespace TodaysManna
+namespace TodaysManna.ViewModel
 {
-    public class MccheyneViewModel : INotifyPropertyChanged
+    public class MccheyneViewModel : BaseViewModel
     {
         public string Today;
 
         private ObservableCollection<MccheyneContent> _mccheyneContents1 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents1
-        {
-            get
-            {
-                return _mccheyneContents1;
-            }
-        }
+        public ObservableCollection<MccheyneContent> MccheyneContents1 { get => _mccheyneContents1; set => SetProperty(ref _mccheyneContents1, value); }
 
         private ObservableCollection<MccheyneContent> _mccheyneContents2 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents2
-        {
-            get
-            {
-                return _mccheyneContents2;
-            }
-        }
+        public ObservableCollection<MccheyneContent> MccheyneContents2 { get => _mccheyneContents2; set => SetProperty(ref _mccheyneContents2, value); }
 
         private ObservableCollection<MccheyneContent> _mccheyneContents3 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents3
-        {
-            get
-            {
-                return _mccheyneContents3;
-            }
-        }
+        public ObservableCollection<MccheyneContent> MccheyneContents3 { get => _mccheyneContents3; set => SetProperty(ref _mccheyneContents3, value); }
 
         private ObservableCollection<MccheyneContent> _mccheyneContents4 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents4
-        {
-            get
-            {
-                return _mccheyneContents4;
-            }
-        }
+        public ObservableCollection<MccheyneContent> MccheyneContents4 { get => _mccheyneContents4; set => SetProperty(ref _mccheyneContents4, value); }
 
-        private MccheyneData _mccheyneData = new MccheyneData();
-        public MccheyneData JsonMccheyneData
-        {
-            get => _mccheyneData;
-            set
-            {
-                if (_mccheyneData != value)
-                {
-                    _mccheyneData = value;
-                    OnPropertyChanged(nameof(JsonMccheyneData));
-                }
-            }
-        }
+        private JsonMccheyneContentModel _JsonMccheyneData = new JsonMccheyneContentModel();
+        public JsonMccheyneContentModel JsonMccheyneData { get => _JsonMccheyneData; set => SetProperty(ref _JsonMccheyneData, value); }
 
         private string _verseRange;
-        public string VerseRange
-        {
-            get => _verseRange;
-            set
-            {
-                if (_verseRange != value)
-                {
-                    _verseRange = value;
-                    OnPropertyChanged(nameof(VerseRange));
-                }
-            }
-        }
+        public string VerseRange { get => _verseRange; set => SetProperty(ref _verseRange, value); }
 
         private string _displayDateRange;
-        public string DisplayDateRange
-        {
-            get => _displayDateRange;
-            set
-            {
-                if (_displayDateRange != value)
-                {
-                    _displayDateRange = value;
-                    OnPropertyChanged(nameof(DisplayDateRange));
-                }
-            }
-        }
+        public string DisplayDateRange { get => _displayDateRange; set => SetProperty(ref _displayDateRange, value); }
 
         public MccheyneViewModel()
         {
-            DateTime thisDate = GetCorrectDateLeapYear(DateTime.Now);
+            var thisDate = GetCorrectDateLeapYear(DateTime.Now);
 
             GetMccheyneRange(thisDate);
 
@@ -318,12 +260,6 @@ namespace TodaysManna
         {
             var date = thisDate.ToString("M-d");
             VerseRange = App.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
-        }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

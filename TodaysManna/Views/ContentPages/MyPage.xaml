@@ -135,62 +135,6 @@
                         HeightRequest="1" />
                 </Grid>
 
-                <!--<StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <yummy:PancakeView
-                        BackgroundGradientEndPoint="0.5,0.0"
-                        BackgroundGradientStartPoint="0.0,0.5"
-                        CornerRadius="15">
-
-                        <yummy:PancakeView.BackgroundGradientStops>
-                            <yummy:GradientStopCollection>
-                                <yummy:GradientStop Offset="0" Color="DarkSalmon" />
-                                <yummy:GradientStop Offset="1" Color="DarkSlateGray" />
-                            </yummy:GradientStopCollection>
-                        </yummy:PancakeView.BackgroundGradientStops>
-                        <StackLayout Margin="10">
-                            <Label
-                                FontAttributes="Bold"
-                                FontFamily="batang"
-                                Text="{Binding Date}"
-                                TextColor="White"
-                                VerticalOptions="Center">
-                                <Label.FontSize>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="14"
-                                        iOS="12" />
-                                </Label.FontSize>
-                            </Label>
-                            <Label
-                                FontAttributes="Bold"
-                                FontFamily="batang"
-                                MaxLines="1"
-                                LineBreakMode="TailTruncation"
-                                Text="{Binding Verse}"
-                                TextColor="White">
-                                <Label.FontSize>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="14"
-                                        iOS="12" />
-                                </Label.FontSize>
-                            </Label>
-                            <Label
-                                FontFamily="batang"
-                                MaxLines="1"
-                                LineBreakMode="TailTruncation"
-                                Text="{Binding Note}"
-                                TextColor="White">
-                                <Label.FontSize>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="14"
-                                        iOS="12" />
-                                </Label.FontSize>
-                            </Label>
-                        </StackLayout>
-                    </yummy:PancakeView>
-                </StackLayout>-->
             </DataTemplate>
 
         </CollectionView.ItemTemplate>

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace TodaysManna
+namespace TodaysManna.Models
 {
-    public class MccheyneRangeData
+    public class JsonMccheyneRangeModel
     {
         public partial class MccheyneRangeList
         {

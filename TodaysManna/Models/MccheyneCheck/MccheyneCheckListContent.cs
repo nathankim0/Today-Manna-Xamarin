@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace TodaysManna
+namespace TodaysManna.Models
 {
-    public class MccheyneCheckContent : INotifyPropertyChanged
+    public class MccheyneCheckListContent : INotifyPropertyChanged
     {
         public string Date { get; set; }
         public MccheyneOneRange[] Ranges { get; set; } = new MccheyneOneRange[5];
