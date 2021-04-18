@@ -116,12 +116,7 @@ namespace TodaysManna
 
             FirebaseEventService.SendEventOnPlatformSpecific("manna_range_share");
 
-            new Animation {
-            { 0, 0.5, new Animation (v => rangeButton.Opacity = v, 1, 0.6) },
-            { 0.5, 1, new Animation (v => rangeButton.Opacity = v, 0.6, 1) }
-            }.Commit(this, "ChildAnimations", 16, 500);
-
-            var shareText = mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
+            var shareText = DateTime.Now.ToString("yyyy-MM-dd(dddd)")+"\n"+ mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
             await Clipboard.SetTextAsync(shareText);
 
             await DisplayAlert("클립보드에 복사됨", shareText, "확인");

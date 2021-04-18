@@ -25,6 +25,10 @@ namespace TodaysManna
             On<Android>().SetOffscreenPageLimit(4);
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
+            SelectedTabColor = Color.Black;
+
+            BarBackgroundColor = Color.White;
+
             navMannaPage = new NavigationPage(new MannaPage())
             {
                 Title = "만나",

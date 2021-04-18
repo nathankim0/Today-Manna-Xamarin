@@ -20,19 +20,16 @@ namespace TodaysManna.ViewModel
         private ObservableCollection<MccheyneCheckListContent> _mccheyneCheckList = new ObservableCollection<MccheyneCheckListContent>();
         public ObservableCollection<MccheyneCheckListContent> MccheyneCheckList { get => _mccheyneCheckList; set => SetProperty(ref _mccheyneCheckList, value); }
 
-        public ICommand command { get; set; }
-        public ICommand easterEggCommand { get; set; }
-
+        public ICommand command => new Command<string>(OnCheckButtonTabbed);
+        public ICommand easterEggCommand => new Command<string>(OnDateTabbed);
         public INavigation Navigation { get; set; }
 
         public MccheyneCheckViewModel(INavigation navigation)
         {
             Navigation = navigation;
 
-            command = new Command<string>(OnCheckButtonTabbed);
-            easterEggCommand = new Command<string>(OnDateTabbed);
-
             mccheyneCheckRangeList = new List<MccheyneCheckRange>();
+
             try
             {
                 mccheyneCheckRangeList = GetJsonMccheyneRange();
