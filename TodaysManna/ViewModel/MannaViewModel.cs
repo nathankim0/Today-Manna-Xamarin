@@ -99,7 +99,6 @@ namespace TodaysManna.ViewModel
             }
         }
 
-
         private async void GetManna()
         {
             try

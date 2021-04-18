@@ -104,8 +104,8 @@
                     <Frame
                         x:Name="rangeButton"
                         Margin="0"
-                        BackgroundColor="LightGray"
-                        HasShadow="True">
+                        BackgroundColor="#e2e2e2"
+                        HasShadow="False">
                         <StackLayout Margin="5">
                             <Label
                                 x:Name="mannaRangeLabel"
