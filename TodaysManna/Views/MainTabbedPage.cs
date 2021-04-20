@@ -26,7 +26,7 @@ namespace TodaysManna
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
             SelectedTabColor = Color.Black;
-
+            BarTextColor = Color.Black;
             BarBackgroundColor = Color.White;
 
             navMannaPage = new NavigationPage(new MannaPage())

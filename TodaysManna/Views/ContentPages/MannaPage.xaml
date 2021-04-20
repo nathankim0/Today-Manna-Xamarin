@@ -82,6 +82,7 @@
                                               Light=White}"
             Footer="&#10;"
             ItemsSource="{Binding MannaContents}"
+            SelectionMode="Single"
             VerticalOptions="Fill"
             VerticalScrollBarVisibility="Always">
             <CollectionView.Header>
@@ -98,7 +99,8 @@
                             Clicked="OnMannaTodayButtonClicked"
                             FontFamily="batang"
                             Text="오늘로"
-                            TextColor="#0000EE"
+                            TextColor="{AppThemeBinding Dark=Yellow,
+                                                        Light=Blue}"
                             VerticalOptions="CenterAndExpand" />
                     </StackLayout>
                     <Frame
@@ -160,41 +162,26 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="15,15,15,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCollectionViewItemTapped" />
-                        </Grid.GestureRecognizers>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            FontFamily="batang"
-                            FontSize="Body"
-                            Text="{Binding Number}"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            FontFamily="batang"
-                            LineBreakMode="CharacterWrap"
-                            Text="{Binding MannaString}"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}">
+                    <Grid Padding="15">
+                        <Label FontFamily="batang" TextColor="{AppThemeBinding Dark=White, Light=Black}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span LineHeight="1.7" Text="{Binding Number}" />
+                                    <Span LineHeight="1.7" Text=" " />
+                                    <Span LineHeight="1.7" Text="{Binding MannaString}" />
+                                </FormattedString>
+                            </Label.FormattedText>
                             <Label.FontSize>
                                 <OnPlatform
                                     x:TypeArguments="x:Double"
                                     Android="18"
                                     iOS="16" />
                             </Label.FontSize>
-
                         </Label>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCollectionViewItemTapped" />
+                        </Grid.GestureRecognizers>
                     </Grid>
 
                 </DataTemplate>

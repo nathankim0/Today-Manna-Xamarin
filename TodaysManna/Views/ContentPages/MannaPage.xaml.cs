@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
+using TodaysManna.Models;
 
 namespace TodaysManna
 {
@@ -183,8 +184,8 @@ namespace TodaysManna
 
             try
             {
-                num = ((Label)selectedGrid.Children.ElementAt(0)).Text;
-                manna = ((Label)selectedGrid.Children.ElementAt(1)).Text;
+                num = ((Label)selectedGrid.Children.ElementAt(0)).FormattedText.Spans[0].Text;
+                manna = ((Label)selectedGrid.Children.ElementAt(0)).FormattedText.Spans[2].Text;
             }
             catch (Exception error)
             {
@@ -252,6 +253,5 @@ namespace TodaysManna
             };
             await App.Database.SaveItemAsync(memoItem);
         }
-
     }
 }
