@@ -86,7 +86,8 @@
                                 Clicked="OnTodayButtonClicked"
                                 FontFamily="batang"
                                 Text="오늘로"
-                                TextColor="#0000EE"
+                                TextColor="{AppThemeBinding Dark=Yellow,
+                                                            Light=Blue}"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <Label
@@ -148,30 +149,17 @@
                                         iOS="18" />
                                 </Label.FontSize>
                             </Label>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    FontFamily="batang"
-                                    FontSize="Body"
-                                    Text="{Binding SecondNumber}"
-                                    TextColor="{AppThemeBinding Dark=White,
-                                                                Light=Black}" />
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    FontFamily="batang"
-                                    LineBreakMode="CharacterWrap"
-                                    Text="{Binding Content}"
-                                    TextColor="{AppThemeBinding Dark=White,
-                                                                Light=Black}">
+
+
+                            <StackLayout>
+                                <Label FontFamily="batang" TextColor="{AppThemeBinding Dark=White, Light=Black}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
+                                            <Span LineHeight="1.7" Text=" " />
+                                            <Span LineHeight="1.7" Text="{Binding Content}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
                                     <Label.FontSize>
                                         <OnPlatform
                                             x:TypeArguments="x:Double"
@@ -179,7 +167,8 @@
                                             iOS="16" />
                                     </Label.FontSize>
                                 </Label>
-                            </Grid>
+                            </StackLayout>
+
                         </StackLayout>
                     </ViewCell>
 

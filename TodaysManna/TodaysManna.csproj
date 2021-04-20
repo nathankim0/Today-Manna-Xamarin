@@ -60,7 +60,7 @@
     <None Remove="Datas\MccheyneRange.json" />
     <None Remove="Datas\MccheyneRange2.json" />
     <None Remove="Fonts\materialdesignicons.ttf" />
-    <None Remove="Fonts\batang.ttf" />
+    <None Remove="Fonts\batang.otf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
@@ -77,6 +77,6 @@
     <EmbeddedResource Include="Datas\MccheyneRange.json" />
     <EmbeddedResource Include="Datas\MccheyneRange2.json" />
     <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
-    <EmbeddedResource Include="Fonts\batang.ttf" />
+    <EmbeddedResource Include="Fonts\batang.otf" />
   </ItemGroup>
 </Project>
