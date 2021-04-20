@@ -13,7 +13,7 @@ using static TodaysManna.Models.JsonMccheyneCheckListModel;
 
 namespace TodaysManna.ViewModel
 {
-    public class MccheyneCheckViewModel : BaseViewModel
+    public class MccheyneCheckViewModel : PageBaseViewModel
     {
         private readonly List<MccheyneCheckRange> mccheyneCheckRangeList;
 
@@ -22,7 +22,6 @@ namespace TodaysManna.ViewModel
 
         public ICommand command => new Command<string>(OnCheckButtonTabbed);
         public ICommand easterEggCommand => new Command<string>(OnDateTabbed);
-        public INavigation Navigation { get; set; }
 
         public MccheyneCheckViewModel(INavigation navigation)
         {

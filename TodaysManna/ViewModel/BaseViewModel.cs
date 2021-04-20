@@ -46,5 +46,13 @@ namespace TodaysManna.ViewModel
             get => _isBusy;
             set => SetProperty(ref _isBusy, value);
         }
+
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set => SetProperty(ref _isRefreshing, value);
+        }
+
     }
 }
