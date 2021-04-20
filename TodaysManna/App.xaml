@@ -10,11 +10,17 @@
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="batang" />
+                <Setter Property="LineHeight" Value="1.5" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="batang" />
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="batang" />
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FontFamily" Value="batang" />
             </Style>
             <Style TargetType="Grid">
                 <Setter Property="VisualStateManager.VisualStateGroups">
