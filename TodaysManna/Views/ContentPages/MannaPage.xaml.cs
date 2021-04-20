@@ -5,6 +5,7 @@ using System.Linq;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
+using System.Threading.Tasks;
 
 namespace TodaysManna
 {
@@ -44,6 +45,11 @@ namespace TodaysManna
 
             _memoPopup = new MemoPopup();
             _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
+
+            MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMannaToTop, (sender) =>
+            {
+                mannaCollectionView.ScrollTo(0);
+            });
         }
 
         private async void OnMemoButtonClicked(object sender, EventArgs e)
@@ -53,7 +59,6 @@ namespace TodaysManna
             _bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
             await PopupNavigation.Instance.PushAsync(_memoPopup);
-
         }
 
         private async void OnCoppyButtonClicked(object sender, EventArgs e)
@@ -233,9 +238,15 @@ namespace TodaysManna
             mannaDatepicker.Unfocus();
         }
 
-        private void OnDateSelected(object sender, DateChangedEventArgs e)
+        private async void OnDateSelected(object sender, DateChangedEventArgs e)
         {
-            (BindingContext as MannaViewModel).GetManna(e.NewDate);
+            if (!(BindingContext is MannaViewModel viewModel)) return;
+
+            viewModel.IsRefreshing = true;
+
+            await Task.WhenAll(viewModel.GetManna(e.NewDate));
+
+            viewModel.IsRefreshing = false;
         }
 
         private void OnDatepickerUnfocused(object sender, FocusEventArgs e)
@@ -252,6 +263,32 @@ namespace TodaysManna
                 Note = memoText
             };
             await App.Database.SaveItemAsync(memoItem);
+        }
+
+        private void OnRefreshButtonClicked(System.Object sender, System.EventArgs e)
+        {
+            try
+            {
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
+            FirebaseEventService.SendEventOnPlatformSpecific("manna_refresh");
+            var now = DateTime.Now;
+            mannaDatepicker.Date = now;
+            if (mannaDatepicker.Date.Year== now.Year &&  mannaDatepicker.Date.Month == now.Month && mannaDatepicker.Date.Day == now.Day)
+            {
+                if (!(BindingContext is MannaViewModel viewModel)) return;
+                viewModel.RefreshManna();
+            }
         }
     }
 }

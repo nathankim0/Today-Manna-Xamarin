@@ -79,6 +79,7 @@
     <Compile Include="DependencyService.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="AppWidget.cs" />
+    <Compile Include="Renderer\CustomTabbedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

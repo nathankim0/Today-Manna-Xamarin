@@ -50,11 +50,16 @@ namespace TodaysManna
             _optionPopup = new OptionPopup();
             _optionPopup.CheckButtonClicked += OnCheckButtonClicked;
             _optionPopup.ClearButtonClicked += OnClearButtonClicked;
+
+            MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollCheckListToTop, (sender) =>
+            {
+                ScrollToToday(true);
+            });
         }
 
         protected override void OnAppearing()
         {
-            ScrollToToday();
+            ScrollToToday(false);
         }
 
         private void Initialize()
@@ -201,14 +206,14 @@ namespace TodaysManna
             Content = _collectionView;
         }
 
-        public void ScrollToToday()
+        public void ScrollToToday(bool isAnimationEnabled)
         {
-            _collectionView.ScrollTo(_todayMccheyne, null, ScrollToPosition.Center, false);
+            _collectionView.ScrollTo(_todayMccheyne, null, ScrollToPosition.Center, isAnimationEnabled);
         }
 
         private void OnScrollToToday(object sender, EventArgs e)
         {
-            ScrollToToday();
+            ScrollToToday(false);
         }
 
         private async void OnCheckButtonClicked(object sender, EventArgs e)
@@ -240,7 +245,7 @@ namespace TodaysManna
                         x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;
                     }
                 });
-                ScrollToToday();
+                ScrollToToday(false);
             }
         }
         private async void OnClearButtonClicked(object sender, EventArgs e)

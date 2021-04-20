@@ -8,7 +8,7 @@
         <StackLayout Margin="20" VerticalOptions="StartAndExpand">
             <Label
                 FontAttributes="Bold"
-                FontFamily="batang"
+                
                 Text="날짜"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -21,7 +21,7 @@
             </Label>
 
             <Label
-                FontFamily="batang"
+                
                 Text="{Binding Date}"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -36,7 +36,7 @@
             <Label
                 Padding="0,15,0,0"
                 FontAttributes="Bold"
-                FontFamily="batang"
+                
                 Text="범위"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -50,7 +50,7 @@
 
             <Label
                 x:Name="verseLabel"
-                FontFamily="batang"
+                
                 Text="{Binding Verse}"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -65,7 +65,7 @@
             <Label
                 Padding="0,15,0,0"
                 FontAttributes="Bold"
-                FontFamily="batang"
+                
                 Text="메모"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -82,7 +82,7 @@
                     AutoSize="TextChanges"
                     BackgroundColor="{AppThemeBinding Dark=Black,
                                                       Light=White}"
-                    FontFamily="batang"
+                    
                     Placeholder="메모 작성"
                     Text="{Binding Note}"
                     TextColor="{AppThemeBinding Dark=White,
