@@ -25,6 +25,7 @@
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
         CornerRadius="10"
+        HasShadow="False"
         HorizontalOptions="Center"
         VerticalOptions="Center">
 
@@ -41,7 +42,6 @@
                 <Label
                     Grid.Row="0"
                     BackgroundColor="Transparent"
-                    
                     HorizontalOptions="Center"
                     Text="메모 작성"
                     TextColor="{AppThemeBinding Dark=White,
@@ -50,7 +50,6 @@
                     x:Name="bibleLabel"
                     Grid.Row="1"
                     BackgroundColor="Transparent"
-                    
                     HorizontalOptions="Center"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}">
@@ -72,7 +71,6 @@
                         x:Name="editor"
                         BackgroundColor="{AppThemeBinding Dark=Black,
                                                           Light=White}"
-                        
                         Placeholder="메모 작성"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}"
