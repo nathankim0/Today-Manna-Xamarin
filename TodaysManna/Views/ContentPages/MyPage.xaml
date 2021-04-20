@@ -18,7 +18,7 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontFamily="batang"
+                
                 HorizontalOptions="Start"
                 Text="메모"
                 VerticalOptions="Center">
@@ -43,7 +43,7 @@
             <StackLayout Padding="10,20,15,0">
                 <Label
                     FontAttributes="Bold"
-                    FontFamily="batang"
+                    
                     Text="아직 저장한 메모가 없네요!&#10;묵상을 작성해보는 것은 어떨까요?✍️&#10;(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)">
                     <Label.FontSize>
                         <OnPlatform
@@ -70,7 +70,7 @@
 
                     <StackLayout Grid.Column="0" VerticalOptions="Center">
                         <Label
-                            FontFamily="batang"
+                            
                             Text="{Binding Date}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=LightGray}"
@@ -85,7 +85,7 @@
                         <Label
                             Margin="0,-5,0,0"
                             FontAttributes="Bold"
-                            FontFamily="batang"
+                            
                             LineBreakMode="TailTruncation"
                             MaxLines="1"
                             Text="{Binding Verse}">
@@ -97,7 +97,7 @@
                             </Label.FontSize>
                         </Label>
                         <Label
-                            FontFamily="batang"
+                            
                             LineBreakMode="TailTruncation"
                             MaxLines="2"
                             Text="{Binding Note}">

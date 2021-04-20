@@ -15,7 +15,7 @@
         <ScrollView >
             <StackLayout Padding="20">
                 <Label
-                    FontFamily="batang"
+                    
                     x:Name="textLabel"
                     x:FieldModifier="public"
                     LineBreakMode="CharacterWrap"

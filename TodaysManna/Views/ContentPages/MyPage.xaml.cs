@@ -18,6 +18,11 @@ namespace TodaysManna
 
             myPageViewModel.deleted += OnSwipeViewDeleteClicked;
             myPageViewModel.shared += OnSwipeViewSharedClicked;
+
+            MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMemoToTop, (sender) =>
+            {
+                collectionView.ScrollTo(0);
+            });
         }
 
         private async void OnSwipeViewDeleteClicked(object sender, MemoItem memoItem)

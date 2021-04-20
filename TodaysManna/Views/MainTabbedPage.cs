@@ -95,12 +95,32 @@ namespace TodaysManna
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMccheyneCheckListPage");
-                mccheyneCheckListPage.ScrollToToday();
+                mccheyneCheckListPage.ScrollToToday(false);
             }
             else if (CurrentPage.Equals(navMyPage))
             {
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMyPage");
             }
+        }
+
+        public void ScrollMannaToTop()
+        {
+            MessagingCenter.Send(this, MessagingCenterMessage.ScrollMannaToTop);
+        }
+
+        public void ScrollMccheyneToTop()
+        {
+            MessagingCenter.Send(this, MessagingCenterMessage.ScrollMccheyneToTop);
+        }
+
+        public void ScrollCheckListToTop()
+        {
+            MessagingCenter.Send(this, MessagingCenterMessage.ScrollCheckListToTop);
+        }
+
+        public void ScrollMemoToTop()
+        {
+            MessagingCenter.Send(this, MessagingCenterMessage.ScrollMemoToTop);
         }
     }
 }

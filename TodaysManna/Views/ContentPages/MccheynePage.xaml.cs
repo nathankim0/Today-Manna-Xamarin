@@ -55,6 +55,11 @@ namespace TodaysManna
 
             _memoPopup = new MemoPopup();
             _memoPopup.SaveButtonClicked += OnSaveButtonClicked;
+
+            MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMccheyneToTop, (sender) =>
+            {
+                MccheyneViewSctollToTop(true);
+            });
         }
 
         private void PageToLeft()
@@ -99,7 +104,7 @@ namespace TodaysManna
                 default:
                     break;
             }
-            MccheyneViewSctollToTop();
+            MccheyneViewSctollToTop(false);
         }
 
         private void PageToRight()
@@ -146,12 +151,12 @@ namespace TodaysManna
                 default:
                     break;
             }
-            MccheyneViewSctollToTop();
+            MccheyneViewSctollToTop(false);
         }
 
-        private void MccheyneViewSctollToTop()
+        private void MccheyneViewSctollToTop(bool isAnimationEnabled)
         {
-            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.End, false);
+            mccheyneView.ScrollTo(mccheyneView.ItemsSource.Cast<object>().FirstOrDefault(), ScrollToPosition.End, isAnimationEnabled);
         }
 
         private void OnRightButtonClicked(object sender, EventArgs e)

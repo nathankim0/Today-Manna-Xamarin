@@ -50,16 +50,6 @@ namespace TodaysManna.ViewModel
         private string _mcShareRange;
         public string McShareRange { get => _mcShareRange; set => SetProperty(ref _mcShareRange, value); }
 
-        public ICommand RefreshCommand => new Command(() =>
-        {
-            IsRefreshing = true;
-
-            MannaContents.Clear();
-            GetManna();
-
-            IsRefreshing = false;
-        });
-
         public MannaViewModel()
         {
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
@@ -69,6 +59,28 @@ namespace TodaysManna.ViewModel
             Connectivity.ConnectivityChanged += OnConnectivityChanged;
 
             InitDate();
+        }
+
+        public async void RefreshManna()
+        {
+            IsRefreshing = true;
+
+            await Task.WhenAll(ClearMannaDataAndGetManna());
+
+            IsRefreshing = false;
+        }
+
+        private async Task ClearMannaDataAndGetManna()
+        {
+            if (MannaContents.Count != 0)
+            {
+                for (int i = 0; i < MannaContents.Count; i++)
+                {
+                    MannaContents.Remove(MannaContents[i]);
+                }
+            }
+
+            await GetManna(DateTime.Now);
         }
 
         private async void InitDate()
@@ -116,7 +128,13 @@ namespace TodaysManna.ViewModel
         /// 서버에서 만나 데이터 가져오기
         /// </summary>
         /// <param name="dateTime">지정 날짜</param>
-        public async void GetManna(DateTime dateTime)
+        public async 
+        /// <summary>
+        /// 서버에서 만나 데이터 가져오기
+        /// </summary>
+        /// <param name="dateTime">지정 날짜</param>
+        Task
+GetManna(DateTime dateTime)
         {
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
 
