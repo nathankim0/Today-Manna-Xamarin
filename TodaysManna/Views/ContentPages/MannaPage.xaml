@@ -48,6 +48,7 @@
                 </ImageButton.Source>
             </ImageButton>
             <ImageButton
+                Padding="10,0,0,0"
                 BackgroundColor="Transparent"
                 Clicked="OnEnglishButtonClicked"
                 HorizontalOptions="End"
@@ -106,19 +107,11 @@
             VerticalScrollBarVisibility="Always">
             <CollectionView.Header>
                 <StackLayout Padding="15,0,15,0" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <StackLayout Padding="0,0,0,2" Orientation="Horizontal">
+                    <StackLayout Padding="0,0,0,0" Orientation="Horizontal">
                         <Label
                             x:Name="today"
                             Text="{Binding Today}"
-                            TextColor="Gray"
-                            VerticalOptions="CenterAndExpand" />
-                        <Button
-                            BackgroundColor="Transparent"
-                            Clicked="OnMannaTodayButtonClicked"
-                            Text="오늘로"
-                            TextColor="{AppThemeBinding Dark=Yellow,
-                                                        Light=Blue}"
-                            VerticalOptions="CenterAndExpand" />
+                            TextColor="Gray" />
                     </StackLayout>
                     <Frame
                         x:Name="rangeButton"
