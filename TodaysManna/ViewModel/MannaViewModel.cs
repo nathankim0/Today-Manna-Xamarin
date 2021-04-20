@@ -14,7 +14,7 @@ using static TodaysManna.Models.BibleAtData;
 
 namespace TodaysManna.ViewModel
 {
-    public class MannaViewModel : BaseViewModel
+    public class MannaViewModel : PageBaseViewModel
     {
         private readonly RestService _restService;
         
@@ -41,9 +41,6 @@ namespace TodaysManna.ViewModel
         private string _allString = "";
         public string AllString { get => _allString; set => SetProperty(ref _allString, value); }
 
-        private bool _isRefreshing;
-        public bool IsRefreshing { get => _isRefreshing; set => SetProperty(ref _isRefreshing, value); }
-
         private string _mannaShareRange;
         public string MannaShareRange { get => _mannaShareRange; set => SetProperty(ref _mannaShareRange, value); }
 
@@ -55,7 +52,7 @@ namespace TodaysManna.ViewModel
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
 
             _restService = new RestService();
-
+            
             Connectivity.ConnectivityChanged += OnConnectivityChanged;
 
             InitDate();

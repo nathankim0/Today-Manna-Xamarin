@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TodaysManna.Models;
 using static TodaysManna.Models.JsonMccheyneContentModel;
 
 namespace TodaysManna.ViewModel
 {
-    public class MccheyneViewModel : BaseViewModel
+    public class MccheyneViewModel : PageBaseViewModel
     {
         public string Today;
 
@@ -38,11 +39,11 @@ namespace TodaysManna.ViewModel
         {
             var thisDate = GetCorrectDateLeapYear(DateTime.Now);
 
-            GetMccheyneRange(thisDate);
+            _ = GetMccheyneRange(thisDate);
 
             try
             {
-                GetMccheyne(thisDate);
+                _ = GetMccheyne(thisDate);
             }
             catch
             {
@@ -66,7 +67,7 @@ namespace TodaysManna.ViewModel
             return thisDate;
         }
 
-        public void GetMccheyne(DateTime dateTime)
+        public Task GetMccheyne(DateTime dateTime)
         {
             MccheyneContents1.Clear();
             MccheyneContents2.Clear();
@@ -237,6 +238,8 @@ namespace TodaysManna.ViewModel
                     }
                 }
             }
+
+            return Task.CompletedTask;
         }
 
         private IEnumerable<Days> GetJsonBible()
@@ -256,10 +259,11 @@ namespace TodaysManna.ViewModel
             return ObjContactList.DaysOfMccheyne;
         }
 
-        public void GetMccheyneRange(DateTime thisDate)
+        public Task GetMccheyneRange(DateTime thisDate)
         {
             var date = thisDate.ToString("M-d");
             VerseRange = App.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
+            return Task.CompletedTask;
         }
     }
 }

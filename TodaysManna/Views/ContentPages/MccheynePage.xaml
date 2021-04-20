@@ -18,7 +18,6 @@
             <Label
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                
                 HorizontalOptions="StartAndExpand"
                 Text="맥체인"
                 VerticalOptions="Center">
@@ -29,6 +28,27 @@
                         iOS="24" />
                 </Label.FontSize>
             </Label>
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="OnTodayButtonClicked"
+                HorizontalOptions="EndAndExpand"
+                VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.Refresh}"
+                        Size="30"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                        <FontImageSource.Size>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="32"
+                                iOS="30" />
+                        </FontImageSource.Size>
+                    </FontImageSource>
+                </ImageButton.Source>
+            </ImageButton>
             <ImageButton
                 Padding="10,0,5,0"
                 BackgroundColor="Transparent"
@@ -75,24 +95,11 @@
             <ListView.HeaderTemplate>
                 <DataTemplate>
                     <StackLayout Padding="15,0,15,0" Orientation="Vertical">
-                        <StackLayout Padding="0,0,0,2" Orientation="Horizontal">
-                            <Label
-                                
-                                Text="{Binding DisplayDateRange}"
-                                TextColor="Gray"
-                                VerticalOptions="CenterAndExpand" />
-                            <Button
-                                BackgroundColor="Transparent"
-                                Clicked="OnTodayButtonClicked"
-                                
-                                Text="오늘로"
-                                TextColor="{AppThemeBinding Dark=Yellow,
-                                                            Light=Blue}"
-                                VerticalOptions="CenterAndExpand" />
+                        <StackLayout Padding="0,0,0,0" Orientation="Horizontal">
+                            <Label Text="{Binding DisplayDateRange}" TextColor="Gray" />
                         </StackLayout>
                         <Label
                             FontAttributes="Bold"
-                            
                             Text="{Binding VerseRange}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}">
@@ -137,7 +144,6 @@
 
                             <Label
                                 FontAttributes="Bold"
-                                
                                 IsVisible="{Binding IsHalfVerseVisible}"
                                 Text="{Binding HalfVerse}"
                                 TextColor="{AppThemeBinding Dark=White,
@@ -152,7 +158,7 @@
 
 
                             <StackLayout>
-                                <Label >
+                                <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
@@ -176,6 +182,27 @@
 
             </ListView.ItemTemplate>
         </ListView>
+
+        <Frame
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
+            HasShadow="False"
+            IsVisible="{Binding IsRefreshing}"
+            VerticalOptions="Fill">
+            <Label
+                HorizontalOptions="Center"
+                Text="맥체인 불러오는 중..."
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="18"
+                        iOS="16" />
+                </Label.FontSize>
+            </Label>
+        </Frame>
 
         <BoxView
             x:Name="backgroundBoxView"
@@ -242,7 +269,6 @@
                 <Label
                     x:Name="centerLocationLabel"
                     BackgroundColor="Transparent"
-                    
                     FontSize="15"
                     HorizontalOptions="CenterAndExpand"
                     Text="1/4"

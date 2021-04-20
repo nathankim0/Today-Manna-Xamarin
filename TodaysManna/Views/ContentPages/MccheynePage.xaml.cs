@@ -6,6 +6,7 @@ using ListView = Xamarin.Forms.ListView;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
+using System.Threading.Tasks;
 
 namespace TodaysManna
 {
@@ -203,13 +204,22 @@ namespace TodaysManna
             flag = 4;
         }
 
-        private void OnDatePickerDateSelected(object sender, DateChangedEventArgs e)
+        private async void OnDatePickerDateSelected(object sender, DateChangedEventArgs e)
         {
-            (BindingContext as MccheyneViewModel).Today = e.NewDate.ToString("M_d");
-            DateTime thisDate = MccheyneViewModel.GetCorrectDateLeapYear(e.NewDate);
+            if (!(BindingContext is MccheyneViewModel viewModel)) return;
 
-            (BindingContext as MccheyneViewModel).GetMccheyne(thisDate);
-            (BindingContext as MccheyneViewModel).GetMccheyneRange(thisDate);
+            viewModel.Today = e.NewDate.ToString("M_d");
+            var thisDate = MccheyneViewModel.GetCorrectDateLeapYear(e.NewDate);
+
+            viewModel.IsRefreshing = true;
+
+            var task1 = viewModel.GetMccheyne(thisDate);
+            var task2 = viewModel.GetMccheyneRange(thisDate);
+            await Task.WhenAll(task1, task2);
+
+            viewModel.IsRefreshing = false;
+
+            
         }
 
         private void OnTodayButtonClicked(object sender, EventArgs e)
