@@ -138,7 +138,7 @@ namespace TodaysManna
                     FontFamily = "batang",
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 };
-                checkDateLabel.SetBinding(Label.TextProperty, "Date");
+                checkDateLabel.SetBinding(Label.TextProperty, "ToDisplayDate");
                 checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
 
                 var t = new TapGestureRecognizer();

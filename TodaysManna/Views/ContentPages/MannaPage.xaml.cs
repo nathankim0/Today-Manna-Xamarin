@@ -265,7 +265,7 @@ namespace TodaysManna
             await App.Database.SaveItemAsync(memoItem);
         }
 
-        private void OnRefreshButtonClicked(System.Object sender, System.EventArgs e)
+        private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
             try
             {
@@ -282,6 +282,9 @@ namespace TodaysManna
             }
 
             FirebaseEventService.SendEventOnPlatformSpecific("manna_refresh");
+
+            mannaDatepicker.MaximumDate = DateTime.Now;
+
             var now = DateTime.Now;
             mannaDatepicker.Date = now;
             if (mannaDatepicker.Date.Year== now.Year &&  mannaDatepicker.Date.Month == now.Month && mannaDatepicker.Date.Day == now.Day)
