@@ -39,11 +39,11 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>오늘의 만나</string>
-	<key>CFBundleShortVersionString</key>
-	<string>4.2.5</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow access to the camera to scan barcodes</string>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>6</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.2.6</string>
 </dict>
 </plist>
