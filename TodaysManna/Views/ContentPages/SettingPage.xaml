@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.Views.SettingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout>
+                <Button
+                    Clicked="Button_Clicked"
+                    FontSize="30"
+                    Text="backup" />
+
+                <Button
+                    Clicked="Button_Clicked_1"
+                    FontSize="30"
+                    Text="Restore" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
