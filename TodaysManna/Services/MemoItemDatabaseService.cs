@@ -33,6 +33,11 @@ namespace TodaysManna
             }
         }
 
+        public SQLiteAsyncConnection GetDB()
+        {
+            return Database;//. Table<MemoItem>();
+        }
+
         public Task<List<MemoItem>> GetItemsAsync()
         {
             return Database.Table<MemoItem>().ToListAsync();

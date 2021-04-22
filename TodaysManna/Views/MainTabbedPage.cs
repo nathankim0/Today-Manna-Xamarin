@@ -4,6 +4,7 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using TabbedPage = Xamarin.Forms.TabbedPage;
+using TodaysManna.Views;
 
 namespace TodaysManna
 {
@@ -13,6 +14,8 @@ namespace TodaysManna
         private readonly NavigationPage navMccheynePage;
         private readonly NavigationPage navMccheyneCheckListPage;
         private readonly NavigationPage navMyPage;
+        private readonly NavigationPage navSettingPage;
+
         MccheyneCheckListPage mccheyneCheckListPage;
 
         public MainTabbedPage()
@@ -74,10 +77,22 @@ namespace TodaysManna
             };
             navMyPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
+            navSettingPage = new NavigationPage(new SettingPage())
+            {
+                Title = "메모",
+            };
+            navSettingPage.IconImageSource = new FontImageSource
+            {
+                FontFamily = "materialdesignicons",
+                Glyph = FontIcons.AccountSettings,
+            };
+            navSettingPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
+
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
             Children.Add(navMyPage);
+            Children.Add(navSettingPage);
         }
 
         protected override void OnCurrentPageChanged()
