@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Dropbox.Api;
@@ -203,7 +204,14 @@ namespace TodaysManna.Services
 
         private DropboxClient GetClient()
         {
-            return new DropboxClient(this.AccessToken);
+            if(Device.RuntimePlatform == Device.Android)
+            {
+                return new DropboxClient(AccessToken, new DropboxClientConfig() { HttpClient = new HttpClient(new HttpClientHandler()) });
+            }
+            else
+            {
+                return new DropboxClient(AccessToken);
+            }
         }
 
         /// <summary>

@@ -52,7 +52,7 @@
                                 <Label
                                     Margin="0,0,15,0"
                                     FontFamily=""
-                                    FontSize="14"
+                                    FontSize="12"
                                     HorizontalOptions="End"
                                     Text="{Binding IsDatabase}"
                                     TextColor="Gray"
@@ -113,9 +113,9 @@
                                 <Label
                                     Margin="0,0,15,0"
                                     FontFamily=""
-                                    FontSize="14"
+                                    FontSize="12"
                                     HorizontalOptions="End"
-                                    Text="개발자 계정, 서버비 등에 사용됩니다!"
+                                    Text="개발자 계정, 서버비 등에 사용됩니다. 남은 금액 전액 헌금, 기부"
                                     TextColor="Gray"
                                     VerticalOptions="Center" />
                             </StackLayout>
