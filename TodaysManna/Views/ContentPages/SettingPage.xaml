@@ -3,20 +3,150 @@
     x:Class="TodaysManna.Views.SettingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <NavigationPage.TitleView>
+        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
+            <Label
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                HorizontalOptions="StartAndExpand"
+                Text="설정"
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="26"
+                        iOS="24" />
+                </Label.FontSize>
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <ScrollView>
+        <Grid>
 
-            <StackLayout>
-                <Button
-                    Clicked="Button_Clicked"
-                    FontSize="30"
-                    Text="backup" />
+            <TableView HasUnevenRows="True" Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="앱 정보">
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <Label
+                                    FontFamily=""
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding Version}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection Title="메모 백업/복원">
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SaveCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Label
+                                    FontFamily=""
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="백업"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontFamily=""
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="{Binding IsDatabase}"
+                                    TextColor="Gray"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding RestoreCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Label
+                                    FontFamily=""
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="복원"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
 
-                <Button
-                    Clicked="Button_Clicked_1"
-                    FontSize="30"
-                    Text="Restore" />
-            </StackLayout>
-        </ScrollView>
+                    <TableSection Title="지원">
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CopyReportEmailCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Label
+                                    FontFamily=""
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="문의"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenStoreCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Label
+                                    FontFamily=""
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="별점 주기"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DonateCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Label
+                                    FontFamily=""
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="후원 하기"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontFamily=""
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="개발자 계정, 서버비 등에 사용됩니다!"
+                                    TextColor="Gray"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="Black"
+                CornerRadius="0"
+                HasShadow="False"
+                IsVisible="{Binding IsBusy}"
+                Opacity="0.8"
+                VerticalOptions="Fill">
+                <Label
+                    HorizontalOptions="Center"
+                    Text="잠시 기다려주세요..."
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Frame>
+
+            <!--<ActivityIndicator
+                Margin="0,20,0,0"
+                InputTransparent="True"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Start" />-->
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
