@@ -15,11 +15,27 @@ namespace TodaysManna.ViewModel
         private DropBoxService restoreDropBoxService;
         private DropBoxService getMetadataDropBoxService;
 
-        public ICommand SaveCommand => new Command(OnSaveButtonClicked);
+        public ICommand SaveCommand => new Command(OnBackupButtonClicked);
         public ICommand RestoreCommand => new Command(OnRestoreButtonClicked);
         public ICommand OpenStoreCommand => new Command(OnOpenStoreButtonClicked);
         public ICommand CopyReportEmailCommand => new Command(OnReportButtonClicked);
         public ICommand DonateCommand => new Command(OnDonateButtonClicked);
+
+        private string _version;
+        public string Version { get => _version; set => SetProperty(ref _version, value); }
+
+        private string _isDatabase;
+        public string IsDatabase { get => _isDatabase; set => SetProperty(ref _isDatabase, value); }
+
+        //public UriImageSource DropboxIcon => new UriImageSource
+        //{
+        //    Uri = new Uri(
+        //            new OnPlatform<string>
+        //            {
+        //                iOS = "https://www.dropbox.com/sh/zcxbhhco5x0bwmm/AAD6Nq7vmOBalRfOOe9oIa_va?dl=1",
+        //                Android = "https://www.dropbox.com/s/0l0fpn9yytzb1t7/dropbox-android.png?dl=1"
+        //            })
+        //};
 
         public SettingViewModel(INavigation navigation)
         {
@@ -30,7 +46,7 @@ namespace TodaysManna.ViewModel
             restoreDropBoxService = new DropBoxService();
             getMetadataDropBoxService = new DropBoxService();
 
-            saveDropBoxService.OnAuthenticated += SaveDatabase;
+            saveDropBoxService.OnAuthenticated += BackupDatabase;
             restoreDropBoxService.OnAuthenticated += RestoreDatabase;
             getMetadataDropBoxService.OnAuthenticated += GetIsDatabase;
 
@@ -42,74 +58,15 @@ namespace TodaysManna.ViewModel
             Version = VersionTracking.CurrentVersion;
         }
 
-        private async void OnReportButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_report");
-
-            var address = "jinyeob07@gmail.com";
-            await Clipboard.SetTextAsync(address);
-            await Application.Current.MainPage.DisplayAlert("클립보드에 복사됨", address, "확인");
-        }
-
-        private async void OnDonateButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_donate");
-
-            var uri = new Uri("https://qr.kakaopay.com/281006011000037630355680");
-            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-        }
-
-        private void ChangeBusyStatus()
-        {
-            IsBusy = false;
-        }
-
-        private string _isDatabase;
-        public string IsDatabase { get => _isDatabase; set => SetProperty(ref _isDatabase, value); }
-
-        public void GetAuthAndIsDatabase()
-        {
-            getMetadataDropBoxService.CheckAuth();
-        }
-
-        public async void GetIsDatabase()
-        {
-            try
-            {
-                // Read the database from app storage
-                var dbMetadata = await getMetadataDropBoxService.GetMetadata($"/{Constants.DatabaseFilename}");
-                if (dbMetadata != null)
-                {
-                    IsDatabase = dbMetadata.AsFile.ServerModified.ToString("f");
-                }
-                else
-                {
-                    IsDatabase = "";
-                }
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-        }
-
-        private string _version;
-        public string Version { get => _version; set => SetProperty(ref _version, value); }
-
-        public UriImageSource DropboxIcon => new UriImageSource
-        {
-            Uri = new Uri(
-                    new OnPlatform<string>
-                    {
-                        iOS = "https://www.dropbox.com/sh/zcxbhhco5x0bwmm/AAD6Nq7vmOBalRfOOe9oIa_va?dl=1",
-                        Android = "https://www.dropbox.com/s/0l0fpn9yytzb1t7/dropbox-android.png?dl=1"
-                    })
-        };
-
-        private async void OnSaveButtonClicked()
+        private async void OnBackupButtonClicked()
         {
             FirebaseEventService.SendEventOnPlatformSpecific("setting_backup");
 
+            if (!await Application.Current.MainPage.DisplayAlert("", "백업 하시겠습니까? 저장된 백업에 덮어씌웁니다.", "확인", "취소"))
+            {
+                IsBusy = false;
+                return;
+            }
             IsBusy = true;
 
             await saveDropBoxService.Authorize();
@@ -119,10 +76,9 @@ namespace TodaysManna.ViewModel
         {
             FirebaseEventService.SendEventOnPlatformSpecific("setting_restore");
 
-            if (!await Application.Current.MainPage.DisplayAlert("", "복원하시겠습니까? 기존 메모는 사라집니다.", "확인", "취소"))
+            if (!await Application.Current.MainPage.DisplayAlert("", "복원 하시겠습니까? 기존 메모는 사라집니다.", "확인", "취소"))
             {
                 IsBusy = false;
-
                 return;
             }
             IsBusy = true;
@@ -150,7 +106,57 @@ namespace TodaysManna.ViewModel
             }
         }
 
-        private async void SaveDatabase()
+        private async void OnReportButtonClicked()
+        {
+            FirebaseEventService.SendEventOnPlatformSpecific("setting_report");
+
+            var address = "jinyeob07@gmail.com";
+            await Clipboard.SetTextAsync(address);
+            await Application.Current.MainPage.DisplayAlert("클립보드에 복사됨", address, "확인");
+        }
+
+        private async void OnDonateButtonClicked()
+        {
+            FirebaseEventService.SendEventOnPlatformSpecific("setting_donate");
+
+            var uri = new Uri("https://qr.kakaopay.com/281006011000037630355680");
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+        }
+
+        private void ChangeBusyStatus()
+        {
+            IsBusy = false;
+        }
+
+        public void GetAuthAndIsDatabase()
+        {
+            getMetadataDropBoxService.CheckAuth();
+        }
+
+        public async void GetIsDatabase()
+        {
+            try
+            {
+                // Read the database from app storage
+                var dbMetadata = await getMetadataDropBoxService.GetMetadata($"/{Constants.DatabaseFilename}");
+                if (dbMetadata != null)
+                {
+                    var createDateTime = dbMetadata.AsFile.ServerModified;
+                    var kstTime = createDateTime.ToLocalTime();
+                    IsDatabase = kstTime.ToString("f");
+                }
+                else
+                {
+                    IsDatabase = "";
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
+        private async void BackupDatabase()
         {
             try
             {
@@ -167,6 +173,7 @@ namespace TodaysManna.ViewModel
                 {
                     await Application.Current.MainPage.DisplayAlert("Dropbox", $"백업 실패, 다시 시도해보세요.", "확인");
                 }
+                GetIsDatabase();
             }
             catch (Exception ex)
             {
@@ -198,6 +205,7 @@ namespace TodaysManna.ViewModel
                 {
                     await Application.Current.MainPage.DisplayAlert("Dropbox", $"복원 실패, 다시 시도해보세요.", "확인");
                 }
+                GetIsDatabase();
             }
             catch (Exception ex)
             {

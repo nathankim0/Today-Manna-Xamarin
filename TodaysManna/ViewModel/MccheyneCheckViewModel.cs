@@ -147,7 +147,6 @@ namespace TodaysManna.ViewModel
             {
                 // Other error has occurred.
             }
-            FirebaseEventService.SendEventOnPlatformSpecific("mccheynchecklist_check");
 
             MccheyneCheckList.ForEach(x =>
             {
