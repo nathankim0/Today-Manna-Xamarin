@@ -28,7 +28,8 @@ namespace TodaysManna.Services
         /// <summary>
         ///     Occurs when the user was authenticated
         /// </summary>
-        public EventHandler OnAuthenticated;
+        public Action OnAuthenticated;
+        public Action OnDisappeared;
 
         private string oauth2State;
 
@@ -52,7 +53,7 @@ namespace TodaysManna.Services
             if (string.IsNullOrWhiteSpace(this.AccessToken) == false)
             {
                 // Already authorized
-                this.OnAuthenticated?.Invoke(this,EventArgs.Empty);
+                this.OnAuthenticated?.Invoke();
                 return;
             }
 
@@ -68,7 +69,29 @@ namespace TodaysManna.Services
             var webView = new WebView { Source = new UrlWebViewSource { Url = authorizeUri.AbsoluteUri } };
             webView.Navigating += this.WebViewOnNavigating;
             var contentPage = new WebViewPage { Content = webView };
+            contentPage.Disappearing += ContentPage_Disappearing;
             await Application.Current.MainPage.Navigation.PushModalAsync(contentPage);
+        }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            OnDisappeared?.Invoke();
+        }
+
+        public void CheckAuth()
+        {
+            if (string.IsNullOrWhiteSpace(this.AccessToken) == false)
+            {
+                // Already authorized
+                this.OnAuthenticated?.Invoke();
+                return;
+            }
+
+            if (this.GetAccessTokenFromSettings())
+            {
+                // Found token and set AccessToken 
+                return;
+            }
         }
 
         public class WebViewPage : ContentPage
@@ -96,12 +119,29 @@ namespace TodaysManna.Services
             }
         }
 
-        public async Task<byte[]> ReadFile(string file)
+        public async Task<Metadata> GetMetadata(string file)
         {
             try
             {
                 using (var client = this.GetClient())
                 {
+                    Metadata metadata = await client.Files.GetMetadataAsync(file);
+                    return metadata;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public async Task<byte[]> ReadFile(string file)
+        {
+            try
+            {
+                using (var client = this.GetClient())
+                {                    
                     var response = await client.Files.DownloadAsync(file);
                     var bytes = response?.GetContentAsByteArrayAsync();
                     return bytes?.Result;
@@ -113,6 +153,8 @@ namespace TodaysManna.Services
                 return null;
             }
         }
+
+
 
         public async Task<FileMetadata> WriteFile(byte[] fileContent, string filename)
         {
@@ -180,7 +222,7 @@ namespace TodaysManna.Services
                 this.AccessToken = Application.Current.Properties[AppKeyDropboxtoken]?.ToString();
                 if (this.AccessToken != null)
                 {
-                    this.OnAuthenticated?.Invoke(this, EventArgs.Empty);
+                    this.OnAuthenticated?.Invoke();
                     return true;
                 }
 
@@ -213,7 +255,7 @@ namespace TodaysManna.Services
                 this.AccessToken = result.AccessToken;
 
                 await SaveDropboxToken(this.AccessToken);
-                this.OnAuthenticated?.Invoke(this, EventArgs.Empty);
+                this.OnAuthenticated?.Invoke();
             }
             catch (ArgumentException)
             {

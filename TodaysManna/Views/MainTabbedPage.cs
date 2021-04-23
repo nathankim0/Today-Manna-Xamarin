@@ -79,12 +79,12 @@ namespace TodaysManna
 
             navSettingPage = new NavigationPage(new SettingPage())
             {
-                Title = "메모",
+                Title = "설정",
             };
             navSettingPage.IconImageSource = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
-                Glyph = FontIcons.AccountSettings,
+                Glyph = FontIcons.ReorderHorizontal,
             };
             navSettingPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
@@ -115,6 +115,10 @@ namespace TodaysManna
             else if (CurrentPage.Equals(navMyPage))
             {
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMyPage");
+            }
+            else if (CurrentPage.Equals(navSettingPage))
+            {
+                FirebaseEventService.SendEventOnPlatformSpecific("view_navSettingPage");
             }
         }
 
