@@ -33,17 +33,22 @@
                                 <Label
                                     FontFamily=""
                                     HorizontalOptions="StartAndExpand"
+                                    Text="버전"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontFamily=""
+                                    FontSize="12"
+                                    HorizontalOptions="End"
                                     Text="{Binding Version}"
+                                    TextColor="Gray"
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
                     <TableSection Title="메모 백업/복원">
-                        <ViewCell>
+                        <ViewCell Tapped="OnBackupButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SaveCommand}" />
-                                </StackLayout.GestureRecognizers>
                                 <Label
                                     FontFamily=""
                                     HorizontalOptions="StartAndExpand"
@@ -59,11 +64,8 @@
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>
-                        <ViewCell>
+                        <ViewCell Tapped="OnRestoreButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding RestoreCommand}" />
-                                </StackLayout.GestureRecognizers>
                                 <Label
                                     FontFamily=""
                                     HorizontalOptions="StartAndExpand"
@@ -74,11 +76,8 @@
                     </TableSection>
 
                     <TableSection Title="지원">
-                        <ViewCell>
+                        <ViewCell Tapped="OnReportButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CopyReportEmailCommand}" />
-                                </StackLayout.GestureRecognizers>
                                 <Label
                                     FontFamily=""
                                     HorizontalOptions="StartAndExpand"
@@ -87,35 +86,29 @@
                             </StackLayout>
                         </ViewCell>
 
-                        <ViewCell>
+                        <ViewCell Tapped="OnOpenStoreButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OpenStoreCommand}" />
-                                </StackLayout.GestureRecognizers>
                                 <Label
                                     FontFamily=""
                                     HorizontalOptions="StartAndExpand"
-                                    Text="별점 주기"
+                                    Text="별점주기"
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>
 
-                        <ViewCell>
+                        <ViewCell Tapped="OnDonateButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding DonateCommand}" />
-                                </StackLayout.GestureRecognizers>
                                 <Label
                                     FontFamily=""
                                     HorizontalOptions="StartAndExpand"
-                                    Text="후원 하기"
+                                    Text="후원하기"
                                     VerticalOptions="Center" />
                                 <Label
                                     Margin="0,0,15,0"
                                     FontFamily=""
                                     FontSize="12"
                                     HorizontalOptions="End"
-                                    Text="개발자 계정, 서버비 등에 사용됩니다. 남은 금액 전액 헌금, 기부"
+                                    Text="계정, 서버 비용에 사용됩니다. 남은 금액 전액 헌금/기부"
                                     TextColor="Gray"
                                     VerticalOptions="Center" />
                             </StackLayout>
