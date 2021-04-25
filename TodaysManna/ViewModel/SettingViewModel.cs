@@ -1,25 +1,17 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Input;
 using Xamarin.Forms;
 using TodaysManna.Services;
 using System.Diagnostics;
 using Xamarin.Essentials;
-using Plugin.StoreReview;
 
 namespace TodaysManna.ViewModel
 {
     public class SettingViewModel : PageBaseViewModel
     {
-        private DropBoxService saveDropBoxService;
-        private DropBoxService restoreDropBoxService;
-        private DropBoxService getMetadataDropBoxService;
-
-        public ICommand SaveCommand => new Command(OnBackupButtonClicked);
-        public ICommand RestoreCommand => new Command(OnRestoreButtonClicked);
-        public ICommand OpenStoreCommand => new Command(OnOpenStoreButtonClicked);
-        public ICommand CopyReportEmailCommand => new Command(OnReportButtonClicked);
-        public ICommand DonateCommand => new Command(OnDonateButtonClicked);
+        public DropBoxService saveDropBoxService;
+        public DropBoxService restoreDropBoxService;
+        public DropBoxService getMetadataDropBoxService;
 
         private string _version;
         public string Version { get => _version; set => SetProperty(ref _version, value); }
@@ -56,71 +48,6 @@ namespace TodaysManna.ViewModel
 
             VersionTracking.Track();
             Version = VersionTracking.CurrentVersion;
-        }
-
-        private async void OnBackupButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_backup");
-
-            if (!await Application.Current.MainPage.DisplayAlert("", "백업 하시겠습니까? 저장된 백업에 덮어씌웁니다.", "확인", "취소"))
-            {
-                IsBusy = false;
-                return;
-            }
-            IsBusy = true;
-
-            await saveDropBoxService.Authorize();
-        }
-
-        private async void OnRestoreButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_restore");
-
-            if (!await Application.Current.MainPage.DisplayAlert("", "복원 하시겠습니까? 기존 메모는 사라집니다.", "확인", "취소"))
-            {
-                IsBusy = false;
-                return;
-            }
-            IsBusy = true;
-
-            await restoreDropBoxService.Authorize();
-        }
-
-        private async void OnOpenStoreButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_review");
-
-            //CrossStoreReview.Current.OpenStoreListing("1547824358");
-            //CrossStoreReview.Current.OpenStoreReviewPage("1547824358");
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    await CrossStoreReview.Current.RequestReview(false);
-                    break;
-                case Device.Android:
-                    var uri = new Uri("https://play.google.com/store/apps/details?id=com.manna.parsing2");
-                    await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private async void OnReportButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_report");
-
-            var address = "jinyeob07@gmail.com";
-            await Clipboard.SetTextAsync(address);
-            await Application.Current.MainPage.DisplayAlert("클립보드에 복사됨", address, "확인");
-        }
-
-        private async void OnDonateButtonClicked()
-        {
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_donate");
-
-            var uri = new Uri("https://qr.kakaopay.com/281006011000037630355680");
-            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
 
         private void ChangeBusyStatus()
