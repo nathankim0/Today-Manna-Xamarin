@@ -10,28 +10,18 @@
 </p>
 
 ## Download
-<a href="https://apps.apple.com/app/id1547824358"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"/></a>
+<a href="https://apps.apple.com/app/id1547824358"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="120%"/></a>
 <br>
 <a href="https://play.google.com/store/apps/details?id=com.manna.parsing2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png" width="30%"/></a>
 
-![png](https://user-images.githubusercontent.com/37360089/104084022-ce968b80-5286-11eb-8059-47f6dab0e32b.png)
-
-
 ## 📌 Screenshots
-<!--
-### Application
-| Main | M'Cheine | Info |
-|:--------:|:--------:|:--------:|
-| <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/manna.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/mchein.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/info.png"/> |
 
-| Login | Pull to Refresh | Share |
-|:--------:|:--------:|:--------:|
-| <img src="https://user-images.githubusercontent.com/37360089/94250945-dee75c80-ff5c-11ea-88dc-196f3dad3450.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/refresh.png"/> | <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/share.png"/> |
+### iOS
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_1.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_2.png" width="20%"/>
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_3.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_4.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_5.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_6.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_7.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_8.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_9.png" width="20%"/>
 
--->
-<img src="https://user-images.githubusercontent.com/37360089/110575680-a7830a00-81a2-11eb-8ab0-43c095c7031a.png" width="30%"/> <img src="https://user-images.githubusercontent.com/37360089/110575682-a81ba080-81a2-11eb-9d8b-b5dc830c4917.png" width="30%"/>
-<img src="https://user-images.githubusercontent.com/37360089/110575684-a8b43700-81a2-11eb-8d4c-a2ffe3a34388.png" width="30%"/><img src="https://user-images.githubusercontent.com/37360089/110575686-a8b43700-81a2-11eb-9598-beaddc799899.png" width="30%"/><img src="https://user-images.githubusercontent.com/37360089/110575689-a94ccd80-81a2-11eb-9e8f-24f63d922888.png" width="30%"/>
-
+### Android
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/android.png" width="20%"/>
 
 ### 파싱한 웹페이지
 | 홈 페이지 | 범위 | 세부 페이지 |
