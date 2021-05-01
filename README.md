@@ -1,7 +1,8 @@
-<h1 align="center">오늘의 만나 iOS</h1>
+<h1 align="center">오늘의 만나 iOS, Android (Cross Platform, Xamarin) </h1>
 
 ![last commit badge](https://img.shields.io/github/last-commit/Jinyeob/Today-Manna-iOS)
-<a href='https://developer.apple.com/kr/'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
+<a href='https://apps.apple.com/app/id1547824358'><img height="20px" src='http://img.shields.io/badge/platform-iOS-blue.svg'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.manna.parsing2'><img height="20px" src='http://img.shields.io/badge/platform-Android-green.svg'/></a>
 
 <p>
    Provides today's Bible scope, verses and M'Cheine scope.<br/>
@@ -11,81 +12,10 @@
 ## Download
 <a href="https://apps.apple.com/app/id1547824358"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"/></a>
 <br>
+<a href="https://play.google.com/store/apps/details?id=com.manna.parsing2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png" width="30%"/></a>
+
 ![png](https://user-images.githubusercontent.com/37360089/104084022-ce968b80-5286-11eb-8059-47f6dab0e32b.png)
 
-
-<!--
-## 📌 Codes
-* HttpWebRequest
-``` csharp
-HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://community.jbch.org/confirm.php");
-req.Method = "Post";
-string s = "user_id=" + _id + "&saveid=1&passwd=" + _passwd + "&mode=&go=yes&url=http://community.jbch.org/&LoginButton=LoginButton";
-req.CookieContainer = new CookieContainer();
-req.ContentLength = s.Length;
-req.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
-
-TextWriter w = (TextWriter)new System.IO.StreamWriter(req.GetRequestStream());
-w.Write(s);
-w.Close();
-
-HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-TextReader r = (TextReader)new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
-```
-
-* HTML select
-``` csharp
-var tmp = htmlDoc2.DocumentNode.SelectSingleNode("//div[@class='contentbox fr-view']/p").InnerHtml;
-```
-
-* Extract 'post_uid'
-``` csharp
-string thumUrlString = getURL
-                  .Replace("getUrl('", "")
-                  .Replace("', '')", "");
- String target = "?uid=";
-int target_num = thumUrlString.IndexOf(target);
-int target2_num = thumUrlString.IndexOf("&");
-
-String result;
-result = thumUrlString.Substring(target_num + 5, target2_num - target_num - 5);
-```
-
-* Change ```<br>```tag to newline
-``` csharp
-tmp = Regex.Replace(tmp, @"<br>", "\n\n");
-```
-
-* Login (Save ID and Password)
-``` csharp
-async public void LoginFunc()
-        {
-            if (string.IsNullOrWhiteSpace(entry1.Text) || string.IsNullOrWhiteSpace(entry2.Text))
-            {
-                await DisplayAlert("로그인 실패!", "아이디와 비밀번호를 확인해주세요.", "확인");
-            }
-            else
-            {
-                _Id = entry1.Text; 
-                _Passwd = entry2.Text;
-                _IsLogined = true;
-
-                Application.Current.Properties["ID"] = _Id;
-                Application.Current.Properties["PASSWD"] = _Passwd;
-                Application.Current.Properties["ISLOGINED"] = _IsLogined;
-
-                await Application.Current.SavePropertiesAsync();
-
-                await Navigation.PushAsync(new MainPage());
-            }
-        }
-```
-
-## 📌 Using
-* HttpWebResponse (System.net) -> Login to the homepage and parse HTML.
-* htmlagilitypack (https://html-agility-pack.net/) -> Select HTML node from HtmlDocument.
-* Xamarin.Plugins.Clipboard (https://www.nuget.org/packages/Xamarin.Plugins.Clipboard/) -> Coppy Text to Clipboard
--->
 
 ## 📌 Screenshots
 <!--
