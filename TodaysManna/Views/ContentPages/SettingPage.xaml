@@ -96,7 +96,7 @@
                             </StackLayout>
                         </ViewCell>
 
-                        <ViewCell Tapped="OnDonateButtonClicked">
+                        <!--<ViewCell Tapped="OnDonateButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
                                     FontFamily=""
@@ -112,7 +112,7 @@
                                     TextColor="Gray"
                                     VerticalOptions="Center" />
                             </StackLayout>
-                        </ViewCell>
+                        </ViewCell>-->
 
                     </TableSection>
                 </TableRoot>
