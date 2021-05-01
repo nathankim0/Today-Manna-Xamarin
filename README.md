@@ -10,18 +10,18 @@
 </p>
 
 ## Download
-<a href="https://apps.apple.com/app/id1547824358"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="120%"/></a>
+<a href="https://apps.apple.com/app/id1547824358"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" width="70%"/></a>
 <br>
 <a href="https://play.google.com/store/apps/details?id=com.manna.parsing2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png" width="30%"/></a>
 
 ## 📌 Screenshots
 
 ### iOS
-<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_1.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_2.png" width="20%"/>
-<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_3.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_4.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_5.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_6.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_7.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_8.png" width="20%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_9.png" width="20%"/>
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_1.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_2.png" width="25%"/>
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_3.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_4.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_5.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_6.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_7.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_8.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_9.png" width="25%"/>
 
 ### Android
-<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/android.png" width="20%"/>
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/android.png" width="25%"/>
 
 ### 파싱한 웹페이지
 | 홈 페이지 | 범위 | 세부 페이지 |
