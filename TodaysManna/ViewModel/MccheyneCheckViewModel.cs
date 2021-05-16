@@ -182,20 +182,35 @@ namespace TodaysManna.ViewModel
                 }
             });
         }
-        static int tabcount = 0;
-        private void OnDateTabbed(string date)
+        //static int tabcount = 0;
+        private async void OnDateTabbed(string date)
         {
-            System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
-            if (date.Equals("3-27"))
+            try
             {
-                tabcount++;
-                if (tabcount >= 2)
-                {
-                    tabcount = 0;
-                }
+                // Perform click feedback
+                HapticFeedback.Perform(HapticFeedbackType.Click);
             }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+
+            System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
+            //if (date.Equals("3-27"))
+            //{
+            //    tabcount++;
+            //    if (tabcount >= 2)
+            //    {
+            //        tabcount = 0;
+            //    }
+            //}
             if (date.Equals("8-12"))
             {
+                await Navigation.PushAsync(new QrScanPage());
             }
         }
 
