@@ -26,7 +26,6 @@ namespace TodaysManna
 
             On<iOS>().SetUseSafeArea(true);
             On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
-            //On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.PageSheet);
 
             Title = "체크리스트";
             IconImageSource = "tab_mc";
@@ -126,7 +125,7 @@ namespace TodaysManna
                     RowDefinitions =
                         {
                             new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                            new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                            new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) },
                         }
                 };
 
@@ -134,7 +133,7 @@ namespace TodaysManna
                 {
                     Padding = new Thickness(5, 0, 0, 0),
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 25,
+                    FontSize = 23,
                     FontFamily = "batang",
                     VerticalOptions = LayoutOptions.CenterAndExpand
                 };
@@ -175,7 +174,7 @@ namespace TodaysManna
                         BorderColor = Color.Black,
                         BorderWidth = 1,
                         FontAttributes = FontAttributes.Bold,
-                        FontSize = 14,
+                        FontSize = 12,
                         TextColor = Color.Black
                     };
 
@@ -238,11 +237,11 @@ namespace TodaysManna
                             x.Ranges[i].IsChecked = true;
                             Preferences.Set(x.Ranges[i].Id, x.Ranges[i].IsChecked);
                         }
-                        x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.SkyBlue : Color.White;
-                        x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.LightPink : Color.White;
-                        x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.LightGreen : Color.White;
-                        x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.Yellow : Color.White;
-                        x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.MediumPurple : Color.White;
+                        x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.FromHex("#DFE9E8") : Color.White;
+                        x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.FromHex("#9CC0BA") : Color.White;
+                        x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.FromHex("#D07D7B") : Color.White;
+                        x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.FromHex("#E7CBB0") : Color.White;
+                        x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.FromHex("#E9DDC8") : Color.White;
                     }
                 });
                 ScrollToToday(false);
