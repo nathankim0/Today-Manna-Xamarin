@@ -42,8 +42,8 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow access to the camera to scan barcodes</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.3.2</string>
+	<string>4.3.4</string>
 	<key>CFBundleVersion</key>
-	<string>4.3.2</string>
+	<string>4.3.4</string>
 </dict>
 </plist>
