@@ -20,6 +20,7 @@
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
     <PackageReference Include="Dropbox.Api" Version="6.4.0" />
     <PackageReference Include="Plugin.StoreReview" Version="3.2.0-beta" />
+    <PackageReference Include="Plugin.LocalNotification" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -21,11 +21,19 @@ namespace TodaysManna.iOS
             Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+
+            Plugin.LocalNotification.NotificationCenter.AskPermission();
+
             LoadApplication(new App());
 
             Firebase.Core.App.Configure();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void WillEnterForeground(UIApplication uiApplication)
+        {
+            Plugin.LocalNotification.NotificationCenter.ResetApplicationIconBadgeNumber(uiApplication);
         }
     }
 }

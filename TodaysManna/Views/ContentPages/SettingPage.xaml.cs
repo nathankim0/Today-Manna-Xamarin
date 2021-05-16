@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.LocalNotification;
 using Plugin.StoreReview;
 using TodaysManna.ViewModel;
 using Xamarin.Essentials;
@@ -14,12 +15,30 @@ namespace TodaysManna.Views
             InitializeComponent();
             viewModel = new SettingViewModel(Navigation);
             BindingContext = viewModel;
+
+            if (Preferences.ContainsKey("AlertTime"))
+            {
+                var settedTime = Preferences.Get("AlertTime", "");
+                timePicker.Time = TimeSpan.Parse(settedTime);
+            }
+
+            if (Preferences.ContainsKey("IsAlert"))
+            {
+                var isAlert = Preferences.Get("IsAlert", false);
+                alertSwitch.IsToggled = isAlert;
+                if(!alertSwitch.IsToggled)
+                {
+                    NotificationCenter.Current.Cancel(100);
+                }
+            }
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             (BindingContext as SettingViewModel).GetAuthAndIsDatabase();
+
+            
         }
 
         private async void OnBackupButtonClicked(object sender, EventArgs e)
@@ -85,6 +104,50 @@ namespace TodaysManna.Views
 
             var uri = new Uri("https://qr.kakaopay.com/281006011000037630355680");
             await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+        }
+
+        private void OnTimePickerPropertyChanged(System.Object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Time")
+            {
+                SetTriggerTime();
+            }
+        }
+
+        private void SetTriggerTime()
+        {
+            if (!alertSwitch.IsToggled) return;
+
+            NotificationCenter.Current.CancelAll();
+
+            var alertTime = timePicker.Time.ToString();
+            Preferences.Set("AlertTime", alertTime);
+
+            var notification = new NotificationRequest
+            {
+                NotificationId = 100,
+                Title = "오늘의 만나",
+                Description = "오늘의 만나를 함께 만나요!",
+                Repeats = NotificationRepeat.Daily,
+                ReturningData = "Dummy data", // Returning data when tapped on notification.
+                NotifyTime = DateTime.Today + timePicker.Time // Used for Scheduling local notification, if not specified notification will show immediately.
+            };
+            NotificationCenter.Current.Show(notification);
+
+        }
+
+        void Switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        {
+            if (alertSwitch.IsToggled)
+            {
+                SetTriggerTime();
+                Preferences.Set("IsAlert", true);
+            }
+            else
+            {
+                NotificationCenter.Current.Cancel(100);
+                Preferences.Set("IsAlert", false);
+            }
         }
     }
 }

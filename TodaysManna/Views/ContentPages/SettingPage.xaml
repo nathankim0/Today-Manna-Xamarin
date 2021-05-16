@@ -31,7 +31,6 @@
                         <ViewCell>
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
-                                    FontFamily=""
                                     HorizontalOptions="StartAndExpand"
                                     Text="버전"
                                     VerticalOptions="Center" />
@@ -46,11 +45,32 @@
                             </StackLayout>
                         </ViewCell>
                     </TableSection>
+
+                    <TableSection Title="알람">
+                        <ViewCell>
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <TimePicker
+                                    x:Name="timePicker"
+                                    BackgroundColor="Transparent"
+                                    Format="(tt) hh:mm"
+                                    HorizontalOptions="StartAndExpand"
+                                    PropertyChanged="OnTimePickerPropertyChanged"
+                                    VerticalOptions="Center" />
+
+                                <Switch
+                                    x:Name="alertSwitch"
+                                    Margin="0,0,15,0"
+                                    HorizontalOptions="End"
+                                    Toggled="Switch_Toggled"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+
                     <TableSection Title="메모 백업/복원">
                         <ViewCell Tapped="OnBackupButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
-                                    FontFamily=""
                                     HorizontalOptions="StartAndExpand"
                                     Text="백업"
                                     VerticalOptions="Center" />
@@ -67,7 +87,6 @@
                         <ViewCell Tapped="OnRestoreButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
-                                    FontFamily=""
                                     HorizontalOptions="StartAndExpand"
                                     Text="복원"
                                     VerticalOptions="Center" />
@@ -79,7 +98,6 @@
                         <ViewCell Tapped="OnReportButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
-                                    FontFamily=""
                                     HorizontalOptions="StartAndExpand"
                                     Text="문의"
                                     VerticalOptions="Center" />
@@ -89,7 +107,6 @@
                         <ViewCell Tapped="OnOpenStoreButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
-                                    FontFamily=""
                                     HorizontalOptions="StartAndExpand"
                                     Text="별점주기"
                                     VerticalOptions="Center" />
@@ -115,8 +132,12 @@
                         </ViewCell>-->
 
                     </TableSection>
+
+
                 </TableRoot>
             </TableView>
+
+
 
             <Frame
                 Margin="0"
