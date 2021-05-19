@@ -3,26 +3,21 @@
     x:Class="TodaysManna.QrScanPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    xmlns:control="clr-namespace:TodaysManna.Controls"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    Title="(Easter)출입기록 도우미">
 
-    <ScrollView>
-        <StackLayout>
-            <zxing:ZXingScannerView
-                x:Name="_scanView"
-                HeightRequest="300"
-                IsScanning="true"
-                OnScanResult="Handle_OnScanResult" />
+    <StackLayout Padding="20">
+        <control:CustomZXingScannerView
+            x:Name="_scanView"
+            HeightRequest="150"
+            IsScanning="true"
+            OnScanResult="Handle_OnScanResult" />
 
-            <Editor
-                x:Name="editor"
-                BackgroundColor="LightGray"
-                TextChanged="editor_TextChanged"
-                VerticalOptions="FillAndExpand" />
-            <Button
-                BackgroundColor="LightBlue"
-                Clicked="Button_Clicked"
-                Text="복사"
-                VerticalOptions="End" />
-        </StackLayout>
-    </ScrollView>
+        <Button
+            BackgroundColor="LightBlue"
+            Clicked="Button_Clicked"
+            Text="리스트"
+            VerticalOptions="End" />
+    </StackLayout>
 </ContentPage>
