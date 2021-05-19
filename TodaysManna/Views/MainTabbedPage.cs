@@ -17,7 +17,6 @@ namespace TodaysManna
         private readonly NavigationPage navSettingPage;
 
         MccheyneCheckListPage mccheyneCheckListPage;
-
         public MainTabbedPage()
         {
             On<iOS>().SetUseSafeArea(true);

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.QrScanListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.PrefersHomeIndicatorAutoHidden="true"
+    ios:Page.UseSafeArea="true">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                Padding="20"
+                FontAttributes="Bold"
+                FontSize="30"
+                Text="출입명부" />
+            <ScrollView Padding="0,10,0,0">
+                <StackLayout>
+                    <Editor
+                        x:Name="editor"
+                        Margin="20"
+                        AutoSize="TextChanges"
+                        BackgroundColor="LightGray"
+                        HeightRequest="400"
+                        IsSpellCheckEnabled="False"
+                        TextChanged="editor_TextChanged"
+                        VerticalOptions="FillAndExpand" />
+                    <Button
+                        BackgroundColor="LightBlue"
+                        Clicked="Button_Clicked"
+                        HeightRequest="100"
+                        Text="복사"
+                        VerticalOptions="End" />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

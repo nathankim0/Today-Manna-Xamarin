@@ -6,6 +6,7 @@ using Android.OS;
 using Xamarin.Forms;
 using Android.Content;
 using Plugin.LocalNotification;
+using ZXing.Mobile;
 
 namespace TodaysManna.Droid
 {
@@ -24,19 +25,21 @@ namespace TodaysManna.Droid
 
             base.OnCreate(savedInstanceState);
 
+            NotificationCenter.CreateNotificationChannel();
+
             Forms.SetFlags("FastRenderers_Experimental");
 
             Rg.Plugins.Popup.Popup.Init(this);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(Application);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
-            Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
 
             NotificationCenter.NotifyNotificationTapped(Intent);
         }
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
