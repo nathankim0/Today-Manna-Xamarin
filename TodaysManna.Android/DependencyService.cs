@@ -4,12 +4,14 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views.InputMethods;
+using Android.Webkit;
 using Firebase.Analytics;
 using TodaysManna.Droid;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(DroidKeyboardHelper))]
 [assembly: Dependency(typeof(EventTrackerDroid))]
+[assembly: Dependency(typeof(IClearCookiesImplementation))]
 
 namespace TodaysManna.Droid
 {
@@ -58,6 +60,14 @@ namespace TodaysManna.Droid
             }
 
             firebaseAnalytics.LogEvent(eventId, bundle);
+        }
+    }
+    public class IClearCookiesImplementation : IClearCookies
+    {
+        public void Clear()
+        {
+            var cookieManager = CookieManager.Instance;
+            cookieManager.RemoveAllCookie();
         }
     }
 }
