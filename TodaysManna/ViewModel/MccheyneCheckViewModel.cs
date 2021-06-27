@@ -124,11 +124,11 @@ namespace TodaysManna.ViewModel
                 {
                     x.Ranges[i].IsChecked = Preferences.Get(x.Ranges[i]?.Id, false);
                 }
-                x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.FromHex("#DFE9E8") : Color.White;
-                x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.FromHex("#9CC0BA") : Color.White;
-                x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.FromHex("#D07D7B") : Color.White;
-                x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.FromHex("#E7CBB0") : Color.White;
-                x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.FromHex("#E9DDC8") : Color.White;
+                x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? ConstantValues.MccheyneColor1 : Color.White;
+                x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? ConstantValues.MccheyneColor2 : Color.White;
+                x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? ConstantValues.MccheyneColor3 : Color.White;
+                x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? ConstantValues.MccheyneColor4 : Color.White;
+                x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? ConstantValues.MccheyneColor5 : Color.White;
             });
         }
 
@@ -153,31 +153,31 @@ namespace TodaysManna.ViewModel
                 if (x.Ranges[0].Id == val)
                 {
                     x.Ranges[0].IsChecked = !x.Ranges[0].IsChecked;
-                    x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.FromHex("#DFE9E8") : Color.White;
+                    x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? ConstantValues.MccheyneColor1 : Color.White;
                     Preferences.Set(val, x.Ranges[0].IsChecked);
                 }
                 else if (x.Ranges[1].Id == val)
                 {
                     x.Ranges[1].IsChecked = !x.Ranges[1].IsChecked;
-                    x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.FromHex("#9CC0BA") : Color.White;
+                    x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? ConstantValues.MccheyneColor2 : Color.White;
                     Preferences.Set(val, x.Ranges[1].IsChecked);
                 }
                 else if (x.Ranges[2].Id == val)
                 {
                     x.Ranges[2].IsChecked = !x.Ranges[2].IsChecked;
-                    x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.FromHex("#D07D7B") : Color.White;
+                    x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? ConstantValues.MccheyneColor3 : Color.White;
                     Preferences.Set(val, x.Ranges[2].IsChecked);
                 }
                 else if (x.Ranges[3].Id == val)
                 {
                     x.Ranges[3].IsChecked = !x.Ranges[3].IsChecked;
-                    x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.FromHex("#E7CBB0") : Color.White;
+                    x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? ConstantValues.MccheyneColor4 : Color.White;
                     Preferences.Set(val, x.Ranges[3].IsChecked);
                 }
                 else if (x.Ranges[4].Id == val)
                 {
                     x.Ranges[4].IsChecked = !x.Ranges[4].IsChecked;
-                    x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.FromHex("#E9DDC8") : Color.White;
+                    x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? ConstantValues.MccheyneColor5 : Color.White;
                     Preferences.Set(val, x.Ranges[4].IsChecked);
                 }
             });
