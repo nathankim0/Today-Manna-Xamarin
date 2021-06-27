@@ -237,11 +237,11 @@ namespace TodaysManna
                             x.Ranges[i].IsChecked = true;
                             Preferences.Set(x.Ranges[i].Id, x.Ranges[i].IsChecked);
                         }
-                        x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Color.FromHex("#DFE9E8") : Color.White;
-                        x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Color.FromHex("#9CC0BA") : Color.White;
-                        x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Color.FromHex("#D07D7B") : Color.White;
-                        x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Color.FromHex("#E7CBB0") : Color.White;
-                        x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Color.FromHex("#E9DDC8") : Color.White;
+                        x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? ConstantValues.MccheyneColor1 : Color.White;
+                        x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? ConstantValues.MccheyneColor2 : Color.White;
+                        x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? ConstantValues.MccheyneColor3 : Color.White;
+                        x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? ConstantValues.MccheyneColor4 : Color.White;
+                        x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? ConstantValues.MccheyneColor5 : Color.White;
                     }
                 });
                 ScrollToToday(false);
