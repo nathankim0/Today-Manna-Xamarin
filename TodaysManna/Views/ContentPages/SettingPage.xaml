@@ -92,6 +92,14 @@
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>
+                        <ViewCell Tapped="OnLogoutButtonClicked">
+                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                                <Label
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="드롭박스 로그아웃"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
                     </TableSection>
 
                     <TableSection Title="지원">

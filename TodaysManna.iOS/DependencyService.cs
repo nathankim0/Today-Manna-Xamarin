@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 [assembly: Dependency(typeof(iOSKeyboardHelper))]
 [assembly: Dependency(typeof(EventTrackerIOS))]
+[assembly: Dependency(typeof(IClearCookiesImplementation))]
 
 namespace TodaysManna.iOS
 {
@@ -52,6 +53,16 @@ namespace TodaysManna.iOS
             var parametersDictionary =
                 NSDictionary<NSString, NSObject>.FromObjectsAndKeys(values.ToArray(), keys.ToArray(), keys.Count);
             Analytics.LogEvent(eventId, parametersDictionary);
+        }
+    }
+
+    public class IClearCookiesImplementation : IClearCookies
+    {
+        public void Clear()
+        {
+            NSHttpCookieStorage CookieStorage = NSHttpCookieStorage.SharedStorage;
+            foreach (var cookie in CookieStorage.Cookies)
+                CookieStorage.DeleteCookie(cookie);
         }
     }
 }

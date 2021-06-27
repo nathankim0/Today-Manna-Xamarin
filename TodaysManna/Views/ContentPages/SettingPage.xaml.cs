@@ -69,6 +69,21 @@ namespace TodaysManna.Views
             await viewModel.restoreDropBoxService.Authorize();
         }
 
+        private async void OnLogoutButtonClicked(object sender, EventArgs e)
+        {
+            FirebaseEventService.SendEventOnPlatformSpecific("setting_logout");
+
+            if (!await Application.Current.MainPage.DisplayAlert("", "백업 연결된 드롭박스에서 로그아웃 하시겠습니까?", "확인", "취소"))
+            {
+                IsBusy = false;
+                return;
+            }
+            IsBusy = true;
+
+            viewModel.Logout();
+        }
+
+
         private async void OnOpenStoreButtonClicked(object sender, EventArgs e)
         {
             FirebaseEventService.SendEventOnPlatformSpecific("setting_review");

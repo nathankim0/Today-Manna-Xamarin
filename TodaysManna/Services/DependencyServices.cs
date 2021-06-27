@@ -29,4 +29,9 @@ namespace TodaysManna
 
         void DisableNotification();
     }
+
+    public interface IClearCookies
+    {
+        void Clear();
+    }
 }

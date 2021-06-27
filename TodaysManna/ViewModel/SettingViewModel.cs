@@ -19,16 +19,6 @@ namespace TodaysManna.ViewModel
         private string _isDatabase;
         public string IsDatabase { get => _isDatabase; set => SetProperty(ref _isDatabase, value); }
 
-        //public UriImageSource DropboxIcon => new UriImageSource
-        //{
-        //    Uri = new Uri(
-        //            new OnPlatform<string>
-        //            {
-        //                iOS = "https://www.dropbox.com/sh/zcxbhhco5x0bwmm/AAD6Nq7vmOBalRfOOe9oIa_va?dl=1",
-        //                Android = "https://www.dropbox.com/s/0l0fpn9yytzb1t7/dropbox-android.png?dl=1"
-        //            })
-        //};
-
         public SettingViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -143,6 +133,37 @@ namespace TodaysManna.ViewModel
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        public void Logout()
+        {
+            try
+            {
+                Application.Current.Properties.Clear();
+                DependencyService.Get<IClearCookies>().Clear();
+
+                saveDropBoxService = new DropBoxService();
+                restoreDropBoxService = new DropBoxService();
+                getMetadataDropBoxService = new DropBoxService();
+
+                saveDropBoxService.OnAuthenticated += BackupDatabase;
+                restoreDropBoxService.OnAuthenticated += RestoreDatabase;
+                getMetadataDropBoxService.OnAuthenticated += GetIsDatabase;
+
+                saveDropBoxService.OnDisappeared += ChangeBusyStatus;
+                restoreDropBoxService.OnDisappeared += ChangeBusyStatus;
+                getMetadataDropBoxService.OnDisappeared += ChangeBusyStatus;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                IsBusy = false;
+            }
+            finally
+            {
+                IsBusy = false;
+                IsDatabase = "";
             }
         }
     }
