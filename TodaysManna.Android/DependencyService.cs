@@ -17,6 +17,7 @@ namespace TodaysManna.Droid
 {
     public class DroidKeyboardHelper : IKeyboardHelper
     {
+        [Obsolete]
         public void HideKeyboard()
         {
             var inputMethodManager = Forms.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
@@ -30,11 +31,13 @@ namespace TodaysManna.Droid
     }
     public class EventTrackerDroid : IEventTracker
     {
+        [Obsolete]
         public void SendEvent(string eventId)
         {
             SendEvent(eventId, null);
         }
 
+        [Obsolete]
         public void SendEvent(string eventId, string paramName, string value)
         {
             SendEvent(eventId, new Dictionary<string, string>
@@ -43,6 +46,7 @@ namespace TodaysManna.Droid
             });
         }
 
+        [Obsolete]
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
             var firebaseAnalytics = FirebaseAnalytics.GetInstance(Forms.Context);

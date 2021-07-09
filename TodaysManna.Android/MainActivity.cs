@@ -1,12 +1,10 @@
 ﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
 using Android.Views;
 using Android.OS;
 using Xamarin.Forms;
 using Android.Content;
 using Plugin.LocalNotification;
-using ZXing.Mobile;
 
 namespace TodaysManna.Droid
 {
@@ -25,7 +23,7 @@ namespace TodaysManna.Droid
 
             base.OnCreate(savedInstanceState);
 
-            NotificationCenter.CreateNotificationChannel();
+            //NotificationCenter.CreateNotificationChannel();
 
             Forms.SetFlags("FastRenderers_Experimental");
 
@@ -33,11 +31,11 @@ namespace TodaysManna.Droid
             Xamarin.Essentials.Platform.Init(Application);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
 
-            NotificationCenter.NotifyNotificationTapped(Intent);
+            //NotificationCenter.NotifyNotificationTapped(Intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
@@ -51,7 +49,7 @@ namespace TodaysManna.Droid
         }
         protected override void OnNewIntent(Intent intent)
         {
-            NotificationCenter.NotifyNotificationTapped(intent);
+            //NotificationCenter.NotifyNotificationTapped(intent);
             base.OnNewIntent(intent);
         }
     }

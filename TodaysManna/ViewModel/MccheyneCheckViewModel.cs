@@ -141,11 +141,11 @@ namespace TodaysManna.ViewModel
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             MccheyneCheckList.ForEach(x =>
@@ -192,11 +192,11 @@ namespace TodaysManna.ViewModel
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
