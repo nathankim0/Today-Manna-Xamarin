@@ -72,11 +72,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             switch (flag)
@@ -117,11 +117,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             switch (flag)
@@ -231,11 +231,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_today");
@@ -278,11 +278,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             var mccheyne = e.SelectedItem as MccheyneContent;

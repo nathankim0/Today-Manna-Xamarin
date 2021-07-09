@@ -113,11 +113,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             FirebaseEventService.SendEventOnPlatformSpecific("manna_range_share");
@@ -163,11 +163,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             var selectedGrid = sender as Grid;
@@ -220,11 +220,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             FirebaseEventService.SendEventOnPlatformSpecific("manna_today");
@@ -274,11 +274,11 @@ namespace TodaysManna
             }
             catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                // Other error has occurred.
+                Console.WriteLine(ex.Message);
             }
 
             FirebaseEventService.SendEventOnPlatformSpecific("manna_refresh");

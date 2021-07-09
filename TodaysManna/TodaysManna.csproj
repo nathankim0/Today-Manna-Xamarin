@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
@@ -15,14 +15,15 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
-    <PackageReference Include="Dropbox.Api" Version="6.4.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
+    <PackageReference Include="Dropbox.Api" Version="6.10.2" />
     <PackageReference Include="Plugin.StoreReview" Version="3.2.0-beta" />
-    <PackageReference Include="Plugin.LocalNotification" Version="5.2.0" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Plugin.LocalNotification" Version="6.1.0" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -67,6 +68,8 @@
     <None Remove="Fonts\materialdesignicons.ttf" />
     <None Remove="Fonts\batang.otf" />
     <None Remove="Datas\beepsound.mp3" />
+    <None Remove="Plugin.LocalNotification" />
+    <None Remove="Plugin.FirebasePushNotification" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
