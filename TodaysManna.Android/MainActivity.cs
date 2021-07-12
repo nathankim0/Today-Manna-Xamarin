@@ -3,8 +3,6 @@ using Android.Content.PM;
 using Android.Views;
 using Android.OS;
 using Xamarin.Forms;
-using Android.Content;
-using Plugin.LocalNotification;
 
 namespace TodaysManna.Droid
 {
@@ -23,8 +21,6 @@ namespace TodaysManna.Droid
 
             base.OnCreate(savedInstanceState);
 
-            //NotificationCenter.CreateNotificationChannel();
-
             Forms.SetFlags("FastRenderers_Experimental");
 
             Rg.Plugins.Popup.Popup.Init(this);
@@ -34,8 +30,6 @@ namespace TodaysManna.Droid
             Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
-
-            //NotificationCenter.NotifyNotificationTapped(Intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
@@ -46,11 +40,6 @@ namespace TodaysManna.Droid
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
-        }
-        protected override void OnNewIntent(Intent intent)
-        {
-            //NotificationCenter.NotifyNotificationTapped(intent);
-            base.OnNewIntent(intent);
         }
     }
 }

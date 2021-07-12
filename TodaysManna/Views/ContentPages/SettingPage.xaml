@@ -46,7 +46,7 @@
                         </ViewCell>
                     </TableSection>
 
-                    <!--<TableSection Title="알람">
+                    <TableSection Title="알람">
                         <ViewCell>
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <TimePicker
@@ -65,7 +65,7 @@
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>
-                    </TableSection>-->
+                    </TableSection>
 
                     <TableSection Title="메모 백업/복원">
                         <ViewCell Tapped="OnBackupButtonClicked">
