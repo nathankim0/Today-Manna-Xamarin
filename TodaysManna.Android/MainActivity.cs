@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.Views;
 using Android.OS;
 using Xamarin.Forms;
+using Plugin.FirebasePushNotification;
+using Android.Content;
 
 namespace TodaysManna.Droid
 {
@@ -30,6 +32,8 @@ namespace TodaysManna.Droid
             Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
+
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
@@ -37,6 +41,7 @@ namespace TodaysManna.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
