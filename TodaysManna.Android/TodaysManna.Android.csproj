@@ -79,6 +79,9 @@
     <PackageReference Include="Xamarin.AndroidX.RecyclerView">
       <Version>1.2.1</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.FirebasePushNotification">
+      <Version>3.3.10</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -93,6 +96,7 @@
     <Compile Include="AppWidget.cs" />
     <Compile Include="Renderer\CustomTabbedPageRenderer.cs" />
     <Compile Include="Renderer\ZXingScannerViewRenderer.cs" />
+    <Compile Include="MainApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
