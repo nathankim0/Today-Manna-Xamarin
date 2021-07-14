@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using static TodaysManna.Models.JsonMccheyneRangeModel;
 using Plugin.FirebasePushNotification;
 using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace TodaysManna
 {
@@ -45,6 +46,14 @@ namespace TodaysManna
                 {
                     Debug.WriteLine($"ActionId: {p.Identifier}");
                 }
+                object value;
+                p.Data.TryGetValue("aps.alert.title", out value);
+                Debug.WriteLine($"value: {(string)value}");
+                if ((string)value == "title")
+                {
+                    (MainPage as MainTabbedPage).CurrentPage = (MainPage as MainTabbedPage).Children[1];
+                }
+
             };
         }
 

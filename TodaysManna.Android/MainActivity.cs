@@ -4,7 +4,6 @@ using Android.Views;
 using Android.OS;
 using Xamarin.Forms;
 using Plugin.FirebasePushNotification;
-using Android.Content;
 
 namespace TodaysManna.Droid
 {

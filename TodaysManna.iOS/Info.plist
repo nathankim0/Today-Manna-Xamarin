@@ -42,9 +42,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow access to the camera to scan barcodes</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.3.5</string>
+	<string>4.3.6</string>
 	<key>CFBundleVersion</key>
-	<string>4.3.5</string>
+	<string>4.3.6</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
