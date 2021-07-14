@@ -30,6 +30,13 @@ namespace TodaysManna.iOS
             LoadApplication(new App());
 
             Firebase.Core.App.Configure();
+
+            //InAppMessaging.SharedInstance.Init();
+            //InAppMessaging.SharedInstance.AutomaticDataCollectionEnabled = true;
+            //InAppMessaging.SharedInstance.Delegate = this;
+            //var CurrentVersion = InAppMessaging.CurrentVersion ?? "";
+            //Console.WriteLine($"CurrentVersion: {CurrentVersion}");
+
             FirebasePushNotificationManager.Initialize(options, true);
 
             return base.FinishedLaunching(app, options);

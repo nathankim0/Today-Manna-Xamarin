@@ -82,6 +82,9 @@
     <PackageReference Include="Plugin.FirebasePushNotification">
       <Version>3.3.10</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Activity">
+      <Version>1.2.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
