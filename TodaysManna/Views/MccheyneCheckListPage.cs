@@ -10,7 +10,7 @@ using Rg.Plugins.Popup.Services;
 using System.Threading;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna
 {

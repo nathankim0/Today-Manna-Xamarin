@@ -5,7 +5,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using TabbedPage = Xamarin.Forms.TabbedPage;
 using TodaysManna.Views;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -66,7 +66,7 @@ namespace TodaysManna
             };
             navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navMyPage = new NavigationPage(new MyPage())
+            navMyPage = new NavigationPage(new MemoPage())
             {
                 Title = "메모",
             };

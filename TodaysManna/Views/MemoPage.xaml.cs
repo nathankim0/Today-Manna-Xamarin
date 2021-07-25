@@ -1,18 +1,16 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+using TodaysManna.Constants;
+using TodaysManna.ViewModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
-    public partial class MyPage : ContentPage
+    public partial class MemoPage : ContentPage
     {
-        private MyPageViewModel myPageViewModel = new MyPageViewModel();
-        public MyPage()
+        private MemoPageViewModel myPageViewModel = new MemoPageViewModel();
+        public MemoPage()
         {
             InitializeComponent();
             BindingContext = myPageViewModel;
@@ -69,7 +67,7 @@ namespace TodaysManna
             {
                 FirebaseEventService.SendEventOnPlatformSpecific("mypage_memo_select");
 
-                await Navigation.PushAsync(new MyPage_EditMemo
+                await Navigation.PushAsync(new MemoEditPage
                 {
                     BindingContext = e.CurrentSelection.FirstOrDefault() as MemoItem
                 });
@@ -77,27 +75,5 @@ namespace TodaysManna
         }
     }
 
-    public class MyPageViewModel : INotifyPropertyChanged
-    {
-        public EventHandler<MemoItem> deleted;
-        public EventHandler<MemoItem> shared;
-
-        public ICommand DeleteCommand => new Command<MemoItem>(RemoveItem);
-        public ICommand ShareCommand => new Command<MemoItem>(ShareItem);
-
-        private void RemoveItem(MemoItem memoItem)
-        {
-            deleted?.Invoke(this, memoItem);
-        }
-        private void ShareItem(MemoItem memoItem)
-        {
-            shared?.Invoke(this, memoItem);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+    
 }

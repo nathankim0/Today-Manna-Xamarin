@@ -67,7 +67,6 @@
     <None Remove="Resources\FontFiles\" />
     <None Remove="Resources\FontFiles\batang.otf" />
     <None Remove="Resources\FontFiles\materialdesignicons.ttf" />
-    <None Remove="Resources\JsonFiles\BibleAt.json" />
     <None Remove="Resources\JsonFiles\mcc.json" />
     <None Remove="Resources\JsonFiles\MccheyneRange2.json" />
     <None Remove="Resources\beepsound.mp3" />
@@ -84,7 +83,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\FontFiles\batang.otf" />
     <EmbeddedResource Include="Resources\FontFiles\materialdesignicons.ttf" />
-    <EmbeddedResource Include="Resources\JsonFiles\BibleAt.json" />
     <EmbeddedResource Include="Resources\JsonFiles\mcc.json" />
     <EmbeddedResource Include="Resources\JsonFiles\MccheyneRange.json" />
     <EmbeddedResource Include="Resources\beepsound.mp3" />

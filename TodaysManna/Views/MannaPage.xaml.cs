@@ -4,9 +4,8 @@ using Xamarin.Forms;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
-using TodaysManna.Models;
 using System.Threading.Tasks;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -130,17 +129,10 @@ namespace TodaysManna
         {
             FirebaseEventService.SendEventOnPlatformSpecific("manna_english");
 
-            try
-            {
-                var uri = new Uri(((MannaViewModel)BindingContext)._completeAppUrl);
-                await Browser.OpenAsync(uri, BrowserLaunchMode.External);
-            }
-            catch
-            {
-                var uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
-                await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-            }
+            var uri = new Uri(((MannaViewModel)BindingContext)._completeUrl);
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
+
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
             var selectedGrid = sender as Grid;

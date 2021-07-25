@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 using TodaysManna.Models;
+using TodaysManna.Models.JsonMccheyneContentModel;
 
 namespace TodaysManna.Services
 {
@@ -22,6 +23,23 @@ namespace TodaysManna.Services
             }
 
             return ObjContactList.Ranges;
+        }
+
+        public static IEnumerable<Days> GetMccheyneBibleTextsFromJson()
+        {
+            var jsonFileName = "mcc.json";
+            var ObjContactList = new MccheyneList();
+
+            var assembly = typeof(MccheynePage).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Resources.JsonFiles.{jsonFileName}");
+
+            using (var reader = new StreamReader(stream))
+            {
+                var jsonString = reader.ReadToEnd();
+                ObjContactList = JsonConvert.DeserializeObject<MccheyneList>(jsonString);
+            }
+
+            return ObjContactList.DaysOfMccheyne;
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using TodaysManna.Models;
-using static TodaysManna.Models.JsonMccheyneContentModel;
+using TodaysManna.Models.JsonMccheyneContentModel;
+using TodaysManna.Services;
 
 namespace TodaysManna.ViewModel
 {
@@ -25,9 +23,6 @@ namespace TodaysManna.ViewModel
 
         private ObservableCollection<MccheyneContent> _mccheyneContents4 = new ObservableCollection<MccheyneContent>();
         public ObservableCollection<MccheyneContent> MccheyneContents4 { get => _mccheyneContents4; set => SetProperty(ref _mccheyneContents4, value); }
-
-        private JsonMccheyneContentModel _JsonMccheyneData = new JsonMccheyneContentModel();
-        public JsonMccheyneContentModel JsonMccheyneData { get => _JsonMccheyneData; set => SetProperty(ref _JsonMccheyneData, value); }
 
         private string _mccheyneRange;
         public string MccheyneRange { get => _mccheyneRange; set => SetProperty(ref _mccheyneRange, value); }
@@ -77,7 +72,7 @@ namespace TodaysManna.ViewModel
             DisplayDateRange = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
             var dateTimeString=dateTime.ToString("M_d");
 
-            var daysOfMccheynes = GetJsonBible();
+            var daysOfMccheynes = GetJsonService.GetMccheyneBibleTextsFromJson();
 
             var todayProperty = "Mccheynes" + dateTimeString;
 
@@ -242,29 +237,15 @@ namespace TodaysManna.ViewModel
             return Task.CompletedTask;
         }
 
-        private IEnumerable<Days> GetJsonBible()
-        {
-            var jsonFileName = "mcc.json";
-            var ObjContactList = new MccheyneList();
-
-            var assembly = typeof(MccheynePage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Resources.JsonFiles.{jsonFileName}");
-
-            using (var reader = new StreamReader(stream))
-            {
-                var jsonString = reader.ReadToEnd();  
-                ObjContactList = JsonConvert.DeserializeObject<MccheyneList>(jsonString);
-            }
-
-            return ObjContactList.DaysOfMccheyne;
-        }
+       
 
         public Task GetMccheyneRange(DateTime thisDate)
         {
             var findMccheyneDate = thisDate.ToString("M-d");
-            //MccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
+
             var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
+
             return Task.CompletedTask;
         }
     }
