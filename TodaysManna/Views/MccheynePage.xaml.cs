@@ -7,6 +7,7 @@ using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
 using System.Threading.Tasks;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -65,20 +66,6 @@ namespace TodaysManna
 
         private void PageToLeft()
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             switch (flag)
             {
                 case 2:

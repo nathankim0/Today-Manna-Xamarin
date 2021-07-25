@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using Newtonsoft.Json;
 using TodaysManna.Models;
-using static TodaysManna.Models.JsonMccheyneRangeModel;
+using TodaysManna.Services;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -23,10 +21,11 @@ namespace TodaysManna
 
             try
             {
-                JsonMannaData = await _restService.GetMannaDataAsync(Constants.MannaEndpoint);
+                JsonMannaData = await _restService.GetMannaDataAsync(Rests.MannaEndpoint);
 
-                var today = DateTime.Now.ToString("M-d");
-                var todayMccheyneRange = mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
+                var findMccheyneDate = DateTime.Now.ToString("M-d");
+                var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
+                var todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
                 var MannaShareRange = $"만나: {JsonMannaData.Verse}";
                 var McShareRange = $"맥체인: {todayMccheyneRange}";
@@ -49,28 +48,12 @@ namespace TodaysManna
             mccheyneRanges = new List<MccheyneRange>();
             try
             {
-                mccheyneRanges = GetJsonMccheyneRange();
+                mccheyneRanges = GetJsonService.GetMccheyneRangesFromJson();
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
             }
-        }
-
-        private static List<MccheyneRange> GetJsonMccheyneRange()
-        {
-            var jsonFileName = "MccheyneRange.json";
-            var ObjContactList = new MccheyneRangeList();
-            var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
-
-            using (var reader = new StreamReader(stream))
-            {
-                var jsonString = reader.ReadToEnd();
-                ObjContactList = JsonConvert.DeserializeObject<MccheyneRangeList>(jsonString);
-            }
-
-            return ObjContactList.Ranges;
         }
     }
 }

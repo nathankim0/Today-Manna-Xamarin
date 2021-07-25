@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -10,7 +11,7 @@ namespace TodaysManna
     {
         static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
         {
-            return new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+            return new SQLiteAsyncConnection(Rests.DatabasePath, Rests.Flags);
         });
 
         static SQLiteAsyncConnection Database => lazyInitializer.Value;

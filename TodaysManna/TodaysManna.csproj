@@ -29,18 +29,16 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModel\" />
     <Folder Include="Views\" />
-    <Folder Include="Rest\" />
-    <Folder Include="Datas\" />
-    <Folder Include="Fonts\" />
-    <Folder Include="Views\ContentPages\" />
     <Folder Include="Controls\" />
     <Folder Include="Controls\BottomSheets\" />
     <Folder Include="Controls\Popups\" />
     <Folder Include="Services\" />
     <Folder Include="Models\Manna\" />
     <Folder Include="Models\Mccheyne\" />
-    <Folder Include="Models\MccheyneCheck\" />
     <Folder Include="Models\Memo\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\JsonFiles\" />
+    <Folder Include="Resources\FontFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
@@ -61,16 +59,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Datas\BibleAt.json" />
-    <None Remove="Datas\mcc.json" />
-    <None Remove="Datas\MccheyneRange.json" />
-    <None Remove="Datas\MccheyneRange2.json" />
-    <None Remove="Fonts\materialdesignicons.ttf" />
-    <None Remove="Fonts\batang.otf" />
-    <None Remove="Datas\beepsound.mp3" />
     <None Remove="Plugin.LocalNotification" />
     <None Remove="Plugin.FirebasePushNotification" />
     <None Remove="Xamarin.Forms" />
+    <None Remove="Resources\" />
+    <None Remove="Resources\JsonFiles\" />
+    <None Remove="Resources\FontFiles\" />
+    <None Remove="Resources\FontFiles\batang.otf" />
+    <None Remove="Resources\FontFiles\materialdesignicons.ttf" />
+    <None Remove="Resources\JsonFiles\BibleAt.json" />
+    <None Remove="Resources\JsonFiles\mcc.json" />
+    <None Remove="Resources\JsonFiles\MccheyneRange2.json" />
+    <None Remove="Resources\beepsound.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
@@ -82,12 +82,11 @@
     <EmbeddedResource Remove="Views\ContentPages\MannaCalendarView.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Datas\BibleAt.json" />
-    <EmbeddedResource Include="Datas\mcc.json" />
-    <EmbeddedResource Include="Datas\MccheyneRange.json" />
-    <EmbeddedResource Include="Datas\MccheyneRange2.json" />
-    <EmbeddedResource Include="Fonts\materialdesignicons.ttf" />
-    <EmbeddedResource Include="Fonts\batang.otf" />
-    <EmbeddedResource Include="Datas\beepsound.mp3" />
+    <EmbeddedResource Include="Resources\FontFiles\batang.otf" />
+    <EmbeddedResource Include="Resources\FontFiles\materialdesignicons.ttf" />
+    <EmbeddedResource Include="Resources\JsonFiles\BibleAt.json" />
+    <EmbeddedResource Include="Resources\JsonFiles\mcc.json" />
+    <EmbeddedResource Include="Resources\JsonFiles\MccheyneRange.json" />
+    <EmbeddedResource Include="Resources\beepsound.mp3" />
   </ItemGroup>
 </Project>

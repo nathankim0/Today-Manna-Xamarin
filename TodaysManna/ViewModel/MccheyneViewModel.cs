@@ -29,8 +29,8 @@ namespace TodaysManna.ViewModel
         private JsonMccheyneContentModel _JsonMccheyneData = new JsonMccheyneContentModel();
         public JsonMccheyneContentModel JsonMccheyneData { get => _JsonMccheyneData; set => SetProperty(ref _JsonMccheyneData, value); }
 
-        private string _verseRange;
-        public string VerseRange { get => _verseRange; set => SetProperty(ref _verseRange, value); }
+        private string _mccheyneRange;
+        public string MccheyneRange { get => _mccheyneRange; set => SetProperty(ref _mccheyneRange, value); }
 
         private string _displayDateRange;
         public string DisplayDateRange { get => _displayDateRange; set => SetProperty(ref _displayDateRange, value); }
@@ -221,7 +221,7 @@ namespace TodaysManna.ViewModel
                                 MccheyneContents4.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
-                                    FullRange = _verseRange,
+                                    FullRange = _mccheyneRange,
                                     Book = node2.Book,
                                     FirstNumber = _firstNum,
                                     SecondNumber = _secondNum,
@@ -248,7 +248,7 @@ namespace TodaysManna.ViewModel
             var ObjContactList = new MccheyneList();
 
             var assembly = typeof(MccheynePage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Resources.JsonFiles.{jsonFileName}");
 
             using (var reader = new StreamReader(stream))
             {
@@ -261,8 +261,10 @@ namespace TodaysManna.ViewModel
 
         public Task GetMccheyneRange(DateTime thisDate)
         {
-            var date = thisDate.ToString("M-d");
-            VerseRange = App.mccheyneRanges.Find(x => x.Date.Equals(date)).Range;
+            var findMccheyneDate = thisDate.ToString("M-d");
+            //MccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
+            var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
+            MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
             return Task.CompletedTask;
         }
     }

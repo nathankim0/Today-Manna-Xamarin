@@ -5,11 +5,11 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Newtonsoft.Json;
 using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static TodaysManna.Constants;
 using static TodaysManna.Models.BibleAtData;
 
 namespace TodaysManna.ViewModel
@@ -92,7 +92,9 @@ namespace TodaysManna.ViewModel
             }
 
             var today = DateTime.Now.ToString("M-d");
-            todayMccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(today)).Range;
+
+            var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(today));
+            todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
         }
 
         private async void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
@@ -112,7 +114,7 @@ namespace TodaysManna.ViewModel
         {
             try
             {
-                await GetJsonMannaAndSetContents(Constants.MannaEndpoint);
+                await GetJsonMannaAndSetContents(Rests.MannaEndpoint);
             }
             catch(Exception e)
             {
@@ -136,10 +138,11 @@ GetManna(DateTime dateTime)
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
 
             var newDateString = dateTime.ToString("yyyy-MM-dd");
-            var endPoint = Constants.MannaEndpoint + newDateString;
+            var endPoint = Rests.MannaEndpoint + newDateString;
 
             var findMccheyneDate = dateTime.ToString("M-d");
-            todayMccheyneRange = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate)).Range;
+            var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
+            todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
             try
             {
@@ -221,7 +224,7 @@ GetManna(DateTime dateTime)
             var ObjContactList = new BibleList();
 
             var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Datas.{jsonFileName}");
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Resources.JsonFiles.{jsonFileName}");
             using (var reader = new StreamReader(stream))
             {
                 var jsonString = reader.ReadToEnd();

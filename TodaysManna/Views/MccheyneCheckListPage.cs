@@ -10,6 +10,7 @@ using Rg.Plugins.Popup.Services;
 using System.Threading;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -237,11 +238,11 @@ namespace TodaysManna
                             x.Ranges[i].IsChecked = true;
                             Preferences.Set(x.Ranges[i].Id, x.Ranges[i].IsChecked);
                         }
-                        x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? ConstantValues.MccheyneColor1 : Color.White;
-                        x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? ConstantValues.MccheyneColor2 : Color.White;
-                        x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? ConstantValues.MccheyneColor3 : Color.White;
-                        x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? ConstantValues.MccheyneColor4 : Color.White;
-                        x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? ConstantValues.MccheyneColor5 : Color.White;
+                        x.Ranges[0].Color = x.Ranges[0].IsChecked == true ? Colors.MccheyneColor1 : Color.White;
+                        x.Ranges[1].Color = x.Ranges[1].IsChecked == true ? Colors.MccheyneColor2 : Color.White;
+                        x.Ranges[2].Color = x.Ranges[2].IsChecked == true ? Colors.MccheyneColor3 : Color.White;
+                        x.Ranges[3].Color = x.Ranges[3].IsChecked == true ? Colors.MccheyneColor4 : Color.White;
+                        x.Ranges[4].Color = x.Ranges[4].IsChecked == true ? Colors.MccheyneColor5 : Color.White;
                     }
                 });
                 ScrollToToday(false);
