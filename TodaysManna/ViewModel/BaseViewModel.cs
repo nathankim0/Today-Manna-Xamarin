@@ -64,6 +64,5 @@ namespace TodaysManna.ViewModel
             get => _isRefreshing;
             set => SetProperty(ref _isRefreshing, value);
         }
-
     }
 }

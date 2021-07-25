@@ -7,7 +7,7 @@ using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
 using System.Threading.Tasks;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -97,20 +97,6 @@ namespace TodaysManna
 
         private void PageToRight()
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             switch (flag)
             {
                 case 1:
@@ -205,26 +191,10 @@ namespace TodaysManna
             await Task.WhenAll(task1, task2);
 
             viewModel.IsRefreshing = false;
-
-            
         }
 
         private void OnTodayButtonClicked(object sender, EventArgs e)
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_today");
 
             datepicker.Date = DateTime.Now;
@@ -257,20 +227,6 @@ namespace TodaysManna
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
-
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
 
             var mccheyne = e.SelectedItem as MccheyneContent;
             shareRangeString = $"({mccheyne.Book}{mccheyne.Verse}) {mccheyne.Content}\n";
@@ -362,6 +318,5 @@ namespace TodaysManna
             };
             await App.Database.SaveItemAsync(memoItem);
         }
-
     }
 }

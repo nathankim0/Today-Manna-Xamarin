@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna
 {

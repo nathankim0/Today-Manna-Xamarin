@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TodaysManna.Models;
 using TodaysManna.Services;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna
 {

@@ -4,16 +4,15 @@ using Xamarin.Forms;
 
 namespace TodaysManna
 {
-    public partial class MyPage_EditMemo : ContentPage
+    public partial class MemoEditPage : ContentPage
     {
-        public MyPage_EditMemo()
+        public MemoEditPage()
         {
             InitializeComponent();
         }
         private async void OnSaveClicked(object sender, EventArgs e)
         {
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_buttonclicked");
-            //((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
         }
@@ -24,14 +23,11 @@ namespace TodaysManna
 
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_share");
 
-            string verse = "";
-            string note = "";
             string text = "";
-
             try
             {
-                verse = memoItem.Verse;
-                note = memoItem.Note;
+                string verse = memoItem.Verse;
+                string note = memoItem.Note;
                 text = $"{verse}\n{note}";
             }
             catch(Exception exception)
@@ -68,7 +64,6 @@ namespace TodaysManna
         {
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_disappearing");
 
-            //((MemoItem)BindingContext).Date = DateTime.Now;
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
 
             base.OnDisappearing();

@@ -4,7 +4,7 @@ using Xamarin.Forms;
 using TodaysManna.Services;
 using System.Diagnostics;
 using Xamarin.Essentials;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna.ViewModel
 {

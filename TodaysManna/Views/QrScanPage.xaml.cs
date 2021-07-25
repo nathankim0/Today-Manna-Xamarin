@@ -10,6 +10,7 @@ namespace TodaysManna
     {
         Plugin.SimpleAudioPlayer.ISimpleAudioPlayer Player;
         QrScanListPage qrScanListPage = new QrScanListPage();
+
         public QrScanPage()
         {
             InitializeComponent();

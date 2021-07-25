@@ -5,7 +5,7 @@ using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using static TodaysManna.Constants;
+using TodaysManna.Constants;
 
 namespace TodaysManna.ViewModel
 {

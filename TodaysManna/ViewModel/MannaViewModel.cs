@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static TodaysManna.Constants;
-using static TodaysManna.Models.BibleAtData;
+using TodaysManna.Constants;
+using TodaysManna.ExtensionMethods;
+using System.Diagnostics;
 
 namespace TodaysManna.ViewModel
 {
     public class MannaViewModel : PageBaseViewModel
     {
         private readonly RestService _restService;
-        
+
         private string _webBibleUrl = "https://www.bible.com/ko/bible/1/"; //https://www.bible.com/ko/bible/GEN.1.KJV
         private string _appBibleUrl = "youversion://bible?reference=";
 
@@ -26,9 +23,9 @@ namespace TodaysManna.ViewModel
 
         public static string todayMccheyneRange;
 
-        private string _bib = "창";
-        private int _jang= 1;
-        
+        private string _bookKor = "창";
+        private int _jang = 1;
+
         private ObservableCollection<MannaContent> _mannaContents = new ObservableCollection<MannaContent>();
         public ObservableCollection<MannaContent> MannaContents { get => _mannaContents; set => SetProperty(ref _mannaContents, value); }
 
@@ -52,7 +49,7 @@ namespace TodaysManna.ViewModel
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
 
             _restService = new RestService();
-            
+
             Connectivity.ConnectivityChanged += OnConnectivityChanged;
 
             InitDate();
@@ -116,24 +113,14 @@ namespace TodaysManna.ViewModel
             {
                 await GetJsonMannaAndSetContents(Rests.MannaEndpoint);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                System.Diagnostics.Debug.Fail("# MannaViewModel GetManna() \n" + e.Message);
+                Debug.Fail("# MannaViewModel GetManna() \n" + e.Message);
                 await Application.Current.MainPage.DisplayAlert("만나 로드 실패", "", "확인");
             }
         }
 
-        /// <summary>
-        /// 서버에서 만나 데이터 가져오기
-        /// </summary>
-        /// <param name="dateTime">지정 날짜</param>
-        public async 
-        /// <summary>
-        /// 서버에서 만나 데이터 가져오기
-        /// </summary>
-        /// <param name="dateTime">지정 날짜</param>
-        Task
-GetManna(DateTime dateTime)
+        public async Task GetManna(DateTime dateTime)
         {
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
 
@@ -150,7 +137,7 @@ GetManna(DateTime dateTime)
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.Fail("# MannaViewModel GetManna(DateTime dateTime) \n" + e.Message);
+                Debug.Fail("# MannaViewModel GetManna(DateTime dateTime) \n" + e.Message);
                 await Application.Current.MainPage.DisplayAlert("만나 로드 실패", "", "확인");
             }
         }
@@ -160,43 +147,35 @@ GetManna(DateTime dateTime)
             JsonMannaData = new JsonMannaModel();
             JsonMannaData = await _restService.GetMannaDataAsync(endPoint);
 
-            string tmpBibleAt = "창1";
-            string tmpVerseNumRange = "1-10";
-
             Console.WriteLine("--------------------------------------------------------");
-            Console.WriteLine("***** GetJsonMannaAndSetContents *****");
+            Console.WriteLine("***** GetJsonMannaAndSetContents() *****\n");
 
+            var tmpBibleAt = "창1";
             try
             {
                 tmpBibleAt = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":"));
-                Console.WriteLine("tmpBibleAt: " + tmpBibleAt);
             }
             catch (Exception e)
             {
-                tmpBibleAt = "창1";
-                System.Diagnostics.Debug.Fail("# MannaViewModel GetJsonMannaAndSetContents tmpBibleAt \n" + e.Message);
+                Debug.Fail(this + e.Message);
+                Console.WriteLine("--------------------------------------------------------\n");
             }
 
+            var tmpVerseNumRange= "1-10";
             try
             {
                 tmpVerseNumRange = Regex.Replace(JsonMannaData.Verse.Substring(JsonMannaData.Verse.IndexOf(":") + 1), "~", "-");
-                Console.WriteLine("tmpVerseNumRange: " + tmpVerseNumRange);
             }
             catch (Exception e)
             {
-                tmpVerseNumRange = "1-10";
-                System.Diagnostics.Debug.Fail("# MannaViewModel GetJsonMannaAndSetContents tmpVerseNumRange \n" + e.Message);
+                Debug.Fail(this + e.Message);
+                Console.WriteLine("--------------------------------------------------------\n");
             }
 
-            _bib = Regex.Replace(tmpBibleAt, @"\d", "");
+            _bookKor = Regex.Replace(tmpBibleAt, @"\d", "");
             _jang = int.Parse(Regex.Replace(tmpBibleAt, @"\D", ""));
 
-            var _bibles = new List<Bible>();
-            _bibles = GetJsonBible();
-
-            var engBib = _bibles.Find(x => x.Kor.Equals(_bib));
-
-            var redirectUrl = $"{engBib.Eng}.{_jang}.{tmpVerseNumRange}.NKJV";
+            var redirectUrl = $"{_bookKor.BibleBookKorToEng()}.{_jang}.{tmpVerseNumRange}.NKJV";
 
             _completeUrl = $"{_webBibleUrl}{redirectUrl}";
             _completeAppUrl = $"{_appBibleUrl}{redirectUrl}";
@@ -206,32 +185,14 @@ GetManna(DateTime dateTime)
             MannaShareRange = $"만나: {JsonMannaData.Verse}";
             McShareRange = $"맥체인: {todayMccheyneRange}";
 
-            Console.WriteLine("_bib: " + _bib);
+            Console.WriteLine("_bib: " + _bookKor);
             Console.WriteLine("_jang: " + _jang);
-            Console.WriteLine("_jang: " + engBib);
             Console.WriteLine("redirectUrl: " + redirectUrl);
             Console.WriteLine("_completeUrl: " + _completeUrl);
             Console.WriteLine("_completeAppUrl: " + _completeAppUrl);
             Console.WriteLine("MannaShareRange: " + MannaShareRange);
             Console.WriteLine("McShareRange: " + McShareRange);
-
-            Console.WriteLine("--------------------------------------------------------");
-        }
-
-        private List<Bible> GetJsonBible()
-        {
-            var jsonFileName = "BibleAt.json";
-            var ObjContactList = new BibleList();
-
-            var assembly = typeof(MannaPage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Resources.JsonFiles.{jsonFileName}");
-            using (var reader = new StreamReader(stream))
-            {
-                var jsonString = reader.ReadToEnd();
-                ObjContactList = JsonConvert.DeserializeObject<BibleList>(jsonString);
-            }
-            
-            return ObjContactList.Bibles;
+            Console.WriteLine("--------------------------------------------------------\n");
         }
 
         private void SetMannaContents()
@@ -240,13 +201,13 @@ GetManna(DateTime dateTime)
             {
                 MannaContents.Clear();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                System.Diagnostics.Debug.Fail("# MannaViewModel SetMannaContents \n" + e.Message);
+                Debug.Fail("# MannaViewModel SetMannaContents \n" + e.Message);
             }
 
             var allContents = "";
-            var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":")+1);
+            var bookAndJang = JsonMannaData.Verse.Substring(0, JsonMannaData.Verse.IndexOf(":") + 1);
 
             foreach (var node in JsonMannaData.Contents)
             {
