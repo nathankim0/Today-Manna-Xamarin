@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {

@@ -6,6 +6,7 @@ using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
 using System.Threading.Tasks;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
@@ -106,20 +107,6 @@ namespace TodaysManna
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             FirebaseEventService.SendEventOnPlatformSpecific("manna_range_share");
 
             var shareText = DateTime.Now.ToString("yyyy-MM-dd(dddd)")+"\n"+ mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
@@ -156,20 +143,6 @@ namespace TodaysManna
         }
         private void OnCollectionViewItemTapped(object sender, EventArgs e)
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             var selectedGrid = sender as Grid;
 
             var verseText = verse.Text;
@@ -213,20 +186,6 @@ namespace TodaysManna
 
         private void OnMannaTodayButtonClicked(object sender, EventArgs e)
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             FirebaseEventService.SendEventOnPlatformSpecific("manna_today");
 
             mannaDatepicker.Date = DateTime.Now;
@@ -267,20 +226,6 @@ namespace TodaysManna
 
         private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
-            try
-            {
-                // Perform click feedback
-                HapticFeedback.Perform(HapticFeedbackType.Click);
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             FirebaseEventService.SendEventOnPlatformSpecific("manna_refresh");
 
             mannaDatepicker.MaximumDate = DateTime.Now;

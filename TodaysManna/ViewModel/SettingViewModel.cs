@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using TodaysManna.Services;
 using System.Diagnostics;
 using Xamarin.Essentials;
+using static TodaysManna.Constants;
 
 namespace TodaysManna.ViewModel
 {
@@ -55,7 +56,7 @@ namespace TodaysManna.ViewModel
             try
             {
                 // Read the database from app storage
-                var dbMetadata = await getMetadataDropBoxService.GetMetadata($"/{Constants.DatabaseFilename}");
+                var dbMetadata = await getMetadataDropBoxService.GetMetadata($"/{Rests.DatabaseFilename}");
                 if (dbMetadata != null)
                 {
                     var createDateTime = dbMetadata.AsFile.ServerModified;
@@ -78,10 +79,10 @@ namespace TodaysManna.ViewModel
             try
             {
                 // Read the database from app storage
-                byte[] db = File.ReadAllBytes(Constants.DatabasePath);
+                byte[] db = File.ReadAllBytes(Rests.DatabasePath);
 
                 // Write the database to DropBox folder
-                var isSuccess = await saveDropBoxService.WriteFile(db, $"/{Constants.DatabaseFilename}");
+                var isSuccess = await saveDropBoxService.WriteFile(db, $"/{Rests.DatabaseFilename}");
                 if (isSuccess != null)
                 {
                     //await Application.Current.MainPage.DisplayAlert("Drobpox", "백업 성공!", "OK");
@@ -109,12 +110,12 @@ namespace TodaysManna.ViewModel
             try
             {
                 // Read the database from DropBox folder
-                var db = await restoreDropBoxService.ReadFile($"/{Constants.DatabaseFilename}");
+                var db = await restoreDropBoxService.ReadFile($"/{Rests.DatabaseFilename}");
 
                 if (db != null)
                 {
                     // Write the database to storage
-                    File.WriteAllBytes(Constants.DatabasePath, db);
+                    File.WriteAllBytes(Rests.DatabasePath, db);
 
                     //await Application.Current.MainPage.DisplayAlert("Drobpox", "복원 성공!", "확인");
                 }

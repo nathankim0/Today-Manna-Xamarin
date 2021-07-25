@@ -100,7 +100,7 @@
                         </StackLayout>
                         <Label
                             FontAttributes="Bold"
-                            Text="{Binding VerseRange}"
+                            Text="{Binding MccheyneRange}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}">
                             <Label.FontSize>

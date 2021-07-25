@@ -76,7 +76,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppDelegates\UserNotificationCenterDelegate.cs" />
     <Compile Include="Renderer\WheelTimePickerRenderer.cs" />
-    <Compile Include="Renderer\CustomPageRenderer.cs" />
     <Compile Include="DependencyService.cs" />
     <Compile Include="Renderer\CustomTabbedPageRenderer.cs" />
     <Compile Include="Renderer\CustomButtonRenderer.cs" />

@@ -5,6 +5,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using TabbedPage = Xamarin.Forms.TabbedPage;
 using TodaysManna.Views;
+using static TodaysManna.Constants;
 
 namespace TodaysManna
 {
