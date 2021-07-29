@@ -1,189 +1,166 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+﻿<ContentPage
     x:Class="TodaysManna.MccheynePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
-    ios:Page.PrefersHomeIndicatorAutoHidden="true"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
-    NavigationPage.HasNavigationBar="True"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
 
-    <NavigationPage.TitleView>
-        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
-            <Label
-                BackgroundColor="Transparent"
-                FontAttributes="Bold"
-                HorizontalOptions="StartAndExpand"
-                Text="맥체인"
-                VerticalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        Android="26"
-                        iOS="24" />
-                </Label.FontSize>
-            </Label>
-            <ImageButton
-                BackgroundColor="Transparent"
-                Clicked="OnTodayButtonClicked"
-                HorizontalOptions="EndAndExpand"
-                VerticalOptions="Center">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="materialdesignicons"
-                        Glyph="{x:Static local:FontIcons.Refresh}"
-                        Size="30"
-                        Color="{AppThemeBinding Dark=White,
+    <!--#region Resources-->
+    <ContentPage.Resources>
+        <DataTemplate x:Key="headerTemplate">
+            <StackLayout Padding="15,10,15,10" Spacing="0">
+                <Label
+                    FontSize="12"
+                    Text="{Binding MccheyneRange}"
+                    TextColor="Gray" />
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="contentTemplate">
+            <StackLayout Padding="15,0,15,30" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+                <Label
+                    FontAttributes="Bold"
+                    IsVisible="{Binding IsHalfVerseVisible}"
+                    Text="{Binding HalfVerse}"
+                    TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}">
-                        <FontImageSource.Size>
+                    <Label.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="20"
+                            iOS="18" />
+                    </Label.FontSize>
+                </Label>
+                <StackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
+                                <Span LineHeight="1.7" Text=" " />
+                                <Span LineHeight="1.7" Text="{Binding Content}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.FontSize>
                             <OnPlatform
                                 x:TypeArguments="x:Double"
-                                Android="32"
-                                iOS="30" />
-                        </FontImageSource.Size>
-                    </FontImageSource>
-                </ImageButton.Source>
-            </ImageButton>
-            <ImageButton
-                Padding="10,0,5,0"
-                BackgroundColor="Transparent"
-                Clicked="OnDateButtonClicked"
-                HorizontalOptions="End">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="materialdesignicons"
-                        Glyph="{x:Static local:FontIcons.CalendarBlank}"
-                        Size="25"
-                        Color="{AppThemeBinding Dark=White,
-                                                Light=Black}">
-                        <FontImageSource.Size>
-                            <OnPlatform
-                                x:TypeArguments="x:Double"
-                                Android="32"
-                                iOS="30" />
-                        </FontImageSource.Size>
-                    </FontImageSource>
-                </ImageButton.Source>
+                                Android="18"
+                                iOS="16" />
+                        </Label.FontSize>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </DataTemplate>
 
-            </ImageButton>
+        <Style x:Key="collectionViewStyle" TargetType="CollectionView">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=#2e2e2e, Light=White}" />
+            <Setter Property="VerticalOptions" Value="Fill" />
+            <Setter Property="ItemTemplate" Value="{x:StaticResource contentTemplate}" />
+            <Setter Property="HeaderTemplate" Value="{x:StaticResource headerTemplate}" />
+            <Setter Property="Header" Value="{Binding .}" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Always" />
+            <Setter Property="Footer" Value="&#10;" />
+        </Style>
+
+        <Style x:Key="tabViewItemStyle" TargetType="xct:TabViewItem">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="TextColorSelected" Value="Black" />
+        </Style>
+    </ContentPage.Resources>
+    <!--#endregion Resources-->
+
+    <Grid x:Name="outerGrid" Style="{x:StaticResource OuterGridStyle}">
+
+        <!--#region HEADER-->
+        <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
+            <Label Style="{x:StaticResource HeaderLabelStyle}" Text="맥체인" />
+
+            <Grid ColumnDefinitions="*,Auto" Style="{x:StaticResource HeaderGridStyle}">
+                <ImageButton Clicked="OnTodayButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="materialdesignicons"
+                            Glyph="{x:Static local:FontIcons.Refresh}"
+                            Size="30"
+                            Color="{AppThemeBinding Dark=White,
+                                                    Light=Black}" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <StackLayout
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    HorizontalOptions="Center"
+                    Spacing="0"
+                    VerticalOptions="End">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDateButtonClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Image
+                        Margin="0,10,0,0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.CalendarBlank}"
+                                Size="20"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=Black}" />
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Margin="0,-3,0,0"
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        Text="{Binding DisplayDateRange}"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}" />
+                </StackLayout>
+
+            </Grid>
         </StackLayout>
-    </NavigationPage.TitleView>
+        <!--#region HEADER-->
 
+        <xct:TabView
+            Grid.Row="1"
+            SelectedIndex="0"
+            TabContentBackgroundColor="{AppThemeBinding Dark=Black,
+                                                        Light=White}"
+            TabIndicatorColor="LightBlue"
+            TabStripBackgroundColor="White"
+            TabStripHeight="40"
+            TabStripPlacement="Top">
 
-    <Grid x:Name="mccheynGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <ListView
-            x:Name="mccheyneView"
-            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                              Light=White}"
-            Footer=""
-            HasUnevenRows="True"
-            Header="{Binding .}"
-            ItemSelected="OnItemSelected"
-            ItemsSource="{Binding MccheyneContents1}"
-            Scrolled="OnListViewScrolled"
-            SeparatorVisibility="None"
-            VerticalOptions="Fill"
-            VerticalScrollBarVisibility="Always">
-            <ListView.HeaderTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="15,0,15,0" Orientation="Vertical">
-                        <StackLayout Padding="0,0,0,0" Orientation="Horizontal">
-                            <Label Text="{Binding DisplayDateRange}" TextColor="Gray" />
-                        </StackLayout>
-                        <Label
-                            FontAttributes="Bold"
-                            Text="{Binding MccheyneRange}"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}">
-                            <Label.FontSize>
-                                <OnPlatform
-                                    x:TypeArguments="x:Double"
-                                    Android="20"
-                                    iOS="18" />
-                            </Label.FontSize>
-                        </Label>
-                    </StackLayout>
-                </DataTemplate>
-            </ListView.HeaderTemplate>
-            <ListView.FooterTemplate>
-                <DataTemplate>
-                    <StackLayout
-                        BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                                          Light=White}"
-                        Orientation="Vertical"
-                        Spacing="0">
-                        <Label HorizontalOptions="CenterAndExpand">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span
-                                        FontSize="14"
-                                        Text="&#10;오류 제보&#10;&#10;&#10;&#10;&#10;"
-                                        TextColor="Blue">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnReportTapped" />
-                                        </Span.GestureRecognizers>
-                                    </Span>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                    </StackLayout>
-                </DataTemplate>
-            </ListView.FooterTemplate>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="15,15,15,15" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+            <xct:TabViewItem
+                IsSelected="True"
+                Style="{x:StaticResource tabViewItemStyle}"
+                Text="{Binding MccheyneRange1}">
+                <CollectionView ItemsSource="{Binding MccheyneContents1}" Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
 
-                            <Label
-                                FontAttributes="Bold"
-                                IsVisible="{Binding IsHalfVerseVisible}"
-                                Text="{Binding HalfVerse}"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}">
-                                <Label.FontSize>
-                                    <OnPlatform
-                                        x:TypeArguments="x:Double"
-                                        Android="20"
-                                        iOS="18" />
-                                </Label.FontSize>
-                            </Label>
+            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange2}">
+                <CollectionView ItemsSource="{Binding MccheyneContents2}" Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
 
+            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange3}">
+                <CollectionView ItemsSource="{Binding MccheyneContents3}" Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
 
-                            <StackLayout>
-                                <Label>
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
-                                            <Span LineHeight="1.7" Text=" " />
-                                            <Span LineHeight="1.7" Text="{Binding Content}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                    <Label.FontSize>
-                                        <OnPlatform
-                                            x:TypeArguments="x:Double"
-                                            Android="18"
-                                            iOS="16" />
-                                    </Label.FontSize>
-                                </Label>
-                            </StackLayout>
-
-                        </StackLayout>
-                    </ViewCell>
-
-                </DataTemplate>
-
-            </ListView.ItemTemplate>
-        </ListView>
+            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange4}">
+                <CollectionView ItemsSource="{Binding MccheyneContents4}" Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
+        </xct:TabView>
 
         <Frame
+            Grid.RowSpan="2"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
             HasShadow="False"
@@ -204,16 +181,6 @@
             </Label>
         </Frame>
 
-        <BoxView
-            x:Name="backgroundBoxView"
-            Grid.Row="0"
-            BackgroundColor="#30000000"
-            IsVisible="false">
-            <BoxView.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
-            </BoxView.GestureRecognizers>
-        </BoxView>
-
         <DatePicker
             x:Name="datepicker"
             BackgroundColor="Transparent"
@@ -221,81 +188,5 @@
             Format="D"
             IsVisible="false"
             Unfocused="OnDatepickerUnfocused" />
-
-        <Grid
-            x:Name="bottomGrid"
-            Margin="0,0,0,10"
-            BackgroundColor="Transparent"
-            VerticalOptions="End">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <ImageButton
-                x:Name="leftImageButton"
-                Grid.Column="0"
-                BackgroundColor="Transparent"
-                Clicked="OnLeftButtonClicked"
-                IsVisible="false">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="materialdesignicons"
-                        Glyph="{x:Static local:FontIcons.ChevronLeftCircle}"
-                        Color="{AppThemeBinding Dark=White,
-                                                Light=Black}">
-                        <FontImageSource.Size>
-                            <OnPlatform
-                                x:TypeArguments="x:Double"
-                                Android="40"
-                                iOS="30" />
-                        </FontImageSource.Size>
-                    </FontImageSource>
-                </ImageButton.Source>
-            </ImageButton>
-            <Frame
-                x:Name="centerFrame"
-                Grid.Column="1"
-                Margin="0"
-                Padding="0"
-                BackgroundColor="Transparent"
-                CornerRadius="15"
-                HasShadow="False"
-                InputTransparent="True">
-                <Label
-                    x:Name="centerLocationLabel"
-                    BackgroundColor="Transparent"
-                    FontSize="15"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="1/4"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="CenterAndExpand" />
-            </Frame>
-            <ImageButton
-                x:Name="rightImageButton"
-                Grid.Column="2"
-                BackgroundColor="Transparent"
-                Clicked="OnRightButtonClicked">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="materialdesignicons"
-                        Glyph="{x:Static local:FontIcons.ChevronRightCircle}"
-                        Color="{AppThemeBinding Dark=White,
-                                                Light=Black}">
-                        <FontImageSource.Size>
-                            <OnPlatform
-                                x:TypeArguments="x:Double"
-                                Android="40"
-                                iOS="30" />
-                        </FontImageSource.Size>
-                    </FontImageSource>
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
     </Grid>
 </ContentPage>

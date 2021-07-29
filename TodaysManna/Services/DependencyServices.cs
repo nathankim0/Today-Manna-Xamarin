@@ -34,4 +34,9 @@ namespace TodaysManna
     {
         void Clear();
     }
+
+    public interface IStatusBar
+    {
+        int GetHeight();
+    }
 }

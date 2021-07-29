@@ -3,7 +3,6 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms;
 using System.Linq;
 using System;
-using NavigationPage = Xamarin.Forms.NavigationPage;
 using Xamarin.Forms.Internals;
 using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
@@ -22,23 +21,18 @@ namespace TodaysManna
 
         public MccheyneCheckListPage()
         {
+            InitializeComponent();
+
             var mccheyneCheckViewModel = new MccheyneCheckViewModel(Navigation);
             BindingContext = mccheyneCheckViewModel;
 
             On<iOS>().SetUseSafeArea(true);
             On<iOS>().SetPrefersHomeIndicatorAutoHidden(true);
 
-            Title = "체크리스트";
-            IconImageSource = "tab_mc";
-            this.SetAppThemeColor(BackgroundColorProperty, Color.White, Color.FromHex("#2e2e2e"));
-
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:
                     new Thread(() => Initialize()).Start();
-                    break;
-                case Device.iOS:
-                    Initialize();
                     break;
                 default:
                     Initialize();
@@ -64,60 +58,6 @@ namespace TodaysManna
 
         private void Initialize()
         {
-            NavigationPage.SetBackButtonTitle(this, "");
-            NavigationPage.SetHasNavigationBar(this, true);
-
-            var titleLabel = new Label
-            {
-                FontFamily = "batang",
-                BackgroundColor = Color.Transparent,
-                FontAttributes = FontAttributes.Bold,
-                HorizontalOptions = LayoutOptions.Start,
-                Text = "체크리스트",
-                VerticalOptions = LayoutOptions.Center
-            };
-
-            var titleOptionButton = new ImageButton
-            {
-                Margin = new Thickness(0, 0, 5, 0),
-                Padding = 8,
-                BackgroundColor = Color.Transparent,
-                HorizontalOptions = LayoutOptions.EndAndExpand,
-                VerticalOptions = LayoutOptions.Center
-            };
-            var titleOptionButtonFontImageSource = new FontImageSource
-            {
-                Glyph = FontIcons.AppleKeyboardOption,
-                FontFamily = "materialdesignicons",
-            };
-
-            titleOptionButtonFontImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
-            titleOptionButton.Source = titleOptionButtonFontImageSource;
-            titleOptionButton.Clicked += OnOptionClicked;
-
-            var titleStackLayout = new StackLayout
-            {
-                Padding = new Thickness(0, 0, 10, 0),
-                Orientation = StackOrientation.Horizontal,
-                Children = { titleLabel, titleOptionButton }
-            };
-
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-                    titleLabel.FontSize = 26;
-                    titleOptionButtonFontImageSource.Size = 32;
-                    titleStackLayout.Padding = new Thickness(0, 0, 15, 0);
-                    break;
-                case Device.iOS:
-                    titleLabel.FontSize = 24;
-                    titleOptionButtonFontImageSource.Size = 30;
-                    titleStackLayout.Padding = new Thickness(10, 0, 15, 0);
-                    break;
-            };
-
-            NavigationPage.SetTitleView(this, titleStackLayout);
-
             var checkListDataTemplate = new DataTemplate(() =>
             {
                 var collectionViewDataTemplateGrid = new Grid
@@ -203,7 +143,8 @@ namespace TodaysManna
             _collectionView.SetBinding(ItemsView.ItemsSourceProperty, "MccheyneCheckList");
             _collectionView.ItemTemplate = checkListDataTemplate;
 
-            Content = _collectionView;
+            Grid.SetRow(_collectionView, 1);
+            contentGrid.Children.Add(_collectionView);
         }
 
         public void ScrollToToday(bool isAnimationEnabled)

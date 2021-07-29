@@ -81,7 +81,6 @@
     <Compile Include="Renderer\CustomButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\60.png" />
@@ -124,6 +123,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
+    <ImageAsset Include="Assets.xcassets\applogo.imageset\Contents.json" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\applogo.imageset\172.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -202,9 +204,7 @@
     <Folder Include="Assets.xcassets\fa6.imageset\" />
     <Folder Include="Assets.xcassets\fa7.imageset\" />
     <Folder Include="AppDependencies\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\fa-solid-900.ttf" />
+    <Folder Include="Assets.xcassets\applogo.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />

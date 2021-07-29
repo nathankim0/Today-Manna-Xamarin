@@ -35,6 +35,38 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+            <Style x:Key="OuterGridStyle" TargetType="Grid">
+                <Setter Property="RowDefinitions" Value="40,*" />
+            </Style>
+
+            <Style x:Key="HeaderStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Margin" Value="20,0,20,0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Grid.Row" Value="0" />
+            </Style>
+
+            <Style x:Key="HeaderLabelStyle" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+            </Style>
+
+            <Style x:Key="HeaderGridStyle" TargetType="Grid">
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="RowDefinitions" Value="40" />
+            </Style>
+
+            <Style x:Key="HeaderButtonStyle" TargetType="ImageButton">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -12,6 +12,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(DroidKeyboardHelper))]
 [assembly: Dependency(typeof(EventTrackerDroid))]
 [assembly: Dependency(typeof(IClearCookiesImplementation))]
+[assembly: Dependency(typeof(StatusBar))]
 
 namespace TodaysManna.Droid
 {
@@ -72,6 +73,26 @@ namespace TodaysManna.Droid
         {
             var cookieManager = CookieManager.Instance;
             cookieManager.RemoveAllCookie();
+        }
+    }
+
+    public class StatusBar : IStatusBar
+    {
+        public static Activity Activity { get; set; }
+
+        public int GetHeight()
+        {
+
+            float statusBarHeight = -1;
+            int resourceId = Activity.Resources.GetIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0)
+            {
+                statusBarHeight = Activity.Resources.GetDimension(resourceId);
+            }
+
+            float density = Activity.Resources.DisplayMetrics.Density;
+
+            return (int)(statusBarHeight / density);
         }
     }
 }
