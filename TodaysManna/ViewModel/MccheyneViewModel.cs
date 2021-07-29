@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TodaysManna.Models;
 using TodaysManna.Models.JsonMccheyneContentModel;
 using TodaysManna.Services;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TodaysManna.ViewModel
 {
@@ -12,20 +12,32 @@ namespace TodaysManna.ViewModel
     {
         public string Today;
 
-        private ObservableCollection<MccheyneContent> _mccheyneContents1 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents1 { get => _mccheyneContents1; set => SetProperty(ref _mccheyneContents1, value); }
+        private ObservableRangeCollection<MccheyneContent> _mccheyneContents1 = new ObservableRangeCollection<MccheyneContent>();
+        public ObservableRangeCollection<MccheyneContent> MccheyneContents1 { get => _mccheyneContents1; set => SetProperty(ref _mccheyneContents1, value); }
 
-        private ObservableCollection<MccheyneContent> _mccheyneContents2 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents2 { get => _mccheyneContents2; set => SetProperty(ref _mccheyneContents2, value); }
+        private ObservableRangeCollection<MccheyneContent> _mccheyneContents2 = new ObservableRangeCollection<MccheyneContent>();
+        public ObservableRangeCollection<MccheyneContent> MccheyneContents2 { get => _mccheyneContents2; set => SetProperty(ref _mccheyneContents2, value); }
 
-        private ObservableCollection<MccheyneContent> _mccheyneContents3 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents3 { get => _mccheyneContents3; set => SetProperty(ref _mccheyneContents3, value); }
+        private ObservableRangeCollection<MccheyneContent> _mccheyneContents3 = new ObservableRangeCollection<MccheyneContent>();
+        public ObservableRangeCollection<MccheyneContent> MccheyneContents3 { get => _mccheyneContents3; set => SetProperty(ref _mccheyneContents3, value); }
 
-        private ObservableCollection<MccheyneContent> _mccheyneContents4 = new ObservableCollection<MccheyneContent>();
-        public ObservableCollection<MccheyneContent> MccheyneContents4 { get => _mccheyneContents4; set => SetProperty(ref _mccheyneContents4, value); }
+        private ObservableRangeCollection<MccheyneContent> _mccheyneContents4 = new ObservableRangeCollection<MccheyneContent>();
+        public ObservableRangeCollection<MccheyneContent> MccheyneContents4 { get => _mccheyneContents4; set => SetProperty(ref _mccheyneContents4, value); }
 
         private string _mccheyneRange;
         public string MccheyneRange { get => _mccheyneRange; set => SetProperty(ref _mccheyneRange, value); }
+
+        private string _mccheyneRange1;
+        public string MccheyneRange1 { get => _mccheyneRange1; set => SetProperty(ref _mccheyneRange1, value); }
+
+        private string _mccheyneRange2;
+        public string MccheyneRange2 { get => _mccheyneRange2; set => SetProperty(ref _mccheyneRange2, value); }
+
+        private string _mccheyneRange3;
+        public string MccheyneRange3 { get => _mccheyneRange3; set => SetProperty(ref _mccheyneRange3, value); }
+
+        private string _mccheyneRange4;
+        public string MccheyneRange4 { get => _mccheyneRange4; set => SetProperty(ref _mccheyneRange4, value); }
 
         private string _displayDateRange;
         public string DisplayDateRange { get => _displayDateRange; set => SetProperty(ref _displayDateRange, value); }
@@ -69,7 +81,12 @@ namespace TodaysManna.ViewModel
             MccheyneContents3.Clear();
             MccheyneContents4.Clear();
 
-            DisplayDateRange = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
+            var list1 = new List<MccheyneContent>();
+            var list2 = new List<MccheyneContent>();
+            var list3 = new List<MccheyneContent>();
+            var list4 = new List<MccheyneContent>();
+
+            DisplayDateRange = dateTime.ToString("MM/dd(ddd)");
             var dateTimeString=dateTime.ToString("M_d");
 
             var daysOfMccheynes = GetJsonService.GetMccheyneBibleTextsFromJson();
@@ -96,7 +113,7 @@ namespace TodaysManna.ViewModel
                         case "1":
                             if (a != _halfVerse)
                             {
-                                MccheyneContents1.Add(new MccheyneContent
+                                list1.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -111,7 +128,7 @@ namespace TodaysManna.ViewModel
                             }
                             else
                             {
-                                MccheyneContents1.Add(new MccheyneContent
+                                list1.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -130,7 +147,7 @@ namespace TodaysManna.ViewModel
                         case "2":
                             if (b != _halfVerse)
                             {
-                                MccheyneContents2.Add(new MccheyneContent
+                                list2.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -145,7 +162,7 @@ namespace TodaysManna.ViewModel
                             }
                             else
                             {
-                                MccheyneContents2.Add(new MccheyneContent
+                                list2.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -164,7 +181,7 @@ namespace TodaysManna.ViewModel
                         case "3":
                             if (c != _halfVerse)
                             {
-                                MccheyneContents3.Add(new MccheyneContent
+                                list3.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -179,7 +196,7 @@ namespace TodaysManna.ViewModel
                             }
                             else
                             {
-                                MccheyneContents3.Add(new MccheyneContent
+                                list3.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -198,7 +215,7 @@ namespace TodaysManna.ViewModel
                         case "4":
                             if (d != _halfVerse)
                             {
-                                MccheyneContents4.Add(new MccheyneContent
+                                list4.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     Book = node2.Book,
@@ -213,7 +230,7 @@ namespace TodaysManna.ViewModel
                             }
                             else
                             {
-                                MccheyneContents4.Add(new MccheyneContent
+                                list4.Add(new MccheyneContent
                                 {
                                     Id = node2.Id,
                                     FullRange = _mccheyneRange,
@@ -234,10 +251,18 @@ namespace TodaysManna.ViewModel
                 }
             }
 
+            MccheyneContents1.AddRange(list1);
+            MccheyneContents2.AddRange(list2);
+            MccheyneContents3.AddRange(list3);
+            MccheyneContents4.AddRange(list4);
+
+            MccheyneRange1 = MccheyneContents1[0].Book;
+            MccheyneRange2 = MccheyneContents2[0].Book;
+            MccheyneRange3 = MccheyneContents3[0].Book;
+            MccheyneRange4 = MccheyneContents4[0].Book;
+
             return Task.CompletedTask;
         }
-
-       
 
         public Task GetMccheyneRange(DateTime thisDate)
         {

@@ -11,7 +11,6 @@ namespace TodaysManna
 {
     public partial class MannaPage : ContentPage
     {
-        private readonly BottomSheet _bottomSheet;
         private readonly MannaTextClickSheet _mannaTextClickSheet;
 
         private readonly MemoPopup _memoPopup;
@@ -30,18 +29,13 @@ namespace TodaysManna
             tapGesture.Tapped += OnShareLabelTapped;
             rangeButton.GestureRecognizers.Add(tapGesture);
 
-            _bottomSheet = new BottomSheet();
-
             _mannaTextClickSheet = new MannaTextClickSheet();
-            _bottomSheet.BottomSheetContainer.ContentStackLayout.Children.Add(_mannaTextClickSheet);
 
             _mannaTextClickSheet.coppybuttonClicked += OnCoppyButtonClicked;
             _mannaTextClickSheet.memobuttonClicked += OnMemoButtonClicked;
             _mannaTextClickSheet.sharebuttonClicked += OnTextShareButtonClicked;
             _mannaTextClickSheet.savebuttonClicked += OnSaveButtonClicked;
             _mannaTextClickSheet.cancelbuttonClicked += OnCancelButtonClicked;
-
-            contentGrid.Children.Add(_bottomSheet);
 
             _memoPopup = new MemoPopup();
             _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
@@ -56,7 +50,7 @@ namespace TodaysManna
         {
             FirebaseEventService.SendEventOnPlatformSpecific("manna_text_memo");
 
-            _bottomSheet.Hide();
+            //_bottomSheet.Hide();
             _memoPopup.SetBibleText(shareRangeString);
             await PopupNavigation.Instance.PushAsync(_memoPopup);
         }
@@ -82,11 +76,11 @@ namespace TodaysManna
 
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            _bottomSheet.Hide();
+           // _bottomSheet.Hide();
 
             if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
             {
-                _bottomSheet.Show();
+               // _bottomSheet.Show();
                 return;
             }
 
@@ -101,7 +95,7 @@ namespace TodaysManna
 
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
-            _bottomSheet.Hide();
+          //  _bottomSheet.Hide();
         }
 
         private async void OnShareLabelTapped(object sender, EventArgs args)
@@ -120,7 +114,7 @@ namespace TodaysManna
 
             await Share.RequestAsync(new ShareTextRequest
             {
-                Text = today.Text + "\n\n" + verse.Text + "\n\n" + (BindingContext as MannaViewModel).AllString,
+                Text = ((MannaViewModel)BindingContext).Today + "\n\n" + ((MannaViewModel)BindingContext).JsonMannaData.Verse+ "\n\n" + (BindingContext as MannaViewModel).AllString,
                 Title = "공유"
             });
         }
@@ -165,14 +159,12 @@ namespace TodaysManna
             shareRangeString = $"({tmpRangeString}:{num}) {manna}\n";
             _mannaTextClickSheet.textLabel.Text = shareRangeString;
 
-            _bottomSheet.Show();
+           // _bottomSheet.Show();
         }
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
             FirebaseEventService.SendEventOnPlatformSpecific("manna_date");
-
-            backgroundBoxView.IsVisible = true;
             mannaDatepicker.Focus();
         }
 
@@ -185,7 +177,6 @@ namespace TodaysManna
 
         private void OnBackgroundTapped(object sender, EventArgs e)
         {
-            backgroundBoxView.IsVisible = false;
             mannaDatepicker.Unfocus();
         }
 
@@ -202,7 +193,6 @@ namespace TodaysManna
 
         private void OnDatepickerUnfocused(object sender, FocusEventArgs e)
         {
-            backgroundBoxView.IsVisible = false;
         }
 
         private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)

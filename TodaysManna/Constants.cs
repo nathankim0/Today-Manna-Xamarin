@@ -1,9 +1,17 @@
 ﻿using Xamarin.Forms;
 using System;
 using System.IO;
+using Xamarin.Essentials;
 
 namespace TodaysManna.Constants
 {
+    public static class Values
+    {
+        public static readonly double height = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
+        public static readonly double width = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
+        public static readonly double StatusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+    }
+
     public static class Colors
     {
         public static Color MccheyneColor1 = Color.FromHex("#c4a7fa");

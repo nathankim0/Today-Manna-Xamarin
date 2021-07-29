@@ -8,6 +8,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(iOSKeyboardHelper))]
 [assembly: Dependency(typeof(EventTrackerIOS))]
 [assembly: Dependency(typeof(IClearCookiesImplementation))]
+[assembly: Dependency(typeof(StatusBar))]
 
 namespace TodaysManna.iOS
 {
@@ -63,6 +64,14 @@ namespace TodaysManna.iOS
             NSHttpCookieStorage CookieStorage = NSHttpCookieStorage.SharedStorage;
             foreach (var cookie in CookieStorage.Cookies)
                 CookieStorage.DeleteCookie(cookie);
+        }
+    }
+
+    public class StatusBar : IStatusBar
+    {
+        public int GetHeight()
+        {
+            return (int)UIApplication.SharedApplication.StatusBarFrame.Height;
         }
     }
 }

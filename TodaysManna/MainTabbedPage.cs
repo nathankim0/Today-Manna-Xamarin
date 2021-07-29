@@ -17,7 +17,6 @@ namespace TodaysManna
         private readonly NavigationPage navMyPage;
         private readonly NavigationPage navSettingPage;
 
-        MccheyneCheckListPage mccheyneCheckListPage;
         public MainTabbedPage()
         {
             On<iOS>().SetUseSafeArea(true);
@@ -54,8 +53,7 @@ namespace TodaysManna
             };
             navMccheynePage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            mccheyneCheckListPage = new MccheyneCheckListPage();
-            navMccheyneCheckListPage = new NavigationPage(mccheyneCheckListPage)
+            navMccheyneCheckListPage = new NavigationPage(new MccheyneCheckListPage())
             {
                 Title = "체크리스트",
             };
@@ -110,7 +108,6 @@ namespace TodaysManna
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMccheyneCheckListPage");
-                mccheyneCheckListPage.ScrollToToday(false);
             }
             else if (CurrentPage.Equals(navMyPage))
             {

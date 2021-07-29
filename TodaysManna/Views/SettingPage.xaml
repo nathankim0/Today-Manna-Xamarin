@@ -1,127 +1,129 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+﻿<ContentPage
     x:Class="TodaysManna.Views.SettingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:TodaysManna"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+                                      Light=White}"
+    NavigationPage.BackButtonTitle=""
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
 
-    <NavigationPage.TitleView>
-        <StackLayout Padding="{OnPlatform Android='0,0,15,0', iOS='10,0,15,0'}" Orientation="Horizontal">
-            <Label
-                BackgroundColor="Transparent"
-                FontAttributes="Bold"
-                HorizontalOptions="StartAndExpand"
-                Text="설정"
-                VerticalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        Android="26"
-                        iOS="24" />
-                </Label.FontSize>
-            </Label>
+    <Grid
+        x:Name="outerGrid"
+        RowDefinitions="50,*"
+        Style="{x:StaticResource OuterGridStyle}">
+
+        <!--#region HEADER-->
+        <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
+            <Label Style="{x:StaticResource HeaderLabelStyle}" Text="설정" />
         </StackLayout>
-    </NavigationPage.TitleView>
+        <!--#region HEADER-->
 
-    <ContentPage.Content>
-        <Grid>
+        <TableView
+            Grid.Row="1"
+            BackgroundColor="White"
+            HasUnevenRows="True"
+            Intent="Settings">
+            <TableRoot>
+                <TableSection Title="앱 정보">
+                    <ViewCell>
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="버전"
+                                VerticalOptions="Center" />
+                            <Label
+                                Margin="0,0,15,0"
+                                FontFamily=""
+                                FontSize="12"
+                                HorizontalOptions="End"
+                                Text="{Binding Version}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
 
-            <TableView HasUnevenRows="True" Intent="Settings">
-                <TableRoot>
-                    <TableSection Title="앱 정보">
-                        <ViewCell>
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="버전"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Margin="0,0,15,0"
-                                    FontFamily=""
-                                    FontSize="12"
-                                    HorizontalOptions="End"
-                                    Text="{Binding Version}"
-                                    TextColor="Gray"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
-                    </TableSection>
+                <TableSection Title="알람">
+                    <ViewCell>
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <TimePicker
+                                x:Name="timePicker"
+                                BackgroundColor="Transparent"
+                                Format="(tt) hh:mm"
+                                HorizontalOptions="StartAndExpand"
+                                PropertyChanged="OnTimePickerPropertyChanged"
+                                VerticalOptions="Center" />
 
-                    <TableSection Title="알람">
-                        <ViewCell>
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <TimePicker
-                                    x:Name="timePicker"
-                                    BackgroundColor="Transparent"
-                                    Format="(tt) hh:mm"
-                                    HorizontalOptions="StartAndExpand"
-                                    PropertyChanged="OnTimePickerPropertyChanged"
-                                    VerticalOptions="Center" />
+                            <Switch
+                                x:Name="alertSwitch"
+                                Margin="0,0,15,0"
+                                HorizontalOptions="End"
+                                Toggled="Switch_Toggled"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
 
-                                <Switch
-                                    x:Name="alertSwitch"
-                                    Margin="0,0,15,0"
-                                    HorizontalOptions="End"
-                                    Toggled="Switch_Toggled"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
-                    </TableSection>
+                <TableSection Title="메모 백업/복원">
+                    <ViewCell Tapped="OnBackupButtonClicked">
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="백업"
+                                VerticalOptions="Center" />
+                            <Label
+                                Margin="0,0,15,0"
+                                FontFamily=""
+                                FontSize="12"
+                                HorizontalOptions="End"
+                                Text="{Binding IsDatabase}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="OnRestoreButtonClicked">
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="복원"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="OnLogoutButtonClicked">
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="드롭박스 로그아웃"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
 
-                    <TableSection Title="메모 백업/복원">
-                        <ViewCell Tapped="OnBackupButtonClicked">
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="백업"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Margin="0,0,15,0"
-                                    FontFamily=""
-                                    FontSize="12"
-                                    HorizontalOptions="End"
-                                    Text="{Binding IsDatabase}"
-                                    TextColor="Gray"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
-                        <ViewCell Tapped="OnRestoreButtonClicked">
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="복원"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
-                        <ViewCell Tapped="OnLogoutButtonClicked">
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="드롭박스 로그아웃"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
-                    </TableSection>
+                <TableSection Title="지원">
+                    <ViewCell Tapped="OnReportButtonClicked">
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="문의"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
 
-                    <TableSection Title="지원">
-                        <ViewCell Tapped="OnReportButtonClicked">
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="문의"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
+                    <ViewCell Tapped="OnOpenStoreButtonClicked">
+                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="StartAndExpand"
+                                Text="별점주기"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell>
 
-                        <ViewCell Tapped="OnOpenStoreButtonClicked">
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="별점주기"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>
-
-                        <!--<ViewCell Tapped="OnDonateButtonClicked">
+                    <!--<ViewCell Tapped="OnDonateButtonClicked">
                             <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
                                 <Label
                                     FontFamily=""
@@ -139,36 +141,26 @@
                             </StackLayout>
                         </ViewCell>-->
 
-                    </TableSection>
+                </TableSection>
 
 
-                </TableRoot>
-            </TableView>
+            </TableRoot>
+        </TableView>
 
-
-
-            <Frame
-                Margin="0"
-                Padding="0"
-                BackgroundColor="Black"
-                CornerRadius="0"
-                HasShadow="False"
-                IsVisible="{Binding IsBusy}"
-                Opacity="0.8"
-                VerticalOptions="Fill">
-                <Label
-                    HorizontalOptions="Center"
-                    Text="잠시 기다려주세요..."
-                    TextColor="White"
-                    VerticalOptions="Center" />
-            </Frame>
-
-            <!--<ActivityIndicator
-                Margin="0,20,0,0"
-                InputTransparent="True"
-                IsRunning="{Binding IsBusy}"
-                VerticalOptions="Start" />-->
-
-        </Grid>
-    </ContentPage.Content>
+        <Frame
+            Margin="0"
+            Padding="0"
+            BackgroundColor="Black"
+            CornerRadius="0"
+            HasShadow="False"
+            IsVisible="{Binding IsBusy}"
+            Opacity="0.8"
+            VerticalOptions="Fill">
+            <Label
+                HorizontalOptions="Center"
+                Text="잠시 기다려주세요..."
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Frame>
+    </Grid>
 </ContentPage>
