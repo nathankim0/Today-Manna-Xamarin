@@ -3,19 +3,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:local="clr-namespace:TodaysManna"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+    BackgroundColor="{AppThemeBinding Dark=White,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid
-        x:Name="outerGrid"
-        RowDefinitions="50,*"
-        Style="{x:StaticResource OuterGridStyle}">
+    <Grid x:Name="outerGrid" RowDefinitions="50,*">
 
         <!--#region HEADER-->
         <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
@@ -35,6 +30,8 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="버전"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
                             <Label
                                 Margin="0,0,15,0"
@@ -57,6 +54,8 @@
                                 Format="(tt) hh:mm"
                                 HorizontalOptions="StartAndExpand"
                                 PropertyChanged="OnTimePickerPropertyChanged"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
 
                             <Switch
@@ -75,6 +74,8 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="백업"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
                             <Label
                                 Margin="0,0,15,0"
@@ -91,6 +92,8 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="복원"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </ViewCell>
@@ -99,6 +102,8 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="드롭박스 로그아웃"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </ViewCell>
@@ -110,6 +115,8 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="문의"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </ViewCell>
@@ -119,6 +126,8 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="별점주기"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </ViewCell>
@@ -140,10 +149,7 @@
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>-->
-
                 </TableSection>
-
-
             </TableRoot>
         </TableView>
 

@@ -39,7 +39,7 @@ namespace TodaysManna.ViewModel
 
             foreach (var range in App.mccheyneRanges)
             {
-                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : Color.Default;
+                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : Color.Black;
                 var range5IsNull = true;
                 if (range.Range5 == "")
                 {

@@ -5,13 +5,13 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+    BackgroundColor="{AppThemeBinding Dark=White,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid x:Name="contentGrid" Style="{x:StaticResource OuterGridStyle}">
+    <Grid x:Name="contentGrid" RowDefinitions="50,*">
 
         <!--#region HEADER-->
         <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
@@ -23,7 +23,7 @@
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.AppleKeyboardOption}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=White,
+                            Color="{AppThemeBinding Dark=Black,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>

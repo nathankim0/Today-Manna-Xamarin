@@ -5,16 +5,167 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+    BackgroundColor="{AppThemeBinding Dark=White,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid x:Name="contentGrid" Style="{x:StaticResource OuterGridStyle}">
+    <!--#region Resources-->
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="VisualElement.BackgroundColor" Value="LightGray" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid x:Name="contentGrid">
+
+        <CollectionView
+            x:Name="mannaCollectionView"
+            BackgroundColor="{AppThemeBinding Dark=White,
+                                              Light=White}"
+            Footer="&#10;"
+            ItemsSource="{Binding MannaContents}"
+            Scrolled="mannaCollectionView_Scrolled"
+            SelectionChanged="OnMannaCollectionViewSelectionChanged"
+            SelectionMode="Multiple"
+            VerticalOptions="Fill"
+            VerticalScrollBarVisibility="Always">
+            <CollectionView.Header>
+                <StackLayout
+                    x:Name="collectionViewHeader"
+                    Padding="15,10,15,10"
+                    BackgroundColor="{AppThemeBinding Dark=White,
+                                                      Light=White}">
+                    <Frame
+                        x:Name="rangeButton"
+                        BackgroundColor="#e2e2e2"
+                        HasShadow="False">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAllRangeButtonTapped" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Margin="5">
+                            <Label
+                                x:Name="mannaRangeLabel"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding MannaShareRange}"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="mcRangeLabel"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding McShareRange}"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            x:Name="verse"
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding JsonMannaData.Verse}"
+                            TextColor="{AppThemeBinding Dark=Black,
+                                                        Light=Black}"
+                            VerticalOptions="CenterAndExpand" />
+                        <ImageButton
+                            Margin="0,0,5,0"
+                            Padding="8"
+                            BackgroundColor="Transparent"
+                            Clicked="OnMannaShareButtonClicked"
+                            HorizontalOptions="End"
+                            VerticalOptions="CenterAndExpand">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="materialdesignicons"
+                                    Glyph="{x:Static local:FontIcons.ShareVariant}"
+                                    Size="30"
+                                    Color="{AppThemeBinding Dark=Black,
+                                                            Light=Black}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Label
+                            Margin="15"
+                            TextColor="{AppThemeBinding Dark=Black,
+                                                        Light=Black}"
+                            VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span LineHeight="1.7" Text="{Binding Number}" />
+                                    <Span LineHeight="1.7" Text=" " />
+                                    <Span LineHeight="1.7" Text="{Binding MannaString}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.FontSize>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="18"
+                                    iOS="16" />
+                            </Label.FontSize>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Frame
+            BackgroundColor="{AppThemeBinding Dark=White,
+                                              Light=White}"
+            HasShadow="False"
+            IsVisible="{Binding IsRefreshing}"
+            VerticalOptions="Fill">
+            <Label
+                HorizontalOptions="Center"
+                Text="만나 불러오는 중..."
+                TextColor="{AppThemeBinding Dark=Black,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="18"
+                        iOS="16" />
+                </Label.FontSize>
+            </Label>
+        </Frame>
+
+        <DatePicker
+            x:Name="mannaDatepicker"
+            BackgroundColor="Transparent"
+            DateSelected="OnDateSelected"
+            IsVisible="false" />
 
         <!--#region HEADER-->
-        <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
+        <StackLayout x:Name="headerStackLayout" Style="{x:StaticResource HeaderStackLayoutStyle}">
             <Label Style="{x:StaticResource HeaderLabelStyle}" Text="만나" />
             <Grid ColumnDefinitions="*,*,Auto" Style="{x:StaticResource HeaderGridStyle}">
                 <ImageButton Clicked="OnRefreshButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
@@ -23,7 +174,7 @@
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.Refresh}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=White,
+                            Color="{AppThemeBinding Dark=Black,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -37,7 +188,7 @@
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.AlphabetLatin}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=White,
+                            Color="{AppThemeBinding Dark=Black,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -59,7 +210,7 @@
                                 FontFamily="materialdesignicons"
                                 Glyph="{x:Static local:FontIcons.CalendarBlank}"
                                 Size="20"
-                                Color="{AppThemeBinding Dark=White,
+                                Color="{AppThemeBinding Dark=Black,
                                                         Light=Black}" />
                         </Image.Source>
                     </Image>
@@ -68,132 +219,12 @@
                         FontSize="13"
                         HorizontalOptions="Center"
                         Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=White,
+                        TextColor="{AppThemeBinding Dark=Black,
                                                     Light=Black}" />
                 </StackLayout>
             </Grid>
         </StackLayout>
         <!--#region HEADER-->
-
-        <CollectionView
-            x:Name="mannaCollectionView"
-            Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
-                                              Light=White}"
-            Footer="&#10;"
-            ItemsSource="{Binding MannaContents}"
-            SelectionMode="Single"
-            VerticalScrollBarVisibility="Always">
-            <CollectionView.Header>
-                <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
-                    <Frame
-                        x:Name="rangeButton"
-                        Margin="0"
-                        BackgroundColor="#e2e2e2"
-                        HasShadow="False">
-                        <StackLayout Margin="5">
-                            <Label
-                                x:Name="mannaRangeLabel"
-                                FontSize="16"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding MannaShareRange}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-                            <Label
-                                x:Name="mcRangeLabel"
-                                FontSize="16"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding McShareRange}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
-                    <StackLayout Orientation="Horizontal">
-                        <Label
-                            x:Name="verse"
-                            FontAttributes="Bold"
-                            FontSize="Subtitle"
-                            HorizontalOptions="StartAndExpand"
-                            Text="{Binding JsonMannaData.Verse}"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}"
-                            VerticalOptions="CenterAndExpand" />
-                        <ImageButton
-                            Margin="0,0,5,0"
-                            Padding="8"
-                            BackgroundColor="Transparent"
-                            Clicked="OnShareButtonClicked"
-                            HorizontalOptions="End"
-                            VerticalOptions="CenterAndExpand">
-                            <ImageButton.Source>
-                                <FontImageSource
-                                    FontFamily="materialdesignicons"
-                                    Glyph="{x:Static local:FontIcons.ShareVariant}"
-                                    Size="30"
-                                    Color="{AppThemeBinding Dark=White,
-                                                            Light=Black}" />
-                            </ImageButton.Source>
-                        </ImageButton>
-                    </StackLayout>
-                </StackLayout>
-            </CollectionView.Header>
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="15,0,15,30">
-                        <Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span LineHeight="1.7" Text="{Binding Number}" />
-                                    <Span LineHeight="1.7" Text=" " />
-                                    <Span LineHeight="1.7" Text="{Binding MannaString}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                            <Label.FontSize>
-                                <OnPlatform
-                                    x:TypeArguments="x:Double"
-                                    Android="18"
-                                    iOS="16" />
-                            </Label.FontSize>
-                        </Label>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCollectionViewItemTapped" />
-                        </Grid.GestureRecognizers>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        <Frame
-            Grid.RowSpan="2"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
-            HasShadow="False"
-            IsVisible="{Binding IsRefreshing}"
-            VerticalOptions="Fill">
-            <Label
-                HorizontalOptions="Center"
-                Text="만나 불러오는 중..."
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                VerticalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        Android="18"
-                        iOS="16" />
-                </Label.FontSize>
-            </Label>
-        </Frame>
-
-        <DatePicker
-            x:Name="mannaDatepicker"
-            BackgroundColor="Transparent"
-            DateSelected="OnDateSelected"
-            IsVisible="false"
-            Unfocused="OnDatepickerUnfocused" />
 
     </Grid>
 </ContentPage>

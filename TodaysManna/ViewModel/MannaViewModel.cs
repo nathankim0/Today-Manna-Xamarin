@@ -50,7 +50,7 @@ namespace TodaysManna.ViewModel
         public MannaViewModel()
         {
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
-            DisplayDateRange = DateTime.Now.ToString("MM/dd(ddd)");
+            DisplayDateRange = DateTime.Now.ToString("MM/dd");
 
             _restService = new RestService();
 
@@ -127,7 +127,7 @@ namespace TodaysManna.ViewModel
         public async Task GetManna(DateTime dateTime)
         {
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
-            DisplayDateRange = dateTime.ToString("MM/dd(ddd)");
+            DisplayDateRange = dateTime.ToString("MM/dd");
 
             var newDateString = dateTime.ToString("yyyy-MM-dd");
             var endPoint = Rests.MannaEndpoint + newDateString;

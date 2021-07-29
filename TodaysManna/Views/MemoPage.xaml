@@ -5,13 +5,13 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+    BackgroundColor="{AppThemeBinding Dark=White,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid x:Name="outerGrid" Style="{x:StaticResource OuterGridStyle}">
+    <Grid x:Name="outerGrid" RowDefinitions="50,*">
 
         <!--#region HEADER-->
         <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
@@ -22,14 +22,19 @@
         <CollectionView
             x:Name="collectionView"
             Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+            BackgroundColor="{AppThemeBinding Dark=White,
                                               Light=White}"
             Footer="&#10;&#10;"
             SelectionChanged="OnCollectionViewSelectionChanged"
             SelectionMode="Single">
+
             <CollectionView.EmptyView>
                 <StackLayout Padding="10,20,15,0">
-                    <Label FontAttributes="Bold" Text="아직 저장한 메모가 없네요!&#10;묵상을 작성해보는 것은 어떨까요?✍️&#10;(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)">
+                    <Label
+                        FontAttributes="Bold"
+                        Text="아직 저장한 메모가 없네요!&#10;묵상을 작성해보는 것은 어떨까요?✍️&#10;(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)"
+                        TextColor="{AppThemeBinding Dark=Black,
+                                                    Light=Black}">
                         <Label.FontSize>
                             <OnPlatform
                                 x:TypeArguments="x:Double"
@@ -39,9 +44,9 @@
                     </Label>
                 </StackLayout>
             </CollectionView.EmptyView>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-
                     <Grid Padding="15,5,15,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -51,12 +56,10 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-
-
                         <StackLayout Grid.Column="0" VerticalOptions="Center">
                             <Label
                                 Text="{Binding Date}"
-                                TextColor="{AppThemeBinding Dark=White,
+                                TextColor="{AppThemeBinding Dark=Orange,
                                                             Light=Orange}"
                                 VerticalOptions="Center">
                                 <Label.FontSize>
@@ -70,7 +73,9 @@
                                 FontAttributes="Bold"
                                 LineBreakMode="TailTruncation"
                                 MaxLines="1"
-                                Text="{Binding Verse}">
+                                Text="{Binding Verse}"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}">
                                 <Label.FontSize>
                                     <OnPlatform
                                         x:TypeArguments="x:Double"
@@ -81,7 +86,9 @@
                             <Label
                                 LineBreakMode="TailTruncation"
                                 MaxLines="2"
-                                Text="{Binding Note}">
+                                Text="{Binding Note}"
+                                TextColor="{AppThemeBinding Dark=Black,
+                                                            Light=Black}">
                                 <Label.FontSize>
                                     <OnPlatform
                                         x:TypeArguments="x:Double"
@@ -97,7 +104,7 @@
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.ChevronRight}"
                                     Size="30"
-                                    Color="{AppThemeBinding Dark=White,
+                                    Color="{AppThemeBinding Dark=Black,
                                                             Light=Black}">
                                     <FontImageSource.Size>
                                         <OnPlatform
@@ -111,15 +118,12 @@
                         <BoxView
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
-                            BackgroundColor="{AppThemeBinding Dark=White,
+                            BackgroundColor="{AppThemeBinding Dark=LightGray,
                                                               Light=LightGray}"
                             HeightRequest="1" />
                     </Grid>
-
                 </DataTemplate>
-
             </CollectionView.ItemTemplate>
         </CollectionView>
-
     </Grid>
 </ContentPage>

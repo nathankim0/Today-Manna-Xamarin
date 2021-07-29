@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:TodaysManna"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=#2e2e2e,
+    BackgroundColor="{AppThemeBinding Dark=White,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
@@ -14,6 +14,26 @@
 
     <!--#region Resources-->
     <ContentPage.Resources>
+
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="VisualElement.BackgroundColor" Value="LightGray" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
         <DataTemplate x:Key="headerTemplate">
             <StackLayout Padding="15,10,15,10" Spacing="0">
                 <Label
@@ -24,12 +44,12 @@
         </DataTemplate>
 
         <DataTemplate x:Key="contentTemplate">
-            <StackLayout Padding="15,0,15,30" BackgroundColor="{AppThemeBinding Dark=#2e2e2e, Light=White}">
+            <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=White, Light=White}">
                 <Label
                     FontAttributes="Bold"
                     IsVisible="{Binding IsHalfVerseVisible}"
                     Text="{Binding HalfVerse}"
-                    TextColor="{AppThemeBinding Dark=White,
+                    TextColor="{AppThemeBinding Dark=Black,
                                                 Light=Black}">
                     <Label.FontSize>
                         <OnPlatform
@@ -38,34 +58,34 @@
                             iOS="18" />
                     </Label.FontSize>
                 </Label>
-                <StackLayout>
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
-                                <Span LineHeight="1.7" Text=" " />
-                                <Span LineHeight="1.7" Text="{Binding Content}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                        <Label.FontSize>
-                            <OnPlatform
-                                x:TypeArguments="x:Double"
-                                Android="18"
-                                iOS="16" />
-                        </Label.FontSize>
-                    </Label>
-                </StackLayout>
+                <Label TextColor="{AppThemeBinding Dark=Black, Light=Black}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
+                            <Span LineHeight="1.7" Text=" " />
+                            <Span LineHeight="1.7" Text="{Binding Content}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="18"
+                            iOS="16" />
+                    </Label.FontSize>
+                </Label>
             </StackLayout>
         </DataTemplate>
 
         <Style x:Key="collectionViewStyle" TargetType="CollectionView">
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=#2e2e2e, Light=White}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=White, Light=White}" />
             <Setter Property="VerticalOptions" Value="Fill" />
             <Setter Property="ItemTemplate" Value="{x:StaticResource contentTemplate}" />
             <Setter Property="HeaderTemplate" Value="{x:StaticResource headerTemplate}" />
             <Setter Property="Header" Value="{Binding .}" />
             <Setter Property="VerticalScrollBarVisibility" Value="Always" />
             <Setter Property="Footer" Value="&#10;" />
+            <Setter Property="SelectionMode" Value="Multiple" />
+
         </Style>
 
         <Style x:Key="tabViewItemStyle" TargetType="xct:TabViewItem">
@@ -78,18 +98,96 @@
 
     <Grid x:Name="outerGrid" Style="{x:StaticResource OuterGridStyle}">
 
+        <xct:TabView
+            x:Name="tabView"
+            SelectedIndex="0"
+            SelectionChanged="TabView_SelectionChanged"
+            TabContentBackgroundColor="{AppThemeBinding Dark=White,
+                                                        Light=White}"
+            TabIndicatorColor="LightBlue"
+            TabStripBackgroundColor="White"
+            TabStripPlacement="Top">
+
+            <xct:TabViewItem
+                IsSelected="True"
+                Style="{x:StaticResource tabViewItemStyle}"
+                Text="{Binding MccheyneRange1}">
+                <CollectionView
+                    x:Name="mccheyneCollectionView1"
+                    ItemsSource="{Binding MccheyneContents1}"
+                    Scrolled="OnMccheyneCollectionViewScrolled"
+                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
+                    Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
+
+            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange2}">
+                <CollectionView
+                    x:Name="mccheyneCollectionView2"
+                    ItemsSource="{Binding MccheyneContents2}"
+                    Scrolled="OnMccheyneCollectionViewScrolled"
+                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
+                    Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
+
+            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange3}">
+                <CollectionView
+                    x:Name="mccheyneCollectionView3"
+                    ItemsSource="{Binding MccheyneContents3}"
+                    Scrolled="OnMccheyneCollectionViewScrolled"
+                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
+                    Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
+
+            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange4}">
+                <CollectionView
+                    x:Name="mccheyneCollectionView4"
+                    ItemsSource="{Binding MccheyneContents4}"
+                    Scrolled="OnMccheyneCollectionViewScrolled"
+                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
+                    Style="{x:StaticResource collectionViewStyle}" />
+            </xct:TabViewItem>
+        </xct:TabView>
+
+        <Frame
+            BackgroundColor="{AppThemeBinding Dark=White,
+                                              Light=White}"
+            HasShadow="False"
+            IsVisible="{Binding IsRefreshing}"
+            VerticalOptions="Fill">
+            <Label
+                HorizontalOptions="Center"
+                Text="맥체인 불러오는 중..."
+                TextColor="{AppThemeBinding Dark=Black,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="18"
+                        iOS="16" />
+                </Label.FontSize>
+            </Label>
+        </Frame>
+
+        <DatePicker
+            x:Name="datepicker"
+            BackgroundColor="Transparent"
+            DateSelected="OnDatePickerDateSelected"
+            Format="D"
+            IsVisible="false" />
+
         <!--#region HEADER-->
-        <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
+        <StackLayout x:Name="headerStackLayout" Style="{x:StaticResource HeaderStackLayoutStyle}">
             <Label Style="{x:StaticResource HeaderLabelStyle}" Text="맥체인" />
 
             <Grid ColumnDefinitions="*,Auto" Style="{x:StaticResource HeaderGridStyle}">
-                <ImageButton Clicked="OnTodayButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
+                <ImageButton Clicked="OnRefreshButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
                     <ImageButton.Source>
                         <FontImageSource
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.Refresh}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=White,
+                            Color="{AppThemeBinding Dark=Black,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -112,7 +210,7 @@
                                 FontFamily="materialdesignicons"
                                 Glyph="{x:Static local:FontIcons.CalendarBlank}"
                                 Size="20"
-                                Color="{AppThemeBinding Dark=White,
+                                Color="{AppThemeBinding Dark=Black,
                                                         Light=Black}" />
                         </Image.Source>
                     </Image>
@@ -121,72 +219,12 @@
                         FontSize="13"
                         HorizontalOptions="Center"
                         Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=White,
+                        TextColor="{AppThemeBinding Dark=Black,
                                                     Light=Black}" />
                 </StackLayout>
 
             </Grid>
         </StackLayout>
         <!--#region HEADER-->
-
-        <xct:TabView
-            Grid.Row="1"
-            SelectedIndex="0"
-            TabContentBackgroundColor="{AppThemeBinding Dark=Black,
-                                                        Light=White}"
-            TabIndicatorColor="LightBlue"
-            TabStripBackgroundColor="White"
-            TabStripHeight="40"
-            TabStripPlacement="Top">
-
-            <xct:TabViewItem
-                IsSelected="True"
-                Style="{x:StaticResource tabViewItemStyle}"
-                Text="{Binding MccheyneRange1}">
-                <CollectionView ItemsSource="{Binding MccheyneContents1}" Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
-
-            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange2}">
-                <CollectionView ItemsSource="{Binding MccheyneContents2}" Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
-
-            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange3}">
-                <CollectionView ItemsSource="{Binding MccheyneContents3}" Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
-
-            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange4}">
-                <CollectionView ItemsSource="{Binding MccheyneContents4}" Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
-        </xct:TabView>
-
-        <Frame
-            Grid.RowSpan="2"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
-            HasShadow="False"
-            IsVisible="{Binding IsRefreshing}"
-            VerticalOptions="Fill">
-            <Label
-                HorizontalOptions="Center"
-                Text="맥체인 불러오는 중..."
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                VerticalOptions="Center">
-                <Label.FontSize>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        Android="18"
-                        iOS="16" />
-                </Label.FontSize>
-            </Label>
-        </Frame>
-
-        <DatePicker
-            x:Name="datepicker"
-            BackgroundColor="Transparent"
-            DateSelected="OnDatePickerDateSelected"
-            Format="D"
-            IsVisible="false"
-            Unfocused="OnDatepickerUnfocused" />
     </Grid>
 </ContentPage>
