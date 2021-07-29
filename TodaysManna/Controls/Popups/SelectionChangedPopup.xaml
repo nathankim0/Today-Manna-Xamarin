@@ -1,0 +1,66 @@
+﻿<pages:PopupPage
+    x:Class="TodaysManna.Controls.Popups.SelectionChangedPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    BackgroundColor="Transparent"
+    BackgroundInputTransparent="True">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="0"
+            DurationOut="0"
+            HasBackgroundAnimation="False"
+            PositionIn="Center"
+            PositionOut="Center" />
+    </pages:PopupPage.Animation>
+
+    <Grid VerticalOptions="End">
+        <Frame
+            Margin="0"
+            Padding="0"
+            xct:ShadowEffect.Color="Black"
+            xct:ShadowEffect.Opacity="0.2"
+            xct:ShadowEffect.Radius="30"
+            BackgroundColor="White"
+            CornerRadius="0"
+            HorizontalOptions="Fill">
+
+            <Grid
+                Margin="30,20,30,40"
+                ColumnDefinitions="*,*,*,*"
+                ColumnSpacing="10">
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="LightGray"
+                    Clicked="OnCopyButtonClicked"
+                    FontSize="12"
+                    Text="복사"
+                    TextColor="Black" />
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="LightGray"
+                    Clicked="OnShareButtonClicked"
+                    FontSize="12"
+                    Text="공유"
+                    TextColor="Black" />
+                <Button
+                    Grid.Column="2"
+                    BackgroundColor="LightGray"
+                    Clicked="OnMemoButtonClicked"
+                    FontSize="12"
+                    Text="메모"
+                    TextColor="Black" />
+                <Button
+                    Grid.Column="3"
+                    BackgroundColor="LightGray"
+                    Clicked="OnCancelButtonClicked"
+                    FontSize="12"
+                    Text="취소"
+                    TextColor="Black" />
+            </Grid>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

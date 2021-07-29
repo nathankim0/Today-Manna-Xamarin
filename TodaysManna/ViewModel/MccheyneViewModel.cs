@@ -86,7 +86,7 @@ namespace TodaysManna.ViewModel
             var list3 = new List<MccheyneContent>();
             var list4 = new List<MccheyneContent>();
 
-            DisplayDateRange = dateTime.ToString("MM/dd(ddd)");
+            DisplayDateRange = dateTime.ToString("MM/dd");
             var dateTimeString=dateTime.ToString("M_d");
 
             var daysOfMccheynes = GetJsonService.GetMccheyneBibleTextsFromJson();

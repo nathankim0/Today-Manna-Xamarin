@@ -4,10 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Dark=#858585, Light=White}" />
-                <Setter Property="BarTextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
-            </Style>
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="batang" />
                 <Setter Property="LineHeight" Value="1.5" />
@@ -22,35 +18,23 @@
             <Style TargetType="Editor">
                 <Setter Property="FontFamily" Value="batang" />
             </Style>
-            <Style TargetType="Grid">
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter Property="VisualElement.BackgroundColor" Value="{AppThemeBinding Dark=#2e2e2e, Light=White}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
 
             <Style x:Key="OuterGridStyle" TargetType="Grid">
-                <Setter Property="RowDefinitions" Value="40,*" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
 
             <Style x:Key="HeaderStackLayoutStyle" TargetType="StackLayout">
-                <Setter Property="Margin" Value="20,0,20,0" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Padding" Value="20,0,20,10" />
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="Grid.Row" Value="0" />
             </Style>
 
             <Style x:Key="HeaderLabelStyle" TargetType="Label">
                 <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark=Black, Light=Black}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
