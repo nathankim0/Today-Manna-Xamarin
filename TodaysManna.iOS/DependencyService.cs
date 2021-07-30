@@ -9,6 +9,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(EventTrackerIOS))]
 [assembly: Dependency(typeof(IClearCookiesImplementation))]
 [assembly: Dependency(typeof(StatusBar))]
+[assembly: Dependency(typeof(HapticFeedback))]
 
 namespace TodaysManna.iOS
 {
@@ -72,6 +73,20 @@ namespace TodaysManna.iOS
         public int GetHeight()
         {
             return (int)UIApplication.SharedApplication.StatusBarFrame.Height;
+        }
+    }
+
+    public class HapticFeedback : IHapticFeedback
+    {
+        private UISelectionFeedbackGenerator uiSelection;
+        public void Run()
+        {
+            if (uiSelection == null)
+            {
+                uiSelection = new UISelectionFeedbackGenerator();
+                uiSelection.Prepare();
+            }
+            uiSelection.SelectionChanged();
         }
     }
 }

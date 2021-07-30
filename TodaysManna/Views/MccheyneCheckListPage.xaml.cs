@@ -159,6 +159,7 @@ namespace TodaysManna
 
         private async void OnCheckButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             if (!(BindingContext is MccheyneCheckViewModel viewModel)) { return; }
 
             bool IsConfirmed = await DisplayAlert("오늘까지 체크", "정말 체크 하시겠습니까?", "확인", "취소");
@@ -191,6 +192,7 @@ namespace TodaysManna
         }
         private async void OnClearButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             if (!(BindingContext is MccheyneCheckViewModel viewModel)) { return; }
 
             bool IsConfirmed = await DisplayAlert("초기화", "정말 초기화 하시겠습니까?", "확인", "취소");
@@ -213,6 +215,7 @@ namespace TodaysManna
 
         private async void OnOptionClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             await PopupNavigation.Instance.PushAsync(_optionPopup);
         }
     }

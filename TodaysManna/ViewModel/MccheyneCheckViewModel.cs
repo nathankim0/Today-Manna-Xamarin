@@ -116,6 +116,7 @@ namespace TodaysManna.ViewModel
 
         private void OnCheckButtonTabbed(string val)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             MccheyneCheckList.ForEach(x =>
             {
                 if (x.Ranges[0].Id == val)
@@ -157,6 +158,7 @@ namespace TodaysManna.ViewModel
           
             if (date.Equals("8-12"))
             {
+                DependencyService.Get<IHapticFeedback>().Run();
                 await Navigation.PushAsync(new QrScanPage());
             }
         }

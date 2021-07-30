@@ -95,4 +95,24 @@ namespace TodaysManna.Droid
             return (int)(statusBarHeight / density);
         }
     }
+
+    public class HapticFeedback : IHapticFeedback
+    {
+        public void Run()
+        {
+            var vibrator = (Vibrator)Android.App.Application.Context.GetSystemService(Context.VibratorService);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                var effect = VibrationEffect.CreateOneShot(20, VibrationEffect.DefaultAmplitude);
+                vibrator?.Vibrate(effect);
+            }
+            else
+            {
+#pragma warning disable 618
+                vibrator?.Vibrate(20);
+#pragma warning restore 618
+            }
+        }
+    }
 }

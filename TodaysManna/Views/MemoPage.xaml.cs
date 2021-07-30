@@ -26,6 +26,7 @@ namespace TodaysManna
 
         private async void OnSwipeViewDeleteClicked(object sender, MemoItem memoItem)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
                 await App.Database.DeleteItemAsync(memoItem);
@@ -35,6 +36,7 @@ namespace TodaysManna
 
         private async void OnSwipeViewSharedClicked(object sender, MemoItem memoItem)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             try
             {
                 await Share.RequestAsync(new ShareTextRequest
