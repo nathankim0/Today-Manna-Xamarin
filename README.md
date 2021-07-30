@@ -18,7 +18,7 @@
 
 ### iOS
 <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_1.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_2.png" width="25%"/>
-<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_3.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_4.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_5.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_6.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_7.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_8.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_9.png" width="25%"/>
+<img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_3.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_4.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_5.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_6.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_7.png" width="25%"/><img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/ios_8.png" width="25%"/>
 
 ### Android
 <img src="https://github.com/Jinyeob/Today-Manna-iOS/blob/master/screenshot/android.png" width="25%"/>
