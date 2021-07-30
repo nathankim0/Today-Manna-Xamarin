@@ -9,6 +9,7 @@ using TodaysManna.Models;
 using System.Diagnostics;
 using TodaysManna.Controls.Popups;
 using Rg.Plugins.Popup.Extensions;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace TodaysManna
 {
@@ -46,6 +47,7 @@ namespace TodaysManna
 
         private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_today");
 
             ResetSelectedItemsAndPopPopups();
@@ -55,6 +57,7 @@ namespace TodaysManna
 
         private void OnDateButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_date");
 
             ResetSelectedItemsAndPopPopups();
@@ -76,13 +79,21 @@ namespace TodaysManna
             await Task.WhenAll(task1, task2);
 
             viewModel.IsRefreshing = false;
+
+            DependencyService.Get<IHapticFeedback>().Run();
         }
 
-        void TabView_SelectionChanged(object sender, Xamarin.CommunityToolkit.UI.Views.TabSelectionChangedEventArgs e)
+        void TabView_SelectionChanged(object sender, TabSelectionChangedEventArgs e)
         {
+            headerStackLayout.TranslateTo(0, 0, 250, Easing.CubicOut);
+            tabView.TranslateTo(0, 0, 250, Easing.CubicOut);
             ResetSelectedItemsAndPopPopups();
         }
 
+        void TabViewItem_TabTapped(object sender, TabTappedEventArgs e)
+        {
+            DependencyService.Get<IHapticFeedback>().Run();
+        }
 
         #region CollectionChanged
         //**************************************//
@@ -93,6 +104,11 @@ namespace TodaysManna
         {
             currentView = (CollectionView)sender;
             var seletedItems = e.CurrentSelection;
+
+            if (currentView.SelectedItems.Count>0 && e.PreviousSelection != null && currentView!=null)
+            {
+                DependencyService.Get<IHapticFeedback>().Run();
+            }
 
             var selectedTexts = "";
             foreach (MccheyneContent item in seletedItems)
@@ -122,6 +138,7 @@ namespace TodaysManna
 
         private async void OnCopyButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_coppy");
 
             await Clipboard.SetTextAsync(shareRangeString);
@@ -132,6 +149,7 @@ namespace TodaysManna
 
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_memo");
 
             _memoPopup.SetBibleText(shareRangeString);
@@ -140,6 +158,7 @@ namespace TodaysManna
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_share");
 
             await Share.RequestAsync(new ShareTextRequest
@@ -151,6 +170,7 @@ namespace TodaysManna
 
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             ResetSelectedItemsAndPopPopups();
         }
 
@@ -175,6 +195,7 @@ namespace TodaysManna
 
         private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             var memoItem = new MemoItem
             {
                 Date = DateTime.Now,

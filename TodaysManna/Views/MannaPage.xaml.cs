@@ -48,6 +48,7 @@ namespace TodaysManna
         #region toolbar buttons
         private void OnRefreshButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_refresh");
 
             ResetSelectedItemsAndPopPopups();
@@ -65,6 +66,7 @@ namespace TodaysManna
 
         private async void OnEnglishButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_english");
 
             ResetSelectedItemsAndPopPopups();
@@ -75,6 +77,7 @@ namespace TodaysManna
 
         private void OnMannaDateButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_date");
 
             ResetSelectedItemsAndPopPopups();
@@ -91,11 +94,14 @@ namespace TodaysManna
             await Task.WhenAll(viewModel.GetManna(e.NewDate));
 
             viewModel.IsRefreshing = false;
+
+            DependencyService.Get<IHapticFeedback>().Run();
         }
         #endregion toolbar buttons
 
         private async void OnAllRangeButtonTapped(object sender, EventArgs args)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_range_share");
 
             ResetSelectedItemsAndPopPopups();
@@ -108,6 +114,7 @@ namespace TodaysManna
 
         private async void OnMannaShareButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_share");
 
             ResetSelectedItemsAndPopPopups();
@@ -123,10 +130,10 @@ namespace TodaysManna
         {
             var seletedItems = e.CurrentSelection;
 
-            //if(e.PreviousSelection == null)
-            //{
-            //    return;
-            //}
+            if (e.PreviousSelection != null)
+            {
+                DependencyService.Get<IHapticFeedback>().Run();
+            }
             var selectedTexts = "";
             foreach (MannaContent item in seletedItems)
             {
@@ -153,6 +160,7 @@ namespace TodaysManna
 
         private async void OnCopyButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_text_copy");
 
             await Clipboard.SetTextAsync(shareRangeString);
@@ -163,6 +171,7 @@ namespace TodaysManna
 
         private async void OnMemoButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_text_memo");
 
             _memoPopup.SetBibleText(shareRangeString);
@@ -171,6 +180,7 @@ namespace TodaysManna
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_text_share");
 
             await Share.RequestAsync(new ShareTextRequest
@@ -182,6 +192,7 @@ namespace TodaysManna
 
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             ResetSelectedItemsAndPopPopups();
         }
 
@@ -206,6 +217,7 @@ namespace TodaysManna
 
         private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             var memoItem = new MemoItem
             {
                 Date = DateTime.Now,
@@ -219,8 +231,14 @@ namespace TodaysManna
 
         private async void ResetSelectedItemsAndPopPopups()
         {
-            mannaCollectionView.SelectedItems.Clear();
-            await Navigation.PopAllPopupAsync();
+            if(mannaCollectionView.SelectedItems.Count > 0)
+            {
+                mannaCollectionView.SelectedItems.Clear();
+            }
+            if (PopupNavigation.Instance.PopupStack.Count > 0)
+            {
+                await Navigation.PopAllPopupAsync();
+            }
         }
 
         private double previousScrollPosition = 0;

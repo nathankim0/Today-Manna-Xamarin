@@ -32,6 +32,7 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
+    <!--#endregion-->
 
     <Grid x:Name="contentGrid">
 

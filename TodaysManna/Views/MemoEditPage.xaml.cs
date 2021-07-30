@@ -12,6 +12,7 @@ namespace TodaysManna
         }
         private async void OnSaveClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_buttonclicked");
             await App.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
@@ -19,7 +20,8 @@ namespace TodaysManna
 
         private async void OnShareClicked(object sender, EventArgs e)
         {
-            if(!(BindingContext is MemoItem memoItem)) { return; }
+            DependencyService.Get<IHapticFeedback>().Run();
+            if (!(BindingContext is MemoItem memoItem)) { return; }
 
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_share");
 
@@ -51,6 +53,7 @@ namespace TodaysManna
 
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
+            DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_delete");
 
             if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))

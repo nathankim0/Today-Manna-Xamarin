@@ -39,4 +39,9 @@ namespace TodaysManna
     {
         int GetHeight();
     }
+
+    public interface IHapticFeedback
+    {
+        void Run();
+    }
 }

@@ -111,6 +111,7 @@
             <xct:TabViewItem
                 IsSelected="True"
                 Style="{x:StaticResource tabViewItemStyle}"
+                TabTapped="TabViewItem_TabTapped"
                 Text="{Binding MccheyneRange1}">
                 <CollectionView
                     x:Name="mccheyneCollectionView1"
@@ -120,7 +121,10 @@
                     Style="{x:StaticResource collectionViewStyle}" />
             </xct:TabViewItem>
 
-            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange2}">
+            <xct:TabViewItem
+                Style="{x:StaticResource tabViewItemStyle}"
+                TabTapped="TabViewItem_TabTapped"
+                Text="{Binding MccheyneRange2}">
                 <CollectionView
                     x:Name="mccheyneCollectionView2"
                     ItemsSource="{Binding MccheyneContents2}"
@@ -129,7 +133,10 @@
                     Style="{x:StaticResource collectionViewStyle}" />
             </xct:TabViewItem>
 
-            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange3}">
+            <xct:TabViewItem
+                Style="{x:StaticResource tabViewItemStyle}"
+                TabTapped="TabViewItem_TabTapped"
+                Text="{Binding MccheyneRange3}">
                 <CollectionView
                     x:Name="mccheyneCollectionView3"
                     ItemsSource="{Binding MccheyneContents3}"
@@ -138,7 +145,10 @@
                     Style="{x:StaticResource collectionViewStyle}" />
             </xct:TabViewItem>
 
-            <xct:TabViewItem Style="{x:StaticResource tabViewItemStyle}" Text="{Binding MccheyneRange4}">
+            <xct:TabViewItem
+                Style="{x:StaticResource tabViewItemStyle}"
+                TabTapped="TabViewItem_TabTapped"
+                Text="{Binding MccheyneRange4}">
                 <CollectionView
                     x:Name="mccheyneCollectionView4"
                     ItemsSource="{Binding MccheyneContents4}"
