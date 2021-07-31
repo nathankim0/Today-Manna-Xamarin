@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using TodaysManna.Constants;
+using System.Diagnostics;
 
 namespace TodaysManna.ViewModel
 {
@@ -14,8 +15,9 @@ namespace TodaysManna.ViewModel
         private ObservableCollection<MccheyneCheckListContent> _mccheyneCheckList = new ObservableCollection<MccheyneCheckListContent>();
         public ObservableCollection<MccheyneCheckListContent> MccheyneCheckList { get => _mccheyneCheckList; set => SetProperty(ref _mccheyneCheckList, value); }
 
-        public ICommand command => new Command<string>(OnCheckButtonTabbed);
-        public ICommand easterEggCommand => new Command<string>(OnDateTabbed);
+        public ICommand command => new Command<string>(OnCheckButtonTapped);
+        public ICommand easterEggCommand => new Command<string>(OnDateTapped);
+        public ICommand goToReadCommand => new Command<string>(OnGoToReadButtonTapped);
 
         public MccheyneCheckViewModel(INavigation navigation)
         {
@@ -114,7 +116,7 @@ namespace TodaysManna.ViewModel
             });
         }
 
-        private void OnCheckButtonTabbed(string val)
+        private void OnCheckButtonTapped(string val)
         {
             DependencyService.Get<IHapticFeedback>().Run();
             MccheyneCheckList.ForEach(x =>
@@ -152,14 +154,35 @@ namespace TodaysManna.ViewModel
             });
         }
 
-        private async void OnDateTabbed(string date)
+        private async void OnDateTapped(string date)
         {
-            System.Diagnostics.Debug.WriteLine("**** EasterEgg Invoked! ****");
+            FirebaseEventService.SendEventOnPlatformSpecific("checklist_easteregg");
+            Debug.WriteLine("**** EasterEgg Invoked! ****");
           
             if (date.Equals("8-12"))
             {
                 DependencyService.Get<IHapticFeedback>().Run();
                 await Navigation.PushAsync(new QrScanPage());
+            }
+        }
+
+        private void OnGoToReadButtonTapped(string date)
+        {
+            FirebaseEventService.SendEventOnPlatformSpecific("checklist_go_to_read");
+            Debug.WriteLine("**** Go To Read Tapped! ****");
+            DependencyService.Get<IHapticFeedback>().Run();
+
+            try
+            {
+                var masterPage = App.Current.MainPage as TabbedPage;
+                masterPage.CurrentPage = masterPage.Children[1];
+
+                var toConvertDateTime = $"{DateTime.Today.Year}-{date}";
+                MessagingCenter.Send(this, "goToReadTapped", Convert.ToDateTime(toConvertDateTime));
+            }
+            catch (Exception ex)
+            {
+                Debug.Fail(ex.Message);
             }
         }
     }

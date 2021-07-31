@@ -13,6 +13,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(EventTrackerDroid))]
 [assembly: Dependency(typeof(IClearCookiesImplementation))]
 [assembly: Dependency(typeof(StatusBar))]
+[assembly: Dependency(typeof(HapticFeedback))]
 
 namespace TodaysManna.Droid
 {
@@ -98,6 +99,7 @@ namespace TodaysManna.Droid
 
     public class HapticFeedback : IHapticFeedback
     {
+        [Obsolete]
         public void Run()
         {
             var vibrator = (Vibrator)Android.App.Application.Context.GetSystemService(Context.VibratorService);
@@ -109,9 +111,7 @@ namespace TodaysManna.Droid
             }
             else
             {
-#pragma warning disable 618
                 vibrator?.Vibrate(20);
-#pragma warning restore 618
             }
         }
     }

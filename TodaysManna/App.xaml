@@ -26,7 +26,7 @@
 
             <Style x:Key="HeaderStackLayoutStyle" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="Padding" Value="20,0,20,10" />
+                <Setter Property="Padding" Value="{OnPlatform Android='20,20,20,10', iOS='20,0,20,10'}" />
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Start" />

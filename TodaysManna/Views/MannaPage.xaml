@@ -113,12 +113,8 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Label
-                            Margin="15"
-                            TextColor="{AppThemeBinding Dark=Black,
-                                                        Light=Black}"
-                            VerticalOptions="Center">
+                    <Grid Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=White, Light=White}">
+                        <Label TextColor="{AppThemeBinding Dark=Black, Light=Black}" VerticalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span LineHeight="1.7" Text="{Binding Number}" />

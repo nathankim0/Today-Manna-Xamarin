@@ -16,7 +16,6 @@ namespace TodaysManna
     {
         private readonly MemoPopup _memoPopup;
         private string shareRangeString = "";
-
         private double headerHeight;
 
         public MannaPage()
@@ -126,14 +125,20 @@ namespace TodaysManna
             });
         }
 
+        #region CollectionChanged
+        //**************************************//
+        // Collection View Changed Methods
+        //**************************************//
         async void OnMannaCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var currentView = (CollectionView)sender;
             var seletedItems = e.CurrentSelection;
 
-            if (e.PreviousSelection != null)
+            if (currentView.SelectedItems.Count > 0 && e.PreviousSelection != null && currentView != null)
             {
                 DependencyService.Get<IHapticFeedback>().Run();
             }
+
             var selectedTexts = "";
             foreach (MannaContent item in seletedItems)
             {
@@ -152,11 +157,12 @@ namespace TodaysManna
 
                 await Navigation.PushPopupAsync(popup);
             }
-            else if(seletedItems.Count == 0 && PopupNavigation.Instance.PopupStack.Count > 0)
+            else if (seletedItems.Count == 0 && PopupNavigation.Instance.PopupStack.Count > 0)
             {
                 await Navigation.PopAllPopupAsync();
             }
         }
+        #endregion CollectionChanged
 
         private async void OnCopyButtonClicked(object sender, EventArgs e)
         {
@@ -196,25 +202,6 @@ namespace TodaysManna
             ResetSelectedItemsAndPopPopups();
         }
 
-        //private async void OnSaveButtonClicked(object sender, EventArgs e)
-        //{
-        //    // _bottomSheet.Hide();
-
-        //    if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-        //    {
-        //        // _bottomSheet.Show();
-        //        return;
-        //    }
-
-        //    var memoItem = new MemoItem
-        //    {
-        //        Date = DateTime.Now,
-        //        Verse = shareRangeString,
-        //        Note = ""
-        //    };
-        //    await App.Database.SaveItemAsync(memoItem);
-        //}
-
         private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
         {
             DependencyService.Get<IHapticFeedback>().Run();
@@ -231,10 +218,7 @@ namespace TodaysManna
 
         private async void ResetSelectedItemsAndPopPopups()
         {
-            if(mannaCollectionView.SelectedItems.Count > 0)
-            {
-                mannaCollectionView.SelectedItems.Clear();
-            }
+            mannaCollectionView.SelectedItems.Clear();
             if (PopupNavigation.Instance.PopupStack.Count > 0)
             {
                 await Navigation.PopAllPopupAsync();

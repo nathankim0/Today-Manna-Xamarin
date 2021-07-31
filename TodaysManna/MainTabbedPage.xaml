@@ -1,18 +1,21 @@
-﻿<!--<TabbedPage
-    x:Class="TodaysManna.Views.MainTabbedPage"
+﻿<TabbedPage
+    x:Class="TodaysManna.MainTabbedPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:baselocal="clr-namespace:TodaysManna"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
-    android:TabbedPage.IsSwipePagingEnabled="False"
-    android:TabbedPage.OffscreenPageLimit="4"
-    android:TabbedPage.ToolbarPlacement="Bottom"
-    ios:Page.PrefersHomeIndicatorAutoHidden="true"
-    ios:Page.UseSafeArea="true">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <NavigationPage Title="만나">
+    <!--
+        xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+        xmlns:baselocal="clr-namespace:TodaysManna"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        xmlns:local="clr-namespace:TodaysManna.Views;assembly=TodaysManna"
+        android:TabbedPage.IsSwipePagingEnabled="False"
+        android:TabbedPage.OffscreenPageLimit="4"
+        android:TabbedPage.ToolbarPlacement="Bottom"
+        ios:Page.PrefersHomeIndicatorAutoHidden="true"
+        ios:Page.UseSafeArea="true">
+    -->
+
+    <!--<NavigationPage Title="만나">
         <x:Arguments>
             <local:MannaPage />
         </x:Arguments>
@@ -59,5 +62,5 @@
                 Color="{AppThemeBinding Dark=White,
                                         Light=Black}" />
         </NavigationPage.IconImageSource>
-    </NavigationPage>
-</TabbedPage>-->
+    </NavigationPage>-->
+</TabbedPage>

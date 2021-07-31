@@ -62,7 +62,7 @@ namespace TodaysManna
             {
                 var collectionViewDataTemplateGrid = new Grid
                 {
-                    Padding = 10,
+                    Padding = new Thickness(10,0,10,10),
                     RowDefinitions =
                         {
                             new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
@@ -72,22 +72,48 @@ namespace TodaysManna
 
                 var checkDateLabel = new Label
                 {
-                    Padding = new Thickness(5, 0, 0, 0),
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 23,
                     FontFamily = "batang",
-                    VerticalOptions = LayoutOptions.CenterAndExpand
+                    BackgroundColor = Color.Transparent,
+                    VerticalOptions = LayoutOptions.Center
                 };
                 checkDateLabel.SetBinding(Label.TextProperty, "ToDisplayDate");
                 checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
 
-                var t = new TapGestureRecognizer();
-                t.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
-                t.SetBinding(TapGestureRecognizer.CommandParameterProperty, "Date");
-                checkDateLabel.GestureRecognizers.Add(t);
+                var dateLabelTapGestureRecognizer = new TapGestureRecognizer();
+                dateLabelTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
+                dateLabelTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandParameterProperty, "Date");
+                checkDateLabel.GestureRecognizers.Add(dateLabelTapGestureRecognizer);
 
-                Grid.SetRow(checkDateLabel, 0);
-                collectionViewDataTemplateGrid.Children.Add(checkDateLabel);
+
+                var goToReadLabel = new Label()
+                {
+                    Text = "읽으러 가기 >",
+                    Padding = new Thickness(30, 10, 20, 10),
+                    TextDecorations = TextDecorations.Underline,
+                    BackgroundColor = Color.Transparent,
+                    FontSize = 16,
+                    TextColor = Color.FromHex("#0000EE"),
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center
+                };
+
+                var goToReadTapGestureRecognizer = new TapGestureRecognizer();
+                goToReadTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "goToReadCommand" });
+                goToReadTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandParameterProperty, "Date");
+                goToReadLabel.GestureRecognizers.Add(goToReadTapGestureRecognizer);
+
+
+                var stackLayout = new StackLayout()
+                {
+                    Padding = new Thickness(5, 0, 0, 10),
+                    Orientation = StackOrientation.Horizontal,
+                    Children = { checkDateLabel, goToReadLabel }
+                };
+                Grid.SetRow(stackLayout, 0);
+                collectionViewDataTemplateGrid.Children.Add(stackLayout);
+
 
                 var checkButtonGrid = new Grid
                 {
@@ -136,7 +162,23 @@ namespace TodaysManna
                 Grid.SetRow(checkButtonGrid, 1);
                 collectionViewDataTemplateGrid.Children.Add(checkButtonGrid);
 
-                return collectionViewDataTemplateGrid;
+                var checkListStack = new StackLayout()
+                {
+                    Padding = new Thickness(0, 0, 0, 0),
+                    Orientation = StackOrientation.Vertical,
+                    Children =
+                    {
+                        collectionViewDataTemplateGrid,
+                        new BoxView
+                        {
+                            Color =Color.LightGray,
+                            HeightRequest = 1,
+                            HorizontalOptions = LayoutOptions.Fill
+                        }
+                    }
+                };
+
+                return checkListStack;
             });
 
             _collectionView = new CollectionView { Margin = 0 };
