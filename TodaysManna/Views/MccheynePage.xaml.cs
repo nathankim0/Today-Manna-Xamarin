@@ -99,7 +99,6 @@ namespace TodaysManna
         //**************************************//
         // Collection View Changed Methods
         //**************************************//
-
         async void OnMccheyneCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentView = (CollectionView)sender;
@@ -173,25 +172,6 @@ namespace TodaysManna
             DependencyService.Get<IHapticFeedback>().Run();
             ResetSelectedItemsAndPopPopups();
         }
-
-        //private async void OnSaveButtonClicked(object sender, EventArgs e)
-        //{
-        //    //_bottomSheet.Hide();
-
-        //    if (!await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
-        //    {
-        //        //_bottomSheet.Show();
-        //        return;
-        //    }
-
-        //    var memoItem = new MemoItem
-        //    {
-        //        Date = DateTime.Now,
-        //        Verse = shareRangeString,
-        //        Note = ""
-        //    };
-        //    await App.Database.SaveItemAsync(memoItem);
-        //}
 
         private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
         {

@@ -5,6 +5,7 @@ using TodaysManna.Models;
 using TodaysManna.Models.JsonMccheyneContentModel;
 using TodaysManna.Services;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace TodaysManna.ViewModel
 {
@@ -56,6 +57,12 @@ namespace TodaysManna.ViewModel
             {
                 System.Diagnostics.Debug.WriteLine("GetMccheyne() Error");
             }
+
+            MessagingCenter.Subscribe<MccheyneCheckViewModel, DateTime>(this,"goToReadTapped",(s,date)=>
+            {
+                _ = GetMccheyne(date);
+                _ = GetMccheyneRange(date);
+            });
         }
 
         public static DateTime GetCorrectDateLeapYear(DateTime newDate)
