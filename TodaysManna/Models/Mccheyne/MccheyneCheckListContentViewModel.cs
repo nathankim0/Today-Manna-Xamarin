@@ -1,6 +1,7 @@
 ﻿using System;
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
+using SQLite;
 
 namespace TodaysManna.Models
 {
@@ -53,5 +54,13 @@ namespace TodaysManna.Models
             get => _dateColor;
             set => SetProperty(ref _dateColor, value);
         }
+    }
+
+    public class MccheyneCheckItem
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string CheckIndex { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

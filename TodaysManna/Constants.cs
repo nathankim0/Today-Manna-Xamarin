@@ -25,6 +25,7 @@ namespace TodaysManna.Constants
     {
         public const string MannaEndpoint = "http://3.138.184.130:9179/api/v1/today-manna/";
         public const string DatabaseFilename = "MemoSQLite.db3";
+        public const string CheckListDatabaseFileName = "CheckListSQLite.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -40,6 +41,15 @@ namespace TodaysManna.Constants
             {
                 var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                 return Path.Combine(basePath, DatabaseFilename);
+            }
+        }
+
+        public static string CheckListDatabasePath
+        {
+            get
+            {
+                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                return Path.Combine(basePath, CheckListDatabaseFileName);
             }
         }
     }

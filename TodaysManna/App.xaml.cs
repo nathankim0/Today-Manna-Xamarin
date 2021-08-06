@@ -11,6 +11,7 @@ namespace TodaysManna
     {
         public static ErrorPopup errorPopup;
         private static MemoItemDatabaseService database;
+        private static MccheyneCheckItemDatabaseService checklistDatabase;
         public static List<MccheyneRange> mccheyneRanges;
 
         public App()
@@ -43,6 +44,18 @@ namespace TodaysManna
                     database = new MemoItemDatabaseService();
                 }
                 return database;
+            }
+        }
+
+        public static MccheyneCheckItemDatabaseService ChecklistDatabase
+        {
+            get
+            {
+                if (checklistDatabase == null)
+                {
+                    checklistDatabase = new MccheyneCheckItemDatabaseService();
+                }
+                return checklistDatabase;
             }
         }
 
