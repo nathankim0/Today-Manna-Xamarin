@@ -1,0 +1,14 @@
+﻿<ContentPage
+    x:Class="TodaysManna.ViewsV2.BaseContentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.PrefersHomeIndicatorAutoHidden="False"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="{AppThemeBinding Dark=Black,
+                                      Light=White}"
+    NavigationPage.BackButtonTitle=""
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content />
+</ContentPage>

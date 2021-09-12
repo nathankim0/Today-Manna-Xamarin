@@ -9,6 +9,7 @@ using System.Diagnostics;
 using TodaysManna.Models;
 using Rg.Plugins.Popup.Extensions;
 using TodaysManna.Controls.Popups;
+using TodaysManna.Managers;
 
 namespace TodaysManna
 {
@@ -218,7 +219,7 @@ namespace TodaysManna
                 Verse = shareRangeString,
                 Note = memoText
             };
-            await App.Database.SaveItemAsync(memoItem);
+            await DatabaseManager.Database.SaveItemAsync(memoItem);
 
             ResetSelectedItemsAndPopPopups();
         }

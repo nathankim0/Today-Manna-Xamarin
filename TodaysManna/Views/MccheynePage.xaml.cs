@@ -10,6 +10,7 @@ using System.Diagnostics;
 using TodaysManna.Controls.Popups;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
+using TodaysManna.Managers;
 
 namespace TodaysManna
 {
@@ -185,7 +186,7 @@ namespace TodaysManna
                 Verse = shareRangeString,
                 Note = memoText
             };
-            await App.Database.SaveItemAsync(memoItem);
+            await DatabaseManager.Database.SaveItemAsync(memoItem);
 
             ResetSelectedItemsAndPopPopups();
         }
