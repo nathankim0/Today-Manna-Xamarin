@@ -159,7 +159,14 @@ namespace TodaysManna
             }
             else if (seletedItems.Count == 0 && PopupNavigation.Instance.PopupStack.Count > 0)
             {
-                await Navigation.PopAllPopupAsync();
+                try
+                {
+                    await Navigation.PopAllPopupAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.Fail($"{this}\n{ex.Message}");
+                }
             }
         }
         #endregion CollectionChanged
@@ -221,7 +228,14 @@ namespace TodaysManna
             mannaCollectionView.SelectedItems.Clear();
             if (PopupNavigation.Instance.PopupStack.Count > 0)
             {
-                await Navigation.PopAllPopupAsync();
+                try
+                {
+                    await Navigation.PopAllPopupAsync();
+                }
+                catch(Exception ex)
+                {
+                    Debug.Fail($"{this}\n{ex.Message}");
+                }
             }
         }
 
