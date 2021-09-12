@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using TodaysManna.Constants;
+using TodaysManna.Managers;
 using TodaysManna.ViewModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -29,8 +30,8 @@ namespace TodaysManna
             DependencyService.Get<IHapticFeedback>().Run();
             if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
-                await App.Database.DeleteItemAsync(memoItem);
-                collectionView.ItemsSource = await App.Database.GetItemsAsync();
+                await DatabaseManager.Database.DeleteItemAsync(memoItem);
+                collectionView.ItemsSource = await DatabaseManager.Database.GetItemsAsync();
             }
         }
 
@@ -57,7 +58,7 @@ namespace TodaysManna
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var memoItems = await App.Database.GetItemsAsync();
+            var memoItems = await DatabaseManager.Database.GetItemsAsync();
             memoItems = memoItems.OrderByDescending(x => x.Date).ToList();
 
             collectionView.ItemsSource = memoItems;

@@ -24,7 +24,7 @@ namespace TodaysManna.iOS.Renderer
 
             if (e.NewElement != null)
             {
-                mainTabbedPage = (MainTabbedPage)e.NewElement;
+                //mainTabbedPage = (MainTabbedPage)e.NewElement;
                 tabbedPage = (TabbedPage)e.NewElement;
             }
             else
@@ -50,39 +50,39 @@ namespace TodaysManna.iOS.Renderer
 
         private async void OnTabbarControllerItemSelected(object sender, UITabBarSelectionEventArgs eventArgs)
         {
-            if (previousTabbedViewController != eventArgs.ViewController)
-            {
-                previousTabbedViewController = eventArgs.ViewController;
-                return;
-            }
-            previousTabbedViewController = eventArgs.ViewController;
+            //if (previousTabbedViewController != eventArgs.ViewController)
+            //{
+            //    previousTabbedViewController = eventArgs.ViewController;
+            //    return;
+            //}
+            //previousTabbedViewController = eventArgs.ViewController;
 
-            if (tabbedPage?.CurrentPage?.Navigation == null) return;
+            //if (tabbedPage?.CurrentPage?.Navigation == null) return;
 
-            if (tabbedPage.CurrentPage.Navigation.NavigationStack.Count > 1)
-            {
-                Debug.WriteLine("PopToRootAsync");
-                await tabbedPage.CurrentPage.Navigation.PopToRootAsync();
-            }
-            else if (tabbedPage.CurrentPage.Title != null)
-            {
-                if (tabbedPage.CurrentPage.Title.Equals("만나"))
-                {
-                    mainTabbedPage.ScrollMannaToTop();
-                }
-                else if (tabbedPage.CurrentPage.Title.Equals("맥체인"))
-                {
-                    mainTabbedPage.ScrollMccheyneToTop();
-                }
-                else if (tabbedPage.CurrentPage.Title.Equals("체크리스트"))
-                {
-                    mainTabbedPage.ScrollCheckListToTop();
-                }
-                else if (tabbedPage.CurrentPage.Title.Equals("메모"))
-                {
-                    mainTabbedPage.ScrollMemoToTop();
-                }
-            }
+            //if (tabbedPage.CurrentPage.Navigation.NavigationStack.Count > 1)
+            //{
+            //    Debug.WriteLine("PopToRootAsync");
+            //    await tabbedPage.CurrentPage.Navigation.PopToRootAsync();
+            //}
+            //else if (tabbedPage.CurrentPage.Title != null)
+            //{
+            //    if (tabbedPage.CurrentPage.Title.Equals("만나"))
+            //    {
+            //        mainTabbedPage.ScrollMannaToTop();
+            //    }
+            //    else if (tabbedPage.CurrentPage.Title.Equals("맥체인"))
+            //    {
+            //        mainTabbedPage.ScrollMccheyneToTop();
+            //    }
+            //    else if (tabbedPage.CurrentPage.Title.Equals("체크리스트"))
+            //    {
+            //        mainTabbedPage.ScrollCheckListToTop();
+            //    }
+            //    else if (tabbedPage.CurrentPage.Title.Equals("메모"))
+            //    {
+            //        mainTabbedPage.ScrollMemoToTop();
+            //    }
+            //}
         }
 
         private void SetBorder()
