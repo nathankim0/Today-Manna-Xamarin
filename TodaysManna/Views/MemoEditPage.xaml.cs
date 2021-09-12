@@ -1,4 +1,5 @@
 ﻿using System;
+using TodaysManna.Managers;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -14,7 +15,7 @@ namespace TodaysManna
         {
             DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_buttonclicked");
-            await App.Database.SaveItemAsync((MemoItem)BindingContext);
+            await DatabaseManager.Database.SaveItemAsync((MemoItem)BindingContext);
             await Navigation.PopAsync();
         }
 
@@ -58,7 +59,7 @@ namespace TodaysManna
 
             if (await DisplayAlert("", "정말 삭제하시겠습니까?", "삭제", "취소"))
             {
-                await App.Database.DeleteItemAsync((MemoItem)BindingContext);
+                await DatabaseManager.Database.DeleteItemAsync((MemoItem)BindingContext);
                 await Navigation.PopAsync();
             }
         }
@@ -67,7 +68,7 @@ namespace TodaysManna
         {
             FirebaseEventService.SendEventOnPlatformSpecific("editmemo_save_disappearing");
 
-            await App.Database.SaveItemAsync((MemoItem)BindingContext);
+            await DatabaseManager.Database.SaveItemAsync((MemoItem)BindingContext);
 
             base.OnDisappearing();
         }

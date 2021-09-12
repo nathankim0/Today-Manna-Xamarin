@@ -1,51 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using TodaysManna.ViewsV2;
+using TodaysManna.Managers;
 using Xamarin.Forms;
-using TodaysManna.Services;
-using TodaysManna.Models;
 
 namespace TodaysManna
 {
     public partial class App : Application
     {
-        public static ErrorPopup errorPopup;
-        private static MemoItemDatabaseService database;
-        public static List<MccheyneRange> mccheyneRanges;
-
         public App()
         {
             InitializeComponent();
-            CreateData();
-            MainPage = new MainTabbedPage();
-        }
+            AppOperationManager.CreateData();
 
-        private async void CreateData()
-        {
-            mccheyneRanges = new List<MccheyneRange>();
-            try
-            {
-                mccheyneRanges = GetJsonService.GetMccheyneRangesFromJson();
-            }
-            catch (Exception e)
-            {
-                Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
-                await MainPage.DisplayAlert("맥체인 불러오기 오류", "", "확인");
-            }
+            MainPage = new MainTabbedPageV2();
         }
-
-        public static MemoItemDatabaseService Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new MemoItemDatabaseService();
-                }
-                return database;
-            }
-        }
-
+       
         protected override void OnStart()
         {
             FirebaseEventService.SendEventOnPlatformSpecific("start_app");
@@ -54,10 +22,6 @@ namespace TodaysManna
         protected override void OnSleep()
         {
             FirebaseEventService.SendEventOnPlatformSpecific("sleep_app");
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using TodaysManna.Constants;
 using TodaysManna.ExtensionMethods;
 using System.Diagnostics;
+using TodaysManna.Managers;
 
 namespace TodaysManna.ViewModel
 {
@@ -94,7 +95,7 @@ namespace TodaysManna.ViewModel
 
             var today = DateTime.Now.ToString("M-d");
 
-            var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(today));
+            var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(today));
             todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
         }
 
@@ -133,7 +134,7 @@ namespace TodaysManna.ViewModel
             var endPoint = Rests.MannaEndpoint + newDateString;
 
             var findMccheyneDate = dateTime.ToString("M-d");
-            var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
+            var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(findMccheyneDate));
             todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
             try
