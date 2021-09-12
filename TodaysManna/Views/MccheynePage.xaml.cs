@@ -34,6 +34,9 @@ namespace TodaysManna
                 mccheyneCollectionView2.ScrollTo(0);
                 mccheyneCollectionView3.ScrollTo(0);
                 mccheyneCollectionView4.ScrollTo(0);
+
+                headerStackLayout.TranslationY = 0;
+                tabView.TranslationY = 0;
             });
             headerStackLayout.SizeChanged += HeaderStackLayout_SizeChanged;
         }
@@ -104,7 +107,7 @@ namespace TodaysManna
             currentView = (CollectionView)sender;
             var seletedItems = e.CurrentSelection;
 
-            if (currentView.SelectedItems.Count>0 && e.PreviousSelection != null && currentView!=null)
+            if (currentView.SelectedItems.Count > 0 && e.PreviousSelection != null && currentView != null)
             {
                 DependencyService.Get<IHapticFeedback>().Run();
             }
@@ -203,20 +206,71 @@ namespace TodaysManna
         private double previousScrollPosition = 0;
         void OnMccheyneCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            if (previousScrollPosition < e.VerticalOffset)
+            switch (Device.RuntimePlatform)
             {
-                Debug.WriteLine("scrolled down");
-                previousScrollPosition = e.VerticalOffset;
-                headerStackLayout.TranslateTo(0, -150, 250, Easing.CubicOut);
-                tabView.TranslateTo(0, -headerHeight, 250, Easing.CubicOut);
+                case Device.iOS:
+                    if (previousScrollPosition < e.VerticalOffset)
+                    {
+                        Debug.WriteLine("scrolled down");
+                        headerStackLayout.TranslateTo(0, -150, 250, Easing.CubicOut);
+                        tabView.TranslateTo(0, -headerHeight, 250, Easing.CubicOut);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("scrolled up");
+                        headerStackLayout.TranslateTo(0, 0, 250, Easing.CubicOut);
+                        tabView.TranslateTo(0, 0, 250, Easing.CubicOut);
+                    }
+                    previousScrollPosition = e.VerticalOffset;
+                    break;
+                case Device.Android:
+                    if (e.FirstVisibleItemIndex > 0)
+                    {
+                        new Animation
+                        {
+                            { 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, -150) },
+                            { 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, -headerHeight) }
+                            }.Commit(this, "animation", 16, 250, null);
+                    }
+                    else
+                    {
+                        new Animation
+                        {
+                            { 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, 0) },
+                            { 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, 0) }
+                            }.Commit(this, "animation", 16, 250, null);
+                    }
+
+                    //if (previousScrollPosition < e.VerticalOffset)
+                    //{
+                    //    Debug.WriteLine("scrolled down");
+                    //    headerStackLayout.TranslationY = -150;
+                    //    tabView.TranslationY = -headerHeight;
+                    //    //                    new Animation {
+                    //    //{ 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, -150) },
+                    //    //{ 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, -headerHeight) }
+                    //    //}.Commit(this, "animation", 16, 250, null);
+                    //}
+                    //else
+                    //{
+                    //    Debug.WriteLine("scrolled up");
+                    //    headerStackLayout.TranslationY = 0;
+                    //    tabView.TranslationY = 0;
+                    //    //                    new Animation {
+                    //    //{ 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, 0) },
+                    //    //{ 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, 0) }
+                    //    //}.Commit(this, "animation", 16, 250, null);
+                    //}
+                    //previousScrollPosition = e.VerticalOffset;
+
+                        break;
+                case Device.macOS:
+                case Device.UWP:
+                    break;
+                default:
+                    break;
+
             }
-            else
-            {
-                Debug.WriteLine("scrolled up");
-                headerStackLayout.TranslateTo(0, 0, 250, Easing.CubicOut);
-                tabView.TranslateTo(0, 0, 250, Easing.CubicOut);
-            }
-            previousScrollPosition = e.VerticalOffset;
         }
     }
 }
