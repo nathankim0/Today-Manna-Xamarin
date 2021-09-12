@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using TodaysManna.Constants;
 using System.Diagnostics;
+using TodaysManna.Managers;
 
 namespace TodaysManna.ViewModel
 {
@@ -39,7 +40,7 @@ namespace TodaysManna.ViewModel
         {
             var i = 0;
 
-            foreach (var range in App.mccheyneRanges)
+            foreach (var range in MccheyneDataManager.MccheyneRangeList)
             {
                 var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : Color.Black;
                 var range5IsNull = true;

@@ -39,6 +39,9 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\JsonFiles\" />
     <Folder Include="Resources\FontFiles\" />
+    <Folder Include="ViewsV2\" />
+    <Folder Include="Managers\" />
+    <Folder Include="ViewModelV2\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
@@ -70,10 +73,12 @@
     <None Remove="Resources\JsonFiles\mcc.json" />
     <None Remove="Resources\JsonFiles\MccheyneRange2.json" />
     <None Remove="Resources\beepsound.mp3" />
+    <None Remove="ViewsV2\" />
+    <None Remove="Managers\" />
+    <None Remove="ViewModelV2\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
-    <EmbeddedResource Remove="Views\MainTabbedPage.xaml" />
     <EmbeddedResource Remove="Views\ContentViews\MccheyneView.xaml" />
     <EmbeddedResource Remove="Views\ContentViews\MannaView.xaml" />
     <EmbeddedResource Remove="Views\ContentViews\MyPageView.xaml" />

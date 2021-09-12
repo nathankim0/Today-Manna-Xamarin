@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TodaysManna.Models;
 using TodaysManna.Services;
 using TodaysManna.Constants;
+using TodaysManna.Managers;
 
 namespace TodaysManna
 {
@@ -24,7 +25,7 @@ namespace TodaysManna
                 JsonMannaData = await _restService.GetMannaDataAsync(Rests.MannaEndpoint);
 
                 var findMccheyneDate = DateTime.Now.ToString("M-d");
-                var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
+                var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(findMccheyneDate));
                 var todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
                 var MannaShareRange = $"만나: {JsonMannaData.Verse}";

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
+using TodaysManna.Managers;
 using TodaysManna.Models;
 using TodaysManna.Models.JsonMccheyneContentModel;
 
@@ -9,6 +10,11 @@ namespace TodaysManna.Services
 {
     public static class GetJsonService
     {
+        public static void InitMcchyneData()
+        {
+            MccheyneDataManager.MccheyneRangeList = GetMccheyneRangesFromJson();
+        }
+
         public static List<MccheyneRange> GetMccheyneRangesFromJson()
         {
             const string jsonFileName = "MccheyneRange.json";
@@ -24,7 +30,6 @@ namespace TodaysManna.Services
 
             return ObjContactList.Ranges;
         }
-
         public static IEnumerable<Days> GetMccheyneBibleTextsFromJson()
         {
             var jsonFileName = "mcc.json";

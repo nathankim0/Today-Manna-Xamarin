@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TodaysManna.Managers;
 using TodaysManna.Models;
 using TodaysManna.Models.JsonMccheyneContentModel;
 using TodaysManna.Services;
@@ -275,7 +276,7 @@ namespace TodaysManna.ViewModel
         {
             var findMccheyneDate = thisDate.ToString("M-d");
 
-            var rangeOfDate = App.mccheyneRanges.Find(x => x.Date.Equals(findMccheyneDate));
+            var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(findMccheyneDate));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
             return Task.CompletedTask;
