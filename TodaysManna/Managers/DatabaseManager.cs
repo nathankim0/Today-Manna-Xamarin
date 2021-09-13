@@ -14,5 +14,18 @@
                 return _database;
             }
         }
+
+        private static MccheyneCheckListDatabaseService _checkListDatabase;
+        public static MccheyneCheckListDatabaseService CheckListDatabase
+        {
+            get
+            {
+                if (_checkListDatabase == null)
+                {
+                    _checkListDatabase = new MccheyneCheckListDatabaseService();
+                }
+                return _checkListDatabase;
+            }
+        }
     }
 }
