@@ -1,6 +1,12 @@
 ﻿using System;
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
+using SQLite;
+using System;
+using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using Xamarin.CommunityToolkit.ObjectModel;
+using System.Linq;
 
 namespace TodaysManna.Models
 {
@@ -16,7 +22,7 @@ namespace TodaysManna.Models
         private string _date;
         public string Date
         {
-            get =>_date;
+            get => _date;
             set
             {
                 string[] monthAndDay = value.Split('-');
@@ -35,23 +41,74 @@ namespace TodaysManna.Models
         public string RangeText { get; set; }
 
         private bool _ischecked;
-        public bool IsChecked 
+        public bool IsChecked
         {
             get => _ischecked;
             set => SetProperty(ref _ischecked, value);
         }
 
         private Color _color = Color.White;
-        public Color Color {
+        public Color Color
+        {
             get => _color;
             set => SetProperty(ref _color, value);
         }
 
         private Color _dateColor = Color.Black;
-        public Color DateColor 
+        public Color DateColor
         {
             get => _dateColor;
             set => SetProperty(ref _dateColor, value);
         }
+    }
+
+    public class MccheyneCheckListLocalContent
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string Date { get; set; }
+        public bool IsChecked { get; set; }
+    }
+
+    public class MccheyneCheckListContentViewModel : BaseViewModel
+    {
+        private string _date;
+        public string Date { get => _date; set => SetProperty(ref _date, value); }
+
+        ObservableRangeCollection<CheckViewModel> _ranges = new ObservableRangeCollection<CheckViewModel>();
+        public ObservableRangeCollection<CheckViewModel> Ranges
+        {
+            get => _ranges;
+            set
+            {
+                SetProperty(ref _ranges, value);
+                OnPropertyChanged(nameof(RangesArray));
+            }
+        }
+
+        public CheckViewModel[] RangesArray => Ranges.ToArray();
+    }
+
+    public class CheckViewModel : BaseViewModel
+    {
+        private int _id;
+        public int ID { get => _id; set => SetProperty(ref _id, value); }
+
+        private string _date;
+        public string Date { get => _date; set => SetProperty(ref _date, value); }
+
+        private bool _isChecked;
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set
+            {
+                SetProperty(ref _isChecked, value);
+                OnPropertyChanged(nameof(CheckedColor));
+            }
+        }
+
+        public Color CheckedColor => IsChecked ? Color.Orange : Color.White;
+
     }
 }
