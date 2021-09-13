@@ -7,7 +7,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout BackgroundColor="#F9F9F9">
                 <!--#region HEADER-->
                 <StackLayout Style="{x:StaticResource HeaderV2StackLayoutStyle}">
                     <Label Style="{x:StaticResource HeaderLabelStyle}" Text="홈" />

@@ -98,8 +98,8 @@
 
 
             <Style x:Key="HeaderV2StackLayoutStyle" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="Padding" Value="{OnPlatform Android='0,0,0,0', iOS='15'}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
+                <Setter Property="Padding" Value="{OnPlatform Android='0,0,0,0', iOS='15,0,15,15'}" />
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Start" />
