@@ -28,6 +28,5 @@ namespace TodaysManna.Managers
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("만나 불러오기 오류", "", "확인");
             }
         }
-
     }
 }
