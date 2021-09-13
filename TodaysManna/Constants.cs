@@ -10,6 +10,8 @@ namespace TodaysManna.Constants
         public static readonly double height = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
         public static readonly double width = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
         public static readonly double StatusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+        public static double TabHeight { get; set; } = 0;
+        public static double BottomSafeAreaHeight { get; set; } = 0;
     }
 
     public static class Colors
@@ -50,5 +52,11 @@ namespace TodaysManna.Constants
         public static string ScrollCheckListToTop = "ScrollCheckListToTop";
         public static string ScrollMemoToTop = "ScrollMemoToTop";
 
+        public static string ScrollHomePageToTop = "ScrollHomePageToTop";
+    }
+
+    public static class TitleNames
+    {
+        public static string Home = "home";
     }
 }
