@@ -77,22 +77,22 @@ namespace TodaysManna.Droid.Renderer
                     if (tabbedPage.CurrentPage.Title.Equals("만나"))
                     {
                         isFirst = true;
-                        mainTabbedPage.ScrollMannaToTop();
+                        //mainTabbedPage.ScrollMannaToTop();
                     }
                     else if (tabbedPage.CurrentPage.Title.Equals("맥체인"))
                     {
                         isFirst = true;
-                        mainTabbedPage.ScrollMccheyneToTop();
+                        //mainTabbedPage.ScrollMccheyneToTop();
                     }
                     else if (tabbedPage.CurrentPage.Title.Equals("체크리스트"))
                     {
                         isFirst = true;
-                        mainTabbedPage.ScrollCheckListToTop();
+                        //mainTabbedPage.ScrollCheckListToTop();
                     }
                     else if (tabbedPage.CurrentPage.Title.Equals("메모"))
                     {
                         isFirst = true;
-                        mainTabbedPage.ScrollMemoToTop();
+                        //mainTabbedPage.ScrollMemoToTop();
                     }
                 }
             }

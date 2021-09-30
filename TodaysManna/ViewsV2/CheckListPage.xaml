@@ -1,0 +1,66 @@
+﻿<viewsv2:BaseContentPage
+    x:Class="TodaysManna.ViewsV2.CheckListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TodaysManna"
+    xmlns:model="clr-namespace:TodaysManna.Models"
+    xmlns:viewmodel="clr-namespace:TodaysManna.ViewModelV2"
+    xmlns:viewsv2="clr-namespace:TodaysManna.ViewsV2">
+
+    <ScrollView>
+        <StackLayout BackgroundColor="#F9F9F9">
+            <!--#region HEADER-->
+            <StackLayout Style="{x:StaticResource HeaderV2StackLayoutStyle}">
+                <Label Style="{x:StaticResource HeaderLabelStyle}" Text="체크리스트" />
+            </StackLayout>
+            <!--#region HEADER-->
+
+            <StackLayout x:Name="checklist" BindableLayout.ItemsSource="{Binding MccheyneCheckList}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Date}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Frame BackgroundColor="{Binding RangesArray[0].CheckedColor}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding RangesArray[0]}" Tapped="OnCheckButtonTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding RangesArray[0].RangeText}" />
+                                </Frame>
+                                <Frame BackgroundColor="{Binding RangesArray[1].CheckedColor}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding RangesArray[1]}" Tapped="OnCheckButtonTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding RangesArray[1].RangeText}" />
+                                </Frame>
+                                <Frame BackgroundColor="{Binding RangesArray[2].CheckedColor}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding RangesArray[2]}" Tapped="OnCheckButtonTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding RangesArray[2].RangeText}" />
+                                </Frame>
+                                <Frame BackgroundColor="{Binding RangesArray[3].CheckedColor}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding RangesArray[3]}" Tapped="OnCheckButtonTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding RangesArray[3].RangeText}" />
+                                </Frame>
+                                <Frame BackgroundColor="{Binding RangesArray[4].CheckedColor}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding RangesArray[4]}" Tapped="OnCheckButtonTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding RangesArray[4].RangeText}" />
+                                </Frame>
+                                <!--  Command="{Binding BindingContext.CheckCommand, Source={x:Reference checklist}}"  -->
+
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</viewsv2:BaseContentPage>

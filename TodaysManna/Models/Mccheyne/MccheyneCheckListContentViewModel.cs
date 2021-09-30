@@ -54,4 +54,60 @@ namespace TodaysManna.Models
             set => SetProperty(ref _dateColor, value);
         }
     }
+
+    #region renew ui
+    public class MccheyneCheckListLocalContent
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string Date { get; set; }
+        public string RangeText { get; set; }
+        public bool IsChecked { get; set; }
+    }
+
+    public class MccheyneCheckListContentViewModel : BaseViewModel
+    {
+        private string _date;
+        public string Date { get => _date; set => SetProperty(ref _date, value); }
+
+        ObservableRangeCollection<CheckViewModel> _ranges = new ObservableRangeCollection<CheckViewModel>();
+        public ObservableRangeCollection<CheckViewModel> Ranges
+        {
+            get => _ranges;
+            set
+            {
+                SetProperty(ref _ranges, value);
+                OnPropertyChanged(nameof(RangesArray));
+            }
+        }
+
+        public CheckViewModel[] RangesArray => Ranges.ToArray();
+    }
+
+    public class CheckViewModel : BaseViewModel
+    {
+        private int _id;
+        public int ID { get => _id; set => SetProperty(ref _id, value); }
+
+        private string _date;
+        public string Date { get => _date; set => SetProperty(ref _date, value); }
+
+        private string _rangeText;
+        public string RangeText { get => _rangeText; set => SetProperty(ref _rangeText, value); }
+
+        private bool _isChecked;
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set
+            {
+                SetProperty(ref _isChecked, value);
+                OnPropertyChanged(nameof(CheckedColor));
+            }
+        }
+
+        public Color CheckedColor => IsChecked ? Color.Orange : Color.White;
+
+    }
+    #endregion renew ui
 }

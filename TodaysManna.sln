@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodaysManna.iOS", "TodaysMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodaysManna", "TodaysManna\TodaysManna.csproj", "{4DCB7FAF-00FB-4E77-9198-218A00E6454B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31B86907-06A9-41E9-9908-91DE7508E536}"
+	ProjectSection(SolutionItems) = preProject
+		MainTabbedPage.xaml.cs = MainTabbedPage.xaml.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

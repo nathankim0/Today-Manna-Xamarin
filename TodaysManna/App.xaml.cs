@@ -11,7 +11,7 @@ namespace TodaysManna
             InitializeComponent();
             AppOperationManager.CreateData();
 
-            MainPage = new MainTabbedPageV2();
+            MainPage = new MainTabbedPage();
         }
        
         protected override void OnStart()
