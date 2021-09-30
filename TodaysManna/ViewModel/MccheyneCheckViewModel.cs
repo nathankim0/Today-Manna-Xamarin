@@ -155,7 +155,7 @@ namespace TodaysManna.ViewModel
             });
         }
 
-        private async void OnDateTapped(string date)
+        private void OnDateTapped(string date)
         {
             FirebaseEventService.SendEventOnPlatformSpecific("checklist_easteregg");
             Debug.WriteLine("**** EasterEgg Invoked! ****");
@@ -163,7 +163,6 @@ namespace TodaysManna.ViewModel
             if (date.Equals("8-12"))
             {
                 DependencyService.Get<IHapticFeedback>().Run();
-                await Navigation.PushAsync(new QrScanPage());
             }
         }
 
