@@ -26,7 +26,6 @@ namespace TodaysManna.Droid
 
             Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Essentials.Platform.Init(Application);
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
             Forms.Init(this, savedInstanceState);
 

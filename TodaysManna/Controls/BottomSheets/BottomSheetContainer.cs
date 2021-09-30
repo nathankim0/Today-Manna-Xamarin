@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.PancakeView;
 using TodaysManna.Constants;
 
 namespace TodaysManna
@@ -144,7 +141,7 @@ namespace TodaysManna
         {
             public event EventHandler BottomSheetPulledDown;
 
-            public readonly PancakeView SheetFrame;
+            public readonly Frame SheetFrame;
             public readonly StackLayout ContentLayout;
 
             private double _maxY;
@@ -182,10 +179,10 @@ namespace TodaysManna
                     Spacing = 0
                 };
 
-                SheetFrame = new PancakeView
+                SheetFrame = new Frame
                 {
                     BackgroundColor = Color.White,
-                    CornerRadius = new CornerRadius(25, 25, 0, 0),
+                    CornerRadius = 25,
                     IsClippedToBounds = true,
                     Margin = 0,
                     Padding = 0,

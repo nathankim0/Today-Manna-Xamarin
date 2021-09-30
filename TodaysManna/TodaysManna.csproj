@@ -11,19 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.13" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
-    <PackageReference Include="Dropbox.Api" Version="6.10.2" />
+    <PackageReference Include="Dropbox.Api" Version="6.15.0" />
     <PackageReference Include="Plugin.StoreReview" Version="3.2.0-beta" />
-    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
-    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Plugin.LocalNotification" Version="5.2.0" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -39,9 +36,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\JsonFiles\" />
     <Folder Include="Resources\FontFiles\" />
-    <Folder Include="ViewsV2\" />
     <Folder Include="Managers\" />
-    <Folder Include="ViewModelV2\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Manna\MainPage.xaml.cs" />
@@ -55,6 +50,11 @@
     <Compile Remove="Models\Person.cs" />
     <Compile Remove="Datas\FirebaseHelper.cs" />
     <Compile Remove="Views\ContentPages\MannaCalendarView.xaml.cs" />
+    <Compile Remove="ViewsV2\BaseContentPage.xaml.cs" />
+    <Compile Remove="ViewsV2\MainTabbedPageV2.xaml.cs" />
+    <Compile Remove="ViewsV2\HomePage.xaml.cs" />
+    <Compile Remove="ViewModelV2\HomePageViewModel.cs" />
+    <Compile Remove="ViewModelV2\MccheyneCheckListPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
@@ -73,9 +73,7 @@
     <None Remove="Resources\JsonFiles\mcc.json" />
     <None Remove="Resources\JsonFiles\MccheyneRange2.json" />
     <None Remove="Resources\beepsound.mp3" />
-    <None Remove="ViewsV2\" />
     <None Remove="Managers\" />
-    <None Remove="ViewModelV2\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
@@ -84,6 +82,9 @@
     <EmbeddedResource Remove="Views\ContentViews\MyPageView.xaml" />
     <EmbeddedResource Remove="Views\NTabView.xaml" />
     <EmbeddedResource Remove="Views\ContentPages\MannaCalendarView.xaml" />
+    <EmbeddedResource Remove="ViewsV2\BaseContentPage.xaml" />
+    <EmbeddedResource Remove="ViewsV2\HomePage.xaml" />
+    <EmbeddedResource Remove="ViewsV2\MainTabbedPageV2.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\FontFiles\batang.otf" />

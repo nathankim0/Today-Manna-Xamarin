@@ -6,16 +6,17 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     BackgroundColor="Transparent"
-    BackgroundInputTransparent="True">
+    BackgroundInputTransparent="True"
+    Opacity="1">
 
-    <pages:PopupPage.Animation>
+    <!--<pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="0"
             DurationOut="0"
             HasBackgroundAnimation="False"
             PositionIn="Center"
             PositionOut="Center" />
-    </pages:PopupPage.Animation>
+    </pages:PopupPage.Animation>-->
 
     <Grid VerticalOptions="End">
         <Frame

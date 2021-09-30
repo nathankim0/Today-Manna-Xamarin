@@ -1,5 +1,4 @@
-﻿using TodaysManna.ViewsV2;
-using TodaysManna.Managers;
+﻿using TodaysManna.Managers;
 using Xamarin.Forms;
 
 namespace TodaysManna
@@ -11,7 +10,7 @@ namespace TodaysManna
             InitializeComponent();
             AppOperationManager.CreateData();
 
-            MainPage = new MainTabbedPageV2();
+            MainPage = new MainTabbedPage();
         }
        
         protected override void OnStart()
