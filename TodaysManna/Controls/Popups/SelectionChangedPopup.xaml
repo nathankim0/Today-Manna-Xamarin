@@ -9,14 +9,14 @@
     BackgroundInputTransparent="True"
     Opacity="1">
 
-    <!--<pages:PopupPage.Animation>
+    <pages:PopupPage.Animation>
         <animations:ScaleAnimation
             DurationIn="0"
             DurationOut="0"
             HasBackgroundAnimation="False"
             PositionIn="Center"
             PositionOut="Center" />
-    </pages:PopupPage.Animation>-->
+    </pages:PopupPage.Animation>
 
     <Grid VerticalOptions="End">
         <Frame
@@ -25,42 +25,53 @@
             xct:ShadowEffect.Color="Black"
             xct:ShadowEffect.Opacity="0.2"
             xct:ShadowEffect.Radius="30"
-            BackgroundColor="White"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
             CornerRadius="0"
             HorizontalOptions="Fill">
 
             <Grid
                 Margin="30,20,30,40"
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                                  Light=White}"
                 ColumnDefinitions="*,*,*,*"
                 ColumnSpacing="10">
                 <Button
                     Grid.Column="0"
-                    BackgroundColor="LightGray"
+                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                                                      Light=LightGray}"
                     Clicked="OnCopyButtonClicked"
                     FontSize="12"
                     Text="복사"
-                    TextColor="Black" />
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
                 <Button
                     Grid.Column="1"
-                    BackgroundColor="LightGray"
+                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                                                      Light=LightGray}"
                     Clicked="OnShareButtonClicked"
                     FontSize="12"
                     Text="공유"
-                    TextColor="Black" />
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
                 <Button
                     Grid.Column="2"
-                    BackgroundColor="LightGray"
+                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                                                      Light=LightGray}"
                     Clicked="OnMemoButtonClicked"
                     FontSize="12"
                     Text="메모"
-                    TextColor="Black" />
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
                 <Button
                     Grid.Column="3"
-                    BackgroundColor="LightGray"
+                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                                                      Light=LightGray}"
                     Clicked="OnCancelButtonClicked"
                     FontSize="12"
                     Text="취소"
-                    TextColor="Black" />
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
             </Grid>
         </Frame>
     </Grid>

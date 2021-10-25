@@ -5,7 +5,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=White,
+    BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
@@ -19,7 +19,7 @@
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="White" />
+                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="Selected">
@@ -34,11 +34,11 @@
     </ContentPage.Resources>
     <!--#endregion-->
 
-    <Grid x:Name="contentGrid">
+    <Grid x:Name="contentGrid" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
 
         <CollectionView
             x:Name="mannaCollectionView"
-            BackgroundColor="{AppThemeBinding Dark=White,
+            BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
             Footer="&#10;"
             ItemsSource="{Binding MannaContents}"
@@ -51,11 +51,12 @@
                 <StackLayout
                     x:Name="collectionViewHeader"
                     Padding="15,10,15,10"
-                    BackgroundColor="{AppThemeBinding Dark=White,
+                    BackgroundColor="{AppThemeBinding Dark=Black,
                                                       Light=White}">
                     <Frame
                         x:Name="rangeButton"
-                        BackgroundColor="#e2e2e2"
+                        BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                                                          Light=#e2e2e2}"
                         HasShadow="False">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnAllRangeButtonTapped" />
@@ -88,7 +89,7 @@
                             FontSize="Subtitle"
                             HorizontalOptions="StartAndExpand"
                             Text="{Binding JsonMannaData.Verse}"
-                            TextColor="{AppThemeBinding Dark=Black,
+                            TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}"
                             VerticalOptions="CenterAndExpand" />
                         <ImageButton
@@ -103,7 +104,7 @@
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.ShareVariant}"
                                     Size="30"
-                                    Color="{AppThemeBinding Dark=Black,
+                                    Color="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
                             </ImageButton.Source>
                         </ImageButton>
@@ -113,8 +114,8 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=White, Light=White}">
-                        <Label TextColor="{AppThemeBinding Dark=Black, Light=Black}" VerticalOptions="Center">
+                    <Grid Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+                        <Label TextColor="{AppThemeBinding Dark=White, Light=Black}" VerticalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span LineHeight="1.7" Text="{Binding Number}" />
@@ -135,7 +136,7 @@
         </CollectionView>
 
         <Frame
-            BackgroundColor="{AppThemeBinding Dark=White,
+            BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
             HasShadow="False"
             IsVisible="{Binding IsRefreshing}"
@@ -143,7 +144,7 @@
             <Label
                 HorizontalOptions="Center"
                 Text="만나 불러오는 중..."
-                TextColor="{AppThemeBinding Dark=Black,
+                TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}"
                 VerticalOptions="Center">
                 <Label.FontSize>
@@ -162,16 +163,24 @@
             IsVisible="false" />
 
         <!--#region HEADER-->
-        <StackLayout x:Name="headerStackLayout" Style="{x:StaticResource HeaderStackLayoutStyle}">
+        <StackLayout
+            x:Name="headerStackLayout"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
+            Style="{x:StaticResource HeaderStackLayoutStyle}">
             <Label Style="{x:StaticResource HeaderLabelStyle}" Text="만나" />
-            <Grid ColumnDefinitions="*,*,Auto" Style="{x:StaticResource HeaderGridStyle}">
+            <Grid
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                                  Light=White}"
+                ColumnDefinitions="*,*,Auto"
+                Style="{x:StaticResource HeaderGridStyle}">
                 <ImageButton Clicked="OnRefreshButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
                     <ImageButton.Source>
                         <FontImageSource
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.Refresh}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=Black,
+                            Color="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -185,7 +194,7 @@
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.AlphabetLatin}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=Black,
+                            Color="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -207,7 +216,7 @@
                                 FontFamily="materialdesignicons"
                                 Glyph="{x:Static local:FontIcons.CalendarBlank}"
                                 Size="20"
-                                Color="{AppThemeBinding Dark=Black,
+                                Color="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
                         </Image.Source>
                     </Image>
@@ -216,7 +225,7 @@
                         FontSize="13"
                         HorizontalOptions="Center"
                         Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=Black,
+                        TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
                 </StackLayout>
             </Grid>

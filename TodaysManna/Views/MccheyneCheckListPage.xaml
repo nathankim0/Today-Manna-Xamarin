@@ -5,25 +5,33 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=White,
+    BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid x:Name="contentGrid" RowDefinitions="50,*">
+    <Grid
+        x:Name="contentGrid"
+        BackgroundColor="{AppThemeBinding Dark=Black,
+                                          Light=White}"
+        RowDefinitions="50,*">
 
         <!--#region HEADER-->
-        <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
-            <Label Style="{x:StaticResource HeaderLabelStyle}" Text="체크리스트" />
-            <Grid Style="{x:StaticResource HeaderGridStyle}">
+        <StackLayout BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderStackLayoutStyle}">
+            <Label
+                Style="{x:StaticResource HeaderLabelStyle}"
+                Text="체크리스트"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}" />
+            <Grid BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderGridStyle}">
                 <ImageButton Clicked="OnOptionClicked" Style="{x:StaticResource HeaderButtonStyle}">
                     <ImageButton.Source>
                         <FontImageSource
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.AppleKeyboardOption}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=Black,
+                            Color="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
