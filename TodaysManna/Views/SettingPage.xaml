@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=White,
+    BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
@@ -13,24 +13,33 @@
     <Grid x:Name="outerGrid" RowDefinitions="50,*">
 
         <!--#region HEADER-->
-        <StackLayout Style="{x:StaticResource HeaderStackLayoutStyle}">
-            <Label Style="{x:StaticResource HeaderLabelStyle}" Text="설정" />
+        <StackLayout BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderStackLayoutStyle}">
+            <Label
+                Style="{x:StaticResource HeaderLabelStyle}"
+                Text="설정"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}" />
         </StackLayout>
         <!--#region HEADER-->
 
         <TableView
             Grid.Row="1"
-            BackgroundColor="White"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
             HasUnevenRows="True"
             Intent="Settings">
             <TableRoot>
                 <TableSection Title="앱 정보">
                     <ViewCell>
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                        <StackLayout
+                            Margin="15,10,0,10"
+                            BackgroundColor="{AppThemeBinding Dark=Black,
+                                                              Light=White}"
+                            Orientation="Horizontal">
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="버전"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
                             <Label
@@ -54,7 +63,7 @@
                                 Format="(tt) hh:mm"
                                 HorizontalOptions="StartAndExpand"
                                 PropertyChanged="OnTimePickerPropertyChanged"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
 
@@ -74,7 +83,7 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="백업"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
                             <Label
@@ -92,7 +101,7 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="복원"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
@@ -102,7 +111,7 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="드롭박스 로그아웃"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
@@ -115,7 +124,7 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="문의"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
@@ -126,7 +135,7 @@
                             <Label
                                 HorizontalOptions="StartAndExpand"
                                 Text="별점주기"
-                                TextColor="{AppThemeBinding Dark=Black,
+                                TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
                         </StackLayout>
@@ -156,16 +165,18 @@
         <Frame
             Margin="0"
             Padding="0"
-            BackgroundColor="Black"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
             CornerRadius="0"
             HasShadow="False"
             IsVisible="{Binding IsBusy}"
             Opacity="0.8"
             VerticalOptions="Fill">
             <Label
+                BackgroundColor="{AppThemeBinding Dark=White,
+                                                  Light=Black}"
                 HorizontalOptions="Center"
                 Text="잠시 기다려주세요..."
-                TextColor="White"
                 VerticalOptions="Center" />
         </Frame>
     </Grid>

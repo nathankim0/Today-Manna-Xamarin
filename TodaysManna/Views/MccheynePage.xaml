@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:TodaysManna"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     ios:Page.UseSafeArea="true"
-    BackgroundColor="{AppThemeBinding Dark=White,
+    BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
@@ -21,7 +21,7 @@
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="White" />
+                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="Selected">
@@ -44,12 +44,12 @@
         </DataTemplate>
 
         <DataTemplate x:Key="contentTemplate">
-            <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=White, Light=White}">
+            <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                 <Label
                     FontAttributes="Bold"
                     IsVisible="{Binding IsHalfVerseVisible}"
                     Text="{Binding HalfVerse}"
-                    TextColor="{AppThemeBinding Dark=Black,
+                    TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}">
                     <Label.FontSize>
                         <OnPlatform
@@ -58,7 +58,7 @@
                             iOS="18" />
                     </Label.FontSize>
                 </Label>
-                <Label TextColor="{AppThemeBinding Dark=Black, Light=Black}">
+                <Label TextColor="{AppThemeBinding Dark=White, Light=Black}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
@@ -77,7 +77,7 @@
         </DataTemplate>
 
         <Style x:Key="collectionViewStyle" TargetType="CollectionView">
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=White, Light=White}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
             <Setter Property="VerticalOptions" Value="Fill" />
             <Setter Property="ItemTemplate" Value="{x:StaticResource contentTemplate}" />
             <Setter Property="HeaderTemplate" Value="{x:StaticResource headerTemplate}" />
@@ -90,19 +90,23 @@
 
         <Style x:Key="tabViewItemStyle" TargetType="xct:TabViewItem">
             <Setter Property="FontSize" Value="12" />
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="TextColorSelected" Value="Black" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
         </Style>
     </ContentPage.Resources>
     <!--#endregion Resources-->
 
-    <Grid x:Name="outerGrid" Style="{x:StaticResource OuterGridStyle}">
+    <Grid
+        x:Name="outerGrid"
+        BackgroundColor="{AppThemeBinding Dark=Black,
+                                          Light=White}"
+        Style="{x:StaticResource OuterGridStyle}">
 
         <xct:TabView
             x:Name="tabView"
             SelectedIndex="0"
             SelectionChanged="TabView_SelectionChanged"
-            TabContentBackgroundColor="{AppThemeBinding Dark=White,
+            TabContentBackgroundColor="{AppThemeBinding Dark=Black,
                                                         Light=White}"
             TabIndicatorColor="LightBlue"
             TabStripBackgroundColor="White"
@@ -159,7 +163,7 @@
         </xct:TabView>
 
         <Frame
-            BackgroundColor="{AppThemeBinding Dark=White,
+            BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
             HasShadow="False"
             IsVisible="{Binding IsRefreshing}"
@@ -167,7 +171,7 @@
             <Label
                 HorizontalOptions="Center"
                 Text="맥체인 불러오는 중..."
-                TextColor="{AppThemeBinding Dark=Black,
+                TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}"
                 VerticalOptions="Center">
                 <Label.FontSize>
@@ -187,17 +191,29 @@
             IsVisible="false" />
 
         <!--#region HEADER-->
-        <StackLayout x:Name="headerStackLayout" Style="{x:StaticResource HeaderStackLayoutStyle}">
-            <Label Style="{x:StaticResource HeaderLabelStyle}" Text="맥체인" />
+        <StackLayout
+            x:Name="headerStackLayout"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
+            Style="{x:StaticResource HeaderStackLayoutStyle}">
+            <Label
+                Style="{x:StaticResource HeaderLabelStyle}"
+                Text="맥체인"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}" />
 
-            <Grid ColumnDefinitions="*,Auto" Style="{x:StaticResource HeaderGridStyle}">
+            <Grid
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                                  Light=White}"
+                ColumnDefinitions="*,Auto"
+                Style="{x:StaticResource HeaderGridStyle}">
                 <ImageButton Clicked="OnRefreshButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
                     <ImageButton.Source>
                         <FontImageSource
                             FontFamily="materialdesignicons"
                             Glyph="{x:Static local:FontIcons.Refresh}"
                             Size="30"
-                            Color="{AppThemeBinding Dark=Black,
+                            Color="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
                     </ImageButton.Source>
                 </ImageButton>
@@ -205,6 +221,8 @@
                 <StackLayout
                     Grid.Column="1"
                     Margin="10,0,0,0"
+                    BackgroundColor="{AppThemeBinding Dark=Black,
+                                                      Light=White}"
                     HorizontalOptions="Center"
                     Spacing="0"
                     VerticalOptions="End">
@@ -220,7 +238,7 @@
                                 FontFamily="materialdesignicons"
                                 Glyph="{x:Static local:FontIcons.CalendarBlank}"
                                 Size="20"
-                                Color="{AppThemeBinding Dark=Black,
+                                Color="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
                         </Image.Source>
                     </Image>
@@ -229,7 +247,7 @@
                         FontSize="13"
                         HorizontalOptions="Center"
                         Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=Black,
+                        TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}" />
                 </StackLayout>
 

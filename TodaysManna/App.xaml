@@ -87,6 +87,7 @@
 
             <Style x:Key="HeaderGridStyle" TargetType="Grid">
                 <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
                 <Setter Property="RowDefinitions" Value="40" />
             </Style>
 
