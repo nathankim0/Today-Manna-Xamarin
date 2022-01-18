@@ -24,6 +24,9 @@ namespace TodaysManna
         public MccheynePage()
         {
             InitializeComponent();
+
+            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+
             BindingContext = new MccheyneViewModel();
 
             //_memoPopup = new MemoPopup();
@@ -129,11 +132,15 @@ namespace TodaysManna
         {
             DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_memo");
+
             var memoPage = new MemoAddPage();
             memoPage.SetBibleText(shareRangeString);
             memoPage.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
 
-            ResetSelectedItemsAndPopPopups();
+            if (PopupNavigation.Instance.PopupStack.Count > 0)
+            {
+                await Navigation.PopAllPopupAsync();
+            }
 
             await Navigation.PushAsync(memoPage);
         }
@@ -166,7 +173,11 @@ namespace TodaysManna
                 Note = memoText
             };
             await DatabaseManager.Database.SaveItemAsync(memoItem);
-
+            if (currentView != null)
+            {
+                currentView.SelectedItems.Clear();
+                currentView = null;
+            }
         }
 
         private async void ResetSelectedItemsAndPopPopups()

@@ -36,7 +36,7 @@
         </Style>
 
         <DataTemplate x:Key="headerTemplate">
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Padding="15" Orientation="Horizontal">
                 <Label
                     FontSize="12"
                     HorizontalOptions="StartAndExpand"
@@ -44,19 +44,22 @@
                     TextColor="Gray" />
 
                 <Grid ColumnDefinitions="Auto,*,Auto">
-                    <ImageButton Grid.Column="0" VerticalOptions="Center">
+                    <ImageButton
+                        Grid.Column="0"
+                        Padding="5"
+                        VerticalOptions="Center">
                         <ImageButton.Source>
                             <FontImageSource
                                 FontFamily="materialdesignicons"
                                 Glyph="{x:Static local:FontIcons.ArrowLeft}"
-                                Size="15"
+                                Size="20"
                                 Color="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
                         </ImageButton.Source>
                     </ImageButton>
                     <Label
                         Grid.Column="1"
-                        FontSize="15"
+                        FontSize="20"
                         Text="{Binding DisplayDateRange}"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}"
@@ -65,12 +68,15 @@
                             <TapGestureRecognizer Tapped="OnDateButtonClicked" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <ImageButton Grid.Column="2" VerticalOptions="Center">
+                    <ImageButton
+                        Grid.Column="2"
+                        Padding="5"
+                        VerticalOptions="Center">
                         <ImageButton.Source>
                             <FontImageSource
                                 FontFamily="materialdesignicons"
                                 Glyph="{x:Static local:FontIcons.ArrowRight}"
-                                Size="15"
+                                Size="20"
                                 Color="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
                         </ImageButton.Source>
@@ -80,7 +86,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="contentTemplate">
-            <StackLayout Padding="15,10,15,10" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+            <StackLayout Padding="20,10,20,10" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                 <Label
                     FontAttributes="Bold"
                     IsVisible="{Binding IsHalfVerseVisible}"
@@ -163,18 +169,23 @@
 
         <!--#region Toggle-->
         <Grid
-            Margin="15,0,15,20"
+            x:Name="mccheynToggle"
+            Margin="20,0,20,20"
+            xct:ShadowEffect.Color="{AppThemeBinding Light=Black,
+                                                     Dark=White}"
+            xct:ShadowEffect.Opacity="1"
+            xct:ShadowEffect.Radius="20"
             ColumnDefinitions="*,*,*,*"
-            HeightRequest="38"
+            HeightRequest="45"
             HorizontalOptions="Fill"
             VerticalOptions="End">
 
             <!--  Toggle Background  -->
             <BoxView
                 Grid.ColumnSpan="4"
-                BackgroundColor="{AppThemeBinding Light=#F5F5F6,
-                                                  Dark=#F5F5F6}"
-                CornerRadius="16"
+                BackgroundColor="{AppThemeBinding Light=White,
+                                                  Dark=Black}"
+                CornerRadius="21"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
 
@@ -185,10 +196,9 @@
                 CornerRadius="15"
                 IsVisible="{Binding IsRange1Selected}" />
             <Frame
-                x:Name="signUpToggleFrame"
                 Margin="3,3,0,3"
                 BackgroundColor="Transparent"
-                CornerRadius="15">
+                CornerRadius="20">
                 <Frame.Triggers>
                     <DataTrigger
                         Binding="{Binding IsRange1Selected}"
@@ -231,7 +241,7 @@
                 Grid.Column="1"
                 Margin="3"
                 BackgroundColor="Transparent"
-                CornerRadius="15"
+                CornerRadius="20"
                 IsVisible="{Binding IsRange2Selected}" />
             <Frame
                 Grid.Column="1"
@@ -279,7 +289,7 @@
                 Grid.Column="2"
                 Margin="3"
                 BackgroundColor="Transparent"
-                CornerRadius="15"
+                CornerRadius="20"
                 IsVisible="{Binding IsRange3Selected}" />
             <Frame
                 Grid.Column="2"
@@ -332,7 +342,7 @@
             <Frame
                 Grid.Column="3"
                 Margin="0,3,3,3"
-                CornerRadius="14">
+                CornerRadius="20">
                 <Frame.Triggers>
                     <DataTrigger
                         Binding="{Binding IsRange4Selected}"

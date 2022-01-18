@@ -11,7 +11,7 @@
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid x:Name="outerGrid" RowDefinitions="50,*">
+    <Grid RowDefinitions="Auto,*">
 
         <!--#region HEADER-->
         <StackLayout BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderStackLayoutStyle}">
@@ -23,13 +23,18 @@
         </StackLayout>
         <!--#region HEADER-->
 
-        <StackLayout Grid.Row="1" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+        <StackLayout
+            Grid.Row="1"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
+            Spacing="20">
             <StackLayout
-                Margin="15,10,0,10"
+                Padding="20,10,0,10"
                 BackgroundColor="{AppThemeBinding Dark=Black,
                                                   Light=White}"
                 Orientation="Horizontal">
                 <Label
+                    FontSize="20"
                     HorizontalOptions="StartAndExpand"
                     Text="버전"
                     TextColor="{AppThemeBinding Dark=White,
@@ -38,14 +43,14 @@
                 <Label
                     Margin="0,0,15,0"
                     FontFamily=""
-                    FontSize="12"
+                    FontSize="20"
                     HorizontalOptions="End"
                     Text="{Binding Version}"
                     TextColor="Gray"
                     VerticalOptions="Center" />
             </StackLayout>
 
-            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+            <StackLayout Padding="20,10,0,10" Orientation="Horizontal">
                 <TimePicker
                     x:Name="timePicker"
                     BackgroundColor="Transparent"
@@ -64,11 +69,12 @@
                     VerticalOptions="Center" />
             </StackLayout>
 
-            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+            <StackLayout Padding="20,10,0,10" Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnBackupButtonClicked" />
                 </StackLayout.GestureRecognizers>
                 <Label
+                    FontSize="20"
                     HorizontalOptions="StartAndExpand"
                     Text="백업"
                     TextColor="{AppThemeBinding Dark=White,
@@ -77,7 +83,7 @@
                 <Label
                     Margin="0,0,15,0"
                     FontFamily=""
-                    FontSize="12"
+                    FontSize="20"
                     HorizontalOptions="End"
                     Text="{Binding IsDatabase}"
                     TextColor="Gray"
@@ -85,7 +91,8 @@
             </StackLayout>
 
             <Label
-                Padding="15,10,0,10"
+                Padding="20,10,0,10"
+                FontSize="20"
                 HorizontalOptions="StartAndExpand"
                 Text="복원"
                 TextColor="{AppThemeBinding Dark=White,
@@ -99,7 +106,8 @@
             </Label>
 
             <Label
-                Padding="15,10,0,10"
+                Padding="20,10,0,10"
+                FontSize="20"
                 HorizontalOptions="StartAndExpand"
                 Text="드롭박스 로그아웃"
                 TextColor="{AppThemeBinding Dark=White,
@@ -111,7 +119,8 @@
             </Label>
 
             <Label
-                Padding="15,10,0,10"
+                Padding="20,10,0,10"
+                FontSize="20"
                 HorizontalOptions="StartAndExpand"
                 Text="문의"
                 TextColor="{AppThemeBinding Dark=White,
@@ -123,7 +132,8 @@
             </Label>
 
             <Label
-                Padding="15,10,0,10"
+                Padding="20,10,0,10"
+                FontSize="20"
                 HorizontalOptions="StartAndExpand"
                 Text="별점주기"
                 TextColor="{AppThemeBinding Dark=White,

@@ -1,6 +1,7 @@
 ﻿using System;
 using Plugin.LocalNotification;
 using Plugin.StoreReview;
+using TodaysManna.Constants;
 using TodaysManna.ViewModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -13,6 +14,9 @@ namespace TodaysManna.Views
         public SettingPage()
         {
             InitializeComponent();
+
+            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+
             viewModel = new SettingViewModel(Navigation);
             BindingContext = viewModel;
 
@@ -35,7 +39,25 @@ namespace TodaysManna.Views
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            if (Values.IsDeviceIOS)
+            {
+                CustomOnAppearing();
+            }
+            else
+            {
+                if (Values.SettingsPageLaunchCount >= 2)
+                {
+                    CustomOnAppearing();
+                }
+                else
+                {
+                    Values.SettingsPageLaunchCount++;
+                }
+            }
+        }
+
+        public void CustomOnAppearing()
+        {
             (BindingContext as SettingViewModel).GetAuthAndIsDatabase();
         }
 

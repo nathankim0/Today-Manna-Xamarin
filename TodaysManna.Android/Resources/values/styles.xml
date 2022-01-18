@@ -6,12 +6,18 @@
         <!-- Underneath are a couple of entries to get you started. -->
         <!-- Set theme colors from https://aka.ms/material-colors -->
         <!-- colorPrimary is used for the default action bar background -->
-        <!--<item name="colorPrimary">#2196F3</item>-->
+        <item name="colorPrimary">#fda51e</item>
         <!-- colorPrimaryDark is used for the status bar -->
-        <!--<item name="colorPrimaryDark">#1976D2</item>-->
+        <item name="colorPrimaryDark">#fda51e</item>
         <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-        <!--<item name="colorAccent">#FF4081</item>-->
+        <item name="colorAccent">#fda51e</item>
+
+         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>  
+        <item name="android:windowContentOverlay">@null</item>  
+        <item name="android:windowActionBar">false</item>  
           </style>
 
 <style name="splashscreen" parent="Theme.AppCompat.Light.NoActionBar">

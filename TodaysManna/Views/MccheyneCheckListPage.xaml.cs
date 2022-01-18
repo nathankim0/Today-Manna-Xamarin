@@ -23,6 +23,8 @@ namespace TodaysManna
         {
             InitializeComponent();
 
+            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+
             var mccheyneCheckViewModel = new MccheyneCheckViewModel(Navigation);
             BindingContext = mccheyneCheckViewModel;
 
@@ -52,6 +54,25 @@ namespace TodaysManna
         }
 
         protected override void OnAppearing()
+        {
+            if (Values.IsDeviceIOS)
+            {
+                CustomOnAppearing();
+            }
+            else
+            {
+                if (Values.MccheynePageLaunchCount >= 2)
+                {
+                    CustomOnAppearing();
+                }
+                else
+                {
+                    Values.MccheynePageLaunchCount++;
+                }
+            }
+        }
+
+        public void CustomOnAppearing()
         {
             ScrollToToday(false);
         }

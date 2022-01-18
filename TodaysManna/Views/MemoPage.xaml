@@ -61,10 +61,38 @@
             SelectionMode="Single">
 
             <CollectionView.EmptyView>
-                <StackLayout Padding="10,20,15,0" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+                <StackLayout Padding="20,20,20,0" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                     <Label
                         FontAttributes="Bold"
-                        Text="아직 저장한 메모가 없네요!&#10;묵상을 작성해보는 것은 어떨까요?✍️&#10;(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)"
+                        Text="아직 저장한 메모가 없네요!"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}">
+                        <Label.FontSize>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="20"
+                                iOS="18" />
+                        </Label.FontSize>
+                    </Label>
+
+                    <Label
+                        Margin="0,5,0,0"
+                        FontAttributes="Bold"
+                        Text="묵상을 작성해보는 것은 어떨까요?✍️"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}">
+                        <Label.FontSize>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="20"
+                                iOS="18" />
+                        </Label.FontSize>
+                    </Label>
+
+                    <Label
+                        Margin="0,5,0,0"
+                        FontAttributes="Bold"
+                        Text="(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}">
                         <Label.FontSize>
@@ -79,7 +107,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="15,5,15,5" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+                    <Grid Padding="20,5,20,5" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />

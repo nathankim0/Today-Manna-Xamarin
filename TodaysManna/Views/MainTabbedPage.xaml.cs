@@ -14,8 +14,14 @@ namespace TodaysManna
         private readonly NavigationPage navMannaPage;
         private readonly NavigationPage navMccheynePage;
         private readonly NavigationPage navMccheyneCheckListPage;
-        private readonly NavigationPage navMyPage;
+        private readonly NavigationPage navMemoPage;
         private readonly NavigationPage navSettingPage;
+
+        private readonly MannaPage mannaPage;
+        private readonly MccheynePage mccheynePage;
+        private readonly MccheyneCheckListPage mccheyneCheckListPage;
+        private readonly MemoPage memoPage;
+        private readonly SettingPage settingPage;
 
         public MainTabbedPage()
         {
@@ -27,7 +33,8 @@ namespace TodaysManna
             On<Android>().SetOffscreenPageLimit(4);
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
-            navMannaPage = new NavigationPage(new MannaPage())
+            mannaPage = new MannaPage();
+            navMannaPage = new NavigationPage(mannaPage)
             {
                 Title = TitleNames.Manna,
             };
@@ -38,7 +45,8 @@ namespace TodaysManna
             };
             navMannaPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navMccheynePage = new NavigationPage(new MccheynePage())
+            mccheynePage = new MccheynePage();
+            navMccheynePage = new NavigationPage(mccheynePage)
             {
                 Title = TitleNames.Mccheyne,
             };
@@ -49,7 +57,8 @@ namespace TodaysManna
             };
             navMccheynePage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navMccheyneCheckListPage = new NavigationPage(new MccheyneCheckListPage())
+            mccheyneCheckListPage = new MccheyneCheckListPage();
+            navMccheyneCheckListPage = new NavigationPage(mccheyneCheckListPage)
             {
                 Title = TitleNames.CheckList,
             };
@@ -60,18 +69,20 @@ namespace TodaysManna
             };
             navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navMyPage = new NavigationPage(new MemoPage())
+            memoPage = new MemoPage();
+            navMemoPage = new NavigationPage(memoPage)
             {
                 Title = TitleNames.Memo,
             };
-            navMyPage.IconImageSource = new FontImageSource
+            navMemoPage.IconImageSource = new FontImageSource
             {
                 FontFamily = "materialdesignicons",
                 Glyph = FontIcons.BookmarkOutline,
             };
-            navMyPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
+            navMemoPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            navSettingPage = new NavigationPage(new SettingPage())
+            settingPage = new SettingPage();
+            navSettingPage = new NavigationPage(settingPage)
             {
                 Title = TitleNames.Settings,
             };
@@ -85,7 +96,7 @@ namespace TodaysManna
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
-            Children.Add(navMyPage);
+            Children.Add(navMemoPage);
             Children.Add(navSettingPage);
         }
 
@@ -95,6 +106,12 @@ namespace TodaysManna
 
             if (CurrentPage.Equals(navMannaPage))
             {
+                //if (!Values.IsDeviceIOS && Values.MannaPageLaunchCount <= 1)
+                //{
+                //    MannaPage.CustomOnAppearing();
+                //    Values.MannaPageLaunchCount = 2;
+                //}
+
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMannaPage");
             }
             else if (CurrentPage.Equals(navMccheynePage))
@@ -103,14 +120,32 @@ namespace TodaysManna
             }
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
+                if (!Values.IsDeviceIOS && Values.CheckListPageLaunchCount <= 1)
+                {
+                    mccheyneCheckListPage.CustomOnAppearing();
+                    Values.MannaPageLaunchCount = 2;
+                }
+
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMccheyneCheckListPage");
             }
-            else if (CurrentPage.Equals(navMyPage))
+            else if (CurrentPage.Equals(navMemoPage))
             {
+                if (!Values.IsDeviceIOS && Values.MemoPageLaunchCount <= 1)
+                {
+                    memoPage.CustomOnAppearing();
+                    Values.MemoPageLaunchCount = 2;
+                }
+
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMyPage");
             }
             else if (CurrentPage.Equals(navSettingPage))
             {
+                if (!Values.IsDeviceIOS && Values.SettingsPageLaunchCount <= 1)
+                {
+                    settingPage.CustomOnAppearing();
+                    Values.SettingsPageLaunchCount = 2;
+                }
+
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navSettingPage");
             }
         }
