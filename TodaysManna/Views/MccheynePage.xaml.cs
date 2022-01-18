@@ -18,20 +18,11 @@ namespace TodaysManna
     {
         //private readonly MemoPopup _memoPopup;
         private string shareRangeString = "";
-        private CollectionView currentView;
-        private double headerHeight;
-
         public MccheynePage()
         {
             InitializeComponent();
-
             Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
-
             BindingContext = new MccheyneViewModel();
-
-            //_memoPopup = new MemoPopup();
-            //_memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
-
             MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMccheyneToTop, (sender) =>
             {
                 mccheyneCollectionView.ScrollTo(0);
@@ -83,7 +74,7 @@ namespace TodaysManna
         //**************************************//
         async void OnMccheyneCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentView = (CollectionView)sender;
+            var currentView = (CollectionView)sender;
             var seletedItems = e.CurrentSelection;
 
             if (currentView.SelectedItems.Count > 0 && e.PreviousSelection != null && currentView != null)
@@ -137,10 +128,7 @@ namespace TodaysManna
             memoPage.SetBibleText(shareRangeString);
             memoPage.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
 
-            if (PopupNavigation.Instance.PopupStack.Count > 0)
-            {
-                await Navigation.PopAllPopupAsync();
-            }
+            ResetSelectedItemsAndPopPopups();
 
             await Navigation.PushAsync(memoPage);
         }
@@ -163,34 +151,33 @@ namespace TodaysManna
             ResetSelectedItemsAndPopPopups();
         }
 
-        private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
+        private async void OnMemoPopupSaveButtonClicked(object sender, (string, string) memoText)
         {
             DependencyService.Get<IHapticFeedback>().Run();
             var memoItem = new MemoItem
             {
                 Date = DateTime.Now,
-                Verse = shareRangeString,
-                Note = memoText
+                Verse = memoText.Item1,
+                Note = memoText.Item2
             };
             await DatabaseManager.Database.SaveItemAsync(memoItem);
-            if (currentView != null)
-            {
-                currentView.SelectedItems.Clear();
-                currentView = null;
-            }
         }
 
         private async void ResetSelectedItemsAndPopPopups()
         {
-            if (currentView != null)
+            try
             {
-                currentView.SelectedItems.Clear();
-                currentView = null;
+                mccheyneCollectionView.SelectedItems.Clear();
+                if (PopupNavigation.Instance.PopupStack.Count > 0)
+                {
+                    await Navigation.PopAllPopupAsync();
+                }
             }
-            if (PopupNavigation.Instance.PopupStack.Count > 0)
+            catch
             {
-                await Navigation.PopAllPopupAsync();
+
             }
+           
         }
 
         #region Toggle Tapped Events
@@ -244,6 +231,24 @@ namespace TodaysManna
             viewModel.IsRange4Selected = true;
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents4;
+        }
+
+        double previousScrollPosition = 0;
+        void mccheyneCollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            if (previousScrollPosition < e.VerticalOffset)
+            {
+                mccheynToggle.TranslateTo(0, 70, 250u, Easing.CubicOut);
+                mccheynToggle.FadeTo(0, 150);
+
+                previousScrollPosition = e.VerticalOffset;
+            }
+            else if (previousScrollPosition > e.VerticalOffset)
+            {
+                mccheynToggle.Opacity = 1;
+                mccheynToggle.TranslateTo(0, 0, 200u, Easing.CubicOut);
+            }
+            previousScrollPosition = e.VerticalOffset;
         }
         #endregion
 

@@ -51,7 +51,7 @@ namespace TodaysManna.ViewModel
         public MannaViewModel()
         {
             Today = DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
-            DisplayDateRange = DateTime.Now.ToString("MM/dd");
+            DisplayDateRange = DateTime.Now.ToString("yyyy.MM.dd dddd");
 
             _restService = new RestService();
 
@@ -128,7 +128,7 @@ namespace TodaysManna.ViewModel
         public async Task GetManna(DateTime dateTime)
         {
             Today = dateTime.ToString("yyyy년 MM월 dd일 (ddd)");
-            DisplayDateRange = dateTime.ToString("MM/dd");
+            DisplayDateRange = dateTime.ToString("yyyy.MM.dd dddd");
 
             var newDateString = dateTime.ToString("yyyy-MM-dd");
             var endPoint = Rests.MannaEndpoint + newDateString;
@@ -188,8 +188,8 @@ namespace TodaysManna.ViewModel
 
             SetMannaContents();
 
-            MannaShareRange = $"만나: {JsonMannaData.Verse}";
-            McShareRange = $"맥체인: {todayMccheyneRange}";
+            MannaShareRange = $"{JsonMannaData.Verse}";
+            McShareRange = $"{todayMccheyneRange}";
 
             Console.WriteLine("_bib: " + _bookKor);
             Console.WriteLine("_jang: " + _jang);

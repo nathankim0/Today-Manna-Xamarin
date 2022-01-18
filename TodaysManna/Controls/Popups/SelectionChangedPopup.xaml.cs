@@ -42,5 +42,10 @@ namespace TodaysManna.Controls.Popups
         {
             cancelbuttonClicked?.Invoke(this, EventArgs.Empty);
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

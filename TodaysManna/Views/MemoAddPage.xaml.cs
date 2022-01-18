@@ -7,7 +7,7 @@ namespace TodaysManna.Views
 {
     public partial class MemoAddPage : ContentPage
     {
-        public EventHandler<string> SaveButtonClicked;
+        public EventHandler<(string, string)> SaveButtonClicked;
 
         public MemoAddPage()
         {
@@ -29,13 +29,9 @@ namespace TodaysManna.Views
         {
             if (await DisplayAlert("", "저장하시겠습니까?", "저장", "취소"))
             {
-                SaveButtonClicked?.Invoke(this, editor.Text);
+                SaveButtonClicked?.Invoke(this, (bibleLabel.Text, editor.Text));
                 await Navigation.PopAsync();
             }
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
         }
     }
 }

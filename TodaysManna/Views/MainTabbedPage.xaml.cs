@@ -17,11 +17,11 @@ namespace TodaysManna
         private readonly NavigationPage navMemoPage;
         private readonly NavigationPage navSettingPage;
 
-        private readonly MannaPage mannaPage;
-        private readonly MccheynePage mccheynePage;
-        private readonly MccheyneCheckListPage mccheyneCheckListPage;
-        private readonly MemoPage memoPage;
-        private readonly SettingPage settingPage;
+        private readonly MannaPage mannaPage = new MannaPage();
+        private readonly MccheynePage mccheynePage = new MccheynePage();
+        private readonly MccheyneCheckListPage mccheyneCheckListPage = new MccheyneCheckListPage();
+        private readonly MemoPage memoPage = new MemoPage();
+        private readonly SettingPage settingPage = new SettingPage();
 
         public MainTabbedPage()
         {
@@ -33,65 +33,55 @@ namespace TodaysManna
             On<Android>().SetOffscreenPageLimit(4);
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
-            mannaPage = new MannaPage();
             navMannaPage = new NavigationPage(mannaPage)
             {
                 Title = TitleNames.Manna,
+                IconImageSource = new FontImageSource
+                {
+                    FontFamily = "materialdesignicons",
+                    Glyph = FontIcons.BookOpenVariant,
+                }
             };
-            navMannaPage.IconImageSource = new FontImageSource
-            {
-                FontFamily = "materialdesignicons",
-                Glyph = FontIcons.BookOpenVariant,
-            };
-            navMannaPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            mccheynePage = new MccheynePage();
             navMccheynePage = new NavigationPage(mccheynePage)
             {
                 Title = TitleNames.Mccheyne,
+                IconImageSource = new FontImageSource
+                {
+                    FontFamily = "materialdesignicons",
+                    Glyph = FontIcons.BookOpenPageVariantOutline,
+                }
             };
-            navMccheynePage.IconImageSource = new FontImageSource
-            {
-                FontFamily = "materialdesignicons",
-                Glyph = FontIcons.BookOpenPageVariantOutline,
-            };
-            navMccheynePage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            mccheyneCheckListPage = new MccheyneCheckListPage();
             navMccheyneCheckListPage = new NavigationPage(mccheyneCheckListPage)
             {
                 Title = TitleNames.CheckList,
+                IconImageSource = new FontImageSource
+                {
+                    FontFamily = "materialdesignicons",
+                    Glyph = FontIcons.CheckBoxMultipleOutline,
+                }
             };
-            navMccheyneCheckListPage.IconImageSource = new FontImageSource
-            {
-                FontFamily = "materialdesignicons",
-                Glyph = FontIcons.CheckBoxMultipleOutline,
-            };
-            navMccheyneCheckListPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            memoPage = new MemoPage();
             navMemoPage = new NavigationPage(memoPage)
             {
                 Title = TitleNames.Memo,
+                IconImageSource = new FontImageSource
+                {
+                    FontFamily = "materialdesignicons",
+                    Glyph = FontIcons.BookmarkOutline,
+                }
             };
-            navMemoPage.IconImageSource = new FontImageSource
-            {
-                FontFamily = "materialdesignicons",
-                Glyph = FontIcons.BookmarkOutline,
-            };
-            navMemoPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
-            settingPage = new SettingPage();
             navSettingPage = new NavigationPage(settingPage)
             {
                 Title = TitleNames.Settings,
+                IconImageSource = new FontImageSource
+                {
+                    FontFamily = "materialdesignicons",
+                    Glyph = FontIcons.ReorderHorizontal,
+                }
             };
-            navSettingPage.IconImageSource = new FontImageSource
-            {
-                FontFamily = "materialdesignicons",
-                Glyph = FontIcons.ReorderHorizontal,
-            };
-            navSettingPage.IconImageSource.SetAppThemeColor(FontImageSource.ColorProperty, Color.Black, Color.White);
 
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);

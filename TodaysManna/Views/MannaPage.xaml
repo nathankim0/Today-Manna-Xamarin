@@ -7,7 +7,7 @@
     Title="manna_page"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
-                                      Light=White}"
+                                      Light=#F9F9F9}"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
@@ -35,10 +35,15 @@
     </ContentPage.Resources>
     <!--#endregion-->
 
-    <Grid x:Name="contentGrid" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+    <Grid
+        x:Name="contentGrid"
+        BackgroundColor="{AppThemeBinding Dark=Black,
+                                          Light=White}"
+        RowDefinitions="Auto,*">
 
         <CollectionView
             x:Name="mannaCollectionView"
+            Grid.Row="1"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
             Footer="&#10;"
@@ -47,41 +52,105 @@
             SelectionMode="Multiple"
             VerticalOptions="Fill"
             VerticalScrollBarVisibility="Always">
+
             <CollectionView.Header>
+
                 <StackLayout
-                    x:Name="collectionViewHeader"
-                    Padding="20,10,20,10"
+                    Margin="0,0,0,20"
+                    Padding="20,0,20,0"
                     BackgroundColor="{AppThemeBinding Dark=Black,
-                                                      Light=White}">
-                    <Frame
-                        x:Name="rangeButton"
-                        BackgroundColor="{AppThemeBinding Dark=DarkGray,
-                                                          Light=#e2e2e2}"
-                        HasShadow="False">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnAllRangeButtonTapped" />
-                        </Frame.GestureRecognizers>
-                        <StackLayout Margin="5">
-                            <Label
-                                x:Name="mannaRangeLabel"
-                                FontSize="16"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding MannaShareRange}"
-                                TextColor="{AppThemeBinding Dark=Black,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                            <Label
-                                x:Name="mcRangeLabel"
-                                FontSize="16"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding McShareRange}"
-                                TextColor="{AppThemeBinding Dark=Black,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
+                                                      Light=White}"
+                    Orientation="Vertical">
+
+                    <StackLayout
+                        Padding="0,15,0,15"
+                        BackgroundColor="{AppThemeBinding Dark=Black,
+                                                          Light=White}"
+                        Orientation="Horizontal">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            HorizontalOptions="StartAndExpand"
+                            Text="오늘의 만나를&#10;수확해볼까요? 🍐"
+                            TextColor="{AppThemeBinding Dark=White,
+                                                        Light=Black}" />
+                        <Label
+                            FontSize="22"
+                            HorizontalOptions="End"
+                            Text="{Binding DisplayDateRange}"
+                            TextColor="#F7D8B4"
+                            VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnMannaDateButtonClicked" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+
+                    <StackLayout
+                        Padding="0,20,0,20"
+                        BackgroundColor="{AppThemeBinding Dark=Black,
+                                                          Light=White}"
+                        Orientation="Horizontal">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="26"
+                            HorizontalOptions="StartAndExpand"
+                            Text="오늘의 범위"
+                            TextColor="{AppThemeBinding Dark=White,
+                                                        Light=Black}"
+                            VerticalOptions="Center" />
+                        <ImageButton
+                            Clicked="OnAllRangeButtonTapped"
+                            HorizontalOptions="End"
+                            Opacity="0.3"
+                            VerticalOptions="Center">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="materialdesignicons"
+                                    Glyph="{x:Static local:FontIcons.ShareVariant}"
+                                    Size="20"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light=Black}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </StackLayout>
+
+                    <Grid
+                        Margin="0,10,0,0"
+                        ColumnDefinitions="60,*"
+                        RowDefinitions="*,*">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontSize="22"
+                            Text="만나"
+                            TextColor="{AppThemeBinding Dark=White,
+                                                        Light=Black}" />
+                        <Label
+                            x:Name="mannaRangeLabel"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            FontSize="22"
+                            Text="{Binding MannaShareRange}"
+                            TextColor="Gray" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontSize="22"
+                            Text="맥체인"
+                            TextColor="{AppThemeBinding Dark=White,
+                                                        Light=Black}" />
+                        <Label
+                            x:Name="mcRangeLabel"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="22"
+                            Text="{Binding McShareRange}"
+                            TextColor="Gray" />
+                    </Grid>
+
+
                     <StackLayout Orientation="Horizontal">
                         <Label
                             x:Name="verse"
@@ -92,23 +161,55 @@
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}"
                             VerticalOptions="CenterAndExpand" />
+
+                        <ImageButton
+                            Padding="8"
+                            BackgroundColor="Transparent"
+                            Clicked="OnRefreshButtonClicked"
+                            HorizontalOptions="End">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="materialdesignicons"
+                                    Glyph="{x:Static local:FontIcons.Refresh}"
+                                    Size="20"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light=Black}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                        <ImageButton
+                            Padding="8"
+                            BackgroundColor="Transparent"
+                            Clicked="OnEnglishButtonClicked"
+                            HorizontalOptions="End">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="materialdesignicons"
+                                    Glyph="{x:Static local:FontIcons.AlphabetLatin}"
+                                    Size="20"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light=Black}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
                         <ImageButton
                             Margin="0,0,5,0"
                             Padding="8"
                             BackgroundColor="Transparent"
                             Clicked="OnMannaShareButtonClicked"
                             HorizontalOptions="End"
-                            VerticalOptions="CenterAndExpand">
+                            VerticalOptions="Center">
                             <ImageButton.Source>
                                 <FontImageSource
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.ShareVariant}"
-                                    Size="30"
+                                    Size="20"
                                     Color="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
                             </ImageButton.Source>
                         </ImageButton>
                     </StackLayout>
+
                 </StackLayout>
             </CollectionView.Header>
 
@@ -173,62 +274,7 @@
                 BackgroundColor="{AppThemeBinding Dark=Black,
                                                   Light=White}"
                 ColumnDefinitions="*,*,Auto"
-                Style="{x:StaticResource HeaderGridStyle}">
-                <ImageButton Clicked="OnRefreshButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
-                    <ImageButton.Source>
-                        <FontImageSource
-                            FontFamily="materialdesignicons"
-                            Glyph="{x:Static local:FontIcons.Refresh}"
-                            Size="30"
-                            Color="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
-                    </ImageButton.Source>
-                </ImageButton>
-                <ImageButton
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    Clicked="OnEnglishButtonClicked"
-                    Style="{x:StaticResource HeaderButtonStyle}">
-                    <ImageButton.Source>
-                        <FontImageSource
-                            FontFamily="materialdesignicons"
-                            Glyph="{x:Static local:FontIcons.AlphabetLatin}"
-                            Size="30"
-                            Color="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
-                    </ImageButton.Source>
-                </ImageButton>
-                <StackLayout
-                    Grid.Column="2"
-                    Margin="10,0,0,0"
-                    HorizontalOptions="Center"
-                    Spacing="0"
-                    VerticalOptions="End">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMannaDateButtonClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image
-                        Margin="0,10,0,0"
-                        HorizontalOptions="Center"
-                        VerticalOptions="End">
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="materialdesignicons"
-                                Glyph="{x:Static local:FontIcons.CalendarBlank}"
-                                Size="20"
-                                Color="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
-                        </Image.Source>
-                    </Image>
-                    <Label
-                        Margin="0,-3,0,0"
-                        FontSize="13"
-                        HorizontalOptions="Center"
-                        Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
-                </StackLayout>
-            </Grid>
+                Style="{x:StaticResource HeaderGridStyle}" />
         </StackLayout>
         <!--#region HEADER-->
 
