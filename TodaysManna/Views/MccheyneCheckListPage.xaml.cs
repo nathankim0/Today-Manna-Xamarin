@@ -78,8 +78,9 @@ namespace TodaysManna
                     BackgroundColor = Color.Transparent,
                     VerticalOptions = LayoutOptions.Center
                 };
+                checkDateLabel.SetAppThemeColor(Label.TextColorProperty, Color.Black, Color.White);
                 checkDateLabel.SetBinding(Label.TextProperty, "ToDisplayDate");
-                checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
+                //checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
 
                 var dateLabelTapGestureRecognizer = new TapGestureRecognizer();
                 dateLabelTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
@@ -136,7 +137,7 @@ namespace TodaysManna
                     var checkButton = new Button
                     {
                         FontFamily = "batang",
-                        Margin = 0,
+                        Margin = new Thickness(3,0,3,0),
                         Padding = 0,
                         BorderColor = Color.Black,
                         BorderWidth = 1,

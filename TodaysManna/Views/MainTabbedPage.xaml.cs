@@ -29,7 +29,7 @@ namespace TodaysManna
 
             navMannaPage = new NavigationPage(new MannaPage())
             {
-                Title = "만나",
+                Title = TitleNames.Manna,
             };
             navMannaPage.IconImageSource = new FontImageSource
             {
@@ -40,7 +40,7 @@ namespace TodaysManna
 
             navMccheynePage = new NavigationPage(new MccheynePage())
             {
-                Title = "맥체인",
+                Title = TitleNames.Mccheyne,
             };
             navMccheynePage.IconImageSource = new FontImageSource
             {
@@ -51,7 +51,7 @@ namespace TodaysManna
 
             navMccheyneCheckListPage = new NavigationPage(new MccheyneCheckListPage())
             {
-                Title = "체크리스트",
+                Title = TitleNames.CheckList,
             };
             navMccheyneCheckListPage.IconImageSource = new FontImageSource
             {
@@ -62,7 +62,7 @@ namespace TodaysManna
 
             navMyPage = new NavigationPage(new MemoPage())
             {
-                Title = "메모",
+                Title = TitleNames.Memo,
             };
             navMyPage.IconImageSource = new FontImageSource
             {
@@ -73,7 +73,7 @@ namespace TodaysManna
 
             navSettingPage = new NavigationPage(new SettingPage())
             {
-                Title = "설정",
+                Title = TitleNames.Settings,
             };
             navSettingPage.IconImageSource = new FontImageSource
             {

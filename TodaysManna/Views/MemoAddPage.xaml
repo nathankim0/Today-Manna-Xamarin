@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="TodaysManna.Views.MemoAddPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+            <StackLayout Margin="20">
+                <Label
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    Text="메모 작성"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
+                <Label
+                    x:Name="bibleLabel"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}">
+                    <Label.FontSize>
+                        <OnPlatform
+                            x:TypeArguments="x:Double"
+                            Android="15"
+                            iOS="13" />
+                    </Label.FontSize>
+                </Label>
+
+                <StackLayout
+                    Padding="1"
+                    BackgroundColor="{AppThemeBinding Dark=White,
+                                                      Light=Black}"
+                    VerticalOptions="FillAndExpand">
+                    <Editor
+                        x:Name="editor"
+                        BackgroundColor="{AppThemeBinding Dark=Black,
+                                                          Light=White}"
+                        Placeholder="메모 작성"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="FillAndExpand">
+                        <Editor.FontSize>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="16"
+                                iOS="14" />
+                        </Editor.FontSize>
+                    </Editor>
+                </StackLayout>
+
+
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button
+                        Padding="0,0,50,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OnCancelButtonClicked"
+                        HorizontalOptions="Start"
+                        Text="취소" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        Clicked="OnSaveButtonClicked"
+                        HorizontalOptions="EndAndExpand"
+                        Text="저장" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

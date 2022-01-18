@@ -9,14 +9,14 @@ using TodaysManna.Models;
 using System.Diagnostics;
 using TodaysManna.Controls.Popups;
 using Rg.Plugins.Popup.Extensions;
-using Xamarin.CommunityToolkit.UI.Views;
 using TodaysManna.Managers;
+using TodaysManna.Views;
 
 namespace TodaysManna
 {
     public partial class MccheynePage : ContentPage
     {
-        private readonly MemoPopup _memoPopup;
+        //private readonly MemoPopup _memoPopup;
         private string shareRangeString = "";
         private CollectionView currentView;
         private double headerHeight;
@@ -26,27 +26,13 @@ namespace TodaysManna
             InitializeComponent();
             BindingContext = new MccheyneViewModel();
 
-            _memoPopup = new MemoPopup();
-            _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
+            //_memoPopup = new MemoPopup();
+            //_memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
 
             MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMccheyneToTop, (sender) =>
             {
-                mccheyneCollectionView1.ScrollTo(0);
-                mccheyneCollectionView2.ScrollTo(0);
-                mccheyneCollectionView3.ScrollTo(0);
-                mccheyneCollectionView4.ScrollTo(0);
-
-                headerStackLayout.TranslationY = 0;
-                tabView.TranslationY = 0;
+                mccheyneCollectionView.ScrollTo(0);
             });
-            headerStackLayout.SizeChanged += HeaderStackLayout_SizeChanged;
-        }
-
-        private void HeaderStackLayout_SizeChanged(object sender, EventArgs e)
-        {
-            headerStackLayout.SizeChanged -= HeaderStackLayout_SizeChanged;
-            headerHeight = headerStackLayout.Height;
-            tabView.Margin = new Thickness(0, headerHeight, 0, -headerHeight);
         }
 
         private void OnRefreshButtonClicked(object sender, EventArgs e)
@@ -87,17 +73,6 @@ namespace TodaysManna
             DependencyService.Get<IHapticFeedback>().Run();
         }
 
-        void TabView_SelectionChanged(object sender, TabSelectionChangedEventArgs e)
-        {
-            headerStackLayout.TranslateTo(0, 0, 250, Easing.CubicOut);
-            tabView.TranslateTo(0, 0, 250, Easing.CubicOut);
-            ResetSelectedItemsAndPopPopups();
-        }
-
-        void TabViewItem_TabTapped(object sender, TabTappedEventArgs e)
-        {
-            DependencyService.Get<IHapticFeedback>().Run();
-        }
 
         #region CollectionChanged
         //**************************************//
@@ -154,9 +129,13 @@ namespace TodaysManna
         {
             DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("mccheyn_text_memo");
+            var memoPage = new MemoAddPage();
+            memoPage.SetBibleText(shareRangeString);
+            memoPage.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
 
-            _memoPopup.SetBibleText(shareRangeString);
-            await PopupNavigation.Instance.PushAsync(_memoPopup);
+            ResetSelectedItemsAndPopPopups();
+
+            await Navigation.PushAsync(memoPage);
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
@@ -188,7 +167,6 @@ namespace TodaysManna
             };
             await DatabaseManager.Database.SaveItemAsync(memoItem);
 
-            ResetSelectedItemsAndPopPopups();
         }
 
         private async void ResetSelectedItemsAndPopPopups()
@@ -204,74 +182,59 @@ namespace TodaysManna
             }
         }
 
-        private double previousScrollPosition = 0;
-        void OnMccheyneCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
+        #region Toggle Tapped Events
+        private void OnRange1Tapped(object sender, EventArgs args)
         {
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    if (previousScrollPosition < e.VerticalOffset)
-                    {
-                        Debug.WriteLine("scrolled down");
-                        headerStackLayout.TranslateTo(0, -150, 250, Easing.CubicOut);
-                        tabView.TranslateTo(0, -headerHeight, 250, Easing.CubicOut);
-                    }
-                    else
-                    {
-                        Debug.WriteLine("scrolled up");
-                        headerStackLayout.TranslateTo(0, 0, 250, Easing.CubicOut);
-                        tabView.TranslateTo(0, 0, 250, Easing.CubicOut);
-                    }
-                    previousScrollPosition = e.VerticalOffset;
-                    break;
-                case Device.Android:
-                    if (e.FirstVisibleItemIndex > 0)
-                    {
-                        new Animation
-                        {
-                            { 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, -150) },
-                            { 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, -headerHeight) }
-                            }.Commit(this, "animation", 16, 250, null);
-                    }
-                    else
-                    {
-                        new Animation
-                        {
-                            { 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, 0) },
-                            { 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, 0) }
-                            }.Commit(this, "animation", 16, 250, null);
-                    }
+            DependencyService.Get<IHapticFeedback>().Run();
+            if (!(BindingContext is MccheyneViewModel viewModel)) return;
 
-                    //if (previousScrollPosition < e.VerticalOffset)
-                    //{
-                    //    Debug.WriteLine("scrolled down");
-                    //    headerStackLayout.TranslationY = -150;
-                    //    tabView.TranslationY = -headerHeight;
-                    //    //                    new Animation {
-                    //    //{ 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, -150) },
-                    //    //{ 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, -headerHeight) }
-                    //    //}.Commit(this, "animation", 16, 250, null);
-                    //}
-                    //else
-                    //{
-                    //    Debug.WriteLine("scrolled up");
-                    //    headerStackLayout.TranslationY = 0;
-                    //    tabView.TranslationY = 0;
-                    //    //                    new Animation {
-                    //    //{ 0, 1, new Animation (v => headerStackLayout.TranslationY = v, headerStackLayout.TranslationY, 0) },
-                    //    //{ 0, 1, new Animation (v => tabView.TranslationY = v, tabView.TranslationY, 0) }
-                    //    //}.Commit(this, "animation", 16, 250, null);
-                    //}
-                    //previousScrollPosition = e.VerticalOffset;
+            viewModel.IsRange1Selected = true;
+            viewModel.IsRange2Selected = false;
+            viewModel.IsRange3Selected = false;
+            viewModel.IsRange4Selected = false;
 
-                        break;
-                case Device.macOS:
-                case Device.UWP:
-                    break;
-                default:
-                    break;
-
-            }
+            mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents1;
         }
+
+        private void OnRange2Tapped(object sender, EventArgs args)
+        {
+            DependencyService.Get<IHapticFeedback>().Run();
+            if (!(BindingContext is MccheyneViewModel viewModel)) return;
+
+            viewModel.IsRange1Selected = false;
+            viewModel.IsRange2Selected = true;
+            viewModel.IsRange3Selected = false;
+            viewModel.IsRange4Selected = false;
+
+            mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents2;
+        }
+
+        private void OnRange3Tapped(object sender, EventArgs args)
+        {
+            DependencyService.Get<IHapticFeedback>().Run();
+            if (!(BindingContext is MccheyneViewModel viewModel)) return;
+
+            viewModel.IsRange1Selected = false;
+            viewModel.IsRange2Selected = false;
+            viewModel.IsRange3Selected = true;
+            viewModel.IsRange4Selected = false;
+
+            mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents3;
+        }
+
+        private void OnRange4Tapped(object sender, EventArgs args)
+        {
+            DependencyService.Get<IHapticFeedback>().Run();
+            if (!(BindingContext is MccheyneViewModel viewModel)) return;
+
+            viewModel.IsRange1Selected = false;
+            viewModel.IsRange2Selected = false;
+            viewModel.IsRange3Selected = false;
+            viewModel.IsRange4Selected = true;
+
+            mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents4;
+        }
+        #endregion
+
     }
 }

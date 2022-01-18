@@ -5,6 +5,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Title="mccheyne_page"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
@@ -35,11 +36,46 @@
         </Style>
 
         <DataTemplate x:Key="headerTemplate">
-            <StackLayout Padding="15,10,15,10" Spacing="0">
+            <StackLayout Orientation="Horizontal">
                 <Label
                     FontSize="12"
+                    HorizontalOptions="StartAndExpand"
                     Text="{Binding MccheyneRange}"
                     TextColor="Gray" />
+
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <ImageButton Grid.Column="0" VerticalOptions="Center">
+                        <ImageButton.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.ArrowLeft}"
+                                Size="15"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=Black}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <Label
+                        Grid.Column="1"
+                        FontSize="15"
+                        Text="{Binding DisplayDateRange}"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDateButtonClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <ImageButton Grid.Column="2" VerticalOptions="Center">
+                        <ImageButton.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.ArrowRight}"
+                                Size="15"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=Black}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                </Grid>
             </StackLayout>
         </DataTemplate>
 
@@ -102,65 +138,239 @@
                                           Light=White}"
         Style="{x:StaticResource OuterGridStyle}">
 
-        <xct:TabView
-            x:Name="tabView"
-            SelectedIndex="0"
-            SelectionChanged="TabView_SelectionChanged"
-            TabContentBackgroundColor="{AppThemeBinding Dark=Black,
-                                                        Light=White}"
-            TabIndicatorColor="LightBlue"
-            TabStripBackgroundColor="White"
-            TabStripPlacement="Top">
+        <StackLayout>
+            <!--#region HEADER-->
+            <StackLayout
+                x:Name="headerStackLayout"
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                                  Light=White}"
+                Style="{x:StaticResource HeaderStackLayoutStyle}">
+                <Label
+                    Style="{x:StaticResource HeaderLabelStyle}"
+                    Text="맥체인"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
+            </StackLayout>
+            <!--#region HEADER-->
 
-            <xct:TabViewItem
-                IsSelected="True"
-                Style="{x:StaticResource tabViewItemStyle}"
-                TabTapped="TabViewItem_TabTapped"
-                Text="{Binding MccheyneRange1}">
-                <CollectionView
-                    x:Name="mccheyneCollectionView1"
-                    ItemsSource="{Binding MccheyneContents1}"
-                    Scrolled="OnMccheyneCollectionViewScrolled"
-                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
-                    Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
+            <CollectionView
+                x:Name="mccheyneCollectionView"
+                ItemsSource="{Binding MccheyneContents1}"
+                SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
+                Style="{x:StaticResource collectionViewStyle}" />
 
-            <xct:TabViewItem
-                Style="{x:StaticResource tabViewItemStyle}"
-                TabTapped="TabViewItem_TabTapped"
-                Text="{Binding MccheyneRange2}">
-                <CollectionView
-                    x:Name="mccheyneCollectionView2"
-                    ItemsSource="{Binding MccheyneContents2}"
-                    Scrolled="OnMccheyneCollectionViewScrolled"
-                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
-                    Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
+        </StackLayout>
 
-            <xct:TabViewItem
-                Style="{x:StaticResource tabViewItemStyle}"
-                TabTapped="TabViewItem_TabTapped"
-                Text="{Binding MccheyneRange3}">
-                <CollectionView
-                    x:Name="mccheyneCollectionView3"
-                    ItemsSource="{Binding MccheyneContents3}"
-                    Scrolled="OnMccheyneCollectionViewScrolled"
-                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
-                    Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
+        <!--#region Toggle-->
+        <Grid
+            Margin="15,0,15,20"
+            ColumnDefinitions="*,*,*,*"
+            HeightRequest="38"
+            HorizontalOptions="Fill"
+            VerticalOptions="End">
 
-            <xct:TabViewItem
-                Style="{x:StaticResource tabViewItemStyle}"
-                TabTapped="TabViewItem_TabTapped"
-                Text="{Binding MccheyneRange4}">
-                <CollectionView
-                    x:Name="mccheyneCollectionView4"
-                    ItemsSource="{Binding MccheyneContents4}"
-                    Scrolled="OnMccheyneCollectionViewScrolled"
-                    SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
-                    Style="{x:StaticResource collectionViewStyle}" />
-            </xct:TabViewItem>
-        </xct:TabView>
+            <!--  Toggle Background  -->
+            <BoxView
+                Grid.ColumnSpan="4"
+                BackgroundColor="{AppThemeBinding Light=#F5F5F6,
+                                                  Dark=#F5F5F6}"
+                CornerRadius="16"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
+
+            <!--#region Toogle 1-->
+            <Frame
+                Margin="3"
+                BackgroundColor="Transparent"
+                CornerRadius="15"
+                IsVisible="{Binding IsRange1Selected}" />
+            <Frame
+                x:Name="signUpToggleFrame"
+                Margin="3,3,0,3"
+                BackgroundColor="Transparent"
+                CornerRadius="15">
+                <Frame.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsRange1Selected}"
+                        TargetType="Frame"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="#fda51e" />
+                    </DataTrigger>
+
+                    <DataTrigger
+                        Binding="{Binding IsRange1Selected}"
+                        TargetType="Frame"
+                        Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                    </DataTrigger>
+                </Frame.Triggers>
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{Binding MccheyneRange1}"
+                    TextColor="#999BAC"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center">
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsRange1Selected}"
+                            TargetType="Label"
+                            Value="True">
+                            <Setter Property="TextColor" Value="white" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRange1Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <!--#endregion-->
+
+            <!--#region Toogle 2-->
+            <Frame
+                Grid.Column="1"
+                Margin="3"
+                BackgroundColor="Transparent"
+                CornerRadius="15"
+                IsVisible="{Binding IsRange2Selected}" />
+            <Frame
+                Grid.Column="1"
+                Margin="0,3,3,3"
+                CornerRadius="14">
+                <Frame.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsRange2Selected}"
+                        TargetType="Frame"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="#fda51e" />
+                    </DataTrigger>
+
+                    <DataTrigger
+                        Binding="{Binding IsRange2Selected}"
+                        TargetType="Frame"
+                        Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                    </DataTrigger>
+                </Frame.Triggers>
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{Binding MccheyneRange2}"
+                    TextColor="#999BAC"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center">
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsRange2Selected}"
+                            TargetType="Label"
+                            Value="True">
+                            <Setter Property="TextColor" Value="white" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRange2Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <!--#endregion-->
+
+            <!--#region Toogle 3-->
+            <Frame
+                Grid.Column="2"
+                Margin="3"
+                BackgroundColor="Transparent"
+                CornerRadius="15"
+                IsVisible="{Binding IsRange3Selected}" />
+            <Frame
+                Grid.Column="2"
+                Margin="0,3,3,3"
+                CornerRadius="14">
+                <Frame.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsRange3Selected}"
+                        TargetType="Frame"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="#fda51e" />
+                    </DataTrigger>
+
+                    <DataTrigger
+                        Binding="{Binding IsRange3Selected}"
+                        TargetType="Frame"
+                        Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                    </DataTrigger>
+                </Frame.Triggers>
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{Binding MccheyneRange3}"
+                    TextColor="#999BAC"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center">
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsRange3Selected}"
+                            TargetType="Label"
+                            Value="True">
+                            <Setter Property="TextColor" Value="white" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRange3Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <!--#endregion-->
+
+            <!--#region Toogle 4-->
+            <Frame
+                Grid.Column="3"
+                Margin="3"
+                BackgroundColor="Transparent"
+                CornerRadius="15"
+                IsVisible="{Binding IsRange4Selected}" />
+            <Frame
+                Grid.Column="3"
+                Margin="0,3,3,3"
+                CornerRadius="14">
+                <Frame.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsRange4Selected}"
+                        TargetType="Frame"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="#fda51e" />
+                    </DataTrigger>
+
+                    <DataTrigger
+                        Binding="{Binding IsRange4Selected}"
+                        TargetType="Frame"
+                        Value="False">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                    </DataTrigger>
+                </Frame.Triggers>
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{Binding MccheyneRange4}"
+                    TextColor="#999BAC"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center">
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsRange4Selected}"
+                            TargetType="Label"
+                            Value="True">
+                            <Setter Property="TextColor" Value="white" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRange4Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion Toggle-->
 
         <Frame
             BackgroundColor="{AppThemeBinding Dark=Black,
@@ -190,69 +400,5 @@
             Format="D"
             IsVisible="false" />
 
-        <!--#region HEADER-->
-        <StackLayout
-            x:Name="headerStackLayout"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
-            Style="{x:StaticResource HeaderStackLayoutStyle}">
-            <Label
-                Style="{x:StaticResource HeaderLabelStyle}"
-                Text="맥체인"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}" />
-
-            <Grid
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                                  Light=White}"
-                ColumnDefinitions="*,Auto"
-                Style="{x:StaticResource HeaderGridStyle}">
-                <ImageButton Clicked="OnRefreshButtonClicked" Style="{x:StaticResource HeaderButtonStyle}">
-                    <ImageButton.Source>
-                        <FontImageSource
-                            FontFamily="materialdesignicons"
-                            Glyph="{x:Static local:FontIcons.Refresh}"
-                            Size="30"
-                            Color="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
-                    </ImageButton.Source>
-                </ImageButton>
-
-                <StackLayout
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    BackgroundColor="{AppThemeBinding Dark=Black,
-                                                      Light=White}"
-                    HorizontalOptions="Center"
-                    Spacing="0"
-                    VerticalOptions="End">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnDateButtonClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image
-                        Margin="0,10,0,0"
-                        HorizontalOptions="Center"
-                        VerticalOptions="End">
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="materialdesignicons"
-                                Glyph="{x:Static local:FontIcons.CalendarBlank}"
-                                Size="20"
-                                Color="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
-                        </Image.Source>
-                    </Image>
-                    <Label
-                        Margin="0,-3,0,0"
-                        FontSize="13"
-                        HorizontalOptions="Center"
-                        Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
-                </StackLayout>
-
-            </Grid>
-        </StackLayout>
-        <!--#region HEADER-->
     </Grid>
 </ContentPage>
