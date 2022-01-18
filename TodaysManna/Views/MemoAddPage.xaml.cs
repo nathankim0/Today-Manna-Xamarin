@@ -33,6 +33,9 @@ namespace TodaysManna.Views
                 await Navigation.PopAsync();
             }
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

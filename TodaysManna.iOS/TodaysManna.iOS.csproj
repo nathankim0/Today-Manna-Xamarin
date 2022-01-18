@@ -125,7 +125,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
     <ImageAsset Include="Assets.xcassets\applogo.imageset\Contents.json" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\applogo.imageset\172.png" />
+    <ImageAsset Include="Assets.xcassets\applogo.imageset\appstore.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

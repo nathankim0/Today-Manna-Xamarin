@@ -14,6 +14,9 @@ namespace TodaysManna
         public MemoPage()
         {
             InitializeComponent();
+
+            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+
             BindingContext = myPageViewModel;
 
             myPageViewModel.deleted += OnSwipeViewDeleteClicked;
@@ -55,9 +58,27 @@ namespace TodaysManna
 
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
-            base.OnAppearing();
+            if (Values.IsDeviceIOS)
+            {
+                CustomOnAppearing();
+            }
+            else
+            {
+                if (Values.MemoPageLaunchCount >= 2)
+                {
+                    CustomOnAppearing();
+                }
+                else
+                {
+                    Values.MemoPageLaunchCount++;
+                }
+            }
+        }
+
+        public async void CustomOnAppearing()
+        {
             var memoItems = await DatabaseManager.Database.GetItemsAsync();
             memoItems = memoItems.OrderByDescending(x => x.Date).ToList();
 

@@ -10,6 +10,7 @@ using TodaysManna.Models;
 using Rg.Plugins.Popup.Extensions;
 using TodaysManna.Controls.Popups;
 using TodaysManna.Managers;
+using TodaysManna.Views;
 
 namespace TodaysManna
 {
@@ -24,6 +25,8 @@ namespace TodaysManna
             InitializeComponent();
             BindingContext = new MannaViewModel();
 
+            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+
             mannaDatepicker.MinimumDate = new DateTime(DateTime.Now.Year, 1, 1);
             mannaDatepicker.MaximumDate = DateTime.Now;
 
@@ -36,6 +39,20 @@ namespace TodaysManna
             });
 
             headerStackLayout.SizeChanged += HeaderStackLayout_SizeChanged;
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if((mannaCollectionView.SelectedItems?.Count ?? 0) > 0)
+            {
+                DependencyService.Get<IHapticFeedback>().Run();
+                ResetSelectedItemsAndPopPopups();
+                return true;
+            }
+            else
+            {
+                return base.OnBackButtonPressed();
+            }
         }
 
         private void HeaderStackLayout_SizeChanged(object sender, EventArgs e)
@@ -188,8 +205,23 @@ namespace TodaysManna
             DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("manna_text_memo");
 
-            _memoPopup.SetBibleText(shareRangeString);
-            await PopupNavigation.Instance.PushAsync(_memoPopup);
+            var memoPage = new MemoAddPage();
+            memoPage.SetBibleText(shareRangeString);
+            memoPage.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
+
+            if (PopupNavigation.Instance.PopupStack.Count > 0)
+            {
+                try
+                {
+                    await Navigation.PopAllPopupAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.Fail($"{this}\n{ex.Message}");
+                }
+            }
+
+            await Navigation.PushAsync(memoPage);
         }
 
         private async void OnTextShareButtonClicked(object sender, EventArgs e)
@@ -221,7 +253,7 @@ namespace TodaysManna
             };
             await DatabaseManager.Database.SaveItemAsync(memoItem);
 
-            ResetSelectedItemsAndPopPopups();
+            mannaCollectionView.SelectedItems.Clear();
         }
 
         private async void ResetSelectedItemsAndPopPopups()

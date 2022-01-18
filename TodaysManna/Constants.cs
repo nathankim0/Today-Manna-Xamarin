@@ -7,6 +7,14 @@ namespace TodaysManna.Constants
 {
     public static class Values
     {
+        public static readonly bool IsDeviceIOS = Device.RuntimePlatform == Device.iOS;
+
+        public static int MannaPageLaunchCount = 0;
+        public static int MccheynePageLaunchCount = 0;
+        public static int CheckListPageLaunchCount = 0;
+        public static int MemoPageLaunchCount = 0;
+        public static int SettingsPageLaunchCount = 0;
+
         public static readonly double height = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
         public static readonly double width = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
         public static readonly double StatusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
@@ -57,10 +65,10 @@ namespace TodaysManna.Constants
 
     public static class TitleNames
     {
-        public static string Manna = "maana_page";
-        public static string Mccheyne = "mccheyne_page";
-        public static string CheckList = "checklist_page";
-        public static string Memo = "memo_page";
-        public static string Settings = "setting_page";
+        public static string Manna = "만나";
+        public static string Mccheyne = "맥체인";
+        public static string CheckList = "체크리스트";
+        public static string Memo = "메모";
+        public static string Settings = "설정";
     }
 }

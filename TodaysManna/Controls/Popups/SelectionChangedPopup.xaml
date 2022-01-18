@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:local="clr-namespace:TodaysManna"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     BackgroundColor="Transparent"
@@ -23,7 +24,7 @@
             Margin="0"
             Padding="0"
             xct:ShadowEffect.Color="Black"
-            xct:ShadowEffect.Opacity="0.2"
+            xct:ShadowEffect.OffsetY="-10"
             xct:ShadowEffect.Radius="30"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
@@ -36,42 +37,102 @@
                                                   Light=White}"
                 ColumnDefinitions="*,*,*,*"
                 ColumnSpacing="10">
-                <Button
-                    Grid.Column="0"
-                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
-                                                      Light=LightGray}"
-                    Clicked="OnCopyButtonClicked"
-                    FontSize="12"
-                    Text="복사"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-                <Button
-                    Grid.Column="1"
-                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
-                                                      Light=LightGray}"
-                    Clicked="OnShareButtonClicked"
-                    FontSize="12"
-                    Text="공유"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-                <Button
-                    Grid.Column="2"
-                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
-                                                      Light=LightGray}"
-                    Clicked="OnMemoButtonClicked"
-                    FontSize="12"
-                    Text="메모"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-                <Button
-                    Grid.Column="3"
-                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
-                                                      Light=LightGray}"
-                    Clicked="OnCancelButtonClicked"
-                    FontSize="12"
-                    Text="취소"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
+
+                <StackLayout Grid.Column="0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCopyButtonClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.CheckboxMultipleMarkedOutline}"
+                                Size="30"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=DarkGray}" />
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Margin="0,5,0,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="복사"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=DarkGray}" />
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShareButtonClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.ShareVariant}"
+                                Size="30"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=DarkGray}" />
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Margin="0,5,0,0"
+                        BackgroundColor="Transparent"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="공유"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=DarkGray}" />
+                </StackLayout>
+
+                <StackLayout Grid.Column="2">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMemoButtonClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.CheckboxMultipleBlankOutline}"
+                                Size="30"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=DarkGray}" />
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Margin="0,5,0,0"
+                        BackgroundColor="Transparent"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="메모"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=DarkGray}" />
+                </StackLayout>
+
+                <StackLayout Grid.Column="3">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCancelButtonClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="materialdesignicons"
+                                Glyph="{x:Static local:FontIcons.Close}"
+                                Size="30"
+                                Color="{AppThemeBinding Dark=White,
+                                                        Light=DarkGray}" />
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Margin="0,5,0,0"
+                        BackgroundColor="Transparent"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="취소"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=DarkGray}" />
+                </StackLayout>
             </Grid>
         </Frame>
     </Grid>
