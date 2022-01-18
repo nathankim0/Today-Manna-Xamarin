@@ -30,14 +30,20 @@
             </Style>
 
             <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="batang" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
             <Style TargetType="Editor">
+                <Setter Property="FontFamily" Value="batang" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="batang" />
             </Style>
 
             <Style TargetType="Image">
@@ -46,6 +52,7 @@
             </Style>
 
             <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="batang" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />

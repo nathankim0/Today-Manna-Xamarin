@@ -44,6 +44,18 @@ namespace TodaysManna.ViewModel
         private string _displayDateRange;
         public string DisplayDateRange { get => _displayDateRange; set => SetProperty(ref _displayDateRange, value); }
 
+        private bool _isRange1Selected = true;
+        public bool IsRange1Selected { get => _isRange1Selected; set => SetProperty(ref _isRange1Selected, value); }
+
+        private bool _isRange2Selected = false;
+        public bool IsRange2Selected { get => _isRange2Selected; set => SetProperty(ref _isRange2Selected, value); }
+
+        private bool _isRange3Selected = false;
+        public bool IsRange3Selected { get => _isRange3Selected; set => SetProperty(ref _isRange3Selected, value); }
+
+        private bool _isRange4Selected = false;
+        public bool IsRange4Selected { get => _isRange4Selected; set => SetProperty(ref _isRange4Selected, value); }
+
         public MccheyneViewModel()
         {
             var thisDate = GetCorrectDateLeapYear(DateTime.Now);

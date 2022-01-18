@@ -2,9 +2,6 @@
 using TodaysManna.ViewModel;
 using Xamarin.Forms;
 using SQLite;
-using System;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using System.Linq;
 
@@ -54,7 +51,7 @@ namespace TodaysManna.Models
             set => SetProperty(ref _color, value);
         }
 
-        private Color _dateColor = Color.Black;
+        private Color _dateColor =  Color.Black;
         public Color DateColor
         {
             get => _dateColor;

@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    Title="setting_page"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
@@ -22,145 +23,117 @@
         </StackLayout>
         <!--#region HEADER-->
 
-        <TableView
-            Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
-            HasUnevenRows="True"
-            Intent="Settings">
-            <TableRoot>
-                <TableSection Title="앱 정보">
-                    <ViewCell>
-                        <StackLayout
-                            Margin="15,10,0,10"
-                            BackgroundColor="{AppThemeBinding Dark=Black,
-                                                              Light=White}"
-                            Orientation="Horizontal">
-                            <Label
-                                HorizontalOptions="StartAndExpand"
-                                Text="버전"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                            <Label
-                                Margin="0,0,15,0"
-                                FontFamily=""
-                                FontSize="12"
-                                HorizontalOptions="End"
-                                Text="{Binding Version}"
-                                TextColor="Gray"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
+        <StackLayout Grid.Row="1" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+            <StackLayout
+                Margin="15,10,0,10"
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                                  Light=White}"
+                Orientation="Horizontal">
+                <Label
+                    HorizontalOptions="StartAndExpand"
+                    Text="버전"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,0,15,0"
+                    FontFamily=""
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    Text="{Binding Version}"
+                    TextColor="Gray"
+                    VerticalOptions="Center" />
+            </StackLayout>
 
-                <TableSection Title="알람">
-                    <ViewCell>
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                            <TimePicker
-                                x:Name="timePicker"
-                                BackgroundColor="Transparent"
-                                Format="(tt) hh:mm"
-                                HorizontalOptions="StartAndExpand"
-                                PropertyChanged="OnTimePickerPropertyChanged"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
+            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                <TimePicker
+                    x:Name="timePicker"
+                    BackgroundColor="Transparent"
+                    Format="(tt) hh:mm"
+                    HorizontalOptions="StartAndExpand"
+                    PropertyChanged="OnTimePickerPropertyChanged"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="Center" />
 
-                            <Switch
-                                x:Name="alertSwitch"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                Toggled="Switch_Toggled"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
+                <Switch
+                    x:Name="alertSwitch"
+                    Margin="0,0,15,0"
+                    HorizontalOptions="End"
+                    Toggled="Switch_Toggled"
+                    VerticalOptions="Center" />
+            </StackLayout>
 
-                <TableSection Title="메모 백업/복원">
-                    <ViewCell Tapped="OnBackupButtonClicked">
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                            <Label
-                                HorizontalOptions="StartAndExpand"
-                                Text="백업"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                            <Label
-                                Margin="0,0,15,0"
-                                FontFamily=""
-                                FontSize="12"
-                                HorizontalOptions="End"
-                                Text="{Binding IsDatabase}"
-                                TextColor="Gray"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell Tapped="OnRestoreButtonClicked">
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                            <Label
-                                HorizontalOptions="StartAndExpand"
-                                Text="복원"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell Tapped="OnLogoutButtonClicked">
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                            <Label
-                                HorizontalOptions="StartAndExpand"
-                                Text="드롭박스 로그아웃"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
+            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackupButtonClicked" />
+                </StackLayout.GestureRecognizers>
+                <Label
+                    HorizontalOptions="StartAndExpand"
+                    Text="백업"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,0,15,0"
+                    FontFamily=""
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    Text="{Binding IsDatabase}"
+                    TextColor="Gray"
+                    VerticalOptions="Center" />
+            </StackLayout>
 
-                <TableSection Title="지원">
-                    <ViewCell Tapped="OnReportButtonClicked">
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                            <Label
-                                HorizontalOptions="StartAndExpand"
-                                Text="문의"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
+            <Label
+                Padding="15,10,0,10"
+                HorizontalOptions="StartAndExpand"
+                Text="복원"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRestoreButtonClicked" />
+                </Label.GestureRecognizers>
 
-                    <ViewCell Tapped="OnOpenStoreButtonClicked">
-                        <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                            <Label
-                                HorizontalOptions="StartAndExpand"
-                                Text="별점주기"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell>
 
-                    <!--<ViewCell Tapped="OnDonateButtonClicked">
-                            <StackLayout Margin="15,10,0,10" Orientation="Horizontal">
-                                <Label
-                                    FontFamily=""
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="후원하기"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Margin="0,0,15,0"
-                                    FontFamily=""
-                                    FontSize="12"
-                                    HorizontalOptions="End"
-                                    Text="계정, 서버 비용에 사용됩니다. 남은 금액 전액 헌금/기부"
-                                    TextColor="Gray"
-                                    VerticalOptions="Center" />
-                            </StackLayout>
-                        </ViewCell>-->
-                </TableSection>
-            </TableRoot>
-        </TableView>
+            </Label>
+
+            <Label
+                Padding="15,10,0,10"
+                HorizontalOptions="StartAndExpand"
+                Text="드롭박스 로그아웃"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLogoutButtonClicked" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Padding="15,10,0,10"
+                HorizontalOptions="StartAndExpand"
+                Text="문의"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnReportButtonClicked" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                Padding="15,10,0,10"
+                HorizontalOptions="StartAndExpand"
+                Text="별점주기"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnOpenStoreButtonClicked" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
 
         <Frame
             Margin="0"
@@ -173,10 +146,10 @@
             Opacity="0.8"
             VerticalOptions="Fill">
             <Label
-                BackgroundColor="{AppThemeBinding Dark=White,
-                                                  Light=Black}"
                 HorizontalOptions="Center"
                 Text="잠시 기다려주세요..."
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
                 VerticalOptions="Center" />
         </Frame>
     </Grid>

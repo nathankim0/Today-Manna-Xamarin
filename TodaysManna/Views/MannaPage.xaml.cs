@@ -239,22 +239,5 @@ namespace TodaysManna
                 }
             }
         }
-
-        private double previousScrollPosition = 0;
-        void mannaCollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-            if (previousScrollPosition < e.VerticalOffset)
-            {
-                Debug.WriteLine("scrolled down");
-                previousScrollPosition = e.VerticalOffset;
-                headerStackLayout.TranslateTo(0, -150, 250, Easing.CubicOut);
-            }
-            else
-            {
-                Debug.WriteLine("scrolled up");
-                headerStackLayout.TranslateTo(0, 0, 250, Easing.CubicOut);
-            }
-            previousScrollPosition = e.VerticalOffset;
-        }
     }
 }

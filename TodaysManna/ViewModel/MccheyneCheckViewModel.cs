@@ -39,10 +39,11 @@ namespace TodaysManna.ViewModel
         private void SetCheckRangeList()
         {
             var i = 0;
-
+            var appTheme = AppInfo.RequestedTheme;
+            var defaultColor = appTheme == AppTheme.Dark ? Color.White : Color.Black;
             foreach (var range in MccheyneDataManager.MccheyneRangeList)
             {
-                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : Color.Black;
+                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : defaultColor;
                 var range5IsNull = true;
                 if (range.Range5 == "")
                 {

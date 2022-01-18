@@ -57,6 +57,10 @@ namespace TodaysManna.Constants
 
     public static class TitleNames
     {
-        public static string Home = "home";
+        public static string Manna = "maana_page";
+        public static string Mccheyne = "mccheyne_page";
+        public static string CheckList = "checklist_page";
+        public static string Memo = "memo_page";
+        public static string Settings = "setting_page";
     }
 }

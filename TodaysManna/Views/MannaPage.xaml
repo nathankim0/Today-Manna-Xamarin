@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
+    Title="manna_page"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
@@ -42,7 +43,6 @@
                                               Light=White}"
             Footer="&#10;"
             ItemsSource="{Binding MannaContents}"
-            Scrolled="mannaCollectionView_Scrolled"
             SelectionChanged="OnMannaCollectionViewSelectionChanged"
             SelectionMode="Multiple"
             VerticalOptions="Fill"

@@ -39,8 +39,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <CodesignKey>Apple Distribution: JinYeob Kim (75TT7T2Y4B)</CodesignKey>
-    <CodesignProvision>MannaProvisioning210320</CodesignProvision>
+    <CodesignKey>Apple Development: JinYeob Kim (HTFZUJQ9KM)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,6 +78,7 @@
     <Compile Include="DependencyService.cs" />
     <Compile Include="Renderer\CustomButtonRenderer.cs" />
     <Compile Include="Renderer\NoBounceRenderer.cs" />
+    <Compile Include="Renderer\CustomTabbedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -153,7 +153,7 @@
       <Version>4.7.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>5.0.0.2125</Version>
+      <Version>5.0.0.2291</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
