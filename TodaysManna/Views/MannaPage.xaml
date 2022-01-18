@@ -45,7 +45,7 @@
             x:Name="mannaCollectionView"
             Grid.Row="1"
             BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
+                                              Light=#F9F9F9}"
             Footer="&#10;"
             ItemsSource="{Binding MannaContents}"
             SelectionChanged="OnMannaCollectionViewSelectionChanged"
@@ -56,7 +56,7 @@
             <CollectionView.Header>
 
                 <StackLayout
-                    Margin="0,0,0,20"
+                    Margin="0,0,0,0"
                     Padding="20,0,20,0"
                     BackgroundColor="{AppThemeBinding Dark=Black,
                                                       Light=White}"
@@ -69,16 +69,16 @@
                         Orientation="Horizontal">
                         <Label
                             FontAttributes="Bold"
-                            FontSize="30"
+                            FontSize="25"
                             HorizontalOptions="StartAndExpand"
                             Text="오늘의 만나를&#10;수확해볼까요? 🍐"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
                         <Label
-                            FontSize="22"
+                            FontSize="18"
                             HorizontalOptions="End"
                             Text="{Binding DisplayDateRange}"
-                            TextColor="#F7D8B4"
+                            TextColor="#fda51e"
                             VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnMannaDateButtonClicked" />
@@ -94,7 +94,7 @@
                         Orientation="Horizontal">
                         <Label
                             FontAttributes="Bold"
-                            FontSize="26"
+                            FontSize="22"
                             HorizontalOptions="StartAndExpand"
                             Text="오늘의 범위"
                             TextColor="{AppThemeBinding Dark=White,
@@ -109,21 +109,21 @@
                                 <FontImageSource
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.ShareVariant}"
-                                    Size="20"
+                                    Size="24"
                                     Color="{AppThemeBinding Dark=White,
-                                                            Light=Black}" />
+                                                            Light=Gray}" />
                             </ImageButton.Source>
                         </ImageButton>
                     </StackLayout>
 
                     <Grid
-                        Margin="0,10,0,0"
+                        Margin="0,5,0,0"
                         ColumnDefinitions="60,*"
                         RowDefinitions="*,*">
                         <Label
                             Grid.Row="0"
                             Grid.Column="0"
-                            FontSize="22"
+                            FontSize="16"
                             Text="만나"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
@@ -131,13 +131,13 @@
                             x:Name="mannaRangeLabel"
                             Grid.Row="0"
                             Grid.Column="1"
-                            FontSize="22"
+                            FontSize="16"
                             Text="{Binding MannaShareRange}"
                             TextColor="Gray" />
                         <Label
                             Grid.Row="1"
                             Grid.Column="0"
-                            FontSize="22"
+                            FontSize="16"
                             Text="맥체인"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}" />
@@ -145,25 +145,24 @@
                             x:Name="mcRangeLabel"
                             Grid.Row="1"
                             Grid.Column="1"
-                            FontSize="22"
+                            FontSize="16"
                             Text="{Binding McShareRange}"
                             TextColor="Gray" />
                     </Grid>
 
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Margin="0,20,0,0" Orientation="Horizontal">
+
                         <Label
-                            x:Name="verse"
                             FontAttributes="Bold"
-                            FontSize="Subtitle"
+                            FontSize="22"
                             HorizontalOptions="StartAndExpand"
-                            Text="{Binding JsonMannaData.Verse}"
+                            Text="오늘의 만나"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}"
                             VerticalOptions="CenterAndExpand" />
-
                         <ImageButton
-                            Padding="8"
+                            Padding="5,0,5,0"
                             BackgroundColor="Transparent"
                             Clicked="OnRefreshButtonClicked"
                             HorizontalOptions="End">
@@ -171,14 +170,14 @@
                                 <FontImageSource
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.Refresh}"
-                                    Size="20"
+                                    Size="30"
                                     Color="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
                             </ImageButton.Source>
                         </ImageButton>
 
                         <ImageButton
-                            Padding="8"
+                            Padding="5,0,5,0"
                             BackgroundColor="Transparent"
                             Clicked="OnEnglishButtonClicked"
                             HorizontalOptions="End">
@@ -186,15 +185,14 @@
                                 <FontImageSource
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.AlphabetLatin}"
-                                    Size="20"
+                                    Size="30"
                                     Color="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
                             </ImageButton.Source>
                         </ImageButton>
 
                         <ImageButton
-                            Margin="0,0,5,0"
-                            Padding="8"
+                            Padding="5,0,5,0"
                             BackgroundColor="Transparent"
                             Clicked="OnMannaShareButtonClicked"
                             HorizontalOptions="End"
@@ -203,13 +201,29 @@
                                 <FontImageSource
                                     FontFamily="materialdesignicons"
                                     Glyph="{x:Static local:FontIcons.ShareVariant}"
-                                    Size="20"
+                                    Size="30"
                                     Color="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
                             </ImageButton.Source>
                         </ImageButton>
                     </StackLayout>
 
+                    <Label
+                        x:Name="verse"
+                        Margin="0,5,0,0"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding JsonMannaData.Verse}"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="CenterAndExpand">
+                        <Label.FontSize>
+                            <OnPlatform
+                                x:TypeArguments="x:Double"
+                                Android="18"
+                                iOS="16" />
+                        </Label.FontSize>
+                    </Label>
                 </StackLayout>
             </CollectionView.Header>
 
