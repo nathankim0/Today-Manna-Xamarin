@@ -39,7 +39,7 @@ namespace TodaysManna
                 IconImageSource = new FontImageSource
                 {
                     FontFamily = "materialdesignicons",
-                    Glyph = FontIcons.BookOpenVariant,
+                    Glyph = FontIcons.HomeOutline,
                 }
             };
 
