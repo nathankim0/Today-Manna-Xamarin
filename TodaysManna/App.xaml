@@ -89,6 +89,7 @@
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="22" />
+                <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
             </Style>
 

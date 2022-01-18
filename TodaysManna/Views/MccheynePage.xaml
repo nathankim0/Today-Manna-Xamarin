@@ -41,9 +41,21 @@
                     FontSize="12"
                     HorizontalOptions="StartAndExpand"
                     Text="{Binding MccheyneRange}"
-                    TextColor="Gray" />
+                    TextColor="Gray"
+                    VerticalOptions="Center" />
 
-                <Grid ColumnDefinitions="Auto,*,Auto">
+                <Label
+                    Grid.Column="1"
+                    FontSize="20"
+                    Text="{Binding DisplayDateRange}"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=DarkGray}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDateButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <!--<Grid ColumnDefinitions="Auto,*,Auto">
                     <ImageButton
                         Grid.Column="0"
                         Padding="5"
@@ -54,7 +66,7 @@
                                 Glyph="{x:Static local:FontIcons.ArrowLeft}"
                                 Size="20"
                                 Color="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
+                                                        Light=DarkGray}" />
                         </ImageButton.Source>
                     </ImageButton>
                     <Label
@@ -62,7 +74,7 @@
                         FontSize="20"
                         Text="{Binding DisplayDateRange}"
                         TextColor="{AppThemeBinding Dark=White,
-                                                    Light=Black}"
+                                                    Light=DarkGray}"
                         VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDateButtonClicked" />
@@ -78,10 +90,10 @@
                                 Glyph="{x:Static local:FontIcons.ArrowRight}"
                                 Size="20"
                                 Color="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
+                                                        Light=DarkGray}" />
                         </ImageButton.Source>
                     </ImageButton>
-                </Grid>
+                </Grid>-->
             </StackLayout>
         </DataTemplate>
 
@@ -100,7 +112,7 @@
                             iOS="18" />
                     </Label.FontSize>
                 </Label>
-                <Label TextColor="{AppThemeBinding Dark=White, Light=Black}">
+                <Label Margin="0,10,0,0" TextColor="{AppThemeBinding Dark=White, Light=Black}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span LineHeight="1.7" Text="{Binding SecondNumber}" />
@@ -162,6 +174,7 @@
             <CollectionView
                 x:Name="mccheyneCollectionView"
                 ItemsSource="{Binding MccheyneContents1}"
+                Scrolled="mccheyneCollectionView_Scrolled"
                 SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
                 Style="{x:StaticResource collectionViewStyle}" />
 

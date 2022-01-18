@@ -16,9 +16,7 @@ namespace TodaysManna
 {
     public partial class MannaPage : ContentPage
     {
-        private readonly MemoPopup _memoPopup;
         private string shareRangeString = "";
-        private double headerHeight;
 
         public MannaPage()
         {
@@ -30,36 +28,10 @@ namespace TodaysManna
             mannaDatepicker.MinimumDate = new DateTime(DateTime.Now.Year, 1, 1);
             mannaDatepicker.MaximumDate = DateTime.Now;
 
-            _memoPopup = new MemoPopup();
-            _memoPopup.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
-
             MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMannaToTop, (sender) =>
             {
                 mannaCollectionView.ScrollTo(0);
             });
-
-            headerStackLayout.SizeChanged += HeaderStackLayout_SizeChanged;
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            if((mannaCollectionView.SelectedItems?.Count ?? 0) > 0)
-            {
-                DependencyService.Get<IHapticFeedback>().Run();
-                ResetSelectedItemsAndPopPopups();
-                return true;
-            }
-            else
-            {
-                return base.OnBackButtonPressed();
-            }
-        }
-
-        private void HeaderStackLayout_SizeChanged(object sender, EventArgs e)
-        {
-            headerStackLayout.SizeChanged -= HeaderStackLayout_SizeChanged;
-            headerHeight = headerStackLayout.Height;
-            rangeButton.Margin = new Thickness(0, headerHeight, 0, 0);
         }
 
         #region toolbar buttons
@@ -123,7 +95,9 @@ namespace TodaysManna
 
             ResetSelectedItemsAndPopPopups();
 
-            var shareText = DateTime.Now.ToString("yyyy-MM-dd(dddd)")+"\n"+ mannaRangeLabel.Text + "\n" + mcRangeLabel.Text;
+            if (!(BindingContext is MannaViewModel viewModel)) return;
+
+            var shareText = DateTime.Now.ToString("yyyy-MM-dd(dddd)")+"\n"+ "만나: " + viewModel.MannaShareRange + "\n" + "맥체인: " + viewModel.McShareRange;
             await Clipboard.SetTextAsync(shareText);
 
             await DisplayAlert("클립보드에 복사됨", shareText, "확인");
@@ -242,14 +216,14 @@ namespace TodaysManna
             ResetSelectedItemsAndPopPopups();
         }
 
-        private async void OnMemoPopupSaveButtonClicked(object sender, string memoText)
+        private async void OnMemoPopupSaveButtonClicked(object sender, (string,string) memoText)
         {
             DependencyService.Get<IHapticFeedback>().Run();
             var memoItem = new MemoItem
             {
                 Date = DateTime.Now,
-                Verse = shareRangeString,
-                Note = memoText
+                Verse = memoText.Item1,
+                Note = memoText.Item2
             };
             await DatabaseManager.Database.SaveItemAsync(memoItem);
 
