@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TodaysManna.Models;
 using TodaysManna.Services;
-using TodaysManna.Constants;
+
 using TodaysManna.Managers;
 
 namespace TodaysManna
@@ -15,33 +15,33 @@ namespace TodaysManna
 
         public static async void SetRangeOnWidgetAsync()
         {
-            var _restService = new RestService();
-            var JsonMannaData = new JsonMannaModel();
+            //var _restService = new RestService();
+            //var JsonMannaData = new JsonMannaModel();
 
-            CreateData();
+            //CreateData();
 
-            try
-            {
-                JsonMannaData = await _restService.GetMannaDataAsync(Rests.MannaEndpoint);
+            //try
+            //{
+            //    JsonMannaData = await _restService.GetMannaDataAsync(Rests.MannaEndpoint);
 
-                var findMccheyneDate = DateTime.Now.ToString("M-d");
-                var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(findMccheyneDate));
-                var todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
+            //    var findMccheyneDate = DateTime.Now.ToString("M-d");
+            //    var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(findMccheyneDate));
+            //    var todayMccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
-                var MannaShareRange = $"만나: {JsonMannaData.Verse}";
-                var McShareRange = $"맥체인: {todayMccheyneRange}";
+            //    var MannaShareRange = $"만나: {JsonMannaData.Verse}";
+            //    var McShareRange = $"맥체인: {todayMccheyneRange}";
 
-                WidgetString = DateTime.Now.ToString("G") + "\n" + MannaShareRange + "\n" + McShareRange;
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
+            //    WidgetString = DateTime.Now.ToString("G") + "\n" + MannaShareRange + "\n" + McShareRange;
+            //}
+            //catch (Exception e)
+            //{
+            //    System.Diagnostics.Debug.Fail("# App GetJsonMccheyneRange() \n" + e.Message);
 
-            }
-            finally
-            {
-                widgetReady.Invoke(null, WidgetString);
-            }
+            //}
+            //finally
+            //{
+            //    widgetReady.Invoke(null, WidgetString);
+            //}
         }
 
         private static void CreateData()

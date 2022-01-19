@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using TodaysManna.Constants;
+
 using TodaysManna.Managers;
 using TodaysManna.ViewModel;
 using Xamarin.Essentials;
@@ -15,7 +15,7 @@ namespace TodaysManna
         {
             InitializeComponent();
 
-            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+            Padding = new Thickness(0, Constants.StatusBarHeight, 0, 0);
 
             BindingContext = myPageViewModel;
 
@@ -60,19 +60,19 @@ namespace TodaysManna
 
         protected override void OnAppearing()
         {
-            if (Values.IsDeviceIOS)
+            if (Constants.IsDeviceIOS)
             {
                 CustomOnAppearing();
             }
             else
             {
-                if (Values.MemoPageLaunchCount >= 2)
+                if (Constants.MemoPageLaunchCount >= 2)
                 {
                     CustomOnAppearing();
                 }
                 else
                 {
-                    Values.MemoPageLaunchCount++;
+                    Constants.MemoPageLaunchCount++;
                 }
             }
         }

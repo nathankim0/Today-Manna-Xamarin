@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TodaysManna.ExtensionMethods
+namespace TodaysManna
 {
     public static class MyExtensions
     {
@@ -9,7 +9,18 @@ namespace TodaysManna.ExtensionMethods
                              StringSplitOptions.RemoveEmptyEntries).Length;
         }
 
-        public static string BibleBookKorToEng(this String str)
+        public static string ToHexString(this Xamarin.Forms.Color color)
+        {
+            var red = (int)(color.R * 255);
+            var green = (int)(color.G * 255);
+            var blue = (int)(color.B * 255);
+            var alpha = (int)(color.A * 255);
+            var hex = $"#{alpha:X2}{red:X2}{green:X2}{blue:X2}";
+
+            return hex;
+        }
+
+        public static string BibleBookKorToEng(this string str)
         {
             return str switch
             {

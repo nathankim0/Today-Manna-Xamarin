@@ -1,4 +1,5 @@
 ﻿using TodaysManna.Managers;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TodaysManna
@@ -11,6 +12,8 @@ namespace TodaysManna
             AppOperationManager.CreateData();
 
             MainPage = new MainTabbedPage();
+
+            VersionTracking.Track();
         }
        
         protected override void OnStart()

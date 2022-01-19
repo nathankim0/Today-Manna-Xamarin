@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SQLite;
-using TodaysManna.Constants;
+
 using TodaysManna.Models;
 
 namespace TodaysManna

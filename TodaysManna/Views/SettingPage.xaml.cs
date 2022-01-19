@@ -1,7 +1,7 @@
 ﻿using System;
 using Plugin.LocalNotification;
 using Plugin.StoreReview;
-using TodaysManna.Constants;
+
 using TodaysManna.ViewModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -11,11 +11,13 @@ namespace TodaysManna.Views
     public partial class SettingPage : ContentPage
     {
         SettingViewModel viewModel;
+        public EventHandler<Language> LanguageChanged;
+
         public SettingPage()
         {
             InitializeComponent();
 
-            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+            Padding = new Thickness(0, Constants.StatusBarHeight, 0, 0);
 
             viewModel = new SettingViewModel(Navigation);
             BindingContext = viewModel;
@@ -35,25 +37,39 @@ namespace TodaysManna.Views
                     NotificationCenter.Current.Cancel(100);
                 }
             }
+
+            fontSizeSlider.Value = AppManager.GetCurrentTextSize();
         }
 
         protected override void OnAppearing()
         {
-            if (Values.IsDeviceIOS)
+            if (Constants.IsDeviceIOS)
             {
                 CustomOnAppearing();
             }
             else
             {
-                if (Values.SettingsPageLaunchCount >= 2)
+                if (Constants.SettingsPageLaunchCount >= 2)
                 {
                     CustomOnAppearing();
                 }
                 else
                 {
-                    Values.SettingsPageLaunchCount++;
+                    Constants.SettingsPageLaunchCount++;
                 }
             }
+        }
+
+        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            Preferences.Set("TextSize", e.NewValue);
+        }
+
+        async void languageTitleLabel_Clicked(System.Object sender, System.EventArgs e)
+        {
+            var onboardingPage = new OnboardingPage();
+            onboardingPage.LanguageChanged += (s, selectedLanguage) => { LanguageChanged?.Invoke(this, selectedLanguage); };
+            await Navigation.PushModalAsync(onboardingPage);
         }
 
         public void CustomOnAppearing()

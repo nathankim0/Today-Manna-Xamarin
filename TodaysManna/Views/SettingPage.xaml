@@ -6,144 +6,156 @@
     Title="setting_page"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
-                                      Light=White}"
-    NavigationPage.BackButtonTitle=""
-    NavigationPage.HasBackButton="False"
-    NavigationPage.HasNavigationBar="False">
+                                      Light=White}">
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid>
 
-        <!--#region HEADER-->
-        <StackLayout BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderStackLayoutStyle}">
-            <Label
-                Style="{x:StaticResource HeaderLabelStyle}"
-                Text="설정"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}" />
-        </StackLayout>
-        <!--#region HEADER-->
+        <ScrollView>
+            <StackLayout Padding="20" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
 
-        <StackLayout
-            Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=White}"
-            Spacing="20">
-            <StackLayout
-                Padding="20,10,0,10"
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                                  Light=White}"
-                Orientation="Horizontal">
+                <Button
+                    x:Name="languageTitleLabel"
+                    BackgroundColor="{AppThemeBinding Dark=White,
+                                                      Light=Black}"
+                    Clicked="languageTitleLabel_Clicked"
+                    FontSize="20"
+                    HorizontalOptions="Fill"
+                    Text="Language"
+                    TextColor="{AppThemeBinding Dark=Black,
+                                                Light=White}" />
+
                 <Label
+                    x:Name="fontTitleLabel"
+                    Margin="0,30,0,0"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="폰트 크기"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
+
+                <Slider
+                    x:Name="fontSizeSlider"
+                    HeightRequest="30"
+                    HorizontalOptions="Fill"
+                    Maximum="30"
+                    MaximumTrackColor="{AppThemeBinding Dark=LightGray,
+                                                        Light=Gray}"
+                    Minimum="17"
+                    MinimumTrackColor="DeepPink"
+                    ValueChanged="Slider_ValueChanged" />
+
+                <StackLayout Margin="0,30,0,0" Orientation="Horizontal">
+                    <TimePicker
+                        x:Name="timePicker"
+                        BackgroundColor="Transparent"
+                        Format="(tt) hh:mm"
+                        HorizontalOptions="StartAndExpand"
+                        PropertyChanged="OnTimePickerPropertyChanged"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="Center" />
+
+                    <Switch
+                        x:Name="alertSwitch"
+                        HorizontalOptions="End"
+                        Toggled="Switch_Toggled"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+                <StackLayout Padding="0,15,0,15" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackupButtonClicked" />
+                    </StackLayout.GestureRecognizers>
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="StartAndExpand"
+                        Text="백업"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontFamily=""
+                        FontSize="20"
+                        HorizontalOptions="End"
+                        Text="{Binding IsDatabase}"
+                        TextColor="Gray"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+                <Label
+                    Padding="0,15,0,15"
                     FontSize="20"
                     HorizontalOptions="StartAndExpand"
-                    Text="버전"
+                    Text="복원"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRestoreButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+
                 <Label
-                    Margin="0,0,15,0"
-                    FontFamily=""
-                    FontSize="20"
-                    HorizontalOptions="End"
-                    Text="{Binding Version}"
-                    TextColor="Gray"
-                    VerticalOptions="Center" />
-            </StackLayout>
-
-            <StackLayout Padding="20,10,0,10" Orientation="Horizontal">
-                <TimePicker
-                    x:Name="timePicker"
-                    BackgroundColor="Transparent"
-                    Format="(tt) hh:mm"
-                    HorizontalOptions="StartAndExpand"
-                    PropertyChanged="OnTimePickerPropertyChanged"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="Center" />
-
-                <Switch
-                    x:Name="alertSwitch"
-                    Margin="0,0,15,0"
-                    HorizontalOptions="End"
-                    Toggled="Switch_Toggled"
-                    VerticalOptions="Center" />
-            </StackLayout>
-
-            <StackLayout Padding="20,10,0,10" Orientation="Horizontal">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnBackupButtonClicked" />
-                </StackLayout.GestureRecognizers>
-                <Label
+                    Padding="0,15,0,15"
                     FontSize="20"
                     HorizontalOptions="StartAndExpand"
-                    Text="백업"
+                    Text="드롭박스 로그아웃"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogoutButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+
                 <Label
-                    Margin="0,0,15,0"
-                    FontFamily=""
+                    Padding="0,15,0,15"
                     FontSize="20"
-                    HorizontalOptions="End"
-                    Text="{Binding IsDatabase}"
-                    TextColor="Gray"
-                    VerticalOptions="Center" />
+                    HorizontalOptions="StartAndExpand"
+                    Text="문의"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReportButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                    Padding="0,15,0,15"
+                    FontSize="20"
+                    HorizontalOptions="StartAndExpand"
+                    Text="별점주기"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOpenStoreButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <StackLayout
+                    Padding="0,15,0,15"
+                    BackgroundColor="{AppThemeBinding Dark=Black,
+                                                      Light=White}"
+                    Orientation="Horizontal">
+                    <Label
+                        FontSize="20"
+                        HorizontalOptions="StartAndExpand"
+                        Text="버전"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontFamily=""
+                        FontSize="20"
+                        HorizontalOptions="End"
+                        Text="{Binding Version}"
+                        TextColor="Gray"
+                        VerticalOptions="Center" />
+                </StackLayout>
             </StackLayout>
-
-            <Label
-                Padding="20,10,0,10"
-                FontSize="20"
-                HorizontalOptions="StartAndExpand"
-                Text="복원"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                VerticalOptions="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnRestoreButtonClicked" />
-                </Label.GestureRecognizers>
-
-
-            </Label>
-
-            <Label
-                Padding="20,10,0,10"
-                FontSize="20"
-                HorizontalOptions="StartAndExpand"
-                Text="드롭박스 로그아웃"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                VerticalOptions="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnLogoutButtonClicked" />
-                </Label.GestureRecognizers>
-            </Label>
-
-            <Label
-                Padding="20,10,0,10"
-                FontSize="20"
-                HorizontalOptions="StartAndExpand"
-                Text="문의"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                VerticalOptions="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnReportButtonClicked" />
-                </Label.GestureRecognizers>
-            </Label>
-
-            <Label
-                Padding="20,10,0,10"
-                FontSize="20"
-                HorizontalOptions="StartAndExpand"
-                Text="별점주기"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}"
-                VerticalOptions="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnOpenStoreButtonClicked" />
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
+        </ScrollView>
 
         <Frame
             Margin="0"
