@@ -4,7 +4,7 @@ using Xamarin.Forms;
 using TodaysManna.Services;
 using System.Diagnostics;
 using Xamarin.Essentials;
-using TodaysManna.Constants;
+
 
 namespace TodaysManna.ViewModel
 {
@@ -37,7 +37,6 @@ namespace TodaysManna.ViewModel
             restoreDropBoxService.OnDisappeared += ChangeBusyStatus;
             getMetadataDropBoxService.OnDisappeared += ChangeBusyStatus;
 
-            VersionTracking.Track();
             Version = VersionTracking.CurrentVersion;
         }
 

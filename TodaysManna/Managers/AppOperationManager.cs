@@ -18,15 +18,6 @@ namespace TodaysManna.Managers
                 Debug.Fail("InitMcchyneData\n" + e.Message);
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("맥체인 불러오기 오류", "", "확인");
             }
-            try
-            {
-                _ = await GetMannaService.InitMannaData();
-            }
-            catch (Exception e)
-            {
-                Debug.Fail("InitMannaData\n" + e.Message);
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("만나 불러오기 오류", "", "확인");
-            }
         }
     }
 }

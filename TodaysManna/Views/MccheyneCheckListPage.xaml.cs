@@ -9,7 +9,7 @@ using Rg.Plugins.Popup.Services;
 using System.Threading;
 using TodaysManna.ViewModel;
 using TodaysManna.Models;
-using TodaysManna.Constants;
+
 
 namespace TodaysManna
 {
@@ -23,7 +23,7 @@ namespace TodaysManna
         {
             InitializeComponent();
 
-            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+            Padding = new Thickness(0, Constants.StatusBarHeight, 0, 0);
 
             var mccheyneCheckViewModel = new MccheyneCheckViewModel(Navigation);
             BindingContext = mccheyneCheckViewModel;
@@ -55,19 +55,19 @@ namespace TodaysManna
 
         protected override void OnAppearing()
         {
-            if (Values.IsDeviceIOS)
+            if (Constants.IsDeviceIOS)
             {
                 CustomOnAppearing();
             }
             else
             {
-                if (Values.MccheynePageLaunchCount >= 2)
+                if (Constants.MccheynePageLaunchCount >= 2)
                 {
                     CustomOnAppearing();
                 }
                 else
                 {
-                    Values.MccheynePageLaunchCount++;
+                    Constants.MccheynePageLaunchCount++;
                 }
             }
         }

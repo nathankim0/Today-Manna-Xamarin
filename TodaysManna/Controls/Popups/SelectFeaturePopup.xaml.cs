@@ -4,14 +4,17 @@ using Xamarin.Forms;
 
 namespace TodaysManna.Controls.Popups
 {
-    public partial class SelectionChangedPopup : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class SelectFeaturePopup : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public EventHandler memobuttonClicked;
-        public EventHandler copybuttonClicked;
-        public EventHandler sharebuttonClicked;
-        public EventHandler cancelbuttonClicked;
+        private static SelectFeaturePopup _instance;
+        public static SelectFeaturePopup Instance => _instance ?? (_instance = new SelectFeaturePopup());
 
-        public SelectionChangedPopup()
+        public EventHandler MemobuttonClicked;
+        public EventHandler CopybuttonClicked;
+        public EventHandler SharebuttonClicked;
+        public EventHandler CancelbuttonClicked;
+
+        public SelectFeaturePopup()
         {
             InitializeComponent();
         }
@@ -25,22 +28,22 @@ namespace TodaysManna.Controls.Popups
 
         private void OnMemoButtonClicked(object sender, EventArgs e)
         {
-            memobuttonClicked?.Invoke(this, EventArgs.Empty);
+            MemobuttonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnCopyButtonClicked(object sender, EventArgs e)
         {
-            copybuttonClicked?.Invoke(this, EventArgs.Empty);
+            CopybuttonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnShareButtonClicked(object sender, EventArgs e)
         {
-            sharebuttonClicked?.Invoke(this, EventArgs.Empty);
+            SharebuttonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnCancelButtonClicked(object sender, EventArgs e)
         {
-            cancelbuttonClicked?.Invoke(this, EventArgs.Empty);
+            CancelbuttonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         protected override bool OnBackButtonPressed()

@@ -3,10 +3,18 @@ using System;
 using System.IO;
 using Xamarin.Essentials;
 
-namespace TodaysManna.Constants
+namespace TodaysManna
 {
-    public static class Values
+    public static class Constants
     {
+        public static readonly string BIBLE_WEB_ENDPOINT = "https://www.bible.com/ko/bible/1/";
+        public static readonly string BIBLE_APP_ENDPOINT = "youversion://bible?reference=";
+        public static readonly string MANNA_ENDPOINT = "http://3.138.184.130:9179/api/v1/today-manna/";
+        public static readonly string IMAGE_API_ENDPOINT = "https://source.unsplash.com/random/1080x1920/?nature/";
+
+        public static readonly string DEFAULT_TEXT_COLOR = "#FFFFFFFF";
+        public static readonly string DEFAULT_BACKGROUND_DIM_COLOR = "#40000000";
+
         public static readonly bool IsDeviceIOS = Device.RuntimePlatform == Device.iOS;
 
         public static int MannaPageLaunchCount = 0;
@@ -33,7 +41,6 @@ namespace TodaysManna.Constants
 
     public static class Rests
     {
-        public const string MannaEndpoint = "http://3.138.184.130:9179/api/v1/today-manna/";
         public const string DatabaseFilename = "MemoSQLite.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
@@ -59,8 +66,6 @@ namespace TodaysManna.Constants
         public static string ScrollMccheyneToTop = "ScrollMccheyneToTop";
         public static string ScrollCheckListToTop = "ScrollCheckListToTop";
         public static string ScrollMemoToTop = "ScrollMemoToTop";
-
-        public static string ScrollHomePageToTop = "ScrollHomePageToTop";
     }
 
     public static class TitleNames
@@ -69,6 +74,5 @@ namespace TodaysManna.Constants
         public static string Mccheyne = "맥체인";
         public static string CheckList = "체크리스트";
         public static string Memo = "메모";
-        public static string Settings = "설정";
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Android.Content;
 using Android.Views;
 using Google.Android.Material.Navigation;
-using TodaysManna.Constants;
+
 using TodaysManna.Droid.Renderer;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

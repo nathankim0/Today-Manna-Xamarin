@@ -83,4 +83,9 @@
     <EmbeddedResource Include="Resources\JsonFiles\mcc.json" />
     <EmbeddedResource Include="Resources\JsonFiles\MccheyneRange.json" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Controls\Popups\SelectFeaturePopup.xaml.cs">
+      <DependentUpon>SelectFeaturePopup.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
-using TodaysManna.Constants;
+
 
 namespace TodaysManna
     {
@@ -27,7 +27,7 @@ namespace TodaysManna
                 VerticalOptions = LayoutOptions.Fill
             };
 
-            BottomSheetMaxY = Values.height * HeightRatio;
+            BottomSheetMaxY = Constants.height * HeightRatio;
 
             _bottomSheetContainer.BottomSheetPulledDown += OnBottomSheetDisappearred;
             _bottomSheetContainer.MaxY = BottomSheetMaxY;
@@ -61,7 +61,7 @@ namespace TodaysManna
                 ratio = 0.2;
             }
             HeightRatio = ratio;
-            BottomSheetMaxY = Values.height * HeightRatio;
+            BottomSheetMaxY = Constants.height * HeightRatio;
             _bottomSheetContainer.MaxY = BottomSheetMaxY;
             _bottomSheetContainer.SheetFrame.TranslationY = BottomSheetMaxY;
             _bottomSheetContainer.Layout(new Rectangle(0, Height * (1 - HeightRatio), Width, Height * HeightRatio));
@@ -133,7 +133,7 @@ namespace TodaysManna
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            _bottomSheetBackground.Layout(new Rectangle(x, y - Values.StatusBarHeight, width, height));
+            _bottomSheetBackground.Layout(new Rectangle(x, y - Constants.StatusBarHeight, width, height));
             _bottomSheetContainer.Layout(new Rectangle(x, y + height * (1 - HeightRatio), width, height * HeightRatio));
         }
 

@@ -78,7 +78,7 @@
 
             <Style x:Key="HeaderStackLayoutStyle" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="Padding" Value="{OnPlatform Android='20,20,20,10', iOS='20,0,20,10'}" />
+                <Setter Property="Padding" Value="15" />
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Start" />
@@ -104,16 +104,6 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
-
-
-            <Style x:Key="HeaderV2StackLayoutStyle" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
-                <Setter Property="Padding" Value="{OnPlatform Android='0,0,0,0', iOS='15,0,15,15'}" />
-                <Setter Property="Orientation" Value="Horizontal" />
-                <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="VerticalOptions" Value="Start" />
-            </Style>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

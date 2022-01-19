@@ -4,7 +4,7 @@ using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using System.Threading.Tasks;
-using TodaysManna.Constants;
+
 using TodaysManna.Models;
 using System.Diagnostics;
 using TodaysManna.Controls.Popups;
@@ -21,7 +21,7 @@ namespace TodaysManna
         public MccheynePage()
         {
             InitializeComponent();
-            Padding = new Thickness(0, Values.StatusBarHeight, 0, 0);
+            Padding = new Thickness(0, Constants.StatusBarHeight, 0, 0);
             BindingContext = new MccheyneViewModel();
             MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMccheyneToTop, (sender) =>
             {
@@ -92,11 +92,11 @@ namespace TodaysManna
 
             if (seletedItems.Count > 0 && PopupNavigation.Instance.PopupStack.Count == 0)
             {
-                var popup = new SelectionChangedPopup();
-                popup.copybuttonClicked += OnCopyButtonClicked;
-                popup.memobuttonClicked += OnMemoButtonClicked;
-                popup.sharebuttonClicked += OnTextShareButtonClicked;
-                popup.cancelbuttonClicked += OnCancelButtonClicked;
+                var popup = new SelectFeaturePopup();
+                popup.CopybuttonClicked += OnCopyButtonClicked;
+                popup.MemobuttonClicked += OnMemoButtonClicked;
+                popup.SharebuttonClicked += OnTextShareButtonClicked;
+                popup.CancelbuttonClicked += OnCancelButtonClicked;
 
                 await Navigation.PushPopupAsync(popup);
             }

@@ -5,7 +5,7 @@ using TodaysManna.iOS.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using System.Diagnostics;
-using TodaysManna.Constants;
+
 using TodaysManna.Views;
 
 [assembly: ExportRenderer(typeof(TabbedPage), typeof(CustomTabbedPageRenderer))]
@@ -20,7 +20,7 @@ namespace TodaysManna.iOS.Renderers
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Values.TabHeight = (int)TabBar.Frame.Height;
+            Constants.TabHeight = (int)TabBar.Frame.Height;
 
             SetTabbarUI();
         }
@@ -28,7 +28,7 @@ namespace TodaysManna.iOS.Renderers
         public override void ViewSafeAreaInsetsDidChange()
         {
             base.ViewSafeAreaInsetsDidChange();
-            Values.BottomSafeAreaHeight = NativeView.SafeAreaInsets.Bottom;
+            Constants.BottomSafeAreaHeight = NativeView.SafeAreaInsets.Bottom;
         }
 
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
@@ -38,7 +38,7 @@ namespace TodaysManna.iOS.Renderers
             if (e.NewElement != null)
             {
                 mainTabbedPage = (MainTabbedPage)e.NewElement;
-                //SetTabbarColor();
+                SetTabbarColor();
 
                 //SetBorder();
             }
@@ -133,11 +133,11 @@ namespace TodaysManna.iOS.Renderers
 
         private static void SetTabbarColor()
         {
-            UITabBar.Appearance.BackgroundColor = Color.White.ToUIColor();
-            UITabBar.Appearance.BackgroundImage = new UIImage();
-            UITabBar.Appearance.ShadowImage = new UIImage();
-            UITabBar.Appearance.SelectedImageTintColor = UIColor.Black;
-            UITabBar.Appearance.TintColor = UIColor.Black.ColorWithAlpha(0.2f);
+            //UITabBar.Appearance.BackgroundColor = Color.White.ToUIColor();
+            //UITabBar.Appearance.BackgroundImage = new UIImage();
+            //UITabBar.Appearance.ShadowImage = new UIImage();
+            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(253,185,81);
+            //UITabBar.Appearance.TintColor = UIColor.Black.ColorWithAlpha(0.2f);
         }
 
         private void SetBorder()

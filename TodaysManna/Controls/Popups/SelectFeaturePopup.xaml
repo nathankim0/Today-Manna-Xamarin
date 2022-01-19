@@ -1,5 +1,5 @@
 ﻿<pages:PopupPage
-    x:Class="TodaysManna.Controls.Popups.SelectionChangedPopup"
+    x:Class="TodaysManna.Controls.Popups.SelectFeaturePopup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
@@ -24,7 +24,7 @@
             Margin="0"
             Padding="0"
             xct:ShadowEffect.Color="Black"
-            xct:ShadowEffect.OffsetY="-10"
+            xct:ShadowEffect.OffsetY="-5"
             xct:ShadowEffect.Radius="30"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"

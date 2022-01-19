@@ -5,7 +5,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using TabbedPage = Xamarin.Forms.TabbedPage;
 using TodaysManna.Views;
-using TodaysManna.Constants;
+
 
 namespace TodaysManna
 {
@@ -21,7 +21,7 @@ namespace TodaysManna
         private readonly MccheynePage mccheynePage = new MccheynePage();
         private readonly MccheyneCheckListPage mccheyneCheckListPage = new MccheyneCheckListPage();
         private readonly MemoPage memoPage = new MemoPage();
-        private readonly SettingPage settingPage = new SettingPage();
+        //private readonly SettingPage settingPage = new SettingPage();
 
         public MainTabbedPage()
         {
@@ -39,7 +39,7 @@ namespace TodaysManna
                 IconImageSource = new FontImageSource
                 {
                     FontFamily = "materialdesignicons",
-                    Glyph = FontIcons.HomeOutline,
+                    Glyph = FontIcons.Home,
                 }
             };
 
@@ -73,21 +73,21 @@ namespace TodaysManna
                 }
             };
 
-            navSettingPage = new NavigationPage(settingPage)
-            {
-                Title = TitleNames.Settings,
-                IconImageSource = new FontImageSource
-                {
-                    FontFamily = "materialdesignicons",
-                    Glyph = FontIcons.ReorderHorizontal,
-                }
-            };
+            //navSettingPage = new NavigationPage(settingPage)
+            //{
+            //    Title = TitleNames.Settings,
+            //    IconImageSource = new FontImageSource
+            //    {
+            //        FontFamily = "materialdesignicons",
+            //        Glyph = FontIcons.ReorderHorizontal,
+            //    }
+            //};
 
             Children.Add(navMannaPage);
             Children.Add(navMccheynePage);
             Children.Add(navMccheyneCheckListPage);
             Children.Add(navMemoPage);
-            Children.Add(navSettingPage);
+            //Children.Add(navSettingPage);
         }
 
         protected override void OnCurrentPageChanged()
@@ -110,34 +110,34 @@ namespace TodaysManna
             }
             else if (CurrentPage.Equals(navMccheyneCheckListPage))
             {
-                if (!Values.IsDeviceIOS && Values.CheckListPageLaunchCount <= 1)
+                if (!Constants.IsDeviceIOS && Constants.CheckListPageLaunchCount <= 1)
                 {
                     mccheyneCheckListPage.CustomOnAppearing();
-                    Values.MannaPageLaunchCount = 2;
+                    Constants.MannaPageLaunchCount = 2;
                 }
 
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMccheyneCheckListPage");
             }
             else if (CurrentPage.Equals(navMemoPage))
             {
-                if (!Values.IsDeviceIOS && Values.MemoPageLaunchCount <= 1)
+                if (!Constants.IsDeviceIOS && Constants.MemoPageLaunchCount <= 1)
                 {
                     memoPage.CustomOnAppearing();
-                    Values.MemoPageLaunchCount = 2;
+                    Constants.MemoPageLaunchCount = 2;
                 }
 
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMyPage");
             }
-            else if (CurrentPage.Equals(navSettingPage))
-            {
-                if (!Values.IsDeviceIOS && Values.SettingsPageLaunchCount <= 1)
-                {
-                    settingPage.CustomOnAppearing();
-                    Values.SettingsPageLaunchCount = 2;
-                }
+            //else if (CurrentPage.Equals(navSettingPage))
+            //{
+            //    if (!Constants.IsDeviceIOS && Constants.SettingsPageLaunchCount <= 1)
+            //    {
+            //        settingPage.CustomOnAppearing();
+            //        Constants.SettingsPageLaunchCount = 2;
+            //    }
 
-                FirebaseEventService.SendEventOnPlatformSpecific("view_navSettingPage");
-            }
+            //    FirebaseEventService.SendEventOnPlatformSpecific("view_navSettingPage");
+            //}
         }
 
         public void ScrollMannaToTop()

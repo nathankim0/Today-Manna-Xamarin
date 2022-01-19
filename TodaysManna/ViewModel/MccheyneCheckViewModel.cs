@@ -5,7 +5,7 @@ using TodaysManna.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using TodaysManna.Constants;
+
 using System.Diagnostics;
 using TodaysManna.Managers;
 
