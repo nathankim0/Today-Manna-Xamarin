@@ -85,7 +85,7 @@
         <RefreshView
             x:Name="refreshView"
             Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=Black,
+            BackgroundColor="{AppThemeBinding Dark=DarkGray,
                                               Light=#f9f9f9}"
             IsRefreshing="{Binding IsRefreshing}"
             RefreshColor="#fda51e"
@@ -93,14 +93,14 @@
             <ScrollView x:Name="outerScrollView">
                 <StackLayout
                     x:Name="outerStackLayout"
-                    BackgroundColor="{AppThemeBinding Dark=Black,
+                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
                                                       Light=#f9f9f9}"
                     Orientation="Vertical">
 
                     <!--#region SubTitle with date-->
                     <StackLayout
                         Padding="15,35,15,35"
-                        BackgroundColor="{AppThemeBinding Dark=Black,
+                        BackgroundColor="{AppThemeBinding Dark=DarkGray,
                                                           Light=#f9f9f9}"
                         Orientation="Horizontal">
                         <StackLayout HorizontalOptions="StartAndExpand">
@@ -121,7 +121,7 @@
                                                             Light=Black}" />
                         </StackLayout>
                         <Label
-                            Padding="10"
+                            Padding="10,0,10,10"
                             FontSize="16"
                             HorizontalOptions="End"
                             Text="{Binding DisplayDateRange}"
@@ -152,7 +152,7 @@
                                 VerticalOptions="Center" />
 
                             <ImageButton
-                                Padding="10"
+                                Padding="10,0,10,10"
                                 Clicked="OnShareMannaAndMccheyneRangeButtonTapped"
                                 HorizontalOptions="End"
                                 Opacity="0.3"
@@ -221,7 +221,7 @@
                             VerticalOptions="CenterAndExpand" />
 
                         <ImageButton
-                            Padding="10"
+                            Padding="10,0,10,10"
                             Clicked="OnShareMannaWholeMannaContentsButtonTapped"
                             HorizontalOptions="End"
                             Opacity="0.3"
