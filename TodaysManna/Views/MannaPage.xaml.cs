@@ -38,6 +38,9 @@ namespace TodaysManna
             if (VersionTracking.IsFirstLaunchEver)
             {
                 var onboardingPage = new OnboardingPage();
+                NavigationPage.SetBackButtonTitle(onboardingPage, "");
+                NavigationPage.SetHasBackButton(onboardingPage, true);
+                NavigationPage.SetHasNavigationBar(onboardingPage, true);
                 onboardingPage.LanguageChanged += GetMannaByLanguage;
                 Navigation.PushModalAsync(onboardingPage, false);
             }
@@ -208,17 +211,20 @@ namespace TodaysManna
             }
         }
 
-        private async void OnCopyCliked(object sender, EventArgs e)
+        private async void OnShareMannaAndMccheyneRangeButtonTapped(object sender, EventArgs e)
         {
-            var selectedVersesText = GetSelectedMannaShareVersesText();
-            var selectedContentsText = GetSelectedMannaShareContentsText();
+            if (!(BindingContext is MannaViewModel viewModel)) return;
+            var shareText = $"만나: {viewModel.MannaRange}\n맥체인: {viewModel.MccheyneRange}";
 
-            await ResetSelection();
+            await SaveToClipboard(shareText);
+        }
 
-            await Clipboard.SetTextAsync(selectedContentsText);
+        private async Task SaveToClipboard(string shareText)
+        {
+            await Clipboard.SetTextAsync(shareText);
 
-            string title = "";
-            string ok = "";
+            string title;
+            string ok;
             if (AppManager.GetCurrentLanguageString() == Language.Korean.ToString())
             {
                 title = "클립보드에 복사됨";
@@ -230,7 +236,29 @@ namespace TodaysManna
                 ok = "Ok";
             }
 
-            await DisplayAlert(title, selectedVersesText, ok);
+            await DisplayAlert(title, shareText, ok);
+        }
+
+        private async void OnShareMannaWholeMannaContentsButtonTapped(object sender, EventArgs e)
+        {
+            if (!(BindingContext is MannaViewModel viewModel)) return;
+
+            var contentsTextWithOnlyJeol = string.Join("\n", viewModel.MannaContents.Select(x => $"{x.Jeol} {x.MannaString}").ToArray());
+            var wholeMannaText = $"{viewModel.MannaRange}\n{contentsTextWithOnlyJeol}";
+
+            var shareText = $"{viewModel.DisplayDateRange}\n{wholeMannaText}\n";
+
+            await SaveToClipboard(shareText);
+        }
+
+        private async void OnCopyCliked(object sender, EventArgs e)
+        {
+            var selectedVersesText = GetSelectedMannaShareVersesText();
+            var selectedContentsText = GetSelectedMannaShareContentsText();
+
+            await ResetSelection();
+
+            await SaveToClipboard(selectedContentsText);
         }
 
         private async void OnShareCliked(object sender, EventArgs e)
@@ -259,12 +287,13 @@ namespace TodaysManna
         {
             if (!(BindingContext is MannaViewModel viewModel)) return;
 
-            await ResetSelection();
 
             var memoPage = new MemoAddPage();
             memoPage.SetBibleText(GetSelectedMannaShareContentsText());
             memoPage.SaveButtonClicked += OnMemoPopupSaveButtonClicked;
-           
+
+            await ResetSelection();
+
             await Navigation.PushAsync(memoPage);
         }
 
@@ -283,7 +312,7 @@ namespace TodaysManna
         {
             await ResetSelection();
         }
-        
+
 
         private string GetSelectedMannaShareVersesText()
         {
