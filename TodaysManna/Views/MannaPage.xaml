@@ -85,7 +85,7 @@
         <RefreshView
             x:Name="refreshView"
             Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=DarkGray,
+            BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=#f9f9f9}"
             IsRefreshing="{Binding IsRefreshing}"
             RefreshColor="#fda51e"
@@ -93,14 +93,14 @@
             <ScrollView x:Name="outerScrollView">
                 <StackLayout
                     x:Name="outerStackLayout"
-                    BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                    BackgroundColor="{AppThemeBinding Dark=Black,
                                                       Light=#f9f9f9}"
                     Orientation="Vertical">
 
                     <!--#region SubTitle with date-->
                     <StackLayout
                         Padding="15,35,15,35"
-                        BackgroundColor="{AppThemeBinding Dark=DarkGray,
+                        BackgroundColor="{AppThemeBinding Dark=Black,
                                                           Light=#f9f9f9}"
                         Orientation="Horizontal">
                         <StackLayout HorizontalOptions="StartAndExpand">
