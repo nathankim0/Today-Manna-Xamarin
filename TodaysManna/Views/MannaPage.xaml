@@ -121,7 +121,7 @@
                                                             Light=Black}" />
                         </StackLayout>
                         <Label
-                            Padding="10,0,10,10"
+                            Padding="10,0,10,0"
                             FontSize="16"
                             HorizontalOptions="End"
                             Text="{Binding DisplayDateRange}"
@@ -152,7 +152,7 @@
                                 VerticalOptions="Center" />
 
                             <ImageButton
-                                Padding="10,0,10,10"
+                                Padding="10,0,10,0"
                                 Clicked="OnShareMannaAndMccheyneRangeButtonTapped"
                                 HorizontalOptions="End"
                                 Opacity="0.3"
@@ -221,7 +221,7 @@
                             VerticalOptions="CenterAndExpand" />
 
                         <ImageButton
-                            Padding="10,0,10,10"
+                            Padding="10,0,10,0"
                             Clicked="OnShareMannaWholeMannaContentsButtonTapped"
                             HorizontalOptions="End"
                             Opacity="0.3"
