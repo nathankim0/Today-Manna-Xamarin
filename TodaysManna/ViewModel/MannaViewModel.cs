@@ -38,9 +38,16 @@ namespace TodaysManna.ViewModel
         private bool isLoadingServer;
         public bool IsLoadingServer { get => isLoadingServer; set => SetProperty(ref isLoadingServer, value); }
 
+        private string _displayDateRange;
+        public string DisplayDateRange { get => _displayDateRange; set => SetProperty(ref _displayDateRange, value); }
+
+        
+
         public MannaViewModel()
         {
             var today = DateTime.Now.ToString("M-d");
+            DisplayDateRange = DateTime.Now.ToString("yyyy.MM.dd.dddd");
+
             var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(today));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
         }

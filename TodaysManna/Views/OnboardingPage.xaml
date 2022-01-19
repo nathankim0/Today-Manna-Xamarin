@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+﻿<ContentPage
     x:Class="TodaysManna.Views.OnboardingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:root="clr-namespace:TodaysManna"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     ios:Page.UseSafeArea="True"
     BackgroundColor="{AppThemeBinding Dark=Black,
-                                      Light=White}">
+                                      Light=White}"
+    NavigationPage.BackButtonTitle=""
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto,*,Auto">
 

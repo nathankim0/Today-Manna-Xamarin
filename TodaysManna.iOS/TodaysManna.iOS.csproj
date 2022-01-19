@@ -79,6 +79,9 @@
     <Compile Include="Renderer\CustomButtonRenderer.cs" />
     <Compile Include="Renderer\NoBounceRenderer.cs" />
     <Compile Include="Renderer\CustomTabbedPageRenderer.cs" />
+    <Compile Include="AppDependencies\MannaPage.xaml.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' ">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

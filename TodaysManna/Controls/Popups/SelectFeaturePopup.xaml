@@ -3,9 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    ios:Page.UseSafeArea="False"
     BackgroundColor="Transparent"
     BackgroundInputTransparent="True"
     Opacity="1">
@@ -25,6 +27,8 @@
             Padding="0"
             xct:ShadowEffect.Color="Black"
             xct:ShadowEffect.OffsetY="-5"
+            xct:ShadowEffect.Opacity="{OnPlatform Android=1,
+                                                  iOS=0.3}"
             xct:ShadowEffect.Radius="30"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"

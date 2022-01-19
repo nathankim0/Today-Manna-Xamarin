@@ -141,7 +141,7 @@ namespace TodaysManna.Views
 
         protected override bool OnBackButtonPressed()
         {
-            return false;
+            return true;
         }
     }
 }
