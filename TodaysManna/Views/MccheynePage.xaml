@@ -139,13 +139,6 @@
             <Setter Property="VerticalScrollBarVisibility" Value="Always" />
             <Setter Property="Footer" Value="&#10;" />
             <Setter Property="SelectionMode" Value="Multiple" />
-
-        </Style>
-
-        <Style x:Key="tabViewItemStyle" TargetType="xct:TabViewItem">
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
-            <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
         </Style>
     </ContentPage.Resources>
     <!--#endregion Resources-->
@@ -186,8 +179,10 @@
             Margin="20,0,20,20"
             xct:ShadowEffect.Color="{AppThemeBinding Light=Black,
                                                      Dark=White}"
-            xct:ShadowEffect.Opacity="1"
-            xct:ShadowEffect.Radius="20"
+            xct:ShadowEffect.Opacity="{OnPlatform Android=1,
+                                                  iOS=0.3}"
+            xct:ShadowEffect.Radius="{OnPlatform Android=20,
+                                                 iOS=10}"
             ColumnDefinitions="*,*,*,*"
             HeightRequest="45"
             HorizontalOptions="Fill"
