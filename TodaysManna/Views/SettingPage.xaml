@@ -3,10 +3,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    Title="설정"
     ios:Page.UseSafeArea="False"
     BackgroundColor="{AppThemeBinding Dark=Black,
-                                      Light=White}">
+                                      Light=White}"
+    NavigationPage.BackButtonTitle=""
+    NavigationPage.HasBackButton="True"
+    NavigationPage.HasNavigationBar="True">
 
     <Grid>
 
@@ -41,7 +43,7 @@
                     MaximumTrackColor="{AppThemeBinding Dark=LightGray,
                                                         Light=Gray}"
                     Minimum="17"
-                    MinimumTrackColor="DeepPink"
+                    MinimumTrackColor="#fda51e"
                     ValueChanged="Slider_ValueChanged" />
 
                 <StackLayout Margin="0,30,0,0" Orientation="Horizontal">

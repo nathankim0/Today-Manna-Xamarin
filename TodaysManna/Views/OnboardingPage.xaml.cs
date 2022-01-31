@@ -136,7 +136,7 @@ namespace TodaysManna.Views
             Preferences.Set("CurrentLanguage", selectedLanguage.ToString());
 
             LanguageChanged?.Invoke(this, selectedLanguage);
-            Navigation.PopModalAsync();
+            Navigation.PopAsync();
         }
 
         protected override bool OnBackButtonPressed()

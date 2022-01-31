@@ -65,11 +65,14 @@ namespace TodaysManna.Views
             Preferences.Set("TextSize", e.NewValue);
         }
 
-        async void languageTitleLabel_Clicked(System.Object sender, System.EventArgs e)
+        async void languageTitleLabel_Clicked(object sender, EventArgs e)
         {
             var onboardingPage = new OnboardingPage();
+            NavigationPage.SetBackButtonTitle(onboardingPage, "");
+            NavigationPage.SetHasBackButton(onboardingPage, true);
+            NavigationPage.SetHasNavigationBar(onboardingPage, true);
             onboardingPage.LanguageChanged += (s, selectedLanguage) => { LanguageChanged?.Invoke(this, selectedLanguage); };
-            await Navigation.PushModalAsync(onboardingPage);
+            await Navigation.PushAsync(onboardingPage);
         }
 
         public void CustomOnAppearing()
