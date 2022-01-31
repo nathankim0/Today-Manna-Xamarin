@@ -38,11 +38,8 @@ namespace TodaysManna
             if (VersionTracking.IsFirstLaunchEver)
             {
                 var onboardingPage = new OnboardingPage();
-                NavigationPage.SetBackButtonTitle(onboardingPage, "");
-                NavigationPage.SetHasBackButton(onboardingPage, true);
-                NavigationPage.SetHasNavigationBar(onboardingPage, true);
                 onboardingPage.LanguageChanged += GetMannaByLanguage;
-                Navigation.PushModalAsync(onboardingPage, false);
+                Navigation.PushAsync(onboardingPage, false);
             }
 
             SelectFeaturePopup.Instance.CopybuttonClicked += OnCopyCliked;
