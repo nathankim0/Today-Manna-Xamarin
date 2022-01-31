@@ -21,6 +21,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="UHj-OA-j8y">
                                 <rect key="frame" x="101" y="350" width="189" height="144"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
