@@ -130,6 +130,16 @@
     <ImageAsset Include="Assets.xcassets\applogo.imageset\Contents.json" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\applogo.imageset\appstore.png" />
+    <ImageAsset Include="Assets.xcassets\checked.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\unchecked.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\unchecked.imageset\unchecked.png" />
+    <ImageAsset Include="Assets.xcassets\unchecked.imageset\unchecked%402x.png" />
+    <ImageAsset Include="Assets.xcassets\unchecked.imageset\unchecked%403x.png" />
+    <ImageAsset Include="Assets.xcassets\unchecked.imageset\unchecked.pdf" />
+    <ImageAsset Include="Assets.xcassets\checked.imageset\checked.png" />
+    <ImageAsset Include="Assets.xcassets\checked.imageset\checked%402x.png" />
+    <ImageAsset Include="Assets.xcassets\checked.imageset\checked%403x.png" />
+    <ImageAsset Include="Assets.xcassets\checked.imageset\checked.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -203,6 +213,8 @@
     <Folder Include="Assets.xcassets\fa7.imageset\" />
     <Folder Include="AppDependencies\" />
     <Folder Include="Assets.xcassets\applogo.imageset\" />
+    <Folder Include="Assets.xcassets\checked.imageset\" />
+    <Folder Include="Assets.xcassets\unchecked.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />

@@ -4,6 +4,7 @@ using TodaysManna.Models;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace TodaysManna.ViewModel
 {
@@ -52,16 +53,24 @@ namespace TodaysManna.ViewModel
             var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(today));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
 
-            foreach(var node in MccheyneCheckListManager.MccheyneCheckList)
+            SetTodayCheckList();
+        }
+
+        public void SetTodayCheckList()
+        {
+            var checkList = new List<MccheyneOneRange>();
+            foreach (var node in MccheyneCheckListManager.MccheyneCheckList)
             {
-                if(node.Date == DateTime.Now.ToString("M-d"))
+                if (node.Date == DateTime.Now.ToString("M-d"))
                 {
-                    foreach(var checkContent in node.Ranges) {
-                        TodayMccheyneCheckList.Add(checkContent);
+                    foreach (var checkContent in node.Ranges)
+                    {
+                        checkList.Add(checkContent);
                     }
                     break;
                 }
             }
+            TodayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>(checkList);
         }
     }
 }

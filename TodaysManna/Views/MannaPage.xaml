@@ -16,6 +16,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:AllSelectIconConverter x:Key="AllSelectIconConverter" />
+            <local:CheckImageConverter x:Key="CheckImageConverter" />
+            <local:NotValueConverter x:Key="NotValueConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -200,7 +202,61 @@
                                 TextColor="Gray" />
                         </Grid>
                     </StackLayout>
+                    <!--#endregion-->
 
+                    <BoxView BackgroundColor="{AppThemeBinding Dark=#242424, Light=#F9F9F9}" HeightRequest="15" />
+
+                    <!--#region-->
+                    <StackLayout Padding="10,35,15,35" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            HorizontalOptions="StartAndExpand"
+                            Text="오늘의 맥체인"
+                            TextColor="{AppThemeBinding Dark=White,
+                                                        Light=Black}"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Margin="0,20,0,0"
+                            BindableLayout.ItemsSource="{Binding TodayMccheyneCheckList}"
+                            Orientation="Horizontal">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,10,0" IsVisible="{Binding ItemIsVisible}">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnMccheyneCheckTapped" />
+                                        </Grid.GestureRecognizers>
+                                        <Image
+                                            HeightRequest="60"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding IsChecked, Converter={x:StaticResource CheckImageConverter}}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="60" />
+                                        <Label
+                                            FontSize="17"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding RangeText}"
+                                            VerticalOptions="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsChecked}"
+                                                    TargetType="Label"
+                                                    Value="true">
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                                <DataTrigger
+                                                    Binding="{Binding IsChecked}"
+                                                    TargetType="Label"
+                                                    Value="false">
+                                                    <Setter Property="TextColor" Value="Black" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
                     <!--#endregion-->
 
                     <BoxView BackgroundColor="{AppThemeBinding Dark=#242424, Light=#F9F9F9}" HeightRequest="15" />
