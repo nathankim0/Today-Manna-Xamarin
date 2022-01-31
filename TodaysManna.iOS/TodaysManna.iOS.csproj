@@ -141,15 +141,15 @@
     <ImageAsset Include="Assets.xcassets\checked.imageset\checked%403x.png" />
     <ImageAsset Include="Assets.xcassets\checked.imageset\checked.pdf" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\splash.imageset\splash.pdf" />
-    <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
-    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%402x.png" />
-    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%403x.png" />
     <ImageAsset Include="Assets.xcassets\settings.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\settings.imageset\settings.pdf" />
     <ImageAsset Include="Assets.xcassets\settings.imageset\settings.png" />
     <ImageAsset Include="Assets.xcassets\settings.imageset\settings%402x.png" />
     <ImageAsset Include="Assets.xcassets\settings.imageset\settings%403x.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash-1.pdf" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash-1.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%403x-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
