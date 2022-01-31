@@ -21,7 +21,7 @@
                                                 Light=Black}" />
 
                 <Label
-                    Margin="0,50,0,0"
+                    Margin="0,60,0,0"
                     FontSize="18"
                     Text="📍 '위'에 들어갈 문구를 입력해주세요."
                     TextColor="{AppThemeBinding Dark=White,
@@ -31,7 +31,8 @@
                     Margin="0,10,0,0"
                     AutoSize="TextChanges"
                     FontSize="18"
-                    TextChanged="topTextEditor_TextChanged" />
+                    TextChanged="topTextEditor_TextChanged"
+                    TextColor="Black" />
 
                 <Label
                     Margin="0,25,0,0"
@@ -53,8 +54,10 @@
                     x:Name="bottomTextEditor"
                     Margin="0,10,0,0"
                     AutoSize="TextChanges"
+                    BackgroundColor="LightGray"
                     FontSize="18"
-                    TextChanged="bottomTextEditor_TextChanged" />
+                    TextChanged="bottomTextEditor_TextChanged"
+                    TextColor="Black" />
 
             </StackLayout>
         </ScrollView>
