@@ -78,8 +78,10 @@ namespace TodaysManna.ViewModel
 
             MessagingCenter.Subscribe<MccheyneCheckViewModel, DateTime>(this,"goToReadTapped",(s,date)=>
             {
+                CurrentSettedDateTime = date;
                 _ = GetMccheyne();
                 _ = GetMccheyneRange();
+                SetTodayCheckList();
             });
 
             SetTodayCheckList();

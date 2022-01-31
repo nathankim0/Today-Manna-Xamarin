@@ -123,43 +123,43 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-hdpi\checked.png">
+    <AndroidResource Include="Resources\drawable-hdpi\checked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-hdpi\unchecked.png">
+    <AndroidResource Include="Resources\drawable-hdpi\unchecked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-mdpi\checked.png">
+    <AndroidResource Include="Resources\drawable-mdpi\checked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-mdpi\unchecked.png">
+    <AndroidResource Include="Resources\drawable-mdpi\unchecked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xhdpi\checked.png">
+    <AndroidResource Include="Resources\drawable-xhdpi\checked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xhdpi\unchecked.png">
+    <AndroidResource Include="Resources\drawable-xhdpi\unchecked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\checked.png">
+    <AndroidResource Include="Resources\drawable-xxhdpi\checked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\unchecked.png">
+    <AndroidResource Include="Resources\drawable-xxhdpi\unchecked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\checked.png">
+    <AndroidResource Include="Resources\drawable-xxxhdpi\checked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\unchecked.png">
+    <AndroidResource Include="Resources\drawable-xxxhdpi\unchecked.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -168,6 +168,11 @@
     <Folder Include="Resources\drawable\" />
     <Folder Include="Renderer\" />
     <Folder Include="Resources\xml\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TodaysManna\TodaysManna.csproj">
