@@ -16,7 +16,7 @@
         x:Name="contentGrid"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
-        RowDefinitions="50,*">
+        RowDefinitions="Auto,*">
 
         <!--#region HEADER-->
         <StackLayout
