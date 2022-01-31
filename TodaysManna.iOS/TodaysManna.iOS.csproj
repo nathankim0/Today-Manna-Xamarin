@@ -140,6 +140,11 @@
     <ImageAsset Include="Assets.xcassets\checked.imageset\checked%402x.png" />
     <ImageAsset Include="Assets.xcassets\checked.imageset\checked%403x.png" />
     <ImageAsset Include="Assets.xcassets\checked.imageset\checked.pdf" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash.pdf" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%402x.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -215,6 +220,7 @@
     <Folder Include="Assets.xcassets\applogo.imageset\" />
     <Folder Include="Assets.xcassets\checked.imageset\" />
     <Folder Include="Assets.xcassets\unchecked.imageset\" />
+    <Folder Include="Assets.xcassets\splash.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />
