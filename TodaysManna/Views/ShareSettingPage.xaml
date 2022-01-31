@@ -30,6 +30,7 @@
                     x:Name="topTextEditor"
                     Margin="0,10,0,0"
                     AutoSize="TextChanges"
+                    BackgroundColor="LightGray"
                     FontSize="18"
                     TextChanged="topTextEditor_TextChanged"
                     TextColor="Black" />
@@ -40,6 +41,7 @@
                     Text="만나: 행15:22~29"
                     TextColor="Gray" />
                 <Label
+                    Margin="0,5,0,0"
                     FontSize="18"
                     Text="맥체인: 창1 마1 스1 행1 "
                     TextColor="Gray" />
