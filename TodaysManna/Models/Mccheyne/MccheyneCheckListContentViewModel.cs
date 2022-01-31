@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using SQLite;
 using Xamarin.CommunityToolkit.ObjectModel;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace TodaysManna.Models
 {
@@ -28,7 +29,14 @@ namespace TodaysManna.Models
                 SetProperty(ref _date, value);
             }
         }
-        public MccheyneOneRange[] Ranges { get; set; } = new MccheyneOneRange[5];
+
+        private MccheyneOneRange[] ranges = new MccheyneOneRange[5];
+        public MccheyneOneRange[] Ranges
+        {
+            get => ranges;
+            set => SetProperty(ref ranges, value);
+        }
+
         public bool Range5IsNull { get; set; }
     }
 
@@ -37,25 +45,38 @@ namespace TodaysManna.Models
         public string Id { get; set; }
         public string RangeText { get; set; }
 
-        private bool _ischecked;
         public bool IsChecked
         {
-            get => _ischecked;
-            set => SetProperty(ref _ischecked, value);
+            get => Preferences.Get(Id, false);
+            set
+            {
+                Preferences.Set(Id, value);
+                OnPropertyChanged(nameof(IsChecked));
+                OnPropertyChanged(nameof(Color));
+            }
         }
 
-        private Color _color = Color.White;
         public Color Color
         {
-            get => _color;
-            set => SetProperty(ref _color, value);
+            get
+            {
+                if (IsChecked) return Colors.PrimaryColor;
+                else return Color.White;
+            }
         }
 
-        private Color _dateColor =  Color.Black;
+        private Color _dateColor = Color.Black;
         public Color DateColor
         {
             get => _dateColor;
             set => SetProperty(ref _dateColor, value);
+        }
+
+        private bool itemIsVisible = true;
+        public bool ItemIsVisible
+        {
+            get => itemIsVisible;
+            set => SetProperty(ref itemIsVisible, value);
         }
     }
 

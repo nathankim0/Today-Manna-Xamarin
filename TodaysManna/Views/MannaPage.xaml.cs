@@ -12,7 +12,6 @@ using TodaysManna.Views;
 using System.Collections.Generic;
 using Xamarin.CommunityToolkit.ObjectModel;
 using System.Linq;
-using Rg.Plugins.Popup.Services;
 
 namespace TodaysManna
 {
@@ -51,8 +50,11 @@ namespace TodaysManna
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
             if (!(BindingContext is MannaViewModel viewModel)) return;
             viewModel.CustomFontSize = AppManager.GetCurrentTextSize();
+
+            viewModel.SetTodayCheckList();
         }
 
         private async void RefreshView_Refreshing(object sender, EventArgs e)
@@ -437,6 +439,23 @@ namespace TodaysManna
             {
                 AppManager.PrintException("ResetSelection", ex.Message);
             }
+        }
+
+        void OnMccheyneCheckTapped(object sender, EventArgs e)
+        {
+            var mccheyneOneRange = ((TappedEventArgs)e).Parameter as MccheyneOneRange;
+            mccheyneOneRange.IsChecked = !mccheyneOneRange.IsChecked;
+
+            //foreach(var node in MccheyneCheckListManager.MccheyneCheckList)
+            //{
+            //    foreach(var range in node.Ranges)
+            //    {
+            //        if(range.Id == mccheyneOneRange.Id)
+            //        {
+            //            range.IsChecked = mccheyneOneRange.IsChecked;
+            //        }
+            //    }
+            //}
         }
     }
 }

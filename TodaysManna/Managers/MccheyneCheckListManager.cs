@@ -12,6 +12,8 @@ namespace TodaysManna.Managers
 
         public static void InitCheckList()
         {
+            var checkList = new ObservableCollection<MccheyneCheckListContent>();
+
             var id = 0;
             foreach (var range in MccheyneDataManager.MccheyneRangeList)
             {
@@ -34,7 +36,7 @@ namespace TodaysManna.Managers
                 var isChecked4 = Preferences.Get(itemId4, false);
                 var isChecked5 = Preferences.Get(itemId5, false);
 
-                MccheyneCheckList.Add(new MccheyneCheckListContent
+                checkList.Add(new MccheyneCheckListContent
                 {
                     Date = range.Date,
                     Ranges = new MccheyneOneRange[]
@@ -43,47 +45,54 @@ namespace TodaysManna.Managers
                         {
                             Id=itemId1,
                             DateColor=dateColor,
-                            IsChecked= isChecked1,
-                            Color= isChecked1 == true ? Colors.MccheyneColor1 : Color.White,
-                            RangeText =range.Range1
+                            //IsChecked= isChecked1,
+                            //Color= isChecked1 == true ? Colors.MccheyneColor1 : Color.White,
+                            RangeText =range.Range1,
+                            ItemIsVisible = true
                         },
                         new MccheyneOneRange
                         {
                             Id=itemId2,
                             DateColor=dateColor,
-                            IsChecked= isChecked2,
-                            Color=isChecked2 == true ? Colors.MccheyneColor2 : Color.White,
-                            RangeText=range.Range2
+                            //IsChecked= isChecked2,
+                            //Color=isChecked2 == true ? Colors.MccheyneColor2 : Color.White,
+                            RangeText=range.Range2,
+                            ItemIsVisible = true
                         },
                         new MccheyneOneRange
                         {
                             Id=itemId3,
                             DateColor=dateColor,
-                            IsChecked= isChecked3,
-                            Color=isChecked3 == true ? Colors.MccheyneColor3 : Color.White,
-                            RangeText=range.Range3
+                            //IsChecked= isChecked3,
+                            //Color=isChecked3 == true ? Colors.MccheyneColor3 : Color.White,
+                            RangeText=range.Range3,
+                            ItemIsVisible = true
                         },
                         new MccheyneOneRange
                         {
                             Id=itemId4,
                             DateColor=dateColor,
-                            IsChecked= isChecked4,
-                            Color=isChecked4 == true ? Colors.MccheyneColor4 : Color.White,
-                            RangeText=range.Range4
+                            //IsChecked= isChecked4,
+                            //Color=isChecked4 == true ? Colors.MccheyneColor4 : Color.White,
+                            RangeText=range.Range4,
+                            ItemIsVisible = true
                         },
                         new MccheyneOneRange
                         {
                             Id=itemId5,
                             DateColor=dateColor,
-                            IsChecked= isChecked5,
-                            Color=isChecked5 == true ? Colors.MccheyneColor5 : Color.White,
-                            RangeText=range.Range5
+                            //IsChecked= isChecked5,
+                            //Color=isChecked5 == true ? Colors.MccheyneColor5 : Color.White,
+                            RangeText=range.Range5,
+                            ItemIsVisible = range5IsNull
                         }
                     },
                     Range5IsNull = range5IsNull
                 });
                 ++id;
             }
+
+            MccheyneCheckList = checkList;
         }
     }
 }
