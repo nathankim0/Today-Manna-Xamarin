@@ -23,10 +23,19 @@ namespace TodaysManna
             InitializeComponent();
             Padding = new Thickness(0, Constants.StatusBarHeight, 0, 0);
             BindingContext = new MccheyneViewModel();
+
             MessagingCenter.Subscribe<MainTabbedPage>(this, MessagingCenterMessage.ScrollMccheyneToTop, (sender) =>
             {
                 mccheyneCollectionView.ScrollTo(0);
             });
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (!(BindingContext is MccheyneViewModel viewModel)) return;
+            viewModel.SetTodayCheckList();
         }
 
         private void OnRefreshButtonClicked(object sender, EventArgs e)
@@ -54,13 +63,15 @@ namespace TodaysManna
             if (!(BindingContext is MccheyneViewModel viewModel)) return;
 
             viewModel.Today = e.NewDate.ToString("M_d");
-            var thisDate = MccheyneViewModel.GetCorrectDateLeapYear(e.NewDate);
+            viewModel.CurrentSettedDateTime = MccheyneViewModel.GetCorrectDateLeapYear(e.NewDate);
 
             viewModel.IsRefreshing = true;
 
-            var task1 = viewModel.GetMccheyne(thisDate);
-            var task2 = viewModel.GetMccheyneRange(thisDate);
+            var task1 = viewModel.GetMccheyne();
+            var task2 = viewModel.GetMccheyneRange();
             await Task.WhenAll(task1, task2);
+
+            viewModel.SetTodayCheckList();
 
             viewModel.IsRefreshing = false;
 
@@ -180,7 +191,6 @@ namespace TodaysManna
            
         }
 
-        #region Toggle Tapped Events
         private void OnRange1Tapped(object sender, EventArgs args)
         {
             DependencyService.Get<IHapticFeedback>().Run();
@@ -233,24 +243,28 @@ namespace TodaysManna
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents4;
         }
 
-        double previousScrollPosition = 0;
-        void mccheyneCollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        void OnMccheyneCheckTapped(object sender, EventArgs e)
         {
-            if (previousScrollPosition < e.VerticalOffset)
-            {
-                mccheynToggle.TranslateTo(0, 70, 250u, Easing.CubicOut);
-                mccheynToggle.FadeTo(0, 150);
-
-                previousScrollPosition = e.VerticalOffset;
-            }
-            else if (previousScrollPosition > e.VerticalOffset)
-            {
-                mccheynToggle.Opacity = 1;
-                mccheynToggle.TranslateTo(0, 0, 200u, Easing.CubicOut);
-            }
-            previousScrollPosition = e.VerticalOffset;
+            var mccheyneOneRange = ((TappedEventArgs)e).Parameter as MccheyneOneRange;
+            mccheyneOneRange.IsChecked = !mccheyneOneRange.IsChecked;
         }
-        #endregion
 
+        //double previousScrollPosition = 0;
+        //void mccheyneCollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        //{
+        //    if (previousScrollPosition < e.VerticalOffset)
+        //    {
+        //        mccheynToggle.TranslateTo(0, 70, 250u, Easing.CubicOut);
+        //        mccheynToggle.FadeTo(0, 150);
+
+        //        previousScrollPosition = e.VerticalOffset;
+        //    }
+        //    else if (previousScrollPosition > e.VerticalOffset)
+        //    {
+        //        mccheynToggle.Opacity = 1;
+        //        mccheynToggle.TranslateTo(0, 0, 200u, Easing.CubicOut);
+        //    }
+        //    previousScrollPosition = e.VerticalOffset;
+        //}
     }
 }

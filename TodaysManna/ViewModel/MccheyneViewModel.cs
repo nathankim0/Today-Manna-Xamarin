@@ -56,15 +56,20 @@ namespace TodaysManna.ViewModel
         private bool _isRange4Selected = false;
         public bool IsRange4Selected { get => _isRange4Selected; set => SetProperty(ref _isRange4Selected, value); }
 
+        private ObservableRangeCollection<MccheyneOneRange> todayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>();
+        public ObservableRangeCollection<MccheyneOneRange> TodayMccheyneCheckList { get => todayMccheyneCheckList; set => SetProperty(ref todayMccheyneCheckList, value); }
+
+        public DateTime CurrentSettedDateTime;
+
         public MccheyneViewModel()
         {
-            var thisDate = GetCorrectDateLeapYear(DateTime.Now);
+            CurrentSettedDateTime = GetCorrectDateLeapYear(DateTime.Now);
 
-            _ = GetMccheyneRange(thisDate);
+            _ = GetMccheyneRange();
 
             try
             {
-                _ = GetMccheyne(thisDate);
+                _ = GetMccheyne();
             }
             catch
             {
@@ -73,9 +78,28 @@ namespace TodaysManna.ViewModel
 
             MessagingCenter.Subscribe<MccheyneCheckViewModel, DateTime>(this,"goToReadTapped",(s,date)=>
             {
-                _ = GetMccheyne(date);
-                _ = GetMccheyneRange(date);
+                _ = GetMccheyne();
+                _ = GetMccheyneRange();
             });
+
+            SetTodayCheckList();
+        }
+
+        public void SetTodayCheckList()
+        {
+            var checkList = new List<MccheyneOneRange>();
+            foreach (var node in MccheyneCheckListManager.MccheyneCheckList)
+            {
+                if (node.Date == CurrentSettedDateTime.ToString("M-d"))
+                {
+                    foreach (var checkContent in node.Ranges)
+                    {
+                        checkList.Add(checkContent);
+                    }
+                    break;
+                }
+            }
+            TodayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>(checkList);
         }
 
         public static DateTime GetCorrectDateLeapYear(DateTime newDate)
@@ -94,7 +118,7 @@ namespace TodaysManna.ViewModel
             return thisDate;
         }
 
-        public Task GetMccheyne(DateTime dateTime)
+        public Task GetMccheyne()
         {
             MccheyneContents1.Clear();
             MccheyneContents2.Clear();
@@ -106,8 +130,8 @@ namespace TodaysManna.ViewModel
             var list3 = new List<MccheyneContent>();
             var list4 = new List<MccheyneContent>();
 
-            DisplayDateRange = dateTime.ToString("yyyy.MM.dd dddd");
-            var dateTimeString=dateTime.ToString("M_d");
+            DisplayDateRange = CurrentSettedDateTime.ToString("yyyy.MM.dd dddd");
+            var dateTimeString= CurrentSettedDateTime.ToString("M_d");
 
             var daysOfMccheynes = GetJsonService.GetMccheyneBibleTextsFromJson();
 
@@ -284,9 +308,9 @@ namespace TodaysManna.ViewModel
             return Task.CompletedTask;
         }
 
-        public Task GetMccheyneRange(DateTime thisDate)
+        public Task GetMccheyneRange()
         {
-            var findMccheyneDate = thisDate.ToString("M-d");
+            var findMccheyneDate = CurrentSettedDateTime.ToString("M-d");
 
             var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(findMccheyneDate));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
