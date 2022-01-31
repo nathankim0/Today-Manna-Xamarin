@@ -16,6 +16,11 @@
     <!--#region Resources-->
     <ContentPage.Resources>
 
+        <ResourceDictionary>
+            <local:CheckImageConverter x:Key="CheckImageConverter" />
+            <local:NotValueConverter x:Key="NotValueConverter" />
+        </ResourceDictionary>
+
         <Style TargetType="StackLayout">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -147,35 +152,80 @@
         x:Name="outerGrid"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
+        RowDefinitions="70, *"
         Style="{x:StaticResource OuterGridStyle}">
 
-        <StackLayout>
-            <!--#region HEADER-->
+        <!--#region HEADER-->
+        <StackLayout
+            x:Name="headerStackLayout"
+            Grid.Row="0"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
+            Style="{x:StaticResource HeaderStackLayoutStyle}">
+            <Label
+                Style="{x:StaticResource HeaderLabelStyle}"
+                Text="맥체인"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}" />
+
             <StackLayout
-                x:Name="headerStackLayout"
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                                  Light=White}"
-                Style="{x:StaticResource HeaderStackLayoutStyle}">
-                <Label
-                    Style="{x:StaticResource HeaderLabelStyle}"
-                    Text="맥체인"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
+                BindableLayout.ItemsSource="{Binding TodayMccheyneCheckList}"
+                HorizontalOptions="End"
+                Orientation="Horizontal">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="2,0,0,0" IsVisible="{Binding ItemIsVisible}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnMccheyneCheckTapped" />
+                            </Grid.GestureRecognizers>
+                            <Image
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                Source="{Binding IsChecked, Converter={x:StaticResource CheckImageConverter}}"
+                                VerticalOptions="Center"
+                                WidthRequest="60" />
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="{Binding RangeText}"
+                                VerticalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsChecked}"
+                                        TargetType="Label"
+                                        Value="true">
+                                        <Setter Property="TextColor" Value="White" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding IsChecked}"
+                                        TargetType="Label"
+                                        Value="false">
+                                        <Setter Property="TextColor" Value="Black" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </StackLayout>
-            <!--#region HEADER-->
-
-            <CollectionView
-                x:Name="mccheyneCollectionView"
-                ItemsSource="{Binding MccheyneContents1}"
-                Scrolled="mccheyneCollectionView_Scrolled"
-                SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
-                Style="{x:StaticResource collectionViewStyle}" />
-
         </StackLayout>
+        <!--#region HEADER-->
+
+        <CollectionView
+            x:Name="mccheyneCollectionView"
+            Grid.Row="1"
+            ItemsSource="{Binding MccheyneContents1}"
+            SelectionChanged="OnMccheyneCollectionViewSelectionChanged"
+            Style="{x:StaticResource collectionViewStyle}">
+            <CollectionView.Footer>
+                <BoxView BackgroundColor="Transparent" HeightRequest="120" />
+            </CollectionView.Footer>
+        </CollectionView>
 
         <!--#region Toggle-->
         <Grid
             x:Name="mccheynToggle"
+            Grid.Row="1"
             Margin="20,0,20,20"
             xct:ShadowEffect.Color="{AppThemeBinding Light=Black,
                                                      Dark=White}"
