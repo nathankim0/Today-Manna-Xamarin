@@ -27,6 +27,7 @@
 
         <!--#region HEADER-->
         <StackLayout
+            x:Name="headerStackLayout"
             Grid.Row="0"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
@@ -85,22 +86,20 @@
         <RefreshView
             x:Name="refreshView"
             Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Dark=Black,
-                                              Light=#f9f9f9}"
             IsRefreshing="{Binding IsRefreshing}"
             RefreshColor="#fda51e"
             Refreshing="RefreshView_Refreshing">
             <ScrollView x:Name="outerScrollView">
                 <StackLayout
                     x:Name="outerStackLayout"
-                    BackgroundColor="{AppThemeBinding Dark=Black,
+                    BackgroundColor="{AppThemeBinding Dark=#242424,
                                                       Light=#f9f9f9}"
                     Orientation="Vertical">
 
                     <!--#region SubTitle with date-->
                     <StackLayout
                         Padding="15,35,15,35"
-                        BackgroundColor="{AppThemeBinding Dark=Black,
+                        BackgroundColor="{AppThemeBinding Dark=#242424,
                                                           Light=#f9f9f9}"
                         Orientation="Horizontal">
                         <StackLayout HorizontalOptions="StartAndExpand">
@@ -204,9 +203,10 @@
 
                     <!--#endregion-->
 
+                    <BoxView BackgroundColor="{AppThemeBinding Dark=#242424, Light=#F9F9F9}" HeightRequest="15" />
+
                     <!--#region Today's manna title-->
                     <StackLayout
-                        Margin="0,15,0,0"
                         Padding="15,35,15,0"
                         BackgroundColor="{AppThemeBinding Dark=Black,
                                                           Light=White}"

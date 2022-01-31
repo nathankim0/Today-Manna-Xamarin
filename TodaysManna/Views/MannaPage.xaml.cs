@@ -23,7 +23,7 @@ namespace TodaysManna
         public MannaPage()
         {
             InitializeComponent();
-            Padding = new Thickness(0, Constants.StatusBarHeight, 0, 0);
+            headerStackLayout.Padding = new Thickness(15, Constants.StatusBarHeight, 15, 15);
 
             var viewModel = new MannaViewModel();
             BindingContext = viewModel;
