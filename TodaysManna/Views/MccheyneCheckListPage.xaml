@@ -19,24 +19,31 @@
         RowDefinitions="50,*">
 
         <!--#region HEADER-->
-        <StackLayout BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderStackLayoutStyle}">
+        <StackLayout
+            Grid.Row="0"
+            Padding="15"
+            BackgroundColor="{AppThemeBinding Dark=Black,
+                                              Light=White}"
+            Orientation="Horizontal">
             <Label
                 Style="{x:StaticResource HeaderLabelStyle}"
                 Text="체크리스트"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}" />
-            <Grid BackgroundColor="{AppThemeBinding Dark=Black, Light=White}" Style="{x:StaticResource HeaderGridStyle}">
-                <ImageButton Clicked="OnOptionClicked" Style="{x:StaticResource HeaderButtonStyle}">
-                    <ImageButton.Source>
-                        <FontImageSource
-                            FontFamily="materialdesignicons"
-                            Glyph="{x:Static local:FontIcons.AppleKeyboardOption}"
-                            Size="30"
-                            Color="{AppThemeBinding Dark=White,
-                                                    Light=Black}" />
-                    </ImageButton.Source>
-                </ImageButton>
-            </Grid>
+
+            <ImageButton
+                Clicked="OnOptionClicked"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.AppleKeyboardOption}"
+                        Size="30"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
+                </ImageButton.Source>
+            </ImageButton>
         </StackLayout>
         <!--#region HEADER-->
 

@@ -132,7 +132,7 @@
                                 HeightRequest="27"
                                 HorizontalOptions="End"
                                 Source="settings"
-                                VerticalOptions="Start"
+                                VerticalOptions="Center"
                                 WidthRequest="27" />
 
                             <ImageButton
