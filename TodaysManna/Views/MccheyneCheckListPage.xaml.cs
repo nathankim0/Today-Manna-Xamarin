@@ -101,7 +101,7 @@ namespace TodaysManna
                 };
                 checkDateLabel.SetAppThemeColor(Label.TextColorProperty, Color.Black, Color.White);
                 checkDateLabel.SetBinding(Label.TextProperty, "ToDisplayDate");
-                //checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
+                checkDateLabel.SetBinding(Label.TextColorProperty, "Ranges[0].DateColor");
 
                 var dateLabelTapGestureRecognizer = new TapGestureRecognizer();
                 dateLabelTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, new Binding() { Source = BindingContext as MccheyneCheckViewModel, Path = "easterEggCommand" });
@@ -116,7 +116,7 @@ namespace TodaysManna
                     TextDecorations = TextDecorations.Underline,
                     BackgroundColor = Color.Transparent,
                     FontSize = 16,
-                    TextColor = Color.FromHex("#0000EE"),
+                    TextColor = Colors.PrimaryColor,
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center
                 };

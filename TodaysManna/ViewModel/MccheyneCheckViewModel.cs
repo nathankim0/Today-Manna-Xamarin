@@ -32,7 +32,7 @@ namespace TodaysManna.ViewModel
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.Fail(e.Message);
+                Debug.Fail(e.Message);
             }
         }
 
@@ -40,10 +40,10 @@ namespace TodaysManna.ViewModel
         {
             var i = 0;
             var appTheme = AppInfo.RequestedTheme;
-            var defaultColor = appTheme == AppTheme.Dark ? Color.White : Color.Black;
+            //var defaultColor = appTheme == AppTheme.Dark ? Color.White : Color.Black;
             foreach (var range in MccheyneDataManager.MccheyneRangeList)
             {
-                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Color.Accent : defaultColor;
+                var dateColor = range.Date == DateTime.Now.ToString("M-d") ? Colors.PrimaryColor : Color.Gray;
                 var range5IsNull = true;
                 if (range.Range5 == "")
                 {

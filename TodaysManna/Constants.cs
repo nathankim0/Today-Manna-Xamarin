@@ -37,6 +37,8 @@ namespace TodaysManna
         public static Color MccheyneColor3 = Color.FromHex("#D07D7B");
         public static Color MccheyneColor4 = Color.FromHex("#E7CBB0");
         public static Color MccheyneColor5 = Color.FromHex("#edafb3");
+
+        public static Color PrimaryColor = Color.FromHex("#fda51e");
     }
 
     public static class Rests
