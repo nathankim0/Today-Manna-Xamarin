@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.Managers;
+using TodaysManna.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -12,12 +13,39 @@ namespace TodaysManna
     {
         private static readonly string EXCEPTION_COMMON_TEXT = "Exception occured at";
 
+        /*
         public static async void InitManna()
         {
             var isGetMannaCompleted = await MannaDataManager.GetManna(DateTime.Now);
             if (!isGetMannaCompleted)
             {
                 await Application.Current.MainPage.DisplayAlert("만나 불러오기 실패", "새로고침 해주세요", "확인");
+            }
+        }
+        */
+
+        public static async void InitMccheyneData()
+        {
+            try
+            {
+                GetJsonService.InitMcchyneData();
+            }
+            catch (Exception e)
+            {
+                Debug.Fail("InitMcchyneData\n" + e.Message);
+                await Application.Current.MainPage.DisplayAlert("맥체인 불러오기 오류", "", "확인");
+            }
+        }
+
+        public static void InitMccheyneCheckList()
+        {
+            try
+            {
+                MccheyneCheckListManager.InitCheckList();
+            }
+            catch (Exception e)
+            {
+                Debug.Fail("InitMccheyneCheckList\n" + e.Message);
             }
         }
 

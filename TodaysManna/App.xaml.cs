@@ -9,7 +9,9 @@ namespace TodaysManna
         public App()
         {
             InitializeComponent();
-            AppOperationManager.CreateData();
+
+            AppManager.InitMccheyneData();
+            AppManager.InitMccheyneCheckList();
 
             MainPage = new MainTabbedPage();
 
