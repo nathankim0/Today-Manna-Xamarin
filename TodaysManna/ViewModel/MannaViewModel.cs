@@ -41,7 +41,8 @@ namespace TodaysManna.ViewModel
         private string _displayDateRange;
         public string DisplayDateRange { get => _displayDateRange; set => SetProperty(ref _displayDateRange, value); }
 
-        
+        private ObservableRangeCollection<MccheyneOneRange> todayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>();
+        public ObservableRangeCollection<MccheyneOneRange> TodayMccheyneCheckList { get => todayMccheyneCheckList; set => SetProperty(ref todayMccheyneCheckList, value); }
 
         public MannaViewModel()
         {
@@ -50,6 +51,17 @@ namespace TodaysManna.ViewModel
 
             var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(today));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
+
+            foreach(var node in MccheyneCheckListManager.MccheyneCheckList)
+            {
+                if(node.Date == DateTime.Now.ToString("M-d"))
+                {
+                    foreach(var checkContent in node.Ranges) {
+                        TodayMccheyneCheckList.Add(checkContent);
+                    }
+                    break;
+                }
+            }
         }
     }
 }
