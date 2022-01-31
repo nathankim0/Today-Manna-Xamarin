@@ -41,65 +41,17 @@
         </Style>
 
         <DataTemplate x:Key="headerTemplate">
-            <StackLayout Padding="15" Orientation="Horizontal">
-                <Label
-                    FontSize="12"
-                    HorizontalOptions="StartAndExpand"
-                    Text="{Binding MccheyneRange}"
-                    TextColor="Gray"
-                    VerticalOptions="Center" />
-
-                <Label
-                    Grid.Column="1"
-                    FontSize="20"
-                    Text="{Binding DisplayDateRange}"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=DarkGray}"
-                    VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnDateButtonClicked" />
-                    </Label.GestureRecognizers>
-                </Label>
-                <!--<Grid ColumnDefinitions="Auto,*,Auto">
-                    <ImageButton
-                        Grid.Column="0"
-                        Padding="5"
-                        VerticalOptions="Center">
-                        <ImageButton.Source>
-                            <FontImageSource
-                                FontFamily="materialdesignicons"
-                                Glyph="{x:Static local:FontIcons.ArrowLeft}"
-                                Size="20"
-                                Color="{AppThemeBinding Dark=White,
-                                                        Light=DarkGray}" />
-                        </ImageButton.Source>
-                    </ImageButton>
-                    <Label
-                        Grid.Column="1"
-                        FontSize="20"
-                        Text="{Binding DisplayDateRange}"
-                        TextColor="{AppThemeBinding Dark=White,
-                                                    Light=DarkGray}"
-                        VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnDateButtonClicked" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <ImageButton
-                        Grid.Column="2"
-                        Padding="5"
-                        VerticalOptions="Center">
-                        <ImageButton.Source>
-                            <FontImageSource
-                                FontFamily="materialdesignicons"
-                                Glyph="{x:Static local:FontIcons.ArrowRight}"
-                                Size="20"
-                                Color="{AppThemeBinding Dark=White,
-                                                        Light=DarkGray}" />
-                        </ImageButton.Source>
-                    </ImageButton>
-                </Grid>-->
-            </StackLayout>
+            <Label
+                Padding="15"
+                FontSize="20"
+                Text="{Binding DisplayDateRange}"
+                TextColor="#fda51e"
+                TextDecorations="Underline"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDateButtonClicked" />
+                </Label.GestureRecognizers>
+            </Label>
         </DataTemplate>
 
         <DataTemplate x:Key="contentTemplate">
