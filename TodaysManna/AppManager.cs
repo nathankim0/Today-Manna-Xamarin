@@ -89,6 +89,16 @@ namespace TodaysManna
             return Preferences.Get("CurrentLanguage", Language.Korean.ToString());
         }
 
+        public static string GetShareTopTextString()
+        {
+            return Preferences.Get("ShareTopText", "");
+        }
+
+        public static string GetShareBottomTextString()
+        {
+            return Preferences.Get("ShareBottomText", "");
+        }
+
         public static Language GetCurrentLanguageEnumValue()
         {
             try

@@ -145,6 +145,11 @@
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash%402x.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash%403x.png" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings.pdf" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings.png" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings%402x.png" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -221,6 +226,7 @@
     <Folder Include="Assets.xcassets\checked.imageset\" />
     <Folder Include="Assets.xcassets\unchecked.imageset\" />
     <Folder Include="Assets.xcassets\splash.imageset\" />
+    <Folder Include="Assets.xcassets\settings.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />

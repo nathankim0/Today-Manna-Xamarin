@@ -152,7 +152,7 @@
         x:Name="outerGrid"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
-        RowDefinitions="70, *"
+        RowDefinitions="60, *"
         Style="{x:StaticResource OuterGridStyle}">
 
         <!--#region HEADER-->
@@ -171,21 +171,22 @@
             <StackLayout
                 BindableLayout.ItemsSource="{Binding TodayMccheyneCheckList}"
                 HorizontalOptions="End"
-                Orientation="Horizontal">
+                Orientation="Horizontal"
+                VerticalOptions="Center">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="2,0,0,0" IsVisible="{Binding ItemIsVisible}">
+                        <Grid Margin="0,0,2,0" IsVisible="{Binding ItemIsVisible}">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnMccheyneCheckTapped" />
                             </Grid.GestureRecognizers>
                             <Image
-                                HeightRequest="60"
+                                HeightRequest="40"
                                 HorizontalOptions="Center"
                                 Source="{Binding IsChecked, Converter={x:StaticResource CheckImageConverter}}"
                                 VerticalOptions="Center"
-                                WidthRequest="60" />
+                                WidthRequest="40" />
                             <Label
-                                FontSize="12"
+                                FontSize="10"
                                 HorizontalOptions="Center"
                                 Text="{Binding RangeText}"
                                 VerticalOptions="Center">
@@ -200,7 +201,7 @@
                                         Binding="{Binding IsChecked}"
                                         TargetType="Label"
                                         Value="false">
-                                        <Setter Property="TextColor" Value="Black" />
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>

@@ -94,7 +94,7 @@
                 Grid.Row="2"
                 Margin="40,0,40,20"
                 Padding="0,20,0,20"
-                BackgroundColor="Navy"
+                BackgroundColor="#fda51e"
                 Clicked="Button_Clicked"
                 CornerRadius="20"
                 FontSize="20"
@@ -108,7 +108,7 @@
                         Binding="{Binding IsSelected}"
                         TargetType="Button"
                         Value="true">
-                        <Setter Property="BackgroundColor" Value="Navy" />
+                        <Setter Property="BackgroundColor" Value="#fda51e" />
                     </DataTrigger>
                     <DataTrigger
                         Binding="{Binding IsSelected}"

@@ -39,49 +39,19 @@
                 Text="홈"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}" />
-            <ImageButton
-                x:Name="selectButton"
-                Margin="4,0,0,0"
-                Padding="6"
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                                  Light=White}"
-                BorderColor="Transparent"
-                Clicked="OnSelectAllButtonClicked"
-                CornerRadius="20"
-                HeightRequest="40"
-                VerticalOptions="Start"
-                WidthRequest="40">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="materialdesignicons"
-                        Glyph="{Binding IsAllSelected, Converter={x:StaticResource AllSelectIconConverter}}"
-                        Size="30"
-                        Color="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-                </ImageButton.Source>
-            </ImageButton>
 
             <ImageButton
                 x:Name="settingButton"
                 Margin="4,0,0,0"
                 Padding="6"
-                BackgroundColor="{AppThemeBinding Dark=Black,
-                                                  Light=White}"
+                BackgroundColor="Transparent"
                 BorderColor="Transparent"
                 Clicked="OnSettingClicked"
                 CornerRadius="20"
                 HeightRequest="40"
-                VerticalOptions="Start"
-                WidthRequest="40">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="materialdesignicons"
-                        Glyph="{x:Static local:FontIcons.DotsVertical}"
-                        Size="34"
-                        Color="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-                </ImageButton.Source>
-            </ImageButton>
+                Source="settings"
+                VerticalOptions="Center"
+                WidthRequest="40" />
         </StackLayout>
         <!--#region HEADER-->
 
@@ -151,6 +121,19 @@
                                 TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}"
                                 VerticalOptions="Center" />
+
+                            <ImageButton
+                                x:Name="shareSettingButton"
+                                Margin="0,0,10,0"
+                                BackgroundColor="Transparent"
+                                BorderColor="Transparent"
+                                Clicked="OnShareSettingClicked"
+                                CornerRadius="20"
+                                HeightRequest="27"
+                                HorizontalOptions="End"
+                                Source="settings"
+                                VerticalOptions="Start"
+                                WidthRequest="27" />
 
                             <ImageButton
                                 Padding="10,0,10,0"
@@ -248,7 +231,8 @@
                                                     Binding="{Binding IsChecked}"
                                                     TargetType="Label"
                                                     Value="false">
-                                                    <Setter Property="TextColor" Value="Black" />
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
+
                                                 </DataTrigger>
                                             </Label.Triggers>
                                         </Label>
@@ -277,6 +261,29 @@
                             VerticalOptions="CenterAndExpand" />
 
                         <ImageButton
+                            x:Name="selectButton"
+                            Padding="6"
+                            BackgroundColor="{AppThemeBinding Dark=Black,
+                                                              Light=White}"
+                            BorderColor="Transparent"
+                            Clicked="OnSelectAllButtonClicked"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Opacity="0.3"
+                            VerticalOptions="Start"
+                            WidthRequest="40">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    FontFamily="materialdesignicons"
+                                    Glyph="{Binding IsAllSelected, Converter={x:StaticResource AllSelectIconConverter}}"
+                                    Size="30"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light=Black}" />
+                            </ImageButton.Source>
+                        </ImageButton>
+
+                        <ImageButton
                             Padding="10,0,10,0"
                             Clicked="OnShareMannaWholeMannaContentsButtonTapped"
                             HorizontalOptions="End"
@@ -291,6 +298,7 @@
                                                             Light=Black}" />
                             </ImageButton.Source>
                         </ImageButton>
+
                     </StackLayout>
                     <!--#endregion-->
 

@@ -47,6 +47,8 @@ namespace TodaysManna
             SelectFeaturePopup.Instance.CancelbuttonClicked += OnCancelClicked;
         }
 
+        bool isFirstView = true;
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -54,7 +56,10 @@ namespace TodaysManna
             if (!(BindingContext is MannaViewModel viewModel)) return;
             viewModel.CustomFontSize = AppManager.GetCurrentTextSize();
 
-            viewModel.SetTodayCheckList();
+            if (!isFirstView)
+            {
+                viewModel.SetTodayCheckList();
+            }
         }
 
         private async void RefreshView_Refreshing(object sender, EventArgs e)
@@ -77,6 +82,9 @@ namespace TodaysManna
             {
                 SetContentsByLanguage(AppManager.GetCurrentLanguageString());
             }
+
+            viewModel.SetTodayCheckList();
+            isFirstView = false;
             viewModel.IsLoadingServer = false;
         }
 
@@ -210,10 +218,16 @@ namespace TodaysManna
             }
         }
 
+        private async void OnShareSettingClicked(object sender, EventArgs e)
+        {
+            await ResetSelection();
+            await Navigation.PushAsync(new ShareSettingPage());
+        }
+
         private async void OnShareMannaAndMccheyneRangeButtonTapped(object sender, EventArgs e)
         {
             if (!(BindingContext is MannaViewModel viewModel)) return;
-            var shareText = $"만나: {viewModel.MannaRange}\n맥체인: {viewModel.MccheyneRange}";
+            var shareText = $"{AppManager.GetShareTopTextString()}\n만나: {viewModel.MannaRange}\n맥체인: {viewModel.MccheyneRange}\n{AppManager.GetShareBottomTextString()}";
 
             await SaveToClipboard(shareText);
         }
@@ -445,17 +459,6 @@ namespace TodaysManna
         {
             var mccheyneOneRange = ((TappedEventArgs)e).Parameter as MccheyneOneRange;
             mccheyneOneRange.IsChecked = !mccheyneOneRange.IsChecked;
-
-            //foreach(var node in MccheyneCheckListManager.MccheyneCheckList)
-            //{
-            //    foreach(var range in node.Ranges)
-            //    {
-            //        if(range.Id == mccheyneOneRange.Id)
-            //        {
-            //            range.IsChecked = mccheyneOneRange.IsChecked;
-            //        }
-            //    }
-            //}
         }
     }
 }
