@@ -12,5 +12,7 @@
         public string HalfVerse { get; set; } // 권 장 (예: 창세기 1)
         public bool IsHalfVerseVisible { get; set; }
         public string Content { get; set; } // 구절
+
+        public string VerseToDisplay => $"{SecondNumber} {Content}";
     }
 }
