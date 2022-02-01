@@ -6,6 +6,7 @@ using TodaysManna.Models;
 using TodaysManna.Models.JsonMccheyneContentModel;
 using TodaysManna.Services;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TodaysManna.ViewModel
@@ -59,6 +60,9 @@ namespace TodaysManna.ViewModel
         private ObservableRangeCollection<MccheyneOneRange> todayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>();
         public ObservableRangeCollection<MccheyneOneRange> TodayMccheyneCheckList { get => todayMccheyneCheckList; set => SetProperty(ref todayMccheyneCheckList, value); }
 
+        private double customFontSize = double.TryParse(Preferences.Get("TextSize", "17"), out var font) ? font : 17;
+        public double CustomFontSize { get => customFontSize; set => SetProperty(ref customFontSize, value); }
+
         public DateTime CurrentSettedDateTime;
 
         public MccheyneViewModel()
@@ -76,7 +80,7 @@ namespace TodaysManna.ViewModel
                 System.Diagnostics.Debug.WriteLine("GetMccheyne() Error");
             }
 
-            MessagingCenter.Subscribe<MccheyneCheckViewModel, DateTime>(this,"goToReadTapped",(s,date)=>
+            MessagingCenter.Subscribe<MccheyneCheckListPage, DateTime>(this,"goToReadTapped",(s,date)=>
             {
                 CurrentSettedDateTime = date;
                 _ = GetMccheyne();

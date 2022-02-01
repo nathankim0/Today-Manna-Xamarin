@@ -4,7 +4,6 @@ using Xamarin.Essentials;
 using Rg.Plugins.Popup.Services;
 using TodaysManna.ViewModel;
 using System.Threading.Tasks;
-
 using TodaysManna.Models;
 using System.Diagnostics;
 using TodaysManna.Controls.Popups;
@@ -16,7 +15,6 @@ namespace TodaysManna
 {
     public partial class MccheynePage : ContentPage
     {
-        //private readonly MemoPopup _memoPopup;
         private string shareRangeString = "";
         public MccheynePage()
         {
@@ -35,6 +33,8 @@ namespace TodaysManna
             base.OnAppearing();
 
             if (!(BindingContext is MccheyneViewModel viewModel)) return;
+            viewModel.CustomFontSize = AppManager.GetCurrentTextSize();
+
             viewModel.SetTodayCheckList();
         }
 
