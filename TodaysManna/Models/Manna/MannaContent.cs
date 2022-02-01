@@ -9,5 +9,7 @@ namespace TodaysManna.Models
         public string BookAndJang { get; set; }
         public int Jeol { get; set; }
         public string MannaString { get; set; }
+
+        public string VerseToDisplay => $"{Jeol} {MannaString}";
     }
 }

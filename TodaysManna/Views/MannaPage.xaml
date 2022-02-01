@@ -262,6 +262,7 @@
 
                         <ImageButton
                             x:Name="selectButton"
+                            Margin="0,0,10,0"
                             Padding="6"
                             BackgroundColor="{AppThemeBinding Dark=Black,
                                                               Light=White}"
@@ -340,17 +341,11 @@
                                         </Grid.GestureRecognizers>
                                         <Label
                                             FontSize="{Binding Path=BindingContext.CustomFontSize, Source={x:Reference refreshView}}"
+                                            LineHeight="1.7"
+                                            Text="{Binding VerseToDisplay}"
                                             TextColor="{AppThemeBinding Dark=White,
                                                                         Light=Black}"
-                                            VerticalOptions="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span LineHeight="1.7" Text="{Binding Jeol}" />
-                                                    <Span LineHeight="1.7" Text=" " />
-                                                    <Span LineHeight="1.7" Text="{Binding MannaString}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
+                                            VerticalOptions="Center" />
                                     </Grid>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>

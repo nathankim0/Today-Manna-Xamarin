@@ -122,13 +122,13 @@ namespace TodaysManna
             await PopupNavigation.Instance.PushAsync(_optionPopup);
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void OnMccheyneCheckTapped(object sender, EventArgs e)
         {
             var mccheyneOneRange = ((TappedEventArgs)e).Parameter as MccheyneOneRange;
             mccheyneOneRange.IsChecked = !mccheyneOneRange.IsChecked;
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        private void OnDateTapped(object sender, EventArgs e)
         {
             FirebaseEventService.SendEventOnPlatformSpecific("checklist_go_to_read");
 

@@ -6,6 +6,7 @@ using TodaysManna.Models;
 using TodaysManna.Models.JsonMccheyneContentModel;
 using TodaysManna.Services;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TodaysManna.ViewModel
@@ -58,6 +59,9 @@ namespace TodaysManna.ViewModel
 
         private ObservableRangeCollection<MccheyneOneRange> todayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>();
         public ObservableRangeCollection<MccheyneOneRange> TodayMccheyneCheckList { get => todayMccheyneCheckList; set => SetProperty(ref todayMccheyneCheckList, value); }
+
+        private double customFontSize = double.TryParse(Preferences.Get("TextSize", "17"), out var font) ? font : 17;
+        public double CustomFontSize { get => customFontSize; set => SetProperty(ref customFontSize, value); }
 
         public DateTime CurrentSettedDateTime;
 

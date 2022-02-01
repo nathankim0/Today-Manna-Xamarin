@@ -63,10 +63,11 @@
                     <StackLayout Padding="15,0,0,20" Orientation="Vertical">
                         <Label
                             Padding="0,20,0,20"
+                            FontSize="20"
                             Text="{Binding ToDisplayDate}"
                             TextColor="{Binding DateColor}">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped_1" />
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnDateTapped" />
                             </Label.GestureRecognizers>
                         </Label>
 
@@ -75,7 +76,7 @@
                                 <DataTemplate>
                                     <Grid Margin="0,0,10,0" IsVisible="{Binding ItemIsVisible}">
                                         <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
+                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnMccheyneCheckTapped" />
                                         </Grid.GestureRecognizers>
                                         <Image
                                             HeightRequest="60"
