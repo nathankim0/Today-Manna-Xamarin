@@ -76,7 +76,7 @@ namespace TodaysManna.ViewModel
                 System.Diagnostics.Debug.WriteLine("GetMccheyne() Error");
             }
 
-            MessagingCenter.Subscribe<MccheyneCheckViewModel, DateTime>(this,"goToReadTapped",(s,date)=>
+            MessagingCenter.Subscribe<MccheyneCheckListPage, DateTime>(this,"goToReadTapped",(s,date)=>
             {
                 CurrentSettedDateTime = date;
                 _ = GetMccheyne();
