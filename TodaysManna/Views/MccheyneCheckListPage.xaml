@@ -60,20 +60,20 @@
             ItemsSource="{Binding MccheyneCheckList}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Margin="10" Orientation="Vertical">
-                        <Label Text="{Binding ToDisplayDate}" TextColor="{Binding DateColor}">
+                    <StackLayout Padding="15,0,0,20" Orientation="Vertical">
+                        <Label
+                            Padding="0,20,0,20"
+                            Text="{Binding ToDisplayDate}"
+                            TextColor="{Binding DateColor}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped_1" />
                             </Label.GestureRecognizers>
                         </Label>
 
-                        <StackLayout
-                            Margin="0,10,0,0"
-                            BindableLayout.ItemsSource="{Binding Ranges}"
-                            Orientation="Horizontal">
+                        <StackLayout BindableLayout.ItemsSource="{Binding Ranges}" Orientation="Horizontal">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="0,0,5,0" IsVisible="{Binding ItemIsVisible}">
+                                    <Grid Margin="0,0,10,0" IsVisible="{Binding ItemIsVisible}">
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
                                         </Grid.GestureRecognizers>
