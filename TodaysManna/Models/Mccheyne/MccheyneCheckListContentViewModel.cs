@@ -26,24 +26,47 @@ namespace TodaysManna.Models
                 string[] monthAndDay = value.Split('-');
                 var dateTime = new DateTime(DateTime.Now.Year, int.Parse(monthAndDay[0]), int.Parse(monthAndDay[1]));
                 ToDisplayDate = dateTime.ToString("MM월 dd일 (ddd)");
+
+                if (value == DateTime.Now.ToString("M-d"))
+                {
+                    DateColor = Colors.PrimaryColor;
+                }
+                else
+                {
+                    DateColor = Color.Gray;
+                }
+
                 SetProperty(ref _date, value);
             }
         }
 
-        private MccheyneOneRange[] ranges = new MccheyneOneRange[5];
-        public MccheyneOneRange[] Ranges
+        private Color _dateColor = Color.Black;
+        public Color DateColor
+        {
+            get => _dateColor;
+            set => SetProperty(ref _dateColor, value);
+        }
+
+        private ObservableRangeCollection<MccheyneOneRange> ranges;
+        public ObservableRangeCollection<MccheyneOneRange> Ranges
         {
             get => ranges;
             set => SetProperty(ref ranges, value);
         }
 
-        public bool Range5IsNull { get; set; }
+        public bool IsRange5Exist { get; set; }
     }
 
     public class MccheyneOneRange : BaseViewModel
     {
         public string Id { get; set; }
-        public string RangeText { get; set; }
+
+        private string rangeText;
+        public string RangeText
+        {
+            get => rangeText;
+            set => SetProperty(ref rangeText, value);
+        }
 
         public bool IsChecked
         {
@@ -63,13 +86,6 @@ namespace TodaysManna.Models
                 if (IsChecked) return Colors.PrimaryColor;
                 else return Color.White;
             }
-        }
-
-        private Color _dateColor = Color.Black;
-        public Color DateColor
-        {
-            get => _dateColor;
-            set => SetProperty(ref _dateColor, value);
         }
 
         private bool itemIsVisible = true;

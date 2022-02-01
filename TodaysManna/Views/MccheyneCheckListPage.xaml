@@ -12,6 +12,13 @@
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CheckImageConverter x:Key="CheckImageConverter" />
+            <local:NotValueConverter x:Key="NotValueConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid
         x:Name="contentGrid"
         BackgroundColor="{AppThemeBinding Dark=Black,
@@ -47,5 +54,62 @@
         </StackLayout>
         <!--#region HEADER-->
 
+        <CollectionView
+            x:Name="collectionView"
+            Grid.Row="1"
+            ItemsSource="{Binding MccheyneCheckList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Margin="10" Orientation="Vertical">
+                        <Label Text="{Binding ToDisplayDate}" TextColor="{Binding DateColor}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped_1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <StackLayout
+                            Margin="0,10,0,0"
+                            BindableLayout.ItemsSource="{Binding Ranges}"
+                            Orientation="Horizontal">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,5,0" IsVisible="{Binding ItemIsVisible}">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
+                                        </Grid.GestureRecognizers>
+                                        <Image
+                                            HeightRequest="60"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding IsChecked, Converter={x:StaticResource CheckImageConverter}}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="60" />
+                                        <Label
+                                            FontSize="17"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding RangeText}"
+                                            VerticalOptions="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsChecked}"
+                                                    TargetType="Label"
+                                                    Value="true">
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                                <DataTrigger
+                                                    Binding="{Binding IsChecked}"
+                                                    TargetType="Label"
+                                                    Value="false">
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>
