@@ -189,11 +189,6 @@
 
             <!--#region Toogle 1-->
             <Frame
-                Margin="3"
-                BackgroundColor="Transparent"
-                CornerRadius="15"
-                IsVisible="{Binding IsRange1Selected}" />
-            <Frame
                 Margin="3,3,0,3"
                 BackgroundColor="Transparent"
                 CornerRadius="20">
@@ -237,14 +232,8 @@
             <!--#region Toogle 2-->
             <Frame
                 Grid.Column="1"
-                Margin="3"
-                BackgroundColor="Transparent"
-                CornerRadius="20"
-                IsVisible="{Binding IsRange2Selected}" />
-            <Frame
-                Grid.Column="1"
                 Margin="0,3,3,3"
-                CornerRadius="14">
+                CornerRadius="20">
                 <Frame.Triggers>
                     <DataTrigger
                         Binding="{Binding IsRange2Selected}"
@@ -285,14 +274,8 @@
             <!--#region Toogle 3-->
             <Frame
                 Grid.Column="2"
-                Margin="3"
-                BackgroundColor="Transparent"
-                CornerRadius="20"
-                IsVisible="{Binding IsRange3Selected}" />
-            <Frame
-                Grid.Column="2"
                 Margin="0,3,3,3"
-                CornerRadius="14">
+                CornerRadius="20">
                 <Frame.Triggers>
                     <DataTrigger
                         Binding="{Binding IsRange3Selected}"
@@ -331,12 +314,6 @@
             <!--#endregion-->
 
             <!--#region Toogle 4-->
-            <Frame
-                Grid.Column="3"
-                Margin="3"
-                BackgroundColor="Transparent"
-                CornerRadius="15"
-                IsVisible="{Binding IsRange4Selected}" />
             <Frame
                 Grid.Column="3"
                 Margin="0,3,3,3"

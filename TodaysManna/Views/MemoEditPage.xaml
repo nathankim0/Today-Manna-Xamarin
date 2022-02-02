@@ -18,7 +18,11 @@
                 </Label.FontSize>
             </Label>
 
-            <Label Text="{Binding Date}" TextColor="{AppThemeBinding Dark=White, Light=Black}">
+            <Label
+                Margin="0,10,0,0"
+                Text="{Binding Date}"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}">
                 <Label.FontSize>
                     <OnPlatform
                         x:TypeArguments="x:Double"
@@ -43,6 +47,7 @@
 
             <Label
                 x:Name="verseLabel"
+                Margin="0,10,0,0"
                 Text="{Binding Verse}"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -67,7 +72,11 @@
                         iOS="18" />
                 </Label.FontSize>
             </Label>
-            <StackLayout Padding="1" BackgroundColor="{AppThemeBinding Dark=White, Light=Black}">
+            <StackLayout
+                Margin="0,10,0,0"
+                Padding="1"
+                BackgroundColor="{AppThemeBinding Dark=White,
+                                                  Light=Black}">
                 <Editor
                     x:Name="memoEditor"
                     AutoSize="TextChanges"

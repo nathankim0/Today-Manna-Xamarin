@@ -18,6 +18,13 @@ namespace TodaysManna.Views
         {
             bibleLabel.Text = text;
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            OnCancelButtonClicked(null, EventArgs.Empty);
+            return true;
+        }
+
         private async void OnCancelButtonClicked(object sender, EventArgs e)
         {
             if (await DisplayAlert("", "정말 취소하시겠습니까?\n작성 중인 메모는 삭제됩니다.", "예", "돌아가기"))

@@ -34,17 +34,12 @@ namespace TodaysManna
                 outerScrollView.ScrollToAsync(0, 0, true);
             });
 
-            if (VersionTracking.IsFirstLaunchEver)
-            {
-                var onboardingPage = new OnboardingPage();
-                onboardingPage.LanguageChanged += GetMannaByLanguage;
-                Navigation.PushAsync(onboardingPage, false);
-            }
-
             SelectFeaturePopup.Instance.CopybuttonClicked += OnCopyCliked;
             SelectFeaturePopup.Instance.SharebuttonClicked += OnShareCliked;
             SelectFeaturePopup.Instance.MemobuttonClicked += OnMemoClicked;
             SelectFeaturePopup.Instance.CancelbuttonClicked += OnCancelClicked;
+
+            //PushOnboarding();
         }
 
         bool isFirstView = true;
@@ -61,6 +56,16 @@ namespace TodaysManna
                 viewModel.SetTodayCheckList();
             }
         }
+
+        //private async void PushOnboarding()
+        //{
+        //    if (VersionTracking.IsFirstLaunchEver)
+        //    {
+        //        var onboardingPage = new OnboardingPage();
+        //        onboardingPage.LanguageChanged += GetMannaByLanguage;
+        //        await Application.Current.MainPage.Navigation.PushAsync(onboardingPage, false);
+        //    }
+        //}
 
         private async void RefreshView_Refreshing(object sender, EventArgs e)
         {
@@ -261,7 +266,13 @@ namespace TodaysManna
 
             var shareText = $"{viewModel.DisplayDateRange}\n{wholeMannaText}\n";
 
-            await SaveToClipboard(shareText);
+
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = shareText,
+                Title = "공유"
+            });
+            //await SaveToClipboard(shareText);
         }
 
         private async void OnCopyCliked(object sender, EventArgs e)
@@ -307,7 +318,7 @@ namespace TodaysManna
 
             await ResetSelection();
 
-            await Navigation.PushAsync(memoPage);
+            await Application.Current.MainPage.Navigation.PushAsync(memoPage);
         }
 
         private async void OnMemoPopupSaveButtonClicked(object sender, (string, string) memoText)

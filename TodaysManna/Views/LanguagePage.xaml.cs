@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using TodaysManna.ViewModel;
 
 namespace TodaysManna.Views
 {
-    public partial class OnboardingPage : ContentPage
+    public partial class LanguagePage : ContentPage
     {
         public EventHandler<Language> LanguageChanged;
         Language selectedLanguage = Language.Korean;
 
-        public OnboardingPage()
+        public LanguagePage()
         {
             InitializeComponent();
             BindingContext = new LanguagePageViewModel();
@@ -37,16 +36,14 @@ namespace TodaysManna.Views
                 }
             }
             viewModel.IsSelected = true;
-            button.IsEnabled = true;
         }
 
-        void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (!(BindingContext is LanguagePageViewModel viewModel)) return;
             if (viewModel.Countries == null) return;
 
             viewModel.IsSelected = true;
-            button.IsEnabled = true;
 
             foreach (var node in viewModel.Countries)
             {
@@ -57,19 +54,9 @@ namespace TodaysManna.Views
             country.Selected = true;
 
             selectedLanguage = country.LanguageValue;
-        }
 
-        void Button_Clicked(object sender, EventArgs e)
-        {
             Preferences.Set("CurrentLanguage", selectedLanguage.ToString());
-
             LanguageChanged?.Invoke(this, selectedLanguage);
-            Navigation.PopAsync();
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
         }
     }
 }

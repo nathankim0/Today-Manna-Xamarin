@@ -99,7 +99,11 @@ namespace TodaysManna.Droid.Renderer
 
         async void PopToRoot()
         {
-            await tabbedPage.CurrentPage.Navigation.PopToRootAsync();
+            try
+            {
+                await tabbedPage.CurrentPage.Navigation.PopToRootAsync();
+            }
+            catch { }
         }
     }
 }

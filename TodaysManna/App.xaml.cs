@@ -13,7 +13,7 @@ namespace TodaysManna
             AppManager.InitMccheyneData();
             AppManager.InitMccheyneCheckList();
 
-            MainPage = new MainTabbedPage();
+            MainPage = new NavigationPage(new MainTabbedPage());
 
             VersionTracking.Track();
         }
