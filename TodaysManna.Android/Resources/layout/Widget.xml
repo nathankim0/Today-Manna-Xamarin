@@ -8,7 +8,7 @@
         android:padding="8dp">
         <ImageView
             android:id="@+id/widget_refresh"
-            android:src="@mipmap/icon"            
+            android:src="@mipmap/ic_launcher"            
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginRight="10dp" />
