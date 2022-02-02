@@ -166,7 +166,7 @@ namespace TodaysManna.Views
             await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
 
-        private void OnTimePickerPropertyChanged(System.Object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnTimePickerPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Time")
             {
@@ -188,15 +188,17 @@ namespace TodaysManna.Views
                 NotificationId = 100,
                 Title = "오늘의 만나",
                 Description = "오늘의 만나를 함께 만나요!",
-                Repeats = NotificationRepeat.Daily,
-                NotifyTime = DateTime.Today + timePicker.Time,
+                Schedule =
+                {
+                    RepeatType = NotificationRepeat.Daily,
+                    NotifyTime = DateTime.Today + timePicker.Time
+                },
                 ReturningData = "Dummy data",
             };
             NotificationCenter.Current.Show(notification);
-
         }
 
-        void Switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        void Switch_Toggled(object sender, ToggledEventArgs e)
         {
             if (alertSwitch.IsToggled)
             {
