@@ -67,12 +67,10 @@ namespace TodaysManna.Views
 
         async void languageTitleLabel_Clicked(object sender, EventArgs e)
         {
-            var onboardingPage = new OnboardingPage();
-            NavigationPage.SetBackButtonTitle(onboardingPage, "");
-            NavigationPage.SetHasBackButton(onboardingPage, true);
-            NavigationPage.SetHasNavigationBar(onboardingPage, true);
-            onboardingPage.LanguageChanged += (s, selectedLanguage) => { LanguageChanged?.Invoke(this, selectedLanguage); };
-            await Navigation.PushAsync(onboardingPage);
+            var languagePage = new LanguagePage();
+            languagePage.LanguageChanged += (s, selectedLanguage) => { LanguageChanged?.Invoke(this, selectedLanguage); };
+
+            await Application.Current.MainPage.Navigation.PushAsync(languagePage);
         }
 
         public void CustomOnAppearing()

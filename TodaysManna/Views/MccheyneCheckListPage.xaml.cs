@@ -137,7 +137,7 @@ namespace TodaysManna
 
             try
             {
-                var masterPage = Application.Current.MainPage as TabbedPage;
+                var masterPage = Application.Current.MainPage.Navigation.NavigationStack[0] as TabbedPage;
                 masterPage.CurrentPage = masterPage.Children[1];
 
                 var toConvertDateTime = $"{DateTime.Today.Year}-{date}";

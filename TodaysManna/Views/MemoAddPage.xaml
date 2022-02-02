@@ -3,54 +3,38 @@
     x:Class="TodaysManna.Views.MemoAddPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ContentPage.Content>
+
+    <Grid RowDefinitions="*">
         <ScrollView BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
-            <StackLayout Margin="20">
-                <Label
-                    BackgroundColor="Transparent"
-                    HorizontalOptions="Center"
-                    Text="메모 작성"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
+            <StackLayout Margin="20,0,20,10">
                 <Label
                     x:Name="bibleLabel"
                     Margin="0,20,0,0"
                     BackgroundColor="Transparent"
+                    FontSize="14"
                     HorizontalOptions="Center"
                     TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}">
-                    <Label.FontSize>
+                                                Light=Black}" />
+
+                <Editor
+                    x:Name="editor"
+                    Margin="0,20,0,0"
+                    AutoSize="TextChanges"
+                    BackgroundColor="{AppThemeBinding Dark=Black,
+                                                      Light=White}"
+                    Placeholder="메모 작성"
+                    TextColor="{AppThemeBinding Dark=White,
+                                                Light=Black}"
+                    VerticalOptions="FillAndExpand">
+                    <Editor.FontSize>
                         <OnPlatform
                             x:TypeArguments="x:Double"
-                            Android="15"
-                            iOS="13" />
-                    </Label.FontSize>
-                </Label>
+                            Android="16"
+                            iOS="14" />
+                    </Editor.FontSize>
+                </Editor>
 
-                <StackLayout
-                    Margin="0,20,0,0"
-                    Padding="1"
-                    BackgroundColor="{AppThemeBinding Dark=White,
-                                                      Light=Black}"
-                    VerticalOptions="FillAndExpand">
-                    <Editor
-                        x:Name="editor"
-                        BackgroundColor="{AppThemeBinding Dark=Black,
-                                                          Light=White}"
-                        Placeholder="메모 작성"
-                        TextColor="{AppThemeBinding Dark=White,
-                                                    Light=Black}"
-                        VerticalOptions="FillAndExpand">
-                        <Editor.FontSize>
-                            <OnPlatform
-                                x:TypeArguments="x:Double"
-                                Android="16"
-                                iOS="14" />
-                        </Editor.FontSize>
-                    </Editor>
-                </StackLayout>
-
-                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
                     <Button
                         Padding="0,0,50,0"
                         BackgroundColor="Transparent"
@@ -65,5 +49,5 @@
                 </StackLayout>
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>
