@@ -68,6 +68,9 @@
     <None Remove="Resources\JsonFiles\mcc.json" />
     <None Remove="Resources\JsonFiles\MccheyneRange2.json" />
     <None Remove="Managers\" />
+    <None Remove="Resources\FontFiles\Pretendard-Bold.ttf" />
+    <None Remove="Resources\FontFiles\Pretendard-Medium.ttf" />
+    <None Remove="Resources\FontFiles\Pretendard-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\MainPage.xaml" />
@@ -82,6 +85,9 @@
     <EmbeddedResource Include="Resources\FontFiles\materialdesignicons.ttf" />
     <EmbeddedResource Include="Resources\JsonFiles\mcc.json" />
     <EmbeddedResource Include="Resources\JsonFiles\MccheyneRange.json" />
+    <EmbeddedResource Include="Resources\FontFiles\Pretendard-Bold.ttf" />
+    <EmbeddedResource Include="Resources\FontFiles\Pretendard-Medium.ttf" />
+    <EmbeddedResource Include="Resources\FontFiles\Pretendard-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Controls\Popups\SelectFeaturePopup.xaml.cs">
