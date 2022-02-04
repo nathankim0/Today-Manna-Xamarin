@@ -25,15 +25,16 @@
         x:Name="contentGrid"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
-        RowDefinitions="Auto,*">
+        RowDefinitions="65,*">
 
         <!--#region HEADER-->
         <StackLayout
             x:Name="headerStackLayout"
             Grid.Row="0"
+            Padding="15"
             BackgroundColor="{AppThemeBinding Dark=Black,
                                               Light=White}"
-            Style="{x:StaticResource HeaderStackLayoutStyle}">
+            Orientation="Horizontal">
             <Label
                 Style="{x:StaticResource HeaderLabelStyle}"
                 Text="홈"

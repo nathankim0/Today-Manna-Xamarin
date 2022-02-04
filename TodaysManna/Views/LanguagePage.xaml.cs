@@ -15,11 +15,6 @@ namespace TodaysManna.Views
             InitializeComponent();
             BindingContext = new LanguagePageViewModel();
 
-            if (!Constants.IsDeviceIOS)
-            {
-                Padding = new Thickness(0, Constants.StatusBarHeight, 0, 10);
-            }
-
             SetSelectedLanguage();
         }
 

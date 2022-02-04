@@ -12,17 +12,18 @@
     NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,*">
+        <Grid Margin="0,10,0,0" RowDefinitions="Auto,*">
             <StackLayout>
                 <Label
                     Margin="30,0,8,10"
-                    FontSize="35"
+                    FontFamily="Pretendard-Bold"
+                    FontSize="26"
                     Text="Choose Your Preferred Language!"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}" />
                 <Label
                     Margin="30,0,8,0"
-                    FontSize="25"
+                    FontSize="20"
                     Text="언어를 선택해주세요!"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}" />
