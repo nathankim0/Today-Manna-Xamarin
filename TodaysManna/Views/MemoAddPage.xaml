@@ -1,53 +1,51 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+﻿<ContentPage
     x:Class="TodaysManna.Views.MemoAddPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true">
 
-    <Grid RowDefinitions="*">
-        <ScrollView BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
-            <StackLayout Margin="20,0,20,10">
-                <Label
-                    x:Name="bibleLabel"
-                    Margin="0,20,0,0"
-                    BackgroundColor="Transparent"
-                    FontSize="14"
-                    HorizontalOptions="Center"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
+    <ScrollView BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+        <StackLayout Margin="20,0,20,10">
+            <Label
+                x:Name="bibleLabel"
+                Margin="0,20,0,0"
+                BackgroundColor="Transparent"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}" />
 
-                <Editor
-                    x:Name="editor"
-                    Margin="0,20,0,0"
-                    AutoSize="TextChanges"
-                    BackgroundColor="{AppThemeBinding Dark=Black,
-                                                      Light=White}"
-                    Placeholder="메모 작성"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="FillAndExpand">
-                    <Editor.FontSize>
-                        <OnPlatform
-                            x:TypeArguments="x:Double"
-                            Android="16"
-                            iOS="14" />
-                    </Editor.FontSize>
-                </Editor>
+            <Editor
+                x:Name="editor"
+                Margin="0,20,0,0"
+                AutoSize="TextChanges"
+                BackgroundColor="{AppThemeBinding Dark=Black,
+                                                  Light=White}"
+                Placeholder="메모 작성"
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=Black}"
+                VerticalOptions="FillAndExpand">
+                <Editor.FontSize>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        Android="16"
+                        iOS="14" />
+                </Editor.FontSize>
+            </Editor>
 
-                <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
-                    <Button
-                        Padding="0,0,50,0"
-                        BackgroundColor="Transparent"
-                        Clicked="OnCancelButtonClicked"
-                        HorizontalOptions="Start"
-                        Text="취소" />
-                    <Button
-                        BackgroundColor="Transparent"
-                        Clicked="OnSaveButtonClicked"
-                        HorizontalOptions="EndAndExpand"
-                        Text="저장" />
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            <Button
+                x:Name="button"
+                Margin="40,0,40,10"
+                Padding="0,16,0,16"
+                BackgroundColor="#fda51e"
+                Clicked="OnSaveButtonClicked"
+                CornerRadius="20"
+                FontSize="20"
+                HorizontalOptions="Fill"
+                Text="Done!"
+                TextColor="White"
+                VerticalOptions="End" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

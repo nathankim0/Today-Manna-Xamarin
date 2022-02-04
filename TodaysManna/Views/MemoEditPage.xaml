@@ -1,15 +1,13 @@
 ﻿<ContentPage
     x:Class="TodaysManna.MemoEditPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true">
 
     <ScrollView>
         <StackLayout Margin="20" VerticalOptions="StartAndExpand">
-            <Label
-                
-                Text="날짜"
-                TextColor="{AppThemeBinding Dark=White,
-                                            Light=Black}">
+            <Label Text="날짜" TextColor="{AppThemeBinding Dark=White, Light=Black}">
                 <Label.FontSize>
                     <OnPlatform
                         x:TypeArguments="x:Double"
@@ -33,7 +31,6 @@
 
             <Label
                 Padding="0,15,0,0"
-                
                 Text="범위"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -61,7 +58,6 @@
 
             <Label
                 Padding="0,15,0,0"
-                
                 Text="메모"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
