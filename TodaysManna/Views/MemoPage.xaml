@@ -63,7 +63,7 @@
             <CollectionView.EmptyView>
                 <StackLayout Padding="20,20,20,0" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                     <Label
-                        FontAttributes="Bold"
+                        
                         Text="아직 저장한 메모가 없네요!"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}">
@@ -77,7 +77,7 @@
 
                     <Label
                         Margin="0,5,0,0"
-                        FontAttributes="Bold"
+                        
                         Text="묵상을 작성해보는 것은 어떨까요?✍️"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}">
@@ -91,7 +91,7 @@
 
                     <Label
                         Margin="0,5,0,0"
-                        FontAttributes="Bold"
+                        
                         Text="(만나/맥체인 탭 ▶︎ 구절 터치 ▶︎ 메모 작성)"
                         TextColor="{AppThemeBinding Dark=White,
                                                     Light=Black}">
@@ -130,7 +130,7 @@
                                 </Label.FontSize>
                             </Label>
                             <Label
-                                FontAttributes="Bold"
+                                
                                 LineBreakMode="TailTruncation"
                                 MaxLines="1"
                                 Text="{Binding Verse}"

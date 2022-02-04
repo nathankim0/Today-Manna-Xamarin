@@ -6,7 +6,7 @@
     <ScrollView>
         <StackLayout Margin="20" VerticalOptions="StartAndExpand">
             <Label
-                FontAttributes="Bold"
+                
                 Text="날짜"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -33,7 +33,7 @@
 
             <Label
                 Padding="0,15,0,0"
-                FontAttributes="Bold"
+                
                 Text="범위"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">
@@ -61,7 +61,7 @@
 
             <Label
                 Padding="0,15,0,0"
-                FontAttributes="Bold"
+                
                 Text="메모"
                 TextColor="{AppThemeBinding Dark=White,
                                             Light=Black}">

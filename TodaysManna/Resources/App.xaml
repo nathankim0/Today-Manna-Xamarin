@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
         <ResourceDictionary>
-
             <Style TargetType="Grid">
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Margin" Value="0" />
@@ -30,20 +29,21 @@
             </Style>
 
             <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="batang" />
+                <Setter Property="FontFamily" Value="Pretendard-Regular" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
             <Style TargetType="Editor">
-                <Setter Property="FontFamily" Value="batang" />
+                <Setter Property="FontFamily" Value="Pretendard-Regular" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
             <Style TargetType="Entry">
-                <Setter Property="FontFamily" Value="batang" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="FontFamily" Value="Pretendard-Regular" />
             </Style>
 
             <Style TargetType="Image">
@@ -52,7 +52,7 @@
             </Style>
 
             <Style TargetType="Button">
-                <Setter Property="FontFamily" Value="batang" />
+                <Setter Property="FontFamily" Value="Pretendard-Regular" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
@@ -70,12 +70,6 @@
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
             </Style>
 
-
-            <Style x:Key="OuterGridStyle" TargetType="Grid">
-                <Setter Property="HorizontalOptions" Value="Fill" />
-                <Setter Property="VerticalOptions" Value="Fill" />
-            </Style>
-
             <Style x:Key="HeaderStackLayoutStyle" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="Padding" Value="15" />
@@ -87,22 +81,9 @@
             <Style x:Key="HeaderLabelStyle" TargetType="Label">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
-                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-            </Style>
-
-            <Style x:Key="HeaderGridStyle" TargetType="Grid">
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
-                <Setter Property="RowDefinitions" Value="40" />
-            </Style>
-
-            <Style x:Key="HeaderButtonStyle" TargetType="ImageButton">
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

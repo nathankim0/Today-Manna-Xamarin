@@ -30,6 +30,14 @@ namespace TodaysManna
         public static double BottomSafeAreaHeight { get; set; } = 0;
     }
 
+    public static class Fonts
+    {
+        public static string pretendardBold = "Pretendard-Bold";
+        public static string pretendardMedium = "Pretendard-Medium";
+        public static string pretendardRegular = "Pretendard-Regular";
+        public static string batang = "batang";
+    }
+
     public static class Colors
     {
         public static Color MccheyneColor1 = Color.FromHex("#c4a7fa");
