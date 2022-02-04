@@ -76,7 +76,6 @@
                         Orientation="Horizontal">
                         <StackLayout HorizontalOptions="StartAndExpand">
                             <Label
-                                FontAttributes="Bold"
                                 FontSize="22"
                                 HorizontalOptions="StartAndExpand"
                                 Text="오늘의 만나를"
@@ -84,7 +83,6 @@
                                                             Light=Black}" />
                             <Label
                                 Margin="0,5,0,0"
-                                FontAttributes="Bold"
                                 FontSize="22"
                                 HorizontalOptions="StartAndExpand"
                                 Text="수확해볼까요?🍐"
@@ -114,7 +112,6 @@
 
                         <StackLayout Orientation="Horizontal">
                             <Label
-                                FontAttributes="Bold"
                                 FontSize="22"
                                 HorizontalOptions="StartAndExpand"
                                 Text="오늘의 범위"
@@ -192,7 +189,6 @@
                     <!--#region-->
                     <StackLayout Padding="10,35,15,35" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                         <Label
-                            FontAttributes="Bold"
                             FontSize="22"
                             HorizontalOptions="StartAndExpand"
                             Text="오늘의 맥체인"
@@ -252,7 +248,6 @@
                                                           Light=White}"
                         Orientation="Horizontal">
                         <Label
-                            FontAttributes="Bold"
                             FontSize="22"
                             HorizontalOptions="StartAndExpand"
                             Text="오늘의 만나"
@@ -340,6 +335,7 @@
                                             <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
                                         </Grid.GestureRecognizers>
                                         <Label
+                                            FontFamily="batang"
                                             FontSize="{Binding Path=BindingContext.CustomFontSize, Source={x:Reference refreshView}}"
                                             LineHeight="1.7"
                                             Text="{Binding VerseToDisplay}"

@@ -55,8 +55,7 @@
         x:Name="outerGrid"
         BackgroundColor="{AppThemeBinding Dark=Black,
                                           Light=White}"
-        RowDefinitions="60, *"
-        Style="{x:StaticResource OuterGridStyle}">
+        RowDefinitions="60, *">
 
         <!--#region HEADER-->
         <StackLayout
@@ -141,7 +140,7 @@
                 <DataTemplate>
                     <StackLayout Padding="20,10,20,10" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
                         <Label
-                            FontAttributes="Bold"
+                            FontFamily="batang"
                             FontSize="{Binding Path=BindingContext.CustomFontSize, Source={x:Reference mccheyneCollectionView}}"
                             IsVisible="{Binding IsHalfVerseVisible}"
                             Text="{Binding HalfVerse}"
@@ -149,6 +148,7 @@
                                                         Light=Black}" />
                         <Label
                             Margin="0,10,0,0"
+                            FontFamily="batang"
                             FontSize="{Binding Path=BindingContext.CustomFontSize, Source={x:Reference mccheyneCollectionView}}"
                             LineHeight="1.7"
                             Text="{Binding VerseToDisplay}"
