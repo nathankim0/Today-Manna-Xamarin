@@ -64,49 +64,16 @@
                         VerticalOptions="Center" />
                 </StackLayout>
 
-                <StackLayout Padding="0,15,0,15" Orientation="Horizontal">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBackupButtonClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Label
-                        FontSize="20"
-                        HorizontalOptions="StartAndExpand"
-                        Text="백업"
-                        TextColor="{AppThemeBinding Dark=White,
-                                                    Light=Black}"
-                        VerticalOptions="Center" />
-                    <Label
-                        FontFamily=""
-                        FontSize="20"
-                        HorizontalOptions="End"
-                        Text="{Binding IsDatabase}"
-                        TextColor="Gray"
-                        VerticalOptions="Center" />
-                </StackLayout>
-
                 <Label
                     Padding="0,15,0,15"
                     FontSize="20"
                     HorizontalOptions="StartAndExpand"
-                    Text="복원"
+                    Text="후원"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
                     VerticalOptions="Center">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnRestoreButtonClicked" />
-                    </Label.GestureRecognizers>
-                </Label>
-
-                <Label
-                    Padding="0,15,0,15"
-                    FontSize="20"
-                    HorizontalOptions="StartAndExpand"
-                    Text="드롭박스 로그아웃"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}"
-                    VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnLogoutButtonClicked" />
+                        <TapGestureRecognizer Tapped="OnDonateButtonClicked" />
                     </Label.GestureRecognizers>
                 </Label>
 

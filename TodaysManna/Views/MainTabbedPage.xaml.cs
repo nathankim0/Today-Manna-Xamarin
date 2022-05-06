@@ -70,12 +70,6 @@ namespace TodaysManna
 
             if (CurrentPage.Equals(navMannaPage))
             {
-                //if (!Values.IsDeviceIOS && Values.MannaPageLaunchCount <= 1)
-                //{
-                //    MannaPage.CustomOnAppearing();
-                //    Values.MannaPageLaunchCount = 2;
-                //}
-
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMannaPage");
             }
             else if (CurrentPage.Equals(navMccheynePage))
@@ -102,16 +96,6 @@ namespace TodaysManna
 
                 FirebaseEventService.SendEventOnPlatformSpecific("view_navMyPage");
             }
-            //else if (CurrentPage.Equals(navSettingPage))
-            //{
-            //    if (!Constants.IsDeviceIOS && Constants.SettingsPageLaunchCount <= 1)
-            //    {
-            //        settingPage.CustomOnAppearing();
-            //        Constants.SettingsPageLaunchCount = 2;
-            //    }
-
-            //    FirebaseEventService.SendEventOnPlatformSpecific("view_navSettingPage");
-            //}
         }
 
         public void ScrollMannaToTop()

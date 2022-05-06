@@ -15,6 +15,8 @@ namespace TodaysManna
         private readonly OptionPopup _optionPopup;
         private MccheyneCheckListContent _todayMccheyne;
 
+        private bool isFirstView = true;
+
         public MccheyneCheckListPage()
         {
             InitializeComponent();
@@ -57,7 +59,11 @@ namespace TodaysManna
 
         public void CustomOnAppearing()
         {
-            ScrollToToday(false);
+            if (isFirstView)
+            {
+                ScrollToToday(false);
+                isFirstView = false;
+            }
         }
 
         private void OnScrollToToday(object sender, EventArgs e)

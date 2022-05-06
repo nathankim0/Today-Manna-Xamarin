@@ -75,54 +75,7 @@ namespace TodaysManna.Views
 
         public void CustomOnAppearing()
         {
-            (BindingContext as SettingViewModel).GetAuthAndIsDatabase();
         }
-
-        private async void OnBackupButtonClicked(object sender, EventArgs e)
-        {
-            DependencyService.Get<IHapticFeedback>().Run();
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_backup");
-
-            if (!await Application.Current.MainPage.DisplayAlert("", "백업 하시겠습니까? 저장된 백업에 덮어씌웁니다.", "확인", "취소"))
-            {
-                IsBusy = false;
-                return;
-            }
-            IsBusy = true;
-
-            await viewModel.saveDropBoxService.Authorize();
-        }
-
-        private async void OnRestoreButtonClicked(object sender, EventArgs e)
-        {
-            DependencyService.Get<IHapticFeedback>().Run();
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_restore");
-
-            if (!await Application.Current.MainPage.DisplayAlert("", "복원 하시겠습니까? 기존 메모는 사라집니다.", "확인", "취소"))
-            {
-                IsBusy = false;
-                return;
-            }
-            IsBusy = true;
-
-            await viewModel.restoreDropBoxService.Authorize();
-        }
-
-        private async void OnLogoutButtonClicked(object sender, EventArgs e)
-        {
-            DependencyService.Get<IHapticFeedback>().Run();
-            FirebaseEventService.SendEventOnPlatformSpecific("setting_logout");
-
-            if (!await Application.Current.MainPage.DisplayAlert("", "백업 연결된 드롭박스에서 로그아웃 하시겠습니까?", "확인", "취소"))
-            {
-                IsBusy = false;
-                return;
-            }
-            IsBusy = true;
-
-            viewModel.Logout();
-        }
-
 
         private async void OnOpenStoreButtonClicked(object sender, EventArgs e)
         {
