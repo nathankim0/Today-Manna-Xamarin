@@ -12,83 +12,82 @@
     NavigationPage.HasNavigationBar="True">
 
     <ContentPage.Content>
-        <Grid Margin="0,10,0,0" RowDefinitions="Auto,*">
-            <StackLayout>
-                <Label
-                    Margin="30,0,8,10"
-                    FontFamily="Pretendard-Bold"
-                    FontSize="26"
-                    Text="Choose Your Preferred Language!"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-                <Label
-                    Margin="30,0,8,0"
-                    FontSize="20"
-                    Text="언어를 선택해주세요!"
-                    TextColor="{AppThemeBinding Dark=White,
-                                                Light=Black}" />
-            </StackLayout>
-
-            <CollectionView
-                Grid.Row="1"
-                Margin="0,10,0,10"
-                ItemsSource="{Binding Countries}"
-                VerticalOptions="Fill"
-                VerticalScrollBarVisibility="Always">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,10,0,10">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
-                            </Grid.GestureRecognizers>
-                            <StackLayout
-                                Margin="30,20,30,20"
-                                Orientation="Horizontal"
-                                VerticalOptions="Center">
-                                <Frame
-                                    Margin="0"
-                                    Padding="0"
-                                    BackgroundColor="LightGray"
-                                    CornerRadius="20"
-                                    HasShadow="False"
-                                    HeightRequest="40"
-                                    WidthRequest="40">
-                                    <Label
-                                        Margin="2,2,0,0"
-                                        FontSize="20"
-                                        HorizontalOptions="Center"
-                                        Text="{Binding Flag}"
-                                        TextColor="Black"
-                                        VerticalOptions="Center" />
-                                </Frame>
-
+        <CollectionView
+            Grid.Row="1"
+            Margin="0,20,0,10"
+            ItemsSource="{Binding Countries}"
+            VerticalOptions="Fill"
+            VerticalScrollBarVisibility="Always">
+            <CollectionView.Header>
+                <StackLayout>
+                    <Label
+                        Margin="30,0,8,10"
+                        FontFamily="Pretendard-Bold"
+                        FontSize="26"
+                        Text="Choose Your Preferred Language!"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}" />
+                    <Label
+                        Margin="30,0,8,0"
+                        FontSize="20"
+                        Text="언어를 선택해주세요!"
+                        TextColor="{AppThemeBinding Dark=White,
+                                                    Light=Black}" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,10,0,10">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <StackLayout
+                            Margin="30,20,30,20"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
+                            <Frame
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="LightGray"
+                                CornerRadius="20"
+                                HasShadow="False"
+                                HeightRequest="40"
+                                WidthRequest="40">
                                 <Label
-                                    Margin="15,0,0,0"
+                                    Margin="2,2,0,0"
                                     FontSize="20"
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="{Binding Language}"
-                                    TextColor="{AppThemeBinding Dark=White,
-                                                                Light=Black}"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Flag}"
+                                    TextColor="Black"
                                     VerticalOptions="Center" />
+                            </Frame>
 
-                                <Image
-                                    HeightRequest="25"
-                                    IsVisible="{Binding Selected}"
-                                    VerticalOptions="Center"
-                                    WidthRequest="25">
-                                    <Image.Source>
-                                        <FontImageSource
-                                            FontFamily="materialdesignicons"
-                                            Glyph="{x:Static root:FontIcons.Check}"
-                                            Color="{AppThemeBinding Dark=White,
-                                                                    Light=Navy}" />
-                                    </Image.Source>
-                                </Image>
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
+                            <Label
+                                Margin="15,0,0,0"
+                                FontSize="20"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{Binding Language}"
+                                TextColor="{AppThemeBinding Dark=White,
+                                                            Light=Black}"
+                                VerticalOptions="Center" />
+
+                            <Image
+                                HeightRequest="25"
+                                IsVisible="{Binding Selected}"
+                                VerticalOptions="Center"
+                                WidthRequest="25">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="materialdesignicons"
+                                        Glyph="{x:Static root:FontIcons.Check}"
+                                        Color="{AppThemeBinding Dark=White,
+                                                                Light=Navy}" />
+                                </Image.Source>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentPage.Content>
 </ContentPage>
