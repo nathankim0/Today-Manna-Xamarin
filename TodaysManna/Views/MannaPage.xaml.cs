@@ -38,8 +38,6 @@ namespace TodaysManna
             SelectFeaturePopup.Instance.SharebuttonClicked += OnShareCliked;
             SelectFeaturePopup.Instance.MemobuttonClicked += OnMemoClicked;
             SelectFeaturePopup.Instance.CancelbuttonClicked += OnCancelClicked;
-
-            //PushOnboarding();
         }
 
         bool isFirstView = true;
@@ -56,16 +54,6 @@ namespace TodaysManna
                 viewModel.SetTodayCheckList();
             }
         }
-
-        //private async void PushOnboarding()
-        //{
-        //    if (VersionTracking.IsFirstLaunchEver)
-        //    {
-        //        var onboardingPage = new OnboardingPage();
-        //        onboardingPage.LanguageChanged += GetMannaByLanguage;
-        //        await Application.Current.MainPage.Navigation.PushAsync(onboardingPage, false);
-        //    }
-        //}
 
         private async void RefreshView_Refreshing(object sender, EventArgs e)
         {

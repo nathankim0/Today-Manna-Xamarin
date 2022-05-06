@@ -80,9 +80,6 @@ namespace TodaysManna
 
 
         #region CollectionChanged
-        //**************************************//
-        // Collection View Changed Methods
-        //**************************************//
         async void OnMccheyneCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var currentView = (CollectionView)sender;
@@ -202,6 +199,8 @@ namespace TodaysManna
             viewModel.IsRange4Selected = false;
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents1;
+
+            mccheyneCollectionView.ScrollTo(0);
         }
 
         private void OnRange2Tapped(object sender, EventArgs args)
@@ -215,6 +214,8 @@ namespace TodaysManna
             viewModel.IsRange4Selected = false;
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents2;
+
+            mccheyneCollectionView.ScrollTo(0);
         }
 
         private void OnRange3Tapped(object sender, EventArgs args)
@@ -228,6 +229,8 @@ namespace TodaysManna
             viewModel.IsRange4Selected = false;
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents3;
+
+            mccheyneCollectionView.ScrollTo(0);
         }
 
         private void OnRange4Tapped(object sender, EventArgs args)
@@ -241,6 +244,8 @@ namespace TodaysManna
             viewModel.IsRange4Selected = true;
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents4;
+
+            mccheyneCollectionView.ScrollTo(0);
         }
 
         void OnMccheyneCheckTapped(object sender, EventArgs e)
@@ -248,23 +253,5 @@ namespace TodaysManna
             var mccheyneOneRange = ((TappedEventArgs)e).Parameter as MccheyneOneRange;
             mccheyneOneRange.IsChecked = !mccheyneOneRange.IsChecked;
         }
-
-        //double previousScrollPosition = 0;
-        //void mccheyneCollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        //{
-        //    if (previousScrollPosition < e.VerticalOffset)
-        //    {
-        //        mccheynToggle.TranslateTo(0, 70, 250u, Easing.CubicOut);
-        //        mccheynToggle.FadeTo(0, 150);
-
-        //        previousScrollPosition = e.VerticalOffset;
-        //    }
-        //    else if (previousScrollPosition > e.VerticalOffset)
-        //    {
-        //        mccheynToggle.Opacity = 1;
-        //        mccheynToggle.TranslateTo(0, 0, 200u, Easing.CubicOut);
-        //    }
-        //    previousScrollPosition = e.VerticalOffset;
-        //}
     }
 }
