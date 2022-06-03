@@ -123,17 +123,37 @@
             Style="{x:StaticResource collectionViewStyle}">
             <CollectionView.HeaderTemplate>
                 <DataTemplate>
-                    <Label
-                        Padding="15"
-                        FontSize="20"
-                        Text="{Binding DisplayDateRange}"
-                        TextColor="#fda51e"
-                        TextDecorations="Underline"
-                        VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnDateButtonClicked" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <StackLayout Orientation="Horizontal">
+
+                        <Button
+                            Padding="15"
+                            BackgroundColor="Transparent"
+                            Clicked="OnPreviousDateButtonClicked"
+                            FontSize="26"
+                            Text="⬅️"
+                            TextColor="Black" />
+
+                        <Label
+                            Padding="0,15,0,15"
+                            FontSize="20"
+                            Text="{Binding DisplayDateRange}"
+                            TextColor="#fda51e"
+                            TextDecorations="Underline"
+                            VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDateButtonClicked" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Button
+                            Padding="15"
+                            BackgroundColor="Transparent"
+                            Clicked="OnNextDateButtonClicked"
+                            FontSize="26"
+                            Text="➡️"
+                            TextColor="Black" />
+                    </StackLayout>
+
                 </DataTemplate>
 
             </CollectionView.HeaderTemplate>
@@ -155,12 +175,29 @@
                             Text="{Binding VerseToDisplay}"
                             TextColor="{AppThemeBinding Dark=White,
                                                         Light=Black}"
-                            VerticalOptions="StartAndExpand" />
+                            VerticalOptions="FillAndExpand"
+                            VerticalTextAlignment="Start" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.Footer>
-                <BoxView BackgroundColor="Transparent" HeightRequest="120" />
+                <StackLayout>
+
+                    <Button
+                        Margin="60,50,60,30"
+                        BackgroundColor="#fda51e"
+                        Clicked="OnNextDateButtonClicked"
+                        CornerRadius="25"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        HeightRequest="50"
+                        HorizontalOptions="Fill"
+                        Text="다음 날짜로 👉"
+                        TextColor="White" />
+
+                    <BoxView BackgroundColor="Transparent" HeightRequest="120" />
+
+                </StackLayout>
             </CollectionView.Footer>
         </CollectionView>
 
