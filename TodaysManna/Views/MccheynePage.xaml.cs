@@ -207,7 +207,7 @@ namespace TodaysManna
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents1;
 
-            mccheyneCollectionView.ScrollTo(0);
+            mccheyneCollectionView.ScrollTo(0, animate: false);
         }
 
         private void OnRange2Tapped(object sender, EventArgs args)
@@ -222,7 +222,7 @@ namespace TodaysManna
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents2;
 
-            mccheyneCollectionView.ScrollTo(0);
+            mccheyneCollectionView.ScrollTo(0, animate: false);
         }
 
         private void OnRange3Tapped(object sender, EventArgs args)
@@ -237,7 +237,7 @@ namespace TodaysManna
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents3;
 
-            mccheyneCollectionView.ScrollTo(0);
+            mccheyneCollectionView.ScrollTo(0, animate: false);
         }
 
         private void OnRange4Tapped(object sender, EventArgs args)
@@ -252,13 +252,23 @@ namespace TodaysManna
 
             mccheyneCollectionView.ItemsSource = viewModel.MccheyneContents4;
 
-            mccheyneCollectionView.ScrollTo(0);
+            mccheyneCollectionView.ScrollTo(0, animate: false);
         }
 
         void OnMccheyneCheckTapped(object sender, EventArgs e)
         {
             var mccheyneOneRange = ((TappedEventArgs)e).Parameter as MccheyneOneRange;
             mccheyneOneRange.IsChecked = !mccheyneOneRange.IsChecked;
+        }
+
+        void OnNextDateButtonClicked(object sender, EventArgs e)
+        {
+            datepicker.Date = datepicker.Date.AddDays(1);
+        }
+
+        void OnPreviousDateButtonClicked(object sender, EventArgs e)
+        {
+            datepicker.Date = datepicker.Date.AddDays(-1);
         }
     }
 }
