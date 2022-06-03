@@ -15,7 +15,7 @@
         <ScrollView>
             <StackLayout Padding="20" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
 
-                <Button
+                <!--<Button
                     x:Name="languageTitleLabel"
                     BackgroundColor="{AppThemeBinding Dark=White,
                                                       Light=Black}"
@@ -24,7 +24,7 @@
                     HorizontalOptions="Fill"
                     Text="Language"
                     TextColor="{AppThemeBinding Dark=Black,
-                                                Light=White}" />
+                                                Light=White}" />-->
 
                 <Label
                     x:Name="fontTitleLabel"
