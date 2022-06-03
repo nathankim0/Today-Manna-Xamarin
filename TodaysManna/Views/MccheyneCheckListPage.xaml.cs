@@ -66,11 +66,6 @@ namespace TodaysManna
             }
         }
 
-        private void OnScrollToToday(object sender, EventArgs e)
-        {
-            ScrollToToday(false);
-        }
-
         private async void OnCheckButtonClicked(object sender, EventArgs e)
         {
             DependencyService.Get<IHapticFeedback>().Run();
