@@ -24,6 +24,19 @@ namespace TodaysManna
             {
                 outerScrollView.ScrollToAsync(0, 0, true);
             });
+
+            ShowNoticePopup();
+        }
+
+        private async void ShowNoticePopup()
+        {
+            if(Preferences.Get(DateTime.Today.ToString(), false))
+            {
+                return;
+            }
+            Preferences.Set(DateTime.Today.ToString(), true);
+
+            await DisplayAlert("공지", "만나 기능이 여러 버그와 서버 비용 부담으로 인해 삭제 되었습니다. 새로운 앱으로 개발 진행 중이오니 양해 부탁드립니다. 감사합니다 ㅠㅡㅠ", "확인");
         }
 
         bool isFirstView = true;
