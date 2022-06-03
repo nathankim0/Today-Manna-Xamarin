@@ -80,14 +80,6 @@ namespace TodaysManna.ViewModel
                 System.Diagnostics.Debug.WriteLine("GetMccheyne() Error");
             }
 
-            MessagingCenter.Subscribe<MccheyneCheckListPage, DateTime>(this,"goToReadTapped",(s,date)=>
-            {
-                CurrentSettedDateTime = date;
-                _ = GetMccheyne();
-                _ = GetMccheyneRange();
-                SetTodayCheckList();
-            });
-
             SetTodayCheckList();
         }
 
@@ -306,10 +298,10 @@ namespace TodaysManna.ViewModel
             MccheyneContents3.AddRange(list3);
             MccheyneContents4.AddRange(list4);
 
-            MccheyneRange1 = MccheyneContents1[0].Book;
-            MccheyneRange2 = MccheyneContents2[0].Book;
-            MccheyneRange3 = MccheyneContents3[0].Book;
-            MccheyneRange4 = MccheyneContents4[0].Book;
+            MccheyneRange1 = MccheyneContents1[0].Book.ToShortBible();
+            MccheyneRange2 = MccheyneContents2[0].Book.ToShortBible();
+            MccheyneRange3 = MccheyneContents3[0].Book.ToShortBible();
+            MccheyneRange4 = MccheyneContents4[0].Book.ToShortBible();
 
             return Task.CompletedTask;
         }
