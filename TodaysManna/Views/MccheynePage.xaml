@@ -154,7 +154,8 @@
                             LineHeight="1.7"
                             Text="{Binding VerseToDisplay}"
                             TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
+                                                        Light=Black}"
+                            VerticalOptions="StartAndExpand" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
