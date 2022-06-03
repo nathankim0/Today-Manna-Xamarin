@@ -14,21 +14,9 @@
 
         <ScrollView>
             <StackLayout Padding="20" BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
-
-                <!--<Button
-                    x:Name="languageTitleLabel"
-                    BackgroundColor="{AppThemeBinding Dark=White,
-                                                      Light=Black}"
-                    Clicked="languageTitleLabel_Clicked"
-                    FontSize="20"
-                    HorizontalOptions="Fill"
-                    Text="Language"
-                    TextColor="{AppThemeBinding Dark=Black,
-                                                Light=White}" />-->
-
                 <Label
                     x:Name="fontTitleLabel"
-                    Margin="0,30,0,0"
+                    Margin="0,10,0,0"
                     FontSize="20"
                     HorizontalOptions="Center"
                     Text="폰트 크기"
