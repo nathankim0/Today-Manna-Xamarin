@@ -42,7 +42,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow access to the camera to scan barcodes</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.6.5</string>
+	<string>4.6.6</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -50,6 +50,6 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 </dict>
 </plist>
