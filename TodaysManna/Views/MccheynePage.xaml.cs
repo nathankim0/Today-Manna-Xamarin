@@ -26,6 +26,11 @@ namespace TodaysManna
             {
                 mccheyneCollectionView.ScrollTo(0);
             });
+
+            MessagingCenter.Subscribe<MccheyneCheckListPage, DateTime>(this, "goToReadTapped", (s, date) =>
+            {
+                datepicker.Date = date;
+            });
         }
 
         protected override void OnAppearing()
@@ -76,6 +81,8 @@ namespace TodaysManna
             viewModel.IsRefreshing = false;
 
             DependencyService.Get<IHapticFeedback>().Run();
+
+            mccheyneCollectionView.ScrollTo(0);
         }
 
 
