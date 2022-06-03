@@ -96,11 +96,7 @@
                             HorizontalOptions="End"
                             Text="{Binding DisplayDateRange}"
                             TextColor="#fda51e"
-                            VerticalOptions="End">
-                            <!--<Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnMannaDateButtonClicked" />
-                            </Label.GestureRecognizers>-->
-                        </Label>
+                            VerticalOptions="End" />
                     </StackLayout>
                     <!--#endregion-->
 
@@ -153,30 +149,17 @@
                         <Grid
                             Margin="0,10,0,0"
                             ColumnDefinitions="60,*"
-                            RowDefinitions="*,*"
+                            RowDefinitions="*"
                             RowSpacing="5">
                             <Label
                                 Grid.Row="0"
-                                Grid.Column="0"
-                                FontSize="16"
-                                Text="만나"
-                                TextColor="{AppThemeBinding Dark=White,
-                                                            Light=Black}" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                FontSize="16"
-                                Text="{Binding MannaRange}"
-                                TextColor="Gray" />
-                            <Label
-                                Grid.Row="1"
                                 Grid.Column="0"
                                 FontSize="16"
                                 Text="맥체인"
                                 TextColor="{AppThemeBinding Dark=White,
                                                             Light=Black}" />
                             <Label
-                                Grid.Row="1"
+                                Grid.Row="0"
                                 Grid.Column="1"
                                 FontSize="16"
                                 Text="{Binding MccheyneRange}"
@@ -241,130 +224,8 @@
                     <!--#endregion-->
 
                     <BoxView BackgroundColor="{AppThemeBinding Dark=#242424, Light=#F9F9F9}" HeightRequest="15" />
-
-                    <!--#region Today's manna title-->
-                    <StackLayout
-                        Padding="15,35,15,0"
-                        BackgroundColor="{AppThemeBinding Dark=Black,
-                                                          Light=White}"
-                        Orientation="Horizontal">
-                        <Label
-                            FontSize="22"
-                            HorizontalOptions="StartAndExpand"
-                            Text="오늘의 만나"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}"
-                            VerticalOptions="CenterAndExpand" />
-
-                        <ImageButton
-                            x:Name="selectButton"
-                            Margin="0,0,10,0"
-                            Padding="6"
-                            BackgroundColor="{AppThemeBinding Dark=Black,
-                                                              Light=White}"
-                            BorderColor="Transparent"
-                            Clicked="OnSelectAllButtonClicked"
-                            CornerRadius="20"
-                            HeightRequest="40"
-                            HorizontalOptions="End"
-                            Opacity="0.3"
-                            VerticalOptions="Start"
-                            WidthRequest="40">
-                            <ImageButton.Source>
-                                <FontImageSource
-                                    FontFamily="materialdesignicons"
-                                    Glyph="{Binding IsAllSelected, Converter={x:StaticResource AllSelectIconConverter}}"
-                                    Size="30"
-                                    Color="{AppThemeBinding Dark=White,
-                                                            Light=Black}" />
-                            </ImageButton.Source>
-                        </ImageButton>
-
-                        <ImageButton
-                            Padding="10,0,10,0"
-                            Clicked="OnShareMannaWholeMannaContentsButtonTapped"
-                            HorizontalOptions="End"
-                            Opacity="0.3"
-                            VerticalOptions="Center">
-                            <ImageButton.Source>
-                                <FontImageSource
-                                    FontFamily="materialdesignicons"
-                                    Glyph="{x:Static local:FontIcons.ShareVariant}"
-                                    Size="27"
-                                    Color="{AppThemeBinding Dark=White,
-                                                            Light=Black}" />
-                            </ImageButton.Source>
-                        </ImageButton>
-
-                    </StackLayout>
-                    <!--#endregion-->
-
-                    <!--#region Today's manna-->
-                    <StackLayout
-                        x:Name="innerStackLayout"
-                        Padding="15,20,15,20"
-                        BackgroundColor="{AppThemeBinding Dark=Black,
-                                                          Light=White}">
-                        <Label
-                            x:Name="rangeLabel"
-                            FontSize="{Binding Path=BindingContext.CustomFontSize, Source={x:Reference refreshView}}"
-                            Text="{Binding MannaRange}"
-                            TextColor="{AppThemeBinding Dark=White,
-                                                        Light=Black}" />
-                        <StackLayout
-                            Margin="0,0,0,120"
-                            BackgroundColor="Transparent"
-                            BindableLayout.ItemsSource="{Binding MannaContents}">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Padding="0,10,0,10" BackgroundColor="Transparent">
-                                        <Grid.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding Selected}"
-                                                TargetType="Grid"
-                                                Value="true">
-                                                <Setter Property="BackgroundColor" Value="#CC989898" />
-                                            </DataTrigger>
-                                            <DataTrigger
-                                                Binding="{Binding Selected}"
-                                                TargetType="Grid"
-                                                Value="false">
-                                                <Setter Property="BackgroundColor" Value="Transparent" />
-                                            </DataTrigger>
-                                        </Grid.Triggers>
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped" />
-                                        </Grid.GestureRecognizers>
-                                        <Label
-                                            FontFamily="batang"
-                                            FontSize="{Binding Path=BindingContext.CustomFontSize, Source={x:Reference refreshView}}"
-                                            LineHeight="1.7"
-                                            Text="{Binding VerseToDisplay}"
-                                            TextColor="{AppThemeBinding Dark=White,
-                                                                        Light=Black}"
-                                            VerticalOptions="Center" />
-                                    </Grid>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
-                    </StackLayout>
-                    <!--#endregion-->
-
                 </StackLayout>
             </ScrollView>
         </RefreshView>
-
-        <Grid
-            Grid.RowSpan="2"
-            BackgroundColor="#80000000"
-            IsVisible="{Binding IsLoadingServer}">
-            <Label
-                x:Name="label"
-                FontSize="35"
-                HorizontalOptions="Center"
-                Text="Loading..."
-                TextColor="White"
-                VerticalOptions="Center" />
-        </Grid>
     </Grid>
 </ContentPage>

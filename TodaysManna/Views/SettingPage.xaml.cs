@@ -1,7 +1,6 @@
 ﻿using System;
 using Plugin.LocalNotification;
 using Plugin.StoreReview;
-
 using TodaysManna.ViewModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -65,13 +64,6 @@ namespace TodaysManna.Views
             Preferences.Set("TextSize", e.NewValue);
         }
 
-        async void languageTitleLabel_Clicked(object sender, EventArgs e)
-        {
-            var languagePage = new LanguagePage();
-            languagePage.LanguageChanged += (s, selectedLanguage) => { LanguageChanged?.Invoke(this, selectedLanguage); };
-
-            await Application.Current.MainPage.Navigation.PushAsync(languagePage);
-        }
 
         public void CustomOnAppearing()
         {
