@@ -10,9 +10,6 @@ namespace TodaysManna.ViewModel
 {
     public class MannaViewModel : PageBaseViewModel
     {
-        private string _mannaRange;
-        public string MannaRange { get => _mannaRange; set => SetProperty(ref _mannaRange, value); }
-
         private string _mccheyneRange;
         public string MccheyneRange { get => _mccheyneRange; set => SetProperty(ref _mccheyneRange, value); }
 
