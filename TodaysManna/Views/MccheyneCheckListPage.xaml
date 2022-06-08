@@ -5,6 +5,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     Title="checklist_page"
+    ios:Page.PrefersHomeIndicatorAutoHidden="True"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
@@ -39,6 +40,21 @@
                                             Light=Black}" />
 
             <ImageButton
+                Margin="0,0,15,0"
+                Clicked="OnUnReadPageClicked"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="materialdesignicons"
+                        Glyph="{x:Static local:FontIcons.CheckboxMarked}"
+                        Size="40"
+                        Color="{AppThemeBinding Dark=White,
+                                                Light=Black}" />
+                </ImageButton.Source>
+            </ImageButton>
+
+            <ImageButton
                 Clicked="OnOptionClicked"
                 HorizontalOptions="End"
                 VerticalOptions="Center">
@@ -46,7 +62,7 @@
                     <FontImageSource
                         FontFamily="materialdesignicons"
                         Glyph="{x:Static local:FontIcons.AppleKeyboardOption}"
-                        Size="30"
+                        Size="40"
                         Color="{AppThemeBinding Dark=White,
                                                 Light=Black}" />
                 </ImageButton.Source>
