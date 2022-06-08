@@ -30,13 +30,13 @@ namespace TodaysManna
 
         private async void ShowNoticePopup()
         {
-            if(Preferences.Get(DateTime.Today.ToString(), false))
+            if(Preferences.Get("isNoticeDisabled", false))
             {
                 return;
             }
-            Preferences.Set(DateTime.Today.ToString(), true);
+            Preferences.Set("isNoticeDisabled", true);
 
-            await DisplayAlert("공지", "만나 기능이 여러 버그와 서버 비용 부담으로 인해 삭제 되었습니다. 새로운 앱으로 개발 진행 중이오니 양해 부탁드립니다. 감사합니다 ㅠㅡㅠ", "확인");
+            await DisplayAlert("공지", "📌 현재 '만나' 기능이 여러 버그와 서버 비용 부담으로 인해 삭제 되었습니다. 추후에 다시 추가될 예정이오니 잠시 기다려주세요!\n📌 체크리스트에 안읽은 맥체인 모아보기 기능이 추가 되었습니다.\n📌 설정에 후원 기능이 추가 되었습니다.", "확인");
         }
 
         bool isFirstView = true;
@@ -82,7 +82,7 @@ namespace TodaysManna
         private async void OnShareMannaAndMccheyneRangeButtonTapped(object sender, EventArgs e)
         {
             if (!(BindingContext is MannaViewModel viewModel)) return;
-            var shareText = $"맥체인: {viewModel.MccheyneRange}\n{AppManager.GetShareBottomTextString()}";
+            var shareText = $"{AppManager.GetShareTopTextString()}\n맥체인: {viewModel.MccheyneRange}\n{AppManager.GetShareBottomTextString()}";
 
             await SaveToClipboard(shareText);
         }
