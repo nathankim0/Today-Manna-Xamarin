@@ -5,6 +5,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:local="clr-namespace:TodaysManna"
     Title="memo_page"
+    ios:Page.PrefersHomeIndicatorAutoHidden="True"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"
