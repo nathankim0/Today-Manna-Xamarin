@@ -117,6 +117,14 @@ namespace TodaysManna
 
         }
 
+        private async void OnUnReadPageClicked(object sender, EventArgs e)
+        {
+            DependencyService.Get<IHapticFeedback>().Run();
+
+            var page = new MccheyneUnReadCheckListPage();
+            await Navigation.PushAsync(page);
+        }
+
         private async void OnOptionClicked(object sender, EventArgs e)
         {
             DependencyService.Get<IHapticFeedback>().Run();
