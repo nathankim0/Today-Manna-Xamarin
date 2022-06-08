@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TodaysManna"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="mccheyne_page"
+    ios:Page.PrefersHomeIndicatorAutoHidden="True"
     ios:Page.UseSafeArea="true"
     BackgroundColor="{AppThemeBinding Dark=Black,
                                       Light=White}"

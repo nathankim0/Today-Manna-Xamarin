@@ -5,6 +5,9 @@ using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Diagnostics;
 
 namespace TodaysManna.ViewModel
 {
@@ -42,6 +45,13 @@ namespace TodaysManna.ViewModel
         private ObservableRangeCollection<MccheyneOneRange> todayMccheyneCheckList = new ObservableRangeCollection<MccheyneOneRange>();
         public ObservableRangeCollection<MccheyneOneRange> TodayMccheyneCheckList { get => todayMccheyneCheckList; set => SetProperty(ref todayMccheyneCheckList, value); }
 
+        private ObservableCollection<MccheyneCheckListContent> mccheyneCheckList = new ObservableRangeCollection<MccheyneCheckListContent>();
+        public ObservableCollection<MccheyneCheckListContent> MccheyneCheckList
+        {
+            get => mccheyneCheckList;
+            set => SetProperty(ref mccheyneCheckList, value);
+        }
+
         public MannaViewModel()
         {
             var today = DateTime.Now.ToString("M-d");
@@ -49,6 +59,13 @@ namespace TodaysManna.ViewModel
 
             var rangeOfDate = MccheyneDataManager.MccheyneRangeList.Find(x => x.Date.Equals(today));
             MccheyneRange = $"{rangeOfDate.Range1} {rangeOfDate.Range2} {rangeOfDate.Range3} {rangeOfDate.Range4} {rangeOfDate.Range5}";
+
+            mccheyneCheckList = new ObservableCollection<MccheyneCheckListContent>(MccheyneCheckListManager.MccheyneCheckList.Where(x =>
+            {
+                Debug.WriteLine("Convert.ToDateTime(x.Date): " + Convert.ToDateTime(x.Date));
+                Debug.WriteLine("DateTime.Today: " + DateTime.Today);
+                return Convert.ToDateTime(x.Date) < DateTime.Today;
+            }));
 
             SetTodayCheckList();
         }
