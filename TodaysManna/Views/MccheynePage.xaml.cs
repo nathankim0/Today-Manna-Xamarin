@@ -31,6 +31,11 @@ namespace TodaysManna
             {
                 datepicker.Date = date;
             });
+
+            MessagingCenter.Subscribe<MccheyneUnReadCheckListPage, DateTime>(this, "goToReadTapped", (s, date) =>
+            {
+                datepicker.Date = date;
+            });
         }
 
         protected override void OnAppearing()
