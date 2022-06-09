@@ -74,20 +74,7 @@ namespace TodaysManna.Views
             DependencyService.Get<IHapticFeedback>().Run();
             FirebaseEventService.SendEventOnPlatformSpecific("setting_review");
 
-            //CrossStoreReview.Current.OpenStoreListing("1547824358");
-            //CrossStoreReview.Current.OpenStoreReviewPage("1547824358");
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    await CrossStoreReview.Current.RequestReview(false);
-                    break;
-                case Device.Android:
-                    var uri = new Uri("https://play.google.com/store/apps/details?id=com.manna.parsing2");
-                    await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-                    break;
-                default:
-                    break;
-            }
+            await CrossStoreReview.Current.RequestReview(false);
         }
 
         private async void OnReportButtonClicked(object sender, EventArgs e)
