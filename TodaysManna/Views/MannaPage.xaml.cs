@@ -5,6 +5,7 @@ using TodaysManna.ViewModel;
 using System.Threading.Tasks;
 using TodaysManna.Models;
 using TodaysManna.Views;
+using Plugin.StoreReview;
 
 namespace TodaysManna
 {
@@ -26,6 +27,17 @@ namespace TodaysManna
             });
 
             ShowNoticePopup();
+
+            RequestReview();
+        }
+
+        private async void RequestReview()
+        {
+            if (Preferences.Get("numberOfOpenApp", 0) == 2)
+            {
+                await CrossStoreReview.Current.RequestReview(false);
+            }
+            Preferences.Set("numberOfOpenApp", Preferences.Get("numberOfOpenApp", 0) + 1);
         }
 
         private async void ShowNoticePopup()
