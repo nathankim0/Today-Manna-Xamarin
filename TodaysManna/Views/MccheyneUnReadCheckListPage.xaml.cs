@@ -15,6 +15,13 @@ namespace TodaysManna
             BindingContext = viewModel;
         }
 
+        protected override void OnAppearing()
+        {
+            if (!(BindingContext is MccheyneUnReadCheckViewModel viewModel)) return;
+            viewModel.InitCheckList();
+            base.OnAppearing();
+        }
+
         private void OnDateTapped(object sender, EventArgs e)
         {
             FirebaseEventService.SendEventOnPlatformSpecific("checklist_go_to_read");
