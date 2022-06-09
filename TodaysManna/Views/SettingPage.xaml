@@ -35,7 +35,7 @@
                     MinimumTrackColor="#fda51e"
                     ValueChanged="Slider_ValueChanged" />
 
-                <StackLayout Margin="0,30,0,0" Orientation="Horizontal">
+                <StackLayout Margin="0,40,0,30" Orientation="Horizontal">
                     <TimePicker
                         x:Name="timePicker"
                         BackgroundColor="Transparent"
@@ -54,9 +54,9 @@
                 </StackLayout>
 
                 <Label
-                    Padding="0,15,0,15"
+                    Padding="0,20,0,20"
                     FontSize="20"
-                    HorizontalOptions="StartAndExpand"
+                    HorizontalOptions="Fill"
                     Text="후원"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
@@ -67,9 +67,9 @@
                 </Label>
 
                 <Label
-                    Padding="0,15,0,15"
+                    Padding="0,20,0,20"
                     FontSize="20"
-                    HorizontalOptions="StartAndExpand"
+                    HorizontalOptions="Fill"
                     Text="문의"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
@@ -80,9 +80,9 @@
                 </Label>
 
                 <Label
-                    Padding="0,15,0,15"
+                    Padding="0,20,0,20"
                     FontSize="20"
-                    HorizontalOptions="StartAndExpand"
+                    HorizontalOptions="Fill"
                     Text="별점주기"
                     TextColor="{AppThemeBinding Dark=White,
                                                 Light=Black}"
@@ -93,7 +93,7 @@
                 </Label>
 
                 <StackLayout
-                    Padding="0,15,0,15"
+                    Padding="0,20,0,20"
                     BackgroundColor="{AppThemeBinding Dark=Black,
                                                       Light=White}"
                     Orientation="Horizontal">
