@@ -105,9 +105,8 @@ namespace TodaysManna.ViewModel
                
                 ++id;
             }
-            //mccheyneCheckList = checkList;
 
-            mccheyneCheckList = new ObservableCollection<MccheyneCheckListContent>(checkList.Where(x =>
+            MccheyneCheckList = new ObservableCollection<MccheyneCheckListContent>(checkList.Where(x =>
             {
                 Debug.WriteLine("Convert.ToDateTime(x.Date): " + Convert.ToDateTime(x.Date));
                 Debug.WriteLine("DateTime.Today: " + DateTime.Today);
