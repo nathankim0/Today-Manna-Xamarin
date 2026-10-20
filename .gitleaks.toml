@@ -1,0 +1,34 @@
+[extend]
+useDefault = true
+
+# Firebase client configuration is public; access depends on API restrictions and Security Rules.
+[[allowlists]]
+condition = "AND"
+paths = [
+  '''^TodaysManna\.Android/google-services\.json$''',
+  '''^TodaysManna\.iOS/GoogleService-Info\.plist$''',
+]
+regexTarget = "secret"
+regexes = ['''^AIza[\w-]{35}$''']
+
+[[rules]]
+id = "hardcoded-login-password"
+description = "A password assigned directly to a string"
+regex = '''(?i)(?:^|\s)(?:password|passwd)\s*=\s*["']([^\s"']{4,})["']'''
+secretGroup = 1
+keywords = ["password", "passwd"]
+
+[[rules.allowlists]]
+regexTarget = "secret"
+regexes = ['''^REDACTED$''']
+
+[[rules]]
+id = "login-password-in-query"
+description = "A password embedded in a login query"
+regex = '''(?i)\b(?:password|passwd)=([^&\s"'<>;]{4,})'''
+secretGroup = 1
+keywords = ["password", "passwd"]
+
+[[rules.allowlists]]
+regexTarget = "secret"
+regexes = ['''^REDACTED$''']

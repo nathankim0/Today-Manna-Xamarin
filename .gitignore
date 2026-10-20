@@ -196,3 +196,13 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 .vscode/settings.json
+
+# Credentials and distributable mobile app packages
+.env
+.env.*
+*.p12
+*.jks
+*.keystore
+*.ipa
+*.apk
+*.aab
